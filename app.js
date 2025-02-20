@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 const { app, BrowserWindow } = require('electron/main');
 const path = require('node:path');
 
