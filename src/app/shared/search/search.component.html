@@ -1,1 +1,14 @@
-<p>search works!</p>
+<form class="d-flex" role="search">
+  <input
+    #input
+    class="form-control me-2"
+    type="search"
+    [placeholder]="'Search' | translate"
+    [attr.aria-label]="'Search' | translate" />
+  <button
+    class="btn btn-outline-success"
+    type="submit"
+    (click)="onSearch(input, $event)">
+    {{ 'Search' | translate }}
+  </button>
+</form>
