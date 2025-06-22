@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-notes',
+  selector: 'npn-notes',
   imports: [],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss',

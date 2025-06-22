@@ -84,7 +84,7 @@
           }
         }
       },
-      "prefix": "app",
+      "prefix": "npn",
       "projectType": "application",
       "root": "",
       "schematics": {
