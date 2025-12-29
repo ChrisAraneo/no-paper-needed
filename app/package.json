@@ -1,0 +1,9 @@
+{
+  "name": "no-paper-needed",
+  "description": "",
+  "version": "0.0.0",
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+  }
+}
