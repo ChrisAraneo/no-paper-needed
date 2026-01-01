@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ElectronService } from './core/services';
+import { SearchbarComponent } from "./shared/components/searchbar/searchbar.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SearchbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
