@@ -2,13 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { APP_CONFIG } from '../environments/environment';
 import { ElectronService } from './core/services';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
-  standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
