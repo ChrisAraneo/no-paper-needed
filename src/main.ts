@@ -18,7 +18,7 @@ import { AppComponent } from './app/app.component';
 import { CoreModule } from './app/core/core.module';
 import { DetailComponent } from './app/detail/detail.component';
 import { HomeComponent } from './app/home/home.component';
-import { PageNotFoundComponent } from './app/shared/components';
+import { PageNotFoundComponent } from './app/shared/components/page-not-found/page-not-found.component';
 import { SharedModule } from './app/shared/shared.module';
 import { APP_CONFIG } from './environments/environment';
 
