@@ -23,7 +23,7 @@ if (APP_CONFIG.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-                     provideZoneChangeDetection(),
+    provideZoneChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
     provideTranslateService({
       loader: provideTranslateHttpLoader({

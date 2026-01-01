@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [RouterLink, TranslateModule],
   standalone: true,
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   constructor() {}

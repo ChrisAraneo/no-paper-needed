@@ -10,7 +10,7 @@ import { ElectronService } from './core/services';
   imports: [RouterOutlet],
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   private readonly electronService = inject(ElectronService);
