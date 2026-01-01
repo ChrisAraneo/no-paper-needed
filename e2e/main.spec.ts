@@ -1,6 +1,7 @@
-import { BrowserContext, ElectronApplication, Page, _electron as electron } from 'playwright';
-import { test, expect } from '@playwright/test';
-import * as PATH from 'path';
+import * as PATH from 'node:path';
+
+import { expect,test } from '@playwright/test';
+import { _electron as electron,BrowserContext, ElectronApplication, Page } from 'playwright';
 
 test.describe('Check Home Page', () => {
   let app: ElectronApplication;
@@ -40,10 +41,10 @@ test.describe('Check Home Page', () => {
     expect(windowState.isCrashed).toBeFalsy();
   });
 
-  // test('Check Home Page design', async ({ browserName}) => {
+  // Test('Check Home Page design', async ({ browserName}) => {
   //   // Uncomment if you change the design of Home Page in order to create a new screenshot
-  //   const screenshot = await firstWindow.screenshot({ path: '/tmp/home.png' });
-  //   expect(screenshot).toMatchSnapshot(`home-${browserName}.png`);
+  //   Const screenshot = await firstWindow.screenshot({ path: '/tmp/home.png' });
+  //   Expect(screenshot).toMatchSnapshot(`home-${browserName}.png`);
   // });
 
   test('Check title', async () => {

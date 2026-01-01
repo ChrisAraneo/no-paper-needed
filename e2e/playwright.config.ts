@@ -1,7 +1,7 @@
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
   testDir: '.',
-  timeout: 45000,
+  timeout: 45_000,
   outputDir: './screenshots',
   use: {
     headless: false,
@@ -16,5 +16,5 @@ const config = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+ 
 module.exports = config;

@@ -1,21 +1,21 @@
-import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
+import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
 import { importProvidersFrom } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-
-import { AppComponent } from './app/app.component';
-import { APP_CONFIG } from './environments/environment';
-import { CoreModule } from './app/core/core.module';
-import { SharedModule } from './app/shared/shared.module';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { PageNotFoundComponent } from './app/shared/components';
-import { HomeComponent } from './app/home/home.component';
+
+import { AppComponent } from './app/app.component';
+import { CoreModule } from './app/core/core.module';
 import { DetailComponent } from './app/detail/detail.component';
+import { HomeComponent } from './app/home/home.component';
+import { PageNotFoundComponent } from './app/shared/components';
+import { SharedModule } from './app/shared/shared.module';
+import { APP_CONFIG } from './environments/environment';
 
 if (APP_CONFIG.production) {
   enableProdMode();
@@ -23,7 +23,7 @@ if (APP_CONFIG.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideZoneChangeDetection(),
+                     provideZoneChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
     provideTranslateService({
       loader: provideTranslateHttpLoader({
@@ -54,4 +54,4 @@ bootstrapApplication(AppComponent, {
     ]),
     importProvidersFrom(CoreModule, SharedModule),
   ],
-}).catch((err) => console.error(err));
+}).catch((error) => console.error(error));

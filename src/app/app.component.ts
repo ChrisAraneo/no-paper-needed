@@ -1,27 +1,25 @@
 import { Component, inject } from '@angular/core';
-import { ElectronService } from './core/services';
-import { TranslateService } from '@ngx-translate/core';
-import { APP_CONFIG } from '../environments/environment';
 import { RouterOutlet } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
+import { APP_CONFIG } from '../environments/environment';
+import { ElectronService } from './core/services';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
   imports: [RouterOutlet],
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  private electronService = inject(ElectronService);
-  private translate = inject(TranslateService);
+  private readonly electronService = inject(ElectronService);
+  private readonly translate = inject(TranslateService);
 
   constructor() {
-    const electronService = this.electronService;
-
     this.translate.setDefaultLang('en');
-    console.log('APP_CONFIG', APP_CONFIG);
 
-    if (electronService.isElectron) {
+    if (this.electronService.isElectron) {
       console.log(process.env);
       console.log('Run in electron');
       console.log('Electron ipcRenderer', this.electronService.ipcRenderer);

@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { TranslateModule } from '@ngx-translate/core';
-import { ElectronService } from './core/services';
 import { provideRouter } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { AppComponent } from './app.component';
+import { ElectronService } from './core/services';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
