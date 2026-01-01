@@ -3,17 +3,10 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "",
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "files": [
-    "main.ts"
-  ],
-  "include": [
-    "**/*.ts",
-    "**/*.d.ts"
-  ],
+  "files": ["main.ts"],
+  "include": ["**/*.ts", "**/*.d.ts"],
   "exclude": [
     "**/*.spec.ts",
     "**/*.test.ts",

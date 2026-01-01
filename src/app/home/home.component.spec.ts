@@ -1,8 +1,8 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {HomeComponent} from './home.component';
-import {TranslateModule} from '@ngx-translate/core';
-import {provideRouter} from '@angular/router';
+import { HomeComponent } from './home.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter } from '@angular/router';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -12,7 +12,7 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [],
       imports: [HomeComponent, TranslateModule.forRoot()],
-      providers: [provideRouter([])]
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
@@ -27,7 +27,7 @@ describe('HomeComponent', () => {
   it('should render title in a h1 tag', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain(
-      'PAGES.HOME.TITLE'
+      'PAGES.HOME.TITLE',
     );
   });
 });

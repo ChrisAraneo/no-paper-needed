@@ -1,15 +1,15 @@
-import {TestBed} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {TranslateModule} from '@ngx-translate/core';
-import {ElectronService} from './core/services';
-import {provideRouter} from '@angular/router';
+import { TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { ElectronService } from './core/services';
+import { provideRouter } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [],
       imports: [AppComponent, TranslateModule.forRoot()],
-      providers: [provideRouter([]), ElectronService]
+      providers: [provideRouter([]), ElectronService],
     }).compileComponents();
   });
 

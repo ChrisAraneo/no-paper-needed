@@ -1,9 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ],
+    "schematicCollections": ["@angular-eslint/schematics"],
     "analytics": false
   },
   "version": 1,
@@ -30,18 +28,11 @@
               "base": "dist"
             },
             "index": "src/index.html",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "src/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": [],
             "browser": "src/main.ts"
           },
@@ -75,10 +66,7 @@
               ]
             },
             "testing": {
-              "polyfills": [
-                "zone.js",
-                "zone.js/testing"
-              ]
+              "polyfills": ["zone.js", "zone.js/testing"]
             }
           }
         },
@@ -107,15 +95,10 @@
           "options": {
             "runner": "vitest",
             "tsConfig": "src/tsconfig.spec.json",
-            "browsers": [
-              "chromium"
-            ],
+            "browsers": ["chromium"],
             "buildTarget": "no-paper-needed:build:testing",
             "coverage": true,
-            "coverageReporters": [
-              "html",
-              "lcovonly"
-            ],
+            "coverageReporters": ["html", "lcovonly"],
             "reporters": [
               ["default", { "summary": true }],
               [
@@ -130,10 +113,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
@@ -145,9 +125,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "e2e/**/*.ts"
-            ]
+            "lintFilePatterns": ["e2e/**/*.ts"]
           }
         }
       }
