@@ -11,12 +11,12 @@
   },
   "DIALOGS": {
     "ADD_NOTE": {
-      "TITLE": "Add new note",
-      "CONTENT": "Content",
-      "NOTIFY_PREFIX": "Daily reminders starting ",
-      "NOTIFY_SUFFIX": " days before",
-      "CANCEL_BUTTON": "Cancel",
-      "SAVE_BUTTON": "Save"
+      "TITLE": "Dodaj nową notatkę",
+      "CONTENT": "Treść",
+      "NOTIFY_PREFIX": "Przypominaj codziennie zaczynając od",
+      "NOTIFY_SUFFIX": " dni wcześniej",
+      "CANCEL_BUTTON": "Anuluj",
+      "SAVE_BUTTON": "Zapisz"
     }
   }
 }
