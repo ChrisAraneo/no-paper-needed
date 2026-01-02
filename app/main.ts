@@ -1,14 +1,26 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable func-style */
+/* eslint-disable max-lines-per-function */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-import {app, BrowserWindow, screen} from 'electron';
+import { app, BrowserWindow, screen } from 'electron';
 
 let win: BrowserWindow | null = null;
 const args = process.argv.slice(1),
   serve = args.includes('--serve');
 
 function createWindow(): BrowserWindow {
-
   const size = screen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
@@ -21,16 +33,16 @@ function createWindow(): BrowserWindow {
       nodeIntegration: true,
       allowRunningInsecureContent: serve,
       contextIsolation: false,
-      webSecurity: !serve
+      webSecurity: !serve,
     },
   });
 
   if (serve) {
-    import('electron-debug').then(debug => {
-      debug.default({isEnabled: true, showDevTools: true});
+    import('electron-debug').then((debug) => {
+      debug.default({ isEnabled: true, showDevTools: true });
     });
 
-    import('electron-reloader').then(reloader => {
+    import('electron-reloader').then((reloader) => {
       const reloaderFn = (reloader as any).default || reloader;
       reloaderFn(module);
     });
@@ -40,12 +52,12 @@ function createWindow(): BrowserWindow {
     let pathIndex = './browser/index.html';
 
     if (fs.existsSync(path.join(__dirname, '../dist/browser/index.html'))) {
-       // Path when running electron in local folder
+      // Path when running electron in local folder
       pathIndex = '../dist/browser/index.html';
     }
 
     const fullPath = path.join(__dirname, pathIndex);
-    const url = `file://${path.resolve(fullPath).replaceAll('\\', '/')}`;
+    const url = pathToFileURL(path.resolve(fullPath)).href;
     win.loadURL(url);
   }
 
@@ -83,7 +95,6 @@ try {
       createWindow();
     }
   });
-
 } catch {
   // Catch Error
   // Throw e;
