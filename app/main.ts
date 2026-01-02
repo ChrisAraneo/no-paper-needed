@@ -46,7 +46,8 @@ function createWindow(): BrowserWindow {
       const reloaderFn = (reloader as any).default || reloader;
       reloaderFn(module);
     });
-    win.loadURL('http://localhost:4200');
+    const locale = app.getLocale();
+    win.loadURL(`http://localhost:4200?locale=${locale}`);
   } else {
     // Path when running electron executable
     let pathIndex = './browser/index.html';
@@ -57,8 +58,9 @@ function createWindow(): BrowserWindow {
     }
 
     const fullPath = path.join(__dirname, pathIndex);
+    const locale = app.getLocale();
     const url = pathToFileURL(path.resolve(fullPath)).href;
-    win.loadURL(url);
+    win.loadURL(`${url}?locale=${locale}`);
   }
 
   // Emitted when the window is closed.
