@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+
+import { NoteComponent } from '../shared/components/note/note.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, TranslateModule],
-  standalone: true,
+  imports: [TranslateModule, NoteComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {
-    console.log('HomeComponent INIT');
-  }
+export class HomeComponent {
+  date = new Date();
+  content = 'This is a sample note content to demonstrate the NoteComponent.';
 }
