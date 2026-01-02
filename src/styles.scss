@@ -101,14 +101,23 @@ h6 {
   font-family: 'DM Serif Display', serif;
 }
 
-.p-card-body,
-.p-card-content {
-  height: 100%;
-  display: flex;
+app-note {
+  .p-card-body,
+  .p-card-content {
+    height: 100%;
+    display: flex;
+  }
+
+  .p-card-content {
+    flex-direction: column;
+  }
 }
 
-.p-card-content {
-  flex-direction: column;
+app-add-note-dialog {
+    .p-dialog {
+        width: 373px !important;
+        height: 840px !important;
+    }
 }
 
 @import 'primeicons/primeicons.css';
