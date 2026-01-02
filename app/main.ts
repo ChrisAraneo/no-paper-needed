@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable func-style */
 /* eslint-disable max-lines-per-function */
