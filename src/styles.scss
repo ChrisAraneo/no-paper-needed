@@ -1,76 +1,76 @@
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-Italic.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-Italic.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-Light.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-LightItalic.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-LightItalic.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-Bold.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-BoldItalic.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-BoldItalic.ttf') format('truetype');
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-Black.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-Black.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-BlackItalic.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-BlackItalic.ttf') format('truetype');
   font-weight: 900;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-Thin.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/assets/fonts/Lato/Lato-ThinItalic.ttf') format('truetype');
+  src: url('./assets/fonts/Lato/Lato-ThinItalic.ttf') format('truetype');
   font-weight: 100;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'DM Serif Display';
-  src: url('/assets/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf')
+  src: url('./assets/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf')
     format('truetype');
   font-weight: 400;
   font-style: normal;
@@ -78,7 +78,7 @@
 
 @font-face {
   font-family: 'DM Serif Display';
-  src: url('/assets/fonts/DM_Serif_Display/DMSerifDisplay-Italic.ttf')
+  src: url('./assets/fonts/DM_Serif_Display/DMSerifDisplay-Italic.ttf')
     format('truetype');
   font-weight: 400;
   font-style: italic;
@@ -116,7 +116,7 @@ app-note {
 app-add-note-dialog {
     .p-dialog {
         width: 373px !important;
-        height: 840px !important;
+        height: 685px !important;
     }
 }
 
