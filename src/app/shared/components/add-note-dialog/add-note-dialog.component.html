@@ -1,1 +1,39 @@
-<p>add-note-dialog works!</p>
+<p-dialog
+  header="Add note"
+  [modal]="true"
+  [(visible)]="isVisible"
+  class="add-note-dialog">
+  <p-datepicker
+    class="max-w-full"
+    [(ngModel)]="date"
+    [inline]="true"
+    [showWeek]="true"
+    fluid />
+  <p-floatlabel variant="in">
+    <textarea
+      pTextarea
+      id="content"
+      [(ngModel)]="content"
+      class="textarea"
+      rows="5"
+      cols="30"
+      style="resize: none; width: 100%"
+      class="h-full max-w-full"></textarea>
+    <label for="content">{{ 'DIALOGS.ADD_NOTE.CONTENT' | translate }}</label>
+  </p-floatlabel>
+  <p-inputnumber
+    [(ngModel)]="notificationDaysBefore"
+    inputId="notification"
+    [prefix]="'DIALOGS.ADD_NOTE.NOTIFY_PREFIX' | translate"
+    [suffix]="'DIALOGS.ADD_NOTE.NOTIFY_SUFFIX' | translate"
+    fluid />
+  <div class="actions">
+    <p-button
+      [label]="'DIALOGS.ADD_NOTE.CANCEL_BUTTON' | translate"
+      severity="secondary"
+      (click)="closeDialog()" />
+    <p-button
+      [label]="'DIALOGS.ADD_NOTE.SAVE_BUTTON' | translate"
+      (click)="saveNote()" />
+  </div>
+</p-dialog>

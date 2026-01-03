@@ -1,0 +1,18 @@
+.add-note-dialog {
+  width: 640px;
+}
+
+p-datepicker,
+textarea {
+  margin-bottom: 16px;
+}
+
+p-inputnumber {
+  margin-bottom: 32px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
