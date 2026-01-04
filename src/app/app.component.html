@@ -1,5 +1,7 @@
-<app-sidebar></app-sidebar>
+<app-sidebar/>
 <div class="main">
   <app-searchbar></app-searchbar>
   <router-outlet></router-outlet>
+  <app-add-note-dialog
+    [isVisible]="isAddNoteDialogVisible"></app-add-note-dialog>
 </div>
