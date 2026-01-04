@@ -55,7 +55,7 @@
     "@angular/build": "21.0.2",
     "@angular/cli": "21.0.2",
     "@angular/compiler-cli": "21.0.3",
-    "@chris.araneo/eslint-config": "0.0.71",
+    "@chris.araneo/eslint-config": "0.0.72",
     "@eslint/json": "0.14.0",
     "@ngx-translate/core": "17.0.0",
     "@ngx-translate/http-loader": "17.0.0",
