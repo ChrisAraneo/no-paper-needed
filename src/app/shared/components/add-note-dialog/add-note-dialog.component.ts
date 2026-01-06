@@ -1,7 +1,7 @@
 import { ReminderMode } from './../../interfaces/reminder-mode.enum';
 /* eslint-disable @angular-eslint/no-output-native */
 
-import { DatePipe, JsonPipe } from '@angular/common';
+import { DatePipe, JsonPipe, NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormControl,
@@ -40,6 +40,7 @@ import { Note } from '../../interfaces/note.interface';
     RadioButtonModule,
     DatePipe,
     JsonPipe,
+    NgClass,
   ],
   templateUrl: './add-note-dialog.component.html',
   styleUrl: './add-note-dialog.component.scss',
@@ -52,6 +53,7 @@ export class AddNoteDialogComponent implements OnInit {
 
   protected form!: FormGroup;
   protected readonly ReminderMode = ReminderMode;
+  protected activeStep = 1;
 
   ngOnInit(): void {
     this.form = new FormGroup({

@@ -5,7 +5,7 @@
   (visibleChange)="onVisibleChange($event)"
   class="add-note-dialog">
   <ng-container [formGroup]="form">
-    <p-stepper [value]="1" class="basis-[50rem]">
+    <p-stepper [(value)]="activeStep" [linear]="true" class="basis-[50rem]">
       <p-step-list>
         <p-step [value]="1">{{ 'DIALOGS.ADD_NOTE.DATE' | translate }}</p-step>
         <p-step [value]="2">{{
@@ -21,126 +21,145 @@
       <p-step-panels>
         <p-step-panel [value]="1">
           <ng-template #content let-activateCallback="activateCallback">
-            <div class="flex flex-col h-48">
-              <div>
-                <p-datepicker
-                  formControlName="date"
-                  class="max-w-full"
-                  [inline]="true"
-                  [showWeek]="true"
-                  fluid />
+            <div class="step">
+              <p-datepicker
+                formControlName="date"
+                class="max-w-full"
+                [inline]="true"
+                [showWeek]="true"
+                fluid />
+              <div class="actions">
+                <p-button
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="activateCallback(2)" />
               </div>
-            </div>
-            <div class="flex pt-6 justify-end">
-              <p-button
-                label="Next"
-                icon="pi pi-arrow-right"
-                iconPos="right"
-                (onClick)="activateCallback(2)" />
             </div>
           </ng-template>
         </p-step-panel>
         <p-step-panel [value]="2">
           <ng-template #content let-activateCallback="activateCallback">
-            <div class="flex flex-col h-48">
-              <div>
-                <p-floatlabel variant="in">
-                  <textarea
-                    pTextarea
-                    id="content"
-                    formControlName="content"
-                    class="textarea"
-                    rows="5"
-                    cols="30"
-                    style="resize: none; width: 100%"
-                    class="h-full max-w-full"></textarea>
-                  <label for="content">{{
-                    'DIALOGS.ADD_NOTE.CONTENT' | translate
-                  }}</label>
-                </p-floatlabel>
+            <div class="step">
+              <p-floatlabel variant="in">
+                <textarea
+                  pTextarea
+                  id="content"
+                  formControlName="content"
+                  class="textarea"
+                  rows="5"
+                  cols="30"
+                  style="resize: none; width: 100%"
+                  class="h-full max-w-full"
+                  [ngClass]="{
+                    'invalid-input':
+                      form.get('content')?.invalid &&
+                      form.get('content')?.touched,
+                  }"></textarea>
+                <label for="content">{{
+                  'DIALOGS.ADD_NOTE.CONTENT' | translate
+                }}</label>
+              </p-floatlabel>
+              <div class="actions">
+                <p-button
+                  label="Back"
+                  severity="secondary"
+                  icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(1)" />
+                <p-button
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  [disabled]="
+                    !form.get('content')?.value ||
+                    form.get('content')?.value.trim() === ''
+                  "
+                  (onClick)="
+                    form.get('content')?.markAsTouched();
+                    form.get('content')?.value &&
+                    form.get('content')?.value.trim() !== ''
+                      ? activateCallback(3)
+                      : null
+                  " />
               </div>
-            </div>
-            <div class="flex pt-6 justify-between">
-              <p-button
-                label="Back"
-                severity="secondary"
-                icon="pi pi-arrow-left"
-                (onClick)="activateCallback(1)" />
-              <p-button
-                label="Next"
-                icon="pi pi-arrow-right"
-                iconPos="right"
-                (onClick)="activateCallback(3)" />
             </div>
           </ng-template>
         </p-step-panel>
         <p-step-panel [value]="3">
           <ng-template #content let-activateCallback="activateCallback">
-            <div class="flex flex-col h-48">
-              <div>
-                <p-radiobutton
-                  formControlName="reminderMode"
-                  inputId="sameDay"
-                  name="category"
-                  [value]="ReminderMode.SameDay" />
-                <label [for]="'sameDay'" class="ml-2">{{
-                  'DIALOGS.ADD_NOTE.NOTIFY_SAME_DAY' | translate
-                }}</label>
-                <p-radiobutton
-                formControlName="reminderMode"
-                  inputId="dayBefore"
-                  name="category"
-                  [value]="ReminderMode.DayBefore" />
-                <label [for]="'dayBefore'" class="ml-2">{{
-                  'DIALOGS.ADD_NOTE.NOTIFY_DAY_BEFORE' | translate
-                }}</label>
-                <p-radiobutton
-                formControlName="reminderMode"
-                  inputId="customDaysBefore"
-                  name="category"
-                  [value]="ReminderMode.MultipleDaysBefore"/>
-                <label [for]="'customDaysBefore'" class="ml-2">{{
-                  'DIALOGS.ADD_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
-                }}</label>
+            <div class="step">
+              <div class="radio-buttons">
+                <div>
+                  <p-radiobutton
+                    formControlName="reminderMode"
+                    inputId="sameDay"
+                    name="category"
+                    [value]="ReminderMode.SameDay" />
+                  <label [for]="'sameDay'" class="ml-2">{{
+                    'DIALOGS.ADD_NOTE.NOTIFY_SAME_DAY' | translate
+                  }}</label>
+                </div>
+                <div>
+                  <p-radiobutton
+                    formControlName="reminderMode"
+                    inputId="dayBefore"
+                    name="category"
+                    [value]="ReminderMode.DayBefore" />
+                  <label [for]="'dayBefore'" class="ml-2">{{
+                    'DIALOGS.ADD_NOTE.NOTIFY_DAY_BEFORE' | translate
+                  }}</label>
+                </div>
+                <div>
+                  <p-radiobutton
+                    formControlName="reminderMode"
+                    inputId="customDaysBefore"
+                    name="category"
+                    [value]="ReminderMode.MultipleDaysBefore" />
+                  <label [for]="'customDaysBefore'" class="ml-2">{{
+                    'DIALOGS.ADD_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
+                  }}</label>
+                </div>
                 <p-inputnumber
-                  [disabled]="form.get('reminderMode')?.value !== ReminderMode.MultipleDaysBefore"
+                  [disabled]="
+                    form.get('reminderMode')?.value !==
+                    ReminderMode.MultipleDaysBefore
+                  "
                   formControlName="reminderDaysBefore"
-                  inputId="notification"
-                  fluid />
+                  inputId="notification" />
               </div>
-            </div>
-            <div class="flex pt-6 justify-start">
-              <p-button
-                label="Back"
-                severity="secondary"
-                icon="pi pi-arrow-left"
-                (onClick)="activateCallback(2)" />
-              <p-button
-                label="Next"
-                icon="pi pi-arrow-right"
-                iconPos="right"
-                (onClick)="activateCallback(4)" />
+              <div class="actions">
+                <p-button
+                  label="Back"
+                  severity="secondary"
+                  icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(2)" />
+                <p-button
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="activateCallback(4)" />
+              </div>
             </div>
           </ng-template>
         </p-step-panel>
         <p-step-panel [value]="4">
           <ng-template #content let-activateCallback="activateCallback">
-            <div class="flex flex-col h-48">
+            <div class="step">
               <div>
                 <span>{{ form.value | json }}</span>
               </div>
-            </div>
-            <div class="flex pt-6 justify-start">
-              <p-button
-                label="Back"
-                severity="secondary"
-                icon="pi pi-arrow-left"
-                (onClick)="activateCallback(3)" />
-              <p-button
-                label="Save"
-                icon="pi pi-check"
-                iconPos="right"
-                (onClick)="saveNote()" />
+              <div class="actions">
+                <p-button
+                  label="Back"
+                  severity="secondary"
+                  icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(3)" />
+                <p-button
+                  label="Save"
+                  icon="pi pi-check"
+                  iconPos="right"
+                  (onClick)="saveNote()" />
+              </div>
             </div>
           </ng-template>
         </p-step-panel>

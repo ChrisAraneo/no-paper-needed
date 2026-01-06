@@ -3,6 +3,36 @@ textarea {
   margin-bottom: 16px;
 }
 
+textarea.invalid-input {
+  border: 2px solid #ef4444 !important; // TODO?
+}
+
+p-radiobutton {
+  margin-right: 6px;
+}
+
+.step {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-between;
+  padding-top: 16px;
+}
+
+.radio-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 p-inputnumber {
-  margin-bottom: 32px;
+  margin-left: 30px;
+  max-width: 128px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
