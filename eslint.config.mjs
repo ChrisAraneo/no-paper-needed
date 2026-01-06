@@ -9,8 +9,6 @@ const JSONS = [
   '.prettierrc.json',
   'angular.json',
   'electron-builder.json',
-  'tsconfig.json',
-  'tsconfig.serve.json',
 ];
 
 const SOURCES = [
