@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/no-output-native */
 
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,9 +10,13 @@ import { DialogModule } from 'primeng/dialog';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { StepperModule } from 'primeng/stepper';
 import { TextareaModule } from 'primeng/textarea';
 
 import { Note } from '../../interfaces/note.interface';
+
+const DEFAULT_NOTIFY_CUSTOM_DAYS_BEFORE = 3;
 
 @Component({
   selector: 'app-add-note-dialog',
@@ -26,6 +31,9 @@ import { Note } from '../../interfaces/note.interface';
     TranslateModule,
     DatePickerModule,
     InputNumberModule,
+    StepperModule,
+    RadioButtonModule,
+    DatePipe,
   ],
   templateUrl: './add-note-dialog.component.html',
   styleUrl: './add-note-dialog.component.scss',
@@ -37,12 +45,14 @@ export class AddNoteDialogComponent {
   @Output() readonly close = new EventEmitter<void>();
 
   protected date = new Date();
-  protected content = '';
-  protected notificationDaysBefore?: number = 3;
+  protected noteContent = '';
+  protected notificationDaysBefore = DEFAULT_NOTIFY_CUSTOM_DAYS_BEFORE;
+  protected notificationSettings: 'sameDay' | 'dayBefore' | 'customDaysBefore' =
+    'sameDay';
 
   saveNote(): void {
     this.save.emit({
-      content: this.content,
+      content: this.noteContent,
       date: this.date,
       notificationDaysBefore: this.notificationDaysBefore,
     });

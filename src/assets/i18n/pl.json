@@ -1,22 +1,28 @@
 {
   "PAGES": {
     "HOME": {
-      "TITLE": "App works !",
-      "GO_TO_DETAIL": "Go to Detail"
+      "TITLE": "Aplikacja działa!",
+      "GO_TO_DETAIL": "Przejdź do szczegółów"
     },
     "DETAIL": {
-      "TITLE": "Detail page !",
-      "BACK_TO_HOME": "Back to Home"
+      "TITLE": "Strona szczegółów!",
+      "BACK_TO_HOME": "Powrót do strony głównej"
     }
   },
   "DIALOGS": {
     "ADD_NOTE": {
-      "TITLE": "Dodaj nową notatkę",
+      "ADD_NEW_NOTE": "Dodaj nową notatkę",
+      "DATE": "Data",
       "CONTENT": "Treść",
-      "NOTIFY_PREFIX": "Przypominaj codziennie zaczynając od",
-      "NOTIFY_SUFFIX": " dni wcześniej",
-      "CANCEL_BUTTON": "Anuluj",
-      "SAVE_BUTTON": "Zapisz"
+      "NOTIFICATION_HINT": "Włącz powiadomienie dla tej notatki",
+      "NOTIFICATION": "Powiadomienie",
+      "SUMMARY": "Podsumowanie",
+      "NEXT": "Dalej",
+      "BACK": "Wstecz",
+      "SAVE": "Zapisz",
+      "NOTIFY_SAME_DAY": "Tego samego dnia",
+      "NOTIFY_DAY_BEFORE": "Dzień wcześniej",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "Kilka dni wcześniej"
     }
   }
 }

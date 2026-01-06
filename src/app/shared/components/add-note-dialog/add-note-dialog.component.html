@@ -1,39 +1,149 @@
 <p-dialog
-  header="Add note"
+  [header]="'DIALOGS.ADD_NOTE.ADD_NEW_NOTE' | translate"
   [modal]="true"
   [(visible)]="isVisible"
   class="add-note-dialog">
-  <p-datepicker
-    class="max-w-full"
-    [(ngModel)]="date"
-    [inline]="true"
-    [showWeek]="true"
-    fluid />
-  <p-floatlabel variant="in">
-    <textarea
-      pTextarea
-      id="content"
-      [(ngModel)]="content"
-      class="textarea"
-      rows="5"
-      cols="30"
-      style="resize: none; width: 100%"
-      class="h-full max-w-full"></textarea>
-    <label for="content">{{ 'DIALOGS.ADD_NOTE.CONTENT' | translate }}</label>
-  </p-floatlabel>
-  <p-inputnumber
-    [(ngModel)]="notificationDaysBefore"
-    inputId="notification"
-    [prefix]="'DIALOGS.ADD_NOTE.NOTIFY_PREFIX' | translate"
-    [suffix]="'DIALOGS.ADD_NOTE.NOTIFY_SUFFIX' | translate"
-    fluid />
-  <div class="actions">
-    <p-button
-      [label]="'DIALOGS.ADD_NOTE.CANCEL_BUTTON' | translate"
-      severity="secondary"
-      (click)="closeDialog()" />
-    <p-button
-      [label]="'DIALOGS.ADD_NOTE.SAVE_BUTTON' | translate"
-      (click)="saveNote()" />
-  </div>
+  <p-stepper [value]="1" class="basis-[50rem]">
+    <p-step-list>
+      <p-step [value]="1">{{ 'DIALOGS.ADD_NOTE.DATE' | translate }}</p-step>
+      <p-step [value]="2">{{ 'DIALOGS.ADD_NOTE.CONTENT' | translate }}</p-step>
+      <p-step [value]="3">{{
+        'DIALOGS.ADD_NOTE.NOTIFICATION' | translate
+      }}</p-step>
+      <p-step [value]="4">{{ 'DIALOGS.ADD_NOTE.SUMMARY' | translate }}</p-step>
+    </p-step-list>
+    <p-step-panels>
+      <p-step-panel [value]="1">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col h-48">
+            <div
+              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+              <p-datepicker
+                class="max-w-full"
+                [(ngModel)]="date"
+                [inline]="true"
+                [showWeek]="true"
+                fluid />
+            </div>
+          </div>
+          <div class="flex pt-6 justify-end">
+            <p-button
+              label="Next"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="activateCallback(2)" />
+          </div>
+        </ng-template>
+      </p-step-panel>
+      <p-step-panel [value]="2">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col h-48">
+            <div
+              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+              <p-floatlabel variant="in">
+                <textarea
+                  pTextarea
+                  id="content"
+                  [(ngModel)]="noteContent"
+                  class="textarea"
+                  rows="5"
+                  cols="30"
+                  style="resize: none; width: 100%"
+                  class="h-full max-w-full"></textarea>
+                <label for="content">{{
+                  'DIALOGS.ADD_NOTE.CONTENT' | translate
+                }}</label>
+              </p-floatlabel>
+            </div>
+          </div>
+          <div class="flex pt-6 justify-between">
+            <p-button
+              label="Back"
+              severity="secondary"
+              icon="pi pi-arrow-left"
+              (onClick)="activateCallback(1)" />
+            <p-button
+              label="Next"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="activateCallback(3)" />
+          </div>
+        </ng-template>
+      </p-step-panel>
+      <p-step-panel [value]="3">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col h-48">
+            <div
+              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+              <p-radiobutton
+                inputId="sameDay"
+                name="category"
+                [value]="'sameDay'"
+                [(ngModel)]="notificationSettings" />
+              <label [for]="'sameDay'" class="ml-2">{{
+                'DIALOGS.ADD_NOTE.NOTIFY_SAME_DAY' | translate
+              }}</label>
+              <p-radiobutton
+                inputId="dayBefore"
+                name="category"
+                [value]="'dayBefore'"
+                [(ngModel)]="notificationSettings" />
+              <label [for]="'dayBefore'" class="ml-2">{{
+                'DIALOGS.ADD_NOTE.NOTIFY_DAY_BEFORE' | translate
+              }}</label>
+              <p-radiobutton
+                inputId="customDaysBefore"
+                name="category"
+                [value]="'customDaysBefore'"
+                [(ngModel)]="notificationSettings" />
+              <label [for]="'customDaysBefore'" class="ml-2">{{
+                'DIALOGS.ADD_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
+              }}</label>
+              <p-inputnumber
+                [disabled]="notificationSettings !== 'customDaysBefore'"
+                [(ngModel)]="notificationDaysBefore"
+                inputId="notification"
+                fluid />
+            </div>
+          </div>
+          <div class="flex pt-6 justify-start">
+            <p-button
+              label="Back"
+              severity="secondary"
+              icon="pi pi-arrow-left"
+              (onClick)="activateCallback(2)" />
+            <p-button
+              label="Next"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="activateCallback(4)" />
+          </div>
+        </ng-template>
+      </p-step-panel>
+      <p-step-panel [value]="4">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="flex flex-col h-48">
+            <div
+              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+              <span>{{ date | date }}</span>
+              <span>{{ noteContent }}</span>
+              <span>{{ notificationDaysBefore }}</span>
+            </div>
+          </div>
+          <div class="flex pt-6 justify-start">
+            <p-button
+              label="Back"
+              severity="secondary"
+              icon="pi pi-arrow-left"
+              (onClick)="activateCallback(3)" />
+            <p-button
+              label="Save"
+              icon="pi pi-check"
+              iconPos="right"
+              (onClick)="saveNote()" />
+          </div>
+        </ng-template>
+      </p-step-panel>
+    </p-step-panels>
+  </p-stepper>
 </p-dialog>

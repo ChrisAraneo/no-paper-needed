@@ -11,12 +11,18 @@
   },
   "DIALOGS": {
     "ADD_NOTE": {
-      "TITLE": "Add new note",
+      "ADD_NEW_NOTE": "Add new note",
+      "DATE": "Date",
       "CONTENT": "Content",
-      "NOTIFY_PREFIX": "Daily reminders starting ",
-      "NOTIFY_SUFFIX": " days before",
-      "CANCEL_BUTTON": "Cancel",
-      "SAVE_BUTTON": "Save"
+      "NOTIFICATION_HINT": "Set notification for this note",
+      "NOTIFICATION": "Notification",
+      "SUMMARY": "Summary",
+      "NEXT": "Next",
+      "BACK": "Back",
+      "SAVE": "Save",
+      "NOTIFY_SAME_DAY": "Same day",
+      "NOTIFY_DAY_BEFORE": "One day before",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "Few days before"
     }
   }
 }
