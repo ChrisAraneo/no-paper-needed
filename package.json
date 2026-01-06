@@ -7,6 +7,7 @@
   "main": "app/main.js",
   "scripts": {
     "build": "npm run electron:serve-tsc && ng build --base-href ./",
+    "chores": "npm run lint:fix && npm run format",
     "e2e": "npm run web:prod && playwright test -c e2e/playwright.config.ts e2e/",
     "e2e:show-trace": "playwright show-trace e2e/tracing/trace.zip",
     "electron": "electron",
