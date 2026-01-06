@@ -1,8 +1,15 @@
+import { ReminderMode } from './../../interfaces/reminder-mode.enum';
 /* eslint-disable @angular-eslint/no-output-native */
 
-import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe, JsonPipe } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -15,8 +22,6 @@ import { StepperModule } from 'primeng/stepper';
 import { TextareaModule } from 'primeng/textarea';
 
 import { Note } from '../../interfaces/note.interface';
-
-const DEFAULT_NOTIFY_CUSTOM_DAYS_BEFORE = 3;
 
 @Component({
   selector: 'app-add-note-dialog',
@@ -34,27 +39,52 @@ const DEFAULT_NOTIFY_CUSTOM_DAYS_BEFORE = 3;
     StepperModule,
     RadioButtonModule,
     DatePipe,
+    JsonPipe,
   ],
   templateUrl: './add-note-dialog.component.html',
   styleUrl: './add-note-dialog.component.scss',
 })
-export class AddNoteDialogComponent {
+export class AddNoteDialogComponent implements OnInit {
   @Input() isVisible = false;
 
   @Output() readonly save = new EventEmitter<Note>();
   @Output() readonly close = new EventEmitter<void>();
 
-  protected date = new Date();
-  protected noteContent = '';
-  protected notificationDaysBefore = DEFAULT_NOTIFY_CUSTOM_DAYS_BEFORE;
-  protected notificationSettings: 'sameDay' | 'dayBefore' | 'customDaysBefore' =
-    'sameDay';
+  protected form!: FormGroup;
+  protected readonly ReminderMode = ReminderMode;
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      date: new FormControl(new Date()),
+      content: new FormControl('', Validators.required),
+      reminderMode: new FormControl(ReminderMode.SameDay, Validators.required),
+      reminderDaysBefore: new FormControl(0),
+    });
+  }
 
   saveNote(): void {
+    this.form.markAllAsTouched();
+    this.form.updateValueAndValidity();
+
+    if (this.form.invalid) {
+      return;
+    }
+    const reminderMode =
+      this.form.get('reminderMode')?.value || ReminderMode.SameDay;
+    let reminderDaysBefore: number | undefined;
+
+    if (reminderMode === ReminderMode.SameDay) {
+      reminderDaysBefore = 0;
+    } else if (reminderMode === ReminderMode.DayBefore) {
+      reminderDaysBefore = 1;
+    } else if (reminderMode === ReminderMode.MultipleDaysBefore) {
+      reminderDaysBefore = this.form.get('reminderDaysBefore')?.value ?? 0;
+    }
+
     this.save.emit({
-      content: this.noteContent,
-      date: this.date,
-      notificationDaysBefore: this.notificationDaysBefore,
+      content: this.form.get('content')?.value,
+      date: this.form.get('date')?.value,
+      reminderDaysBefore: reminderDaysBefore || 0,
     });
 
     this.closeDialog();
