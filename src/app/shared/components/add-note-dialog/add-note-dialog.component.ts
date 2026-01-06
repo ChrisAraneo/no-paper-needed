@@ -56,10 +56,17 @@ export class AddNoteDialogComponent {
       date: this.date,
       notificationDaysBefore: this.notificationDaysBefore,
     });
-    this.isVisible = false;
+
+    this.closeDialog();
   }
 
   closeDialog(): void {
-    this.isVisible = false;
+    this.close.emit();
+  }
+
+  onVisibleChange(visible: boolean): void {
+    if (!visible) {
+      this.closeDialog();
+    }
   }
 }

@@ -1,7 +1,8 @@
 <p-dialog
   [header]="'DIALOGS.ADD_NOTE.ADD_NEW_NOTE' | translate"
   [modal]="true"
-  [(visible)]="isVisible"
+  [visible]="isVisible"
+  (visibleChange)="onVisibleChange($event)"
   class="add-note-dialog">
   <p-stepper [value]="1" class="basis-[50rem]">
     <p-step-list>
