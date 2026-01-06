@@ -1,7 +1,9 @@
-<app-sidebar />
+<app-sidebar (addNoteClick)="openAddNoteDialog()" />
 <div class="main">
   <app-searchbar></app-searchbar>
   <router-outlet></router-outlet>
   <app-add-note-dialog
-    [isVisible]="isAddNoteDialogVisible"></app-add-note-dialog>
+    [isVisible]="isAddNoteDialogVisible"
+    (close)="closeAddNoteDialog()"
+    (save)="onSaveNote($event)"></app-add-note-dialog>
 </div>
