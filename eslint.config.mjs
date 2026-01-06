@@ -21,7 +21,7 @@ const SOURCES = [
 
 const TESTS = ['**/*.spec.ts'];
 
-const HTMLS = ['src/**/*.html'];
+const TEMPLATES = ['src/**/*.html'];
 
 const IGNORED = [
   '.angular/**/*',
@@ -32,14 +32,29 @@ const IGNORED = [
   'reports/**/*',
   '**/package.json',
   '**/package-lock.json',
+  'eslint.config.mjs',
 ];
 
-export default createConfig({
+
+const config = createConfig({
   jsons: JSONS,
   sources: SOURCES,
   tests: TESTS,
-  templates: HTMLS,
-  angularElementPrefix: 'app',
+  templates: TEMPLATES,
   ignored: IGNORED,
   isAngularApp: true,
+  angularElementPrefix: 'app',
+});
+
+export default config.map(conf => {
+  if (conf.files?.some(file => file.includes('*.html'))) {
+    return {
+      ...conf,
+      rules: {
+        ...conf.rules,
+        '@angular-eslint/template/no-call-expression': 'off'
+      }
+    };
+  }
+  return conf;
 });
