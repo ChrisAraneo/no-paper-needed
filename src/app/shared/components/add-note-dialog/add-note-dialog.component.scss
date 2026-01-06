@@ -35,4 +35,8 @@ p-inputnumber {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  &:has(p-button:only-child) {
+    justify-content: flex-end;
+  }
 }
