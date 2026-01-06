@@ -9,12 +9,15 @@
       "BACK_TO_HOME": "Powrót do strony głównej"
     }
   },
+  "SIDEBAR": {
+    "ADD_NEW_NOTE": "Dodaj notatkę"
+  },
   "DIALOGS": {
     "ADD_NOTE": {
       "ADD_NEW_NOTE": "Dodaj nową notatkę",
       "DATE": "Data",
       "CONTENT": "Treść",
-      "NOTIFICATION_HINT": "Włącz powiadomienie dla tej notatki",
+      "NOTIFICATION_HINT": "Ustaw powiadomienie dla tej notatki",
       "NOTIFICATION": "Powiadomienie",
       "SUMMARY": "Podsumowanie",
       "NEXT": "Dalej",

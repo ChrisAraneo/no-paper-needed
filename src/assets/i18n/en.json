@@ -9,6 +9,9 @@
       "BACK_TO_HOME": "Back to Home"
     }
   },
+  "SIDEBAR": {
+    "ADD_NEW_NOTE": "Add new note"
+  },
   "DIALOGS": {
     "ADD_NOTE": {
       "ADD_NEW_NOTE": "Add new note",
