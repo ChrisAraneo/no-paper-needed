@@ -5,6 +5,7 @@ const JSONS = [
   'public/**/*.json',
   'e2e/**/*.json',
   'src/**/*.json',
+  'app/**/*.json',
   '.prettierrc.json',
   'angular.json',
   'electron-builder.json',
@@ -31,8 +32,8 @@ const IGNORED = [
   'node_modules/**/*',
   'dist/**/*',
   'reports/**/*',
-  'package.json',
-  'package-lock.json',
+  '**/package.json',
+  '**/package-lock.json',
 ];
 
 export default createConfig({
@@ -43,5 +44,4 @@ export default createConfig({
   angularElementPrefix: 'app',
   ignored: IGNORED,
   isAngularApp: true,
-  tsconfigRootDir: import.meta.dirname,
 });
