@@ -7,5 +7,9 @@
 </div> -->
 
 <div class="container">
-  <app-note [date]="date" [content]="content"></app-note>
+  @for (note of notes; track $index) {
+    <app-note [date]="note.date" [content]="note.content"></app-note>
+  } @empty {
+    <p>TODO Empty message</p>
+  }
 </div>

@@ -3,7 +3,7 @@ import { LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ElectronService } from './core/services';
+import { ElectronService, StoreService } from './core/services';
 import { AddNoteDialogComponent } from './shared/components/add-note-dialog/add-note-dialog.component';
 import { SearchbarComponent } from './shared/components/searchbar/searchbar.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   private readonly electronService = inject(ElectronService);
   private readonly translate = inject(TranslateService);
   private readonly locale = inject(LOCALE_ID);
+  private readonly storeService = inject(StoreService);
 
   protected openAddNoteDialog(): void {
     this.isAddNoteDialogVisible = true;
@@ -36,7 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   protected onSaveNote(note: Note): void {
-    console.log('Note saved:', note);
+    this.storeService.addNote(note);
     this.closeAddNoteDialog();
   }
 
