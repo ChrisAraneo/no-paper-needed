@@ -16,8 +16,7 @@
       <p-step-panel [value]="1">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+            <div>
               <p-datepicker
                 class="max-w-full"
                 [(ngModel)]="date"
@@ -38,8 +37,7 @@
       <p-step-panel [value]="2">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+            <div>
               <p-floatlabel variant="in">
                 <textarea
                   pTextarea
@@ -73,8 +71,7 @@
       <p-step-panel [value]="3">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+            <div>
               <p-radiobutton
                 inputId="sameDay"
                 name="category"
@@ -123,8 +120,7 @@
       <p-step-panel [value]="4">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+            <div>
               <span>{{ date | date }}</span>
               <span>{{ noteContent }}</span>
               <span>{{ notificationDaysBefore }}</span>
