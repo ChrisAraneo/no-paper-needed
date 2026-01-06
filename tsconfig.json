@@ -15,6 +15,16 @@
     "typeRoots": ["node_modules/@types"],
     "useDefineForClassFields": false
   },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.html",
+    "src/**/*.json",
+    "app/**/*.ts",
+    "e2e/**/*.ts",
+    "*.json",
+    ".vscode/*.json",
+    ".prettierrc.json"
+  ],
   "exclude": ["node_modules"],
   "angularCompilerOptions": {
     "strictTemplates": true,
