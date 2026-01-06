@@ -11,7 +11,7 @@
       "port": 9876,
       "url": "http://localhost:4200",
       "sourceMaps": true,
-      "timeout": 10000,
+      "timeout": 10_000,
       "trace": "verbose",
       "sourceMapPathOverrides": {
         "webpack:///./*": "${workspaceFolder}/*"
