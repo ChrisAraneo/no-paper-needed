@@ -1,4 +1,4 @@
-import { ReminderMode } from './../../interfaces/reminder-mode.enum';
+import { ReminderMode } from '../../shared/interfaces/reminder-mode.enum';
 /* eslint-disable @angular-eslint/no-output-native */
 
 import { DatePipe, JsonPipe, NgClass } from '@angular/common';
@@ -20,10 +20,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { StepperModule } from 'primeng/stepper';
 import { TextareaModule } from 'primeng/textarea';
-
-import { Note } from '../../interfaces/note.interface';
-import { HeaderComponent } from '../header/header.component';
-import { SubheaderComponent } from '../subheader/subheader.component';
+import { Note } from '../../shared/interfaces/note.interface';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
 
 @Component({
   selector: 'app-add-note-dialog',

@@ -8,7 +8,7 @@ import { Note } from '../../../shared/interfaces/note.interface';
 })
 export class StoreService {
   private readonly notesSubject = new BehaviorSubject<Note[]>([]);
-  
+
   notes$: Observable<Note[]> = this.notesSubject.asObservable();
 
   addNote(note: Note): void {
