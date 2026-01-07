@@ -1,0 +1,13 @@
+header {
+  font-family: var(--header-font-family);
+  padding: 0;
+  margin-bottom: 0 0 32px 0;
+
+  h1 {
+    font-size: var(--header-font-size) !important;
+    font-weight: var(--header-font-weight) !important;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 0.65px;
+  }
+}
