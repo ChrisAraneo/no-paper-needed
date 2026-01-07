@@ -12,7 +12,7 @@
           'DIALOGS.ADD_NOTE.CONTENT' | translate
         }}</p-step>
         <p-step [value]="3">{{
-          'DIALOGS.ADD_NOTE.NOTIFICATION' | translate
+          'DIALOGS.ADD_NOTE.REMINDERS' | translate
         }}</p-step>
         <p-step [value]="4">{{
           'DIALOGS.ADD_NOTE.SUMMARY' | translate
@@ -22,12 +22,17 @@
         <p-step-panel [value]="1">
           <ng-template #content let-activateCallback="activateCallback">
             <div class="step">
-              <p-datepicker
-                formControlName="date"
-                class="max-w-full"
-                [inline]="true"
-                [showWeek]="true"
-                fluid />
+              <div>
+                <app-subheader>{{
+                  'DIALOGS.ADD_NOTE.DATE_SUBHEADER' | translate
+                }}</app-subheader>
+                <p-datepicker
+                  formControlName="date"
+                  class="max-w-full"
+                  [inline]="true"
+                  [showWeek]="true"
+                  fluid />
+              </div>
               <div class="actions">
                 <p-button
                   label="Next"
@@ -41,25 +46,30 @@
         <p-step-panel [value]="2">
           <ng-template #content let-activateCallback="activateCallback">
             <div class="step">
-              <p-floatlabel variant="in">
-                <textarea
-                  pTextarea
-                  id="content"
-                  formControlName="content"
-                  class="textarea"
-                  rows="5"
-                  cols="30"
-                  style="resize: none; width: 100%"
-                  class="h-full max-w-full"
-                  [ngClass]="{
-                    'invalid-input':
-                      form.get('content')?.invalid &&
-                      form.get('content')?.touched,
-                  }"></textarea>
-                <label for="content">{{
-                  'DIALOGS.ADD_NOTE.CONTENT' | translate
-                }}</label>
-              </p-floatlabel>
+              <div>
+                <app-subheader>{{
+                  'DIALOGS.ADD_NOTE.CONTENT_SUBHEADER' | translate
+                }}</app-subheader>
+                <p-floatlabel variant="in">
+                  <textarea
+                    pTextarea
+                    id="content"
+                    formControlName="content"
+                    class="textarea"
+                    rows="5"
+                    cols="30"
+                    style="resize: none; width: 100%"
+                    class="h-full max-w-full"
+                    [ngClass]="{
+                      'invalid-input':
+                        form.get('content')?.invalid &&
+                        form.get('content')?.touched,
+                    }"></textarea>
+                  <label for="content">{{
+                    'DIALOGS.ADD_NOTE.CONTENT' | translate
+                  }}</label>
+                </p-floatlabel>
+              </div>
               <div class="actions">
                 <p-button
                   label="Back"
@@ -88,44 +98,49 @@
         <p-step-panel [value]="3">
           <ng-template #content let-activateCallback="activateCallback">
             <div class="step">
-              <div class="radio-buttons">
-                <div>
-                  <p-radiobutton
-                    formControlName="reminderMode"
-                    inputId="sameDay"
-                    name="category"
-                    [value]="ReminderMode.SameDay" />
-                  <label [for]="'sameDay'" class="ml-2">{{
-                    'DIALOGS.ADD_NOTE.NOTIFY_SAME_DAY' | translate
-                  }}</label>
+              <div>
+                <app-subheader>{{
+                  'DIALOGS.ADD_NOTE.REMINDERS_SUBHEADER' | translate
+                }}</app-subheader>
+                <div class="radio-buttons">
+                  <div>
+                    <p-radiobutton
+                      formControlName="reminderMode"
+                      inputId="sameDay"
+                      name="category"
+                      [value]="ReminderMode.SameDay" />
+                    <label [for]="'sameDay'" class="ml-2">{{
+                      'DIALOGS.ADD_NOTE.NOTIFY_SAME_DAY' | translate
+                    }}</label>
+                  </div>
+                  <div>
+                    <p-radiobutton
+                      formControlName="reminderMode"
+                      inputId="dayBefore"
+                      name="category"
+                      [value]="ReminderMode.DayBefore" />
+                    <label [for]="'dayBefore'" class="ml-2">{{
+                      'DIALOGS.ADD_NOTE.NOTIFY_DAY_BEFORE' | translate
+                    }}</label>
+                  </div>
+                  <div>
+                    <p-radiobutton
+                      formControlName="reminderMode"
+                      inputId="customDaysBefore"
+                      name="category"
+                      [value]="ReminderMode.MultipleDaysBefore" />
+                    <label [for]="'customDaysBefore'" class="ml-2">{{
+                      'DIALOGS.ADD_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
+                    }}</label>
+                  </div>
+                  <p-inputnumber
+                    [disabled]="
+                      form.get('reminderMode')?.value !==
+                      ReminderMode.MultipleDaysBefore
+                    "
+                    formControlName="reminderDaysBefore"
+                    inputId="notification" />
                 </div>
-                <div>
-                  <p-radiobutton
-                    formControlName="reminderMode"
-                    inputId="dayBefore"
-                    name="category"
-                    [value]="ReminderMode.DayBefore" />
-                  <label [for]="'dayBefore'" class="ml-2">{{
-                    'DIALOGS.ADD_NOTE.NOTIFY_DAY_BEFORE' | translate
-                  }}</label>
-                </div>
-                <div>
-                  <p-radiobutton
-                    formControlName="reminderMode"
-                    inputId="customDaysBefore"
-                    name="category"
-                    [value]="ReminderMode.MultipleDaysBefore" />
-                  <label [for]="'customDaysBefore'" class="ml-2">{{
-                    'DIALOGS.ADD_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
-                  }}</label>
-                </div>
-                <p-inputnumber
-                  [disabled]="
-                    form.get('reminderMode')?.value !==
-                    ReminderMode.MultipleDaysBefore
-                  "
-                  formControlName="reminderDaysBefore"
-                  inputId="notification" />
               </div>
               <div class="actions">
                 <p-button

@@ -22,6 +22,8 @@ import { StepperModule } from 'primeng/stepper';
 import { TextareaModule } from 'primeng/textarea';
 
 import { Note } from '../../interfaces/note.interface';
+import { HeaderComponent } from '../header/header.component';
+import { SubheaderComponent } from '../subheader/subheader.component';
 
 @Component({
   selector: 'app-add-note-dialog',
@@ -41,6 +43,8 @@ import { Note } from '../../interfaces/note.interface';
     DatePipe,
     JsonPipe,
     NgClass,
+    HeaderComponent,
+    SubheaderComponent,
   ],
   templateUrl: './add-note-dialog.component.html',
   styleUrl: './add-note-dialog.component.scss',
