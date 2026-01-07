@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: var(--p-content-background);
+  box-shadow: var(--p-card-shadow);
+  padding: 8px 16px;
+}
+
+.col {
+  width: 33.333333%;
+  display: flex;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}

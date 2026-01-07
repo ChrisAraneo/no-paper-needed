@@ -1,1 +1,11 @@
-<p>toolbar works!</p>
+<div class="col"></div>
+<div class="col center">
+  <app-searchbar></app-searchbar>
+</div>
+<div class="col flex-end">
+  <p-button
+    [label]="'TOOLBAR.ADD_NOTE' | translate"
+    icon="pi pi-plus"
+    iconPos="right"
+    (onClick)="addNote.emit()" />
+</div>
