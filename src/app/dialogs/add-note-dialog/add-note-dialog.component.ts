@@ -1,7 +1,8 @@
-import { ReminderMode } from '../../shared/interfaces/reminder-mode.enum';
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @angular-eslint/no-output-native */
-
-import { DatePipe, JsonPipe, NgClass } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormControl,
@@ -20,9 +21,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { StepperModule } from 'primeng/stepper';
 import { TextareaModule } from 'primeng/textarea';
-import { Note } from '../../shared/interfaces/note.interface';
-import { HeaderComponent } from '../../shared/components/header/header.component';
+
 import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
+import { Note } from '../../shared/interfaces/note.interface';
+import { ReminderMode } from '../../shared/interfaces/reminder-mode.enum';
 
 @Component({
   selector: 'app-add-note-dialog',
@@ -39,10 +41,8 @@ import { SubheaderComponent } from '../../shared/components/subheader/subheader.
     InputNumberModule,
     StepperModule,
     RadioButtonModule,
-    DatePipe,
     JsonPipe,
     NgClass,
-    HeaderComponent,
     SubheaderComponent,
   ],
   templateUrl: './add-note-dialog.component.html',
@@ -74,22 +74,32 @@ export class AddNoteDialogComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    const reminderMode =
-      this.form.get('reminderMode')?.value || ReminderMode.SameDay;
+    const reminderMode =  this.form.get('reminderMode')?.value ?? ReminderMode.SameDay;
     let reminderDaysBefore: number | undefined;
 
-    if (reminderMode === ReminderMode.SameDay) {
-      reminderDaysBefore = 0;
-    } else if (reminderMode === ReminderMode.DayBefore) {
-      reminderDaysBefore = 1;
-    } else if (reminderMode === ReminderMode.MultipleDaysBefore) {
-      reminderDaysBefore = this.form.get('reminderDaysBefore')?.value ?? 0;
+    switch (reminderMode) {
+      case ReminderMode.SameDay: {
+        reminderDaysBefore = 0;
+
+        break;
+      }
+      case ReminderMode.DayBefore: {
+        reminderDaysBefore = 1;
+
+        break;
+      }
+      case ReminderMode.MultipleDaysBefore: {
+        reminderDaysBefore = this.form.get('reminderDaysBefore')?.value ?? 0;
+
+        break;
+      }
+      // No default
     }
 
     this.save.emit({
       content: this.form.get('content')?.value,
       date: this.form.get('date')?.value,
-      reminderDaysBefore: reminderDaysBefore || 0,
+      reminderDaysBefore: reminderDaysBefore ?? 0,
     });
 
     this.closeDialog();
