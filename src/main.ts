@@ -58,7 +58,7 @@ bootstrapApplication(AppComponent, {
       },
       {
         path: '**',
-        component: HomeComponent,
+        redirectTo: 'home',
       },
     ]),
     importProvidersFrom(CoreModule, SharedModule),
