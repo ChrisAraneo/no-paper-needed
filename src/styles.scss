@@ -86,6 +86,11 @@
 
 :root {
   --p-stepper-steppanels-padding: 0 0 0 0 !important;
+  --header-font-family: 'DM Serif Display', serif;
+  --dialog-header-font-size: 26px;
+  --dialog-header-font-weight: 500;
+  --header-font-size: 22px;
+  --header-font-weight: 500;
 }
 
 body,
@@ -121,6 +126,16 @@ app-add-note-dialog {
   .p-dialog {
     width: 600px !important;
   }
+}
+
+.p-dialog-title {
+  font-family: var(--header-font-family);
+  display: flex;
+  align-items: center;
+  font-size: var(--dialog-header-font-size) !important;
+  font-weight: var(--dialog-header-font-weight) !important;
+  padding: 0;
+  margin: 0;
 }
 
 @import 'primeicons/primeicons.css';
