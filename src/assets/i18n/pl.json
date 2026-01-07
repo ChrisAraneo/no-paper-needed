@@ -16,16 +16,18 @@
     "ADD_NOTE": {
       "ADD_NEW_NOTE": "Dodaj nową notatkę",
       "DATE": "Data",
+      "DATE_SUBHEADER": "Wybierz datę związaną z notatką",
       "CONTENT": "Treść",
-      "NOTIFICATION_HINT": "Ustaw powiadomienie dla tej notatki",
-      "NOTIFICATION": "Powiadomienie",
+      "CONTENT_SUBHEADER": "Wpisz treść notatki",
+      "REMINDERS_SUBHEADER": "Kiedy mają być wyświetlane przypomnienia?",
+      "REMINDERS": "Przypomnienia",
       "SUMMARY": "Podsumowanie",
       "NEXT": "Dalej",
       "BACK": "Wstecz",
       "SAVE": "Zapisz",
-      "NOTIFY_SAME_DAY": "Tego samego dnia",
-      "NOTIFY_DAY_BEFORE": "Dzień wcześniej",
-      "NOTIFY_CUSTOM_DAYS_BEFORE": "Kilka dni wcześniej"
+      "NOTIFY_SAME_DAY": "W dzień wydarzenia",
+      "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez X dni przed wydarzeniem:"
     }
   }
 }

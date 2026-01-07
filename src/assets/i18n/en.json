@@ -1,31 +1,33 @@
 {
   "PAGES": {
     "HOME": {
-      "TITLE": "App works !",
-      "GO_TO_DETAIL": "Go to Detail"
+      "TITLE": "App works!",
+      "GO_TO_DETAIL": "Go to details"
     },
     "DETAIL": {
-      "TITLE": "Detail page !",
-      "BACK_TO_HOME": "Back to Home"
+      "TITLE": "Details page!",
+      "BACK_TO_HOME": "Back to home"
     }
   },
   "SIDEBAR": {
-    "ADD_NEW_NOTE": "Add new note"
+    "ADD_NEW_NOTE": "Add note"
   },
   "DIALOGS": {
     "ADD_NOTE": {
       "ADD_NEW_NOTE": "Add new note",
       "DATE": "Date",
+      "DATE_SUBHEADER": "Choose date related to your note",
       "CONTENT": "Content",
-      "NOTIFICATION_HINT": "Set notification for this note",
-      "NOTIFICATION": "Notification",
+      "CONTENT_SUBHEADER": "Enter note content",
+      "REMINDERS_SUBHEADER": "When should reminders be shown?",
+      "REMINDERS": "Reminders",
       "SUMMARY": "Summary",
       "NEXT": "Next",
       "BACK": "Back",
       "SAVE": "Save",
-      "NOTIFY_SAME_DAY": "Same day",
-      "NOTIFY_DAY_BEFORE": "One day before",
-      "NOTIFY_CUSTOM_DAYS_BEFORE": "Few days before"
+      "NOTIFY_SAME_DAY": "On the day of the event",
+      "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:"
     }
   }
 }
