@@ -1,6 +1,5 @@
-<app-sidebar (addNoteClick)="openAddNoteDialog()" />
 <div class="main">
-  <app-searchbar></app-searchbar>
+  <app-toolbar (addNote)="openAddNoteDialog()"></app-toolbar>
   <router-outlet></router-outlet>
   <app-add-note-dialog
     [isVisible]="isAddNoteDialogVisible"

@@ -1,22 +1,23 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/member-ordering */
+
 import { Component, inject, OnInit } from '@angular/core';
 import { LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ElectronService, StoreService } from './core/services';
-import { AddNoteDialogComponent } from './shared/components/add-note-dialog/add-note-dialog.component';
-import { SearchbarComponent } from './shared/components/searchbar/searchbar.component';
-import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { AddNoteDialogComponent } from './dialogs/add-note-dialog/add-note-dialog.component';
 import { Note } from './shared/interfaces/note.interface';
+import { ToolbarComponent } from "./toolbar/toolbar.component";
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    SearchbarComponent,
-    SidebarComponent,
     AddNoteDialogComponent,
-  ],
+    ToolbarComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -45,8 +46,10 @@ export class AppComponent implements OnInit {
     const urlParams = new URLSearchParams(window.location.search);
     const locale = urlParams.get('locale');
 
+    console.log('Setting locale to:', locale, this.locale);
+
     this.translate.setFallbackLang('en');
-    this.translate.use(locale ?? this.locale);
+    this.translate.use('pl');
 
     console.log('Current locale:', locale ?? this.locale);
 
