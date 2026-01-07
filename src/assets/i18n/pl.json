@@ -9,8 +9,8 @@
       "BACK_TO_HOME": "Powrót do strony głównej"
     }
   },
-  "SIDEBAR": {
-    "ADD_NEW_NOTE": "Dodaj notatkę"
+  "TOOLBAR": {
+    "ADD_NOTE": "Dodaj notatkę"
   },
   "DIALOGS": {
     "ADD_NOTE": {
