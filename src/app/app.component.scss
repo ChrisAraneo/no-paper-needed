@@ -1,3 +1,5 @@
+@use '../colors.scss' as *;
+
 :host {
   display: flex;
   height: 100vh;
@@ -8,7 +10,7 @@
   }
 
   @media (prefers-color-scheme: light) {
-    background-color: var(--p-surface-100);
+    background-color: $npn-surface-95;
   }
 }
 

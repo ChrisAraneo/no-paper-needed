@@ -1,93 +1,15 @@
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
+@use './colors.scss' as *;
 
 @font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-ThinItalic.ttf') format('truetype');
-  font-weight: 100;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'DM Serif Display';
-  src: url('./assets/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf')
-    format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'DM Serif Display';
-  src: url('./assets/fonts/DM_Serif_Display/DMSerifDisplay-Italic.ttf')
-    format('truetype');
-  font-weight: 400;
-  font-style: italic;
+  font-family: 'Orienta';
+  src: url('./assets/fonts/Orienta/Orienta-Regular.ttf') format('truetype');
 }
 
 :root {
-  --p-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px -1px rgba(0,0,0,0.1);
+  --p-card-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   --p-stepper-steppanels-padding: 0 0 0 0 !important;
-  --header-font-family: 'DM Serif Display', serif;
+  --header-font-family: 'Orienta', sans-serif;
   --dialog-header-font-size: 26px;
   --dialog-header-font-weight: 500;
   --header-font-size: 22px;
@@ -98,7 +20,7 @@ body,
 html {
   padding: 0;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Orienta', sans-serif;
   font-size: 16px;
 }
 
@@ -108,7 +30,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Orienta', sans-serif;
 }
 
 app-note {
@@ -137,6 +59,36 @@ app-add-note-dialog {
   font-weight: var(--dialog-header-font-weight) !important;
   padding: 0;
   margin: 0;
+}
+
+p-button {
+  background-color: transparent;
+  padding: 0;
+  gap: 12px;
+
+  button {
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 12px 18px !important;
+
+    .p-button-label, .p-button-icon {
+      font-weight: 500 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.25px !important;
+      font-size: 16px !important;
+      line-height: 20px !important;
+      color: white !important
+    }
+  }
+}
+
+p-button.accent {
+  background-color: transparent;
+
+  button {
+    background-color: $npn-accent !important;
+    border: none !important;
+  }
 }
 
 @import 'primeicons/primeicons.css';
