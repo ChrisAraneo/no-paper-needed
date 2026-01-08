@@ -1,11 +1,15 @@
+@use '../../colors.scss' as *;
+
 :host {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: var(--p-content-background);
-  box-shadow: var(--p-card-shadow);
-  padding: 8px 16px;
+  background-color: $npn-surface-95;
+  box-shadow: none;
+  padding: 8px 8px;
+  border-bottom: 1px solid $npn-border;
 }
 
 .col {
