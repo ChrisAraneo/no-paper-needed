@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { format } from 'date-fns';
-import { enGB } from 'date-fns/locale'
-import { pl } from 'date-fns/locale/pl'
+import { enGB } from 'date-fns/locale';
+import { pl } from 'date-fns/locale/pl';
 import { interval } from 'rxjs';
 
 import { StoreService } from '../core/services';
@@ -38,10 +36,12 @@ export class HomeComponent implements OnInit {
 
     this.now = format(new Date(), 'EEEE dd.MM', {
       locale: locale === 'en' ? enGB : pl,
-    }).replace(/^./u, c => c.toUpperCase());
+    }).replace(/^./u, (c) => c.toUpperCase());
 
     interval(MINUTE_MS).subscribe(() => {
-      this.now = format(new Date(), 'EEEE dd.MM').replace(/^./u, c => c.toUpperCase());
+      this.now = format(new Date(), 'EEEE dd.MM').replace(/^./u, (c) =>
+        c.toUpperCase(),
+      );
     });
   }
 }

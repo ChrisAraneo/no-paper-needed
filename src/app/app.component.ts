@@ -9,15 +9,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ElectronService, StoreService } from './core/services';
 import { AddNoteDialogComponent } from './dialogs/add-note-dialog/add-note-dialog.component';
 import { Note } from './shared/interfaces/note.interface';
-import { ToolbarComponent } from "./toolbar/toolbar.component";
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    AddNoteDialogComponent,
-    ToolbarComponent
-],
+  imports: [RouterOutlet, AddNoteDialogComponent, ToolbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

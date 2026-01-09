@@ -74,7 +74,8 @@ export class AddNoteDialogComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    const reminderMode =  this.form.get('reminderMode')?.value ?? ReminderMode.SameDay;
+    const reminderMode =
+      this.form.get('reminderMode')?.value ?? ReminderMode.SameDay;
     let reminderDaysBefore: number | undefined;
 
     switch (reminderMode) {
