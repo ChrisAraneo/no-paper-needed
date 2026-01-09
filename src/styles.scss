@@ -1,6 +1,8 @@
 @use './app/shared/styles/colors.scss' as *;
 @use './app/shared/styles/button.scss' as *;
 @use './app/shared/styles/fonts.scss' as *;
+@use './app/shared/styles/add-note-dialog.scss' as *;
+@use './app/shared/styles/note.scss' as *;
 
 :root {
   --p-card-shadow:
@@ -28,37 +30,6 @@ h4,
 h5,
 h6 {
   font-family: 'Orienta', sans-serif;
-}
-
-app-note {
-  .p-card-body,
-  .p-card-content {
-    height: 100%;
-    display: flex;
-  }
-
-  .p-card-content {
-    flex-direction: column;
-  }
-}
-
-app-add-note-dialog {
-  .p-dialog {
-    background-color: $npn-surface-95 !important;
-    border-radius: 0 !important;
-    width: 600px !important;
-    border: 1px solid $npn-primary !important;
-  }
-}
-
-.p-dialog-title {
-  font-family: var(--header-font-family);
-  display: flex;
-  align-items: center;
-  font-size: var(--dialog-header-font-size) !important;
-  font-weight: var(--dialog-header-font-weight) !important;
-  padding: 0;
-  margin: 0;
 }
 
 @import 'primeicons/primeicons.css';
