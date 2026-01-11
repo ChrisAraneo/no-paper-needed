@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
@@ -22,7 +23,7 @@ export class LocaleService {
           return params.locale;
         }
 
-        return this.locale;
+        return this.locale.split('-')[0];
       }),
     );
   }
