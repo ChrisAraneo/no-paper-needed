@@ -1,14 +1,13 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { format } from 'date-fns';
-import { enGB } from 'date-fns/locale';
-import { pl } from 'date-fns/locale/pl';
-import { interval } from 'rxjs';
+import { interval, mergeMap, Subscription } from 'rxjs';
 
 import { StoreService } from '../core/services';
 import { HeaderComponent } from '../shared/components/header/header.component';
 import { NoteComponent } from '../shared/components/note/note.component';
+import { LocaleService } from './../core/services/locale/locale.service';
 
 const MINUTE_MS = 60_000;
 
@@ -24,24 +23,38 @@ const MINUTE_MS = 60_000;
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  readonly localeService = inject(LocaleService);
   readonly storeService = inject(StoreService);
 
   protected notes = this.storeService.notes$;
   protected now = '';
 
+  private readonly subscription = new Subscription();
+
   ngOnInit(): void {
-    const urlParams = new URLSearchParams(window.location.search);
-    const locale = urlParams.get('locale');
+    this.subscription.add(
+      this.localeService.get().subscribe((locale) => {
+        this.updateNow(locale);
+      }),
+    );
 
+    this.subscription.add(
+      interval(MINUTE_MS)
+        .pipe(mergeMap(() => this.localeService.get()))
+        .subscribe((locale) => {
+          this.updateNow(locale);
+        }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  private updateNow(locale: string): void {
     this.now = format(new Date(), 'EEEE dd.MM', {
-      locale: locale === 'en' ? enGB : pl,
+      locale: this.localeService.getDateFnsLocale(locale),
     }).replace(/^./u, (c) => c.toUpperCase());
-
-    interval(MINUTE_MS).subscribe(() => {
-      this.now = format(new Date(), 'EEEE dd.MM').replace(/^./u, (c) =>
-        c.toUpperCase(),
-      );
-    });
   }
 }

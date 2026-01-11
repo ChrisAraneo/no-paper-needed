@@ -2,11 +2,12 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 
 import { Component, inject, OnInit } from '@angular/core';
-import { LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FALLBACK_LOCALE } from './app.consts';
 import { ElectronService, StoreService } from './core/services';
+import { LocaleService } from './core/services/locale/locale.service';
 import { AddNoteDialogComponent } from './dialogs/add-note-dialog/add-note-dialog.component';
 import { Note } from './shared/interfaces/note.interface';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -20,9 +21,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 export class AppComponent implements OnInit {
   protected isAddNoteDialogVisible = false;
 
+  private readonly localeService = inject(LocaleService);
   private readonly electronService = inject(ElectronService);
   private readonly translate = inject(TranslateService);
-  private readonly locale = inject(LOCALE_ID);
   private readonly storeService = inject(StoreService);
 
   protected openAddNoteDialog(): void {
@@ -39,15 +40,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const urlParams = new URLSearchParams(window.location.search);
-    const locale = urlParams.get('locale');
+    this.translate.setFallbackLang(FALLBACK_LOCALE);
 
-    console.log('Setting locale to:', locale, this.locale);
-
-    this.translate.setFallbackLang('en');
-    this.translate.use('pl');
-
-    console.log('Current locale:', locale ?? this.locale);
+    this.localeService.get().subscribe((locale) => this.translate.use(locale));
 
     if (this.electronService.isElectron) {
       console.log(process.env);
