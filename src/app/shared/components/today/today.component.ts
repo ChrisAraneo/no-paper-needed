@@ -1,9 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { format } from 'date-fns';
+import { interval, mergeMap, Subscription } from 'rxjs';
+
+import { LocaleService } from '../../../core/services/locale/locale.service';
+import { HeaderComponent } from '../header/header.component';
+
+const MINUTE_MS = 60_000;
 
 @Component({
   selector: 'app-today',
-  imports: [],
+  imports: [HeaderComponent, TranslateModule],
   templateUrl: './today.component.html',
   styleUrl: './today.component.scss',
 })
-export class TodayComponent {}
+export class TodayComponent implements OnInit, OnDestroy {
+  protected readonly localeService = inject(LocaleService);
+
+  protected now = '';
+
+  private readonly subscription = new Subscription();
+
+  ngOnInit(): void {
+    this.subscription.add(
+      this.localeService.get().subscribe((locale) => {
+        this.updateNow(locale);
+      }),
+    );
+
+    this.subscription.add(
+      interval(MINUTE_MS)
+        .pipe(mergeMap(() => this.localeService.get()))
+        .subscribe((locale) => {
+          this.updateNow(locale);
+        }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  private updateNow(locale: string): void {
+    this.now = format(new Date(), 'EEEE dd.MM', {
+      locale: this.localeService.getDateFnsLocale(locale),
+    }).replace(/^./u, (c) => c.toUpperCase());
+  }
+}
