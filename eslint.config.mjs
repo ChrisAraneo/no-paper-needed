@@ -1,15 +1,6 @@
 import createConfig from '@chris.araneo/eslint-config';
 
-const JSONS = [
-  '.vscode/*.json',
-  'public/**/*.json',
-  'e2e/**/*.json',
-  'src/**/*.json',
-  'app/**/*.json',
-  '.prettierrc.json',
-  'angular.json',
-  'electron-builder.json',
-];
+const JSONS = [];
 
 const SOURCES = [
   'src/**/*.ts',
