@@ -1,6 +1,8 @@
 <div class="main">
   <app-toolbar (addNote)="openAddNoteDialog()"></app-toolbar>
-  <router-outlet></router-outlet>
+  <div class="page">
+    <router-outlet></router-outlet>
+  </div>
   <app-add-note-dialog
     [isVisible]="isAddNoteDialogVisible"
     (close)="closeAddNoteDialog()"
