@@ -2,7 +2,8 @@
   "PAGES": {
     "HOME": {
       "TITLE": "App works!",
-      "GO_TO_DETAIL": "Go to details"
+      "GO_TO_DETAIL": "Go to details",
+      "NO_NOTES": "No notes and reminders for today."
     },
     "DETAIL": {
       "TITLE": "Details page!",
@@ -11,6 +12,9 @@
   },
   "TOOLBAR": {
     "ADD_NOTE": "Add note"
+  },
+  "TODAY": {
+    "TODAY_IS": "Today is"
   },
   "DIALOGS": {
     "ADD_NOTE": {

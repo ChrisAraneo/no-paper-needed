@@ -2,7 +2,8 @@
   "PAGES": {
     "HOME": {
       "TITLE": "Aplikacja działa!",
-      "GO_TO_DETAIL": "Przejdź do szczegółów"
+      "GO_TO_DETAIL": "Przejdź do szczegółów",
+      "NO_NOTES": "Brak notatek i przypomnień na dziś."
     },
     "DETAIL": {
       "TITLE": "Strona szczegółów!",
@@ -11,6 +12,9 @@
   },
   "TOOLBAR": {
     "ADD_NOTE": "Dodaj notatkę"
+  },
+  "TODAY": {
+    "TODAY_IS": "Dzisiaj jest"
   },
   "DIALOGS": {
     "ADD_NOTE": {
