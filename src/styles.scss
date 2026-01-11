@@ -2,7 +2,7 @@
 @use './app/shared/styles/button.scss' as *;
 @use './app/shared/styles/fonts.scss' as *;
 @use './app/shared/styles/add-note-dialog.scss' as *;
-@use './app/shared/styles/note.scss' as *;
+@use './app/shared/styles/card.scss' as *;
 
 :root {
   --p-card-shadow:
@@ -11,8 +11,6 @@
   --header-font-family: 'Orienta', sans-serif;
   --dialog-header-font-size: 26px;
   --dialog-header-font-weight: 500;
-  --header-font-size: 22px;
-  --header-font-weight: 500;
 }
 
 body,
