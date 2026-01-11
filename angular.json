@@ -4,7 +4,6 @@
     "schematicCollections": ["@angular-eslint/schematics"],
     "analytics": false
   },
-  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "no-paper-needed": {
@@ -162,5 +161,6 @@
     "@schematics/angular:resolver": {
       "typeSeparator": "."
     }
-  }
+  },
+  "version": 1
 }

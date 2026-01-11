@@ -1,4 +1,14 @@
 {
+  "angularCompilerOptions": {
+    "strictTemplates": true,
+    "fullTemplateTypeCheck": true,
+    "annotateForClosureCompiler": true,
+    "strictInjectionParameters": true,
+    "skipTemplateCodegen": false,
+    "preserveWhitespaces": true,
+    "skipMetadataEmit": false,
+    "disableTypeScriptVersionCheck": true
+  },
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
@@ -15,6 +25,7 @@
     "typeRoots": ["node_modules/@types"],
     "useDefineForClassFields": false
   },
+  "exclude": ["node_modules"],
   "include": [
     "src/**/*.ts",
     "src/**/*.html",
@@ -24,16 +35,5 @@
     "*.json",
     ".vscode/*.json",
     ".prettierrc.json"
-  ],
-  "exclude": ["node_modules"],
-  "angularCompilerOptions": {
-    "strictTemplates": true,
-    "fullTemplateTypeCheck": true,
-    "annotateForClosureCompiler": true,
-    "strictInjectionParameters": true,
-    "skipTemplateCodegen": false,
-    "preserveWhitespaces": true,
-    "skipMetadataEmit": false,
-    "disableTypeScriptVersionCheck": true
-  }
+  ]
 }

@@ -1,21 +1,4 @@
 {
-  "PAGES": {
-    "HOME": {
-      "TITLE": "Aplikacja działa!",
-      "GO_TO_DETAIL": "Przejdź do szczegółów",
-      "NO_NOTES": "Brak notatek i przypomnień na dziś."
-    },
-    "DETAIL": {
-      "TITLE": "Strona szczegółów!",
-      "BACK_TO_HOME": "Powrót do strony głównej"
-    }
-  },
-  "TOOLBAR": {
-    "ADD_NOTE": "Dodaj notatkę"
-  },
-  "TODAY": {
-    "TODAY_IS": "Dzisiaj jest"
-  },
   "DIALOGS": {
     "ADD_NOTE": {
       "ADD_NEW_NOTE": "Dodaj nową notatkę",
@@ -33,5 +16,22 @@
       "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
       "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez X dni przed wydarzeniem:"
     }
+  },
+  "PAGES": {
+    "HOME": {
+      "TITLE": "Aplikacja działa!",
+      "GO_TO_DETAIL": "Przejdź do szczegółów",
+      "NO_NOTES": "Brak notatek i przypomnień na dziś."
+    },
+    "DETAIL": {
+      "TITLE": "Strona szczegółów!",
+      "BACK_TO_HOME": "Powrót do strony głównej"
+    }
+  },
+  "TODAY": {
+    "TODAY_IS": "Dzisiaj jest"
+  },
+  "TOOLBAR": {
+    "ADD_NOTE": "Dodaj notatkę"
   }
 }

@@ -1,21 +1,4 @@
 {
-  "PAGES": {
-    "HOME": {
-      "TITLE": "App works!",
-      "GO_TO_DETAIL": "Go to details",
-      "NO_NOTES": "No notes and reminders for today."
-    },
-    "DETAIL": {
-      "TITLE": "Details page!",
-      "BACK_TO_HOME": "Back to home"
-    }
-  },
-  "TOOLBAR": {
-    "ADD_NOTE": "Add note"
-  },
-  "TODAY": {
-    "TODAY_IS": "Today is"
-  },
   "DIALOGS": {
     "ADD_NOTE": {
       "ADD_NEW_NOTE": "Add new note",
@@ -33,5 +16,22 @@
       "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
       "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:"
     }
+  },
+  "PAGES": {
+    "HOME": {
+      "TITLE": "App works!",
+      "GO_TO_DETAIL": "Go to details",
+      "NO_NOTES": "No notes and reminders for today."
+    },
+    "DETAIL": {
+      "TITLE": "Details page!",
+      "BACK_TO_HOME": "Back to home"
+    }
+  },
+  "TODAY": {
+    "TODAY_IS": "Today is"
+  },
+  "TOOLBAR": {
+    "ADD_NOTE": "Add note"
   }
 }

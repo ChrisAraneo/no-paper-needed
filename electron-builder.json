@@ -14,19 +14,19 @@
       "filter": ["**/*"]
     }
   ],
-  "win": {
+  "linux": {
     "icon": "dist/browser/assets/icons",
-    "target": ["portable"]
-  },
-  "portable": {
-    "splashImage": "dist/browser/assets/icons/electron.bmp"
+    "target": ["AppImage"]
   },
   "mac": {
     "icon": "dist/browser/assets/icons",
     "target": ["dmg"]
   },
-  "linux": {
+  "portable": {
+    "splashImage": "dist/browser/assets/icons/electron.bmp"
+  },
+  "win": {
     "icon": "dist/browser/assets/icons",
-    "target": ["AppImage"]
+    "target": ["portable"]
   }
 }
