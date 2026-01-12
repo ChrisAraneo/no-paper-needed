@@ -1,8 +1,9 @@
-@use './app/shared/styles/colors.scss' as *;
+@use './app/shared/styles/variables.scss' as *;
 @use './app/shared/styles/button.scss' as *;
 @use './app/shared/styles/fonts.scss' as *;
 @use './app/shared/styles/add-note-dialog.scss' as *;
 @use './app/shared/styles/card.scss' as *;
+@use './app/shared/styles/stepper.scss' as *;
 
 :root {
   --p-card-shadow:

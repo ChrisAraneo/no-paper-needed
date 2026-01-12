@@ -1,0 +1,47 @@
+@use './variables.scss' as *;
+
+.p-stepper {
+  .p-step {
+    button {
+      span {
+        font-family: 'Orienta', sans-serif;
+      }
+
+      .p-step-number {
+        font-family: 'Orienta', sans-serif;
+        line-height: 32px;
+        font-size: 16px;
+      }
+
+      .p-step-title {
+        font-family: 'Orienta', sans-serif;
+        line-height: 32px;
+        font-size: 12px;
+      }
+    }
+
+    &.p-step-active {
+      button {
+        span {
+          color: $npn-primary !important;
+        }
+      }
+
+      .p-stepper-separator {
+        background: $npn-text-2 !important;
+      }
+    }
+
+    &.p-disabled {
+      button {
+        span {
+          color: $npn-text-2 !important;
+        }
+      }
+
+      .p-stepper-separator {
+        background: $npn-text-2 !important;
+      }
+    }
+  }
+}
