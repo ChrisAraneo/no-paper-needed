@@ -1,0 +1,16 @@
+<div class="step">
+  <div class="content">
+    <ng-content />
+  </div>
+  <div class="actions">
+    @for (action of actions; track $index) {
+      <p-button
+        [label]="action.label"
+        [icon]="action.icon"
+        [iconPos]="action.iconPos || 'right'"
+        [disabled]="action.disabled"
+        [severity]="action.severity"
+        (onClick)="action.onClick()" />
+    }
+  </div>
+</div>

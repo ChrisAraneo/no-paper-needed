@@ -1,0 +1,23 @@
+.step {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 484px;
+  justify-content: space-between;
+  padding-top: 16px;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &:has(p-button:only-child) {
+    justify-content: flex-end;
+  }
+}
