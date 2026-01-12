@@ -5,6 +5,14 @@
     }
   </p-step-list>
   <p-step-panels>
-    <ng-content></ng-content>
+    @for (panel of stepPanels; track panel.stepValue) {
+      <p-step-panel [value]="panel.stepValue">
+        <ng-template #content>
+          <app-step-panel [actions]="panel.stepActions">
+            <ng-container [ngTemplateOutlet]="panel.template"></ng-container>
+          </app-step-panel>
+        </ng-template>
+      </p-step-panel>
+    }
   </p-step-panels>
 </p-stepper>

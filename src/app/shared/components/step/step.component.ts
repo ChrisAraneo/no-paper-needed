@@ -9,6 +9,6 @@ import { StepAction } from './step.interfaces';
   templateUrl: './step.component.html',
   styleUrl: './step.component.scss',
 })
-export class StepPanelComponent {
+export class StepComponent {
   @Input() actions: StepAction[] = [];
 }

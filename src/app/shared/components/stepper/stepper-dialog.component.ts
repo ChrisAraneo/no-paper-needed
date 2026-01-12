@@ -1,8 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
+
+import { StepComponent } from '../step/step.component';
+import { StepPanelDirective } from './step-panel.directive';
 
 export interface StepConfig {
   value: number;
@@ -16,7 +20,9 @@ export interface StepConfig {
     DialogModule,
     StepperModule,
     ButtonModule,
+    NgTemplateOutlet,
     TranslateModule,
+    StepComponent,
   ],
   templateUrl: './stepper-dialog.component.html',
   styles: [],
@@ -34,6 +40,8 @@ export class StepperDialogComponent {
   @Output() readonly visibleChange = new EventEmitter<boolean>();
   @Output() readonly activeStepChange = new EventEmitter<number>();
   @Output() readonly close = new EventEmitter<void>();
+
+  @ContentChildren(StepPanelDirective) stepPanels!: QueryList<StepPanelDirective>;
 
   onActiveStepChange(step: number | undefined): void {
     if (step !== undefined) {
