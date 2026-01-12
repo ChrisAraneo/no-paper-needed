@@ -4,6 +4,7 @@
 @use './app/shared/styles/add-note-dialog.scss' as *;
 @use './app/shared/styles/card.scss' as *;
 @use './app/shared/styles/stepper.scss' as *;
+@use './app/shared/styles/datepicker.scss' as *;
 
 :root {
   --p-card-shadow:

@@ -1,0 +1,11 @@
+@use './variables.scss' as *;
+
+.p-datepicker {
+  .p-datepicker-header {
+    font-family: sans-serif !important;
+  }
+
+  .p-datepicker-day-selected {
+    background: $npn-primary !important;
+  }
+}
