@@ -22,6 +22,21 @@
 .notes {
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  width: 100%;
   gap: 16px;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 16px;
+  }
 }

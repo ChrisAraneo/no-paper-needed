@@ -1,8 +1,12 @@
 <div class="container">
   <app-today />
   <div class="notes">
-    @for (note of (notes | async) || []; track $index) {
-      <app-note [date]="note.date" [content]="note.content"></app-note>
+    @for (row of (notes | async) || []; track $index) {
+      <div class="row">
+        @for (note of row; track $index) {
+          <app-note [date]="note.date" [content]="note.content"></app-note>
+        }
+      </div>
     } @empty {
       <span>{{ 'PAGES.HOME.NO_NOTES' | translate }}</span>
     }
