@@ -15,6 +15,11 @@
       "NOTIFY_SAME_DAY": "W dzień wydarzenia",
       "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
       "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez X dni przed wydarzeniem:"
+    },
+    "ACTIONS": {
+      "BACK": "Wstecz",
+      "NEXT": "Dalej",
+      "SAVE": "Zapisz"
     }
   },
   "PAGES": {
