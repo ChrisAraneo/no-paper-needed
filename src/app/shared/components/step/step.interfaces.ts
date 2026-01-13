@@ -1,4 +1,4 @@
-import { ButtonIconPosition, ButtonSeverity } from "primeng/button";
+import { ButtonIconPosition, ButtonSeverity } from 'primeng/button';
 
 export interface StepAction {
   label: string;

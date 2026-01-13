@@ -4,7 +4,11 @@
   [visible]="visible"
   (visibleChange)="onVisibleChange($event)"
   [styleClass]="styleClass">
-  <p-stepper [value]="activeStep" (valueChange)="onActiveStepChange($event)" [linear]="linear" class="basis-[50rem]">
+  <p-stepper
+    [value]="activeStep"
+    (valueChange)="onActiveStepChange($event)"
+    [linear]="linear"
+    class="basis-[50rem]">
     <p-step-list>
       @for (step of steps; track step.value) {
         <p-step [value]="step.value">{{ step.label | translate }}</p-step>
