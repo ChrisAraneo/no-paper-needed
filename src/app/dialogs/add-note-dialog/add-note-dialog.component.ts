@@ -39,7 +39,7 @@ import {
 import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
 import { Note } from '../../shared/interfaces/note.interface';
 import { ReminderMode } from '../../shared/interfaces/reminder-mode.enum';
-import { NoteDialogService } from './../../core/services/note-dialog/note-dialog.service';
+import { NoteDialog } from '../note-dialog.class';
 
 @Component({
   selector: 'app-add-note-dialog',
@@ -63,7 +63,7 @@ import { NoteDialogService } from './../../core/services/note-dialog/note-dialog
   templateUrl: './add-note-dialog.component.html',
   styleUrl: './add-note-dialog.component.scss',
 })
-export class AddNoteDialogComponent implements OnInit {
+export class AddNoteDialogComponent extends NoteDialog implements OnInit {
   @Input() isVisible = false;
 
   @Output() readonly save = new EventEmitter<Note>();
@@ -81,8 +81,6 @@ export class AddNoteDialogComponent implements OnInit {
     { value: 4, label: 'DIALOGS.ADD_NOTE.SUMMARY' },
   ];
 
-  private readonly noteDialogService = inject(NoteDialogService);
-
   ngOnInit(): void {
     this.form = new FormGroup({
       date: new FormControl(new Date()),
@@ -94,7 +92,7 @@ export class AddNoteDialogComponent implements OnInit {
 
   getStep1Actions(): StepAction[] {
     return [
-      this.noteDialogService.createNextButtonStepAction(() => {
+      this.createNextButtonStepAction(() => {
         this.activeStep = 2;
       }),
     ];
@@ -102,10 +100,10 @@ export class AddNoteDialogComponent implements OnInit {
 
   getStep2Actions(): StepAction[] {
     return [
-      this.noteDialogService.createBackButtonStepAction(() => {
+      this.createBackButtonStepAction(() => {
         this.activeStep = 1;
       }),
-      this.noteDialogService.createNextButtonStepAction(
+      this.createNextButtonStepAction(
         () => {
           this.activeStep = 3;
         },
@@ -116,10 +114,10 @@ export class AddNoteDialogComponent implements OnInit {
 
   getStep3Actions(): StepAction[] {
     return [
-      this.noteDialogService.createBackButtonStepAction(() => {
+      this.createBackButtonStepAction(() => {
         this.activeStep = 2;
       }),
-      this.noteDialogService.createNextButtonStepAction(() => {
+      this.createNextButtonStepAction(() => {
         this.activeStep = 4;
       }),
     ];
@@ -127,7 +125,7 @@ export class AddNoteDialogComponent implements OnInit {
 
   getStep4Actions(): StepAction[] {
     return [
-      this.noteDialogService.createBackButtonStepAction(() => {
+      this.createBackButtonStepAction(() => {
         this.activeStep = 3;
       }),
       {
