@@ -6,16 +6,8 @@
 /* eslint-disable @angular-eslint/no-output-native */
 
 import { JsonPipe, NgClass } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -25,15 +17,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TextareaModule } from 'primeng/textarea';
 
-import { StepAction } from '../../shared/components/step/step.interfaces';
 import { StepPanelDirective } from '../../shared/components/stepper/step-panel.directive';
-import {
-  StepConfig,
-  StepperDialogComponent,
-} from '../../shared/components/stepper/stepper-dialog.component';
+import { StepperDialogComponent } from '../../shared/components/stepper/stepper-dialog.component';
 import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
 import { Note } from '../../shared/interfaces/note.interface';
-import { ReminderMode } from '../../shared/interfaces/reminder-mode.enum';
 import { NoteDialog } from '../note-dialog.class';
 
 @Component({
@@ -64,65 +51,7 @@ export class AddNoteDialogComponent extends NoteDialog {
   @Output() readonly save = new EventEmitter<Note>();
   @Output() readonly close = new EventEmitter<void>();
 
-  protected readonly reminderMode = ReminderMode;
-
-  protected activeStep = 1;
-
-  protected stepConfigs: StepConfig[] = [
-    { value: 1, label: 'DIALOGS.ADD_NOTE.DATE' },
-    { value: 2, label: 'DIALOGS.ADD_NOTE.CONTENT' },
-    { value: 3, label: 'DIALOGS.ADD_NOTE.REMINDERS' },
-    { value: 4, label: 'DIALOGS.ADD_NOTE.SUMMARY' },
-  ];
-
-  getStep1Actions(): StepAction[] {
-    return [
-      this.createNextButtonStepAction(() => {
-        this.activeStep = 2;
-      }),
-    ];
-  }
-
-  getStep2Actions(): StepAction[] {
-    return [
-      this.createBackButtonStepAction(() => {
-        this.activeStep = 1;
-      }),
-      this.createNextButtonStepAction(
-        () => {
-          this.activeStep = 3;
-        },
-        () => !this.form.get('content')?.value?.trim(),
-      ),
-    ];
-  }
-
-  getStep3Actions(): StepAction[] {
-    return [
-      this.createBackButtonStepAction(() => {
-        this.activeStep = 2;
-      }),
-      this.createNextButtonStepAction(() => {
-        this.activeStep = 4;
-      }),
-    ];
-  }
-
-  getStep4Actions(): StepAction[] {
-    return [
-      this.createBackButtonStepAction(() => {
-        this.activeStep = 3;
-      }),
-      {
-        label: 'Save',
-        icon: 'pi pi-check',
-        iconPos: 'right',
-        onClick: () => this.saveNote(),
-      },
-    ];
-  }
-
-  saveNote(): void {
+  submit(): void {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
 
@@ -130,13 +59,7 @@ export class AddNoteDialogComponent extends NoteDialog {
       return;
     }
 
-    const reminderDaysBefore: number = this.getReminderDaysBefore();
-
-    this.save.emit({
-      content: this.form.get('content')?.value ?? '',
-      date: this.form.get('date')?.value ?? new Date(),
-      reminderDaysBefore,
-    });
+    this.save.emit(this.createNote());
 
     this.closeDialog();
     this.resetDialog();

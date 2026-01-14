@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { get } from 'lodash';
 
 import { StepAction } from '../shared/components/step/step.interfaces';
+import { StepConfig } from '../shared/components/stepper/stepper.component';
+import { Note } from '../shared/interfaces/note.interface';
 import { ReminderMode } from '../shared/interfaces/reminder-mode.enum';
 
 interface NoteDialogFormGroup {
@@ -14,9 +16,19 @@ interface NoteDialogFormGroup {
 
 const SAME_DAY_REMINDER_DAYS_BEFORE = 0;
 const DAY_BEFORE_REMINDER_DAYS_BEFORE = 1;
+const FIRST_STEP_INDEX = 1;
 
 export abstract class NoteDialog {
+  protected readonly reminderMode = ReminderMode;
+
   protected form: FormGroup<NoteDialogFormGroup>;
+  protected activeStep = FIRST_STEP_INDEX;
+  protected stepConfigs: StepConfig[] = [
+    { value: 1, label: 'DIALOGS.ADD_NOTE.DATE' },
+    { value: 2, label: 'DIALOGS.ADD_NOTE.CONTENT' },
+    { value: 3, label: 'DIALOGS.ADD_NOTE.REMINDERS' },
+    { value: 4, label: 'DIALOGS.ADD_NOTE.SUMMARY' },
+  ];
 
   constructor() {
     this.form = new FormGroup<NoteDialogFormGroup>({
@@ -39,7 +51,73 @@ export abstract class NoteDialog {
     });
   }
 
-  protected createBackButtonStepAction(onClick: () => void): StepAction {
+  abstract submit(): void;
+
+  protected getStep1Actions(): StepAction[] {
+    return [
+      this.createNextButtonStepAction(() => {
+        this.activeStep = 2;
+      }),
+    ];
+  }
+
+  protected getStep2Actions(): StepAction[] {
+    return [
+      this.createBackButtonStepAction(() => {
+        this.activeStep = 1;
+      }),
+      this.createNextButtonStepAction(
+        () => {
+          this.activeStep = 3;
+        },
+        () => this.isContentInvalid(),
+      ),
+    ];
+  }
+
+  protected getStep3Actions(): StepAction[] {
+    return [
+      this.createBackButtonStepAction(() => {
+        this.activeStep = 2;
+      }),
+      this.createNextButtonStepAction(() => {
+        this.activeStep = 4;
+      }),
+    ];
+  }
+
+  protected getStep4Actions(): StepAction[] {
+    return [
+      this.createBackButtonStepAction(() => {
+        this.activeStep = 3;
+      }),
+      {
+        label: 'Save',
+        icon: 'pi pi-check',
+        iconPos: 'right',
+        onClick: () => this.submit(),
+      },
+    ];
+  }
+
+  protected createNote(): Note {
+    if (this.form.invalid) {
+      throw new Error('Form is invalid. Cannot create note.');
+    }
+
+    const content = get(this.form, 'value.content', '').trim();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, @typescript-eslint/non-nullable-type-assertion-style
+    const date = get(this.form, 'value.date') as Date;
+    const reminderDaysBefore = this.getReminderDaysBefore();
+
+    return {
+      content,
+      date,
+      reminderDaysBefore,
+    };
+  }
+
+  private createBackButtonStepAction(onClick: () => void): StepAction {
     return {
       label: 'Back',
       severity: 'secondary',
@@ -48,7 +126,7 @@ export abstract class NoteDialog {
     };
   }
 
-  protected createNextButtonStepAction(
+  private createNextButtonStepAction(
     onClick: () => void,
     isDisabled?: () => boolean,
   ): StepAction {
@@ -61,7 +139,11 @@ export abstract class NoteDialog {
     };
   }
 
-  protected getReminderDaysBefore(): number {
+  private isContentInvalid(): boolean {
+    return get(this.form, 'controls.content.invalid', true);
+  }
+
+  private getReminderDaysBefore(): number {
     switch (get(this.form, 'value.reminderMode', ReminderMode.SameDay)) {
       case ReminderMode.SameDay: {
         return SAME_DAY_REMINDER_DAYS_BEFORE;
