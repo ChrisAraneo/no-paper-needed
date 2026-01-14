@@ -52,7 +52,7 @@
             formControlName="reminderMode"
             inputId="sameDay"
             name="category"
-            [value]="ReminderMode.SameDay" />
+            [value]="reminderMode.SameDay" />
           <label [for]="'sameDay'" class="ml-2">{{
             'DIALOGS.ADD_NOTE.NOTIFY_SAME_DAY' | translate
           }}</label>
@@ -62,7 +62,7 @@
             formControlName="reminderMode"
             inputId="dayBefore"
             name="category"
-            [value]="ReminderMode.DayBefore" />
+            [value]="reminderMode.DayBefore" />
           <label [for]="'dayBefore'" class="ml-2">{{
             'DIALOGS.ADD_NOTE.NOTIFY_DAY_BEFORE' | translate
           }}</label>
@@ -72,14 +72,14 @@
             formControlName="reminderMode"
             inputId="customDaysBefore"
             name="category"
-            [value]="ReminderMode.MultipleDaysBefore" />
+            [value]="reminderMode.MultipleDaysBefore" />
           <label [for]="'customDaysBefore'" class="ml-2">{{
             'DIALOGS.ADD_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
           }}</label>
         </div>
         <p-inputnumber
           [disabled]="
-            form.get('reminderMode')?.value !== ReminderMode.MultipleDaysBefore
+            form.get('reminderMode')?.value !== reminderMode.MultipleDaysBefore
           "
           formControlName="reminderDaysBefore"
           inputId="notification" />

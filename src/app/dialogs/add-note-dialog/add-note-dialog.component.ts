@@ -1,10 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @angular-eslint/no-output-native */
 
 import { JsonPipe, NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -30,6 +39,7 @@ import {
 import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
 import { Note } from '../../shared/interfaces/note.interface';
 import { ReminderMode } from '../../shared/interfaces/reminder-mode.enum';
+import { NoteDialogService } from './../../core/services/note-dialog/note-dialog.service';
 
 @Component({
   selector: 'app-add-note-dialog',
@@ -59,8 +69,9 @@ export class AddNoteDialogComponent implements OnInit {
   @Output() readonly save = new EventEmitter<Note>();
   @Output() readonly close = new EventEmitter<void>();
 
+  protected readonly reminderMode = ReminderMode;
+
   protected form!: FormGroup;
-  protected readonly ReminderMode = ReminderMode;
   protected activeStep = 1;
 
   protected stepConfigs: StepConfig[] = [
@@ -69,6 +80,8 @@ export class AddNoteDialogComponent implements OnInit {
     { value: 3, label: 'DIALOGS.ADD_NOTE.REMINDERS' },
     { value: 4, label: 'DIALOGS.ADD_NOTE.SUMMARY' },
   ];
+
+  private readonly noteDialogService = inject(NoteDialogService);
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -81,68 +94,42 @@ export class AddNoteDialogComponent implements OnInit {
 
   getStep1Actions(): StepAction[] {
     return [
-      {
-        label: 'Next',
-        icon: 'pi pi-arrow-right',
-        iconPos: 'right',
-        onClick: () => (this.activeStep = 2),
-      },
+      this.noteDialogService.createNextButtonStepAction(() => {
+        this.activeStep = 2;
+      }),
     ];
   }
 
   getStep2Actions(): StepAction[] {
     return [
-      {
-        label: 'Back',
-        severity: 'secondary',
-        icon: 'pi pi-arrow-left',
-        onClick: () => (this.activeStep = 1),
-      },
-      {
-        label: 'Next',
-        icon: 'pi pi-arrow-right',
-        iconPos: 'right',
-        disabled:
-          !this.form.get('content')?.value ||
-          this.form.get('content')?.value.trim() === '',
-        onClick: () => {
-          this.form.get('content')?.markAsTouched();
-          if (
-            this.form.get('content')?.value &&
-            this.form.get('content')?.value.trim() !== ''
-          ) {
-            this.activeStep = 3;
-          }
+      this.noteDialogService.createBackButtonStepAction(() => {
+        this.activeStep = 1;
+      }),
+      this.noteDialogService.createNextButtonStepAction(
+        () => {
+          this.activeStep = 3;
         },
-      },
+        () => !this.form.get('content')?.value?.trim(),
+      ),
     ];
   }
 
   getStep3Actions(): StepAction[] {
     return [
-      {
-        label: 'Back',
-        severity: 'secondary',
-        icon: 'pi pi-arrow-left',
-        onClick: () => (this.activeStep = 2),
-      },
-      {
-        label: 'Next',
-        icon: 'pi pi-arrow-right',
-        iconPos: 'right',
-        onClick: () => (this.activeStep = 4),
-      },
+      this.noteDialogService.createBackButtonStepAction(() => {
+        this.activeStep = 2;
+      }),
+      this.noteDialogService.createNextButtonStepAction(() => {
+        this.activeStep = 4;
+      }),
     ];
   }
 
   getStep4Actions(): StepAction[] {
     return [
-      {
-        label: 'Back',
-        severity: 'secondary',
-        icon: 'pi pi-arrow-left',
-        onClick: () => (this.activeStep = 3),
-      },
+      this.noteDialogService.createBackButtonStepAction(() => {
+        this.activeStep = 3;
+      }),
       {
         label: 'Save',
         icon: 'pi pi-check',
@@ -189,6 +176,7 @@ export class AddNoteDialogComponent implements OnInit {
     });
 
     this.closeDialog();
+    this.resetDialog();
   }
 
   closeDialog(): void {
@@ -199,5 +187,12 @@ export class AddNoteDialogComponent implements OnInit {
     if (!visible) {
       this.closeDialog();
     }
+  }
+
+  resetDialog(): void {
+    setTimeout(() => {
+      this.form.reset();
+      this.activeStep = 1;
+    }, 2000);
   }
 }
