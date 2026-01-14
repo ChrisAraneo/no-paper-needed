@@ -9,17 +9,12 @@ import { JsonPipe, NgClass } from '@angular/common';
 import {
   Component,
   EventEmitter,
-  inject,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
@@ -63,7 +58,7 @@ import { NoteDialog } from '../note-dialog.class';
   templateUrl: './add-note-dialog.component.html',
   styleUrl: './add-note-dialog.component.scss',
 })
-export class AddNoteDialogComponent extends NoteDialog implements OnInit {
+export class AddNoteDialogComponent extends NoteDialog {
   @Input() isVisible = false;
 
   @Output() readonly save = new EventEmitter<Note>();
@@ -71,7 +66,6 @@ export class AddNoteDialogComponent extends NoteDialog implements OnInit {
 
   protected readonly reminderMode = ReminderMode;
 
-  protected form!: FormGroup;
   protected activeStep = 1;
 
   protected stepConfigs: StepConfig[] = [
@@ -80,15 +74,6 @@ export class AddNoteDialogComponent extends NoteDialog implements OnInit {
     { value: 3, label: 'DIALOGS.ADD_NOTE.REMINDERS' },
     { value: 4, label: 'DIALOGS.ADD_NOTE.SUMMARY' },
   ];
-
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      date: new FormControl(new Date()),
-      content: new FormControl('', Validators.required),
-      reminderMode: new FormControl(ReminderMode.SameDay, Validators.required),
-      reminderDaysBefore: new FormControl(0),
-    });
-  }
 
   getStep1Actions(): StepAction[] {
     return [
@@ -144,33 +129,13 @@ export class AddNoteDialogComponent extends NoteDialog implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    const reminderMode =
-      this.form.get('reminderMode')?.value ?? ReminderMode.SameDay;
-    let reminderDaysBefore: number | undefined;
 
-    switch (reminderMode) {
-      case ReminderMode.SameDay: {
-        reminderDaysBefore = 0;
-
-        break;
-      }
-      case ReminderMode.DayBefore: {
-        reminderDaysBefore = 1;
-
-        break;
-      }
-      case ReminderMode.MultipleDaysBefore: {
-        reminderDaysBefore = this.form.get('reminderDaysBefore')?.value ?? 0;
-
-        break;
-      }
-      // No default
-    }
+    const reminderDaysBefore: number = this.getReminderDaysBefore();
 
     this.save.emit({
-      content: this.form.get('content')?.value,
-      date: this.form.get('date')?.value,
-      reminderDaysBefore: reminderDaysBefore ?? 0,
+      content: this.form.get('content')?.value ?? '',
+      date: this.form.get('date')?.value ?? new Date(),
+      reminderDaysBefore,
     });
 
     this.closeDialog();
