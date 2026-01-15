@@ -35,10 +35,10 @@ export abstract class NoteDialog {
   protected form: FormGroup<NoteDialogFormGroup>;
   protected activeStep = FIRST_STEP_INDEX;
   protected stepConfigs: StepConfig[] = [
-    { value: 1, label: 'DIALOGS.ADD_NOTE.DATE' },
-    { value: 2, label: 'DIALOGS.ADD_NOTE.CONTENT' },
-    { value: 3, label: 'DIALOGS.ADD_NOTE.REMINDERS' },
-    { value: 4, label: 'DIALOGS.ADD_NOTE.SUMMARY' },
+    { value: 1, label: 'DIALOGS.LABELS.DATE' },
+    { value: 2, label: 'DIALOGS.LABELS.CONTENT' },
+    { value: 3, label: 'DIALOGS.LABELS.REMINDERS' },
+    { value: 4, label: 'DIALOGS.LABELS.SUMMARY' },
   ];
 
   constructor() {
