@@ -2,19 +2,19 @@
   "DIALOGS": {
     "ADD_NOTE": {
       "ADD_NEW_NOTE": "Dodaj nową notatkę",
-      "DATE": "Data",
       "DATE_SUBHEADER": "Wybierz datę związaną z notatką",
       "CONTENT": "Treść",
       "CONTENT_SUBHEADER": "Wpisz treść notatki",
       "REMINDERS_SUBHEADER": "Kiedy mają być wyświetlane przypomnienia?",
-      "REMINDERS": "Przypomnienia",
-      "SUMMARY": "Podsumowanie",
-      "NEXT": "Dalej",
-      "BACK": "Wstecz",
-      "SAVE": "Zapisz",
       "NOTIFY_SAME_DAY": "W dzień wydarzenia",
       "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
       "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez X dni przed wydarzeniem:"
+    },
+    "LABELS": {
+      "DATE": "Data",
+      "CONTENT": "Treść",
+      "REMINDERS": "Przypomnienia",
+      "SUMMARY": "Podsumowanie"
     },
     "ACTIONS": {
       "BACK": "Wstecz",

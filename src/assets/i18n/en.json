@@ -2,19 +2,19 @@
   "DIALOGS": {
     "ADD_NOTE": {
       "ADD_NEW_NOTE": "Add new note",
-      "DATE": "Date",
       "DATE_SUBHEADER": "Choose date related to your note",
       "CONTENT": "Content",
       "CONTENT_SUBHEADER": "Enter note content",
       "REMINDERS_SUBHEADER": "When should reminders be shown?",
-      "REMINDERS": "Reminders",
-      "SUMMARY": "Summary",
-      "NEXT": "Next",
-      "BACK": "Back",
-      "SAVE": "Save",
       "NOTIFY_SAME_DAY": "On the day of the event",
       "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
       "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:"
+    },
+    "LABELS": {
+      "DATE": "Date",
+      "CONTENT": "Content",
+      "REMINDERS": "Reminders",
+      "SUMMARY": "Summary"
     },
     "ACTIONS": {
       "BACK": "Back",
