@@ -1,6 +1,10 @@
+/* eslint-disable @angular-eslint/no-output-native */
 /* eslint-disable @typescript-eslint/unbound-method */
+
+import { Directive, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { get } from 'lodash';
+import { first, timer } from 'rxjs';
 
 import { StepAction } from '../shared/components/step/step.interfaces';
 import { StepConfig } from '../shared/components/stepper/stepper.component';
@@ -17,8 +21,15 @@ interface NoteDialogFormGroup {
 const SAME_DAY_REMINDER_DAYS_BEFORE = 0;
 const DAY_BEFORE_REMINDER_DAYS_BEFORE = 1;
 const FIRST_STEP_INDEX = 1;
+const RESET_DIALOG_DELAY_MS = 2000;
 
+@Directive()
 export abstract class NoteDialog {
+  @Input() isVisible = false;
+
+  @Output() readonly save = new EventEmitter<Note>();
+  @Output() readonly close = new EventEmitter<void>();
+
   protected readonly reminderMode = ReminderMode;
 
   protected form: FormGroup<NoteDialogFormGroup>;
@@ -115,6 +126,25 @@ export abstract class NoteDialog {
       date,
       reminderDaysBefore,
     };
+  }
+
+  protected closeDialog(): void {
+    this.close.emit();
+  }
+
+  protected onVisibleChange(visible: boolean): void {
+    if (!visible) {
+      this.closeDialog();
+    }
+  }
+
+  protected resetDialog(): void {
+    timer(RESET_DIALOG_DELAY_MS)
+      .pipe(first())
+      .subscribe(() => {
+        this.form.reset();
+        this.activeStep = 1;
+      });
   }
 
   private createBackButtonStepAction(onClick: () => void): StepAction {

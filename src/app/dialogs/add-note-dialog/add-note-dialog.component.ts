@@ -6,7 +6,7 @@
 /* eslint-disable @angular-eslint/no-output-native */
 
 import { JsonPipe, NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
@@ -20,8 +20,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { StepPanelDirective } from '../../shared/components/stepper/step-panel.directive';
 import { StepperDialogComponent } from '../../shared/components/stepper/stepper-dialog.component';
 import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
-import { Note } from '../../shared/interfaces/note.interface';
-import { NoteDialog } from '../note-dialog.class';
+import { NoteDialog } from '../note-dialog.directive';
 
 @Component({
   selector: 'app-add-note-dialog',
@@ -46,11 +45,6 @@ import { NoteDialog } from '../note-dialog.class';
   styleUrl: './add-note-dialog.component.scss',
 })
 export class AddNoteDialogComponent extends NoteDialog {
-  @Input() isVisible = false;
-
-  @Output() readonly save = new EventEmitter<Note>();
-  @Output() readonly close = new EventEmitter<void>();
-
   submit(): void {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
@@ -63,22 +57,5 @@ export class AddNoteDialogComponent extends NoteDialog {
 
     this.closeDialog();
     this.resetDialog();
-  }
-
-  closeDialog(): void {
-    this.close.emit();
-  }
-
-  onVisibleChange(visible: boolean): void {
-    if (!visible) {
-      this.closeDialog();
-    }
-  }
-
-  resetDialog(): void {
-    setTimeout(() => {
-      this.form.reset();
-      this.activeStep = 1;
-    }, 2000);
   }
 }
