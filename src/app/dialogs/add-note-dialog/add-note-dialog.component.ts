@@ -18,7 +18,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TextareaModule } from 'primeng/textarea';
 
 import { StepPanelDirective } from '../../shared/components/stepper/step-panel.directive';
-import { StepperDialogComponent } from '../../shared/components/stepper/stepper-dialog.component';
+import { StepperDialogComponent } from '../../shared/components/stepper-dialog/stepper-dialog.component';
 import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
 import { NoteDialog } from '../note-dialog.directive';
 

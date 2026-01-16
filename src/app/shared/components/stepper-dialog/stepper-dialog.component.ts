@@ -8,12 +8,13 @@ import {
   QueryList,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { isUndefined } from 'lodash';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 
 import { StepComponent } from '../step/step.component';
-import { StepPanelDirective } from './step-panel.directive';
+import { StepPanelDirective } from '../stepper/step-panel.directive';
 
 export interface StepConfig {
   value: number;
@@ -52,14 +53,17 @@ export class StepperDialogComponent {
   stepPanels!: QueryList<StepPanelDirective>;
 
   onActiveStepChange(step: number | undefined): void {
-    if (step !== undefined) {
-      this.activeStep = step;
-      this.activeStepChange.emit(step);
+    if (isUndefined(step)) {
+      return;
     }
+
+    this.activeStep = step;
+    this.activeStepChange.emit(step);
   }
 
   onVisibleChange(visible: boolean): void {
     this.visibleChange.emit(visible);
+
     if (!visible) {
       this.close.emit();
     }
