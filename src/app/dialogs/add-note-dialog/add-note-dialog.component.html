@@ -1,12 +1,10 @@
 <ng-container [formGroup]="form">
   <app-stepper-dialog
-    [visible]="isVisible"
-    [header]="'DIALOGS.ADD_NOTE.ADD_NEW_NOTE'"
-    [modal]="true"
+    [title]="'DIALOGS.ADD_NOTE.ADD_NEW_NOTE' | translate"
     [(activeStep)]="activeStep"
-    [linear]="true"
     [steps]="stepConfigs"
     [styleClass]="'add-note-dialog'"
+    [isVisible]="isVisible"
     (close)="closeDialog()">
     <ng-template appStepPanel [stepValue]="1" [stepActions]="getStep1Actions()">
       <app-subheader>{{
