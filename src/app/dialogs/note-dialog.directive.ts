@@ -1,10 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @angular-eslint/no-output-native */
 /* eslint-disable @typescript-eslint/unbound-method */
 
-import { Directive, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Directive,
+  EventEmitter,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { get } from 'lodash';
-import { first, timer } from 'rxjs';
+import { first, Subscription, timer } from 'rxjs';
 
 import { StepAction } from '../shared/components/step/step.interfaces';
 import { StepConfig } from '../shared/components/stepper/stepper.component';
@@ -24,22 +34,21 @@ const FIRST_STEP_INDEX = 1;
 const RESET_DIALOG_DELAY_MS = 2000;
 
 @Directive()
-export abstract class NoteDialog {
+export abstract class NoteDialog implements OnInit, OnDestroy {
   @Input() isVisible = false;
 
   @Output() readonly save = new EventEmitter<Note>();
   @Output() readonly close = new EventEmitter<void>();
 
+  protected readonly translateService = inject(TranslateService);
+
   protected readonly reminderMode = ReminderMode;
 
   protected form: FormGroup<NoteDialogFormGroup>;
   protected activeStep = FIRST_STEP_INDEX;
-  protected stepConfigs: StepConfig[] = [
-    { value: 1, label: 'DIALOGS.LABELS.DATE' },
-    { value: 2, label: 'DIALOGS.LABELS.CONTENT' },
-    { value: 3, label: 'DIALOGS.LABELS.REMINDERS' },
-    { value: 4, label: 'DIALOGS.LABELS.SUMMARY' },
-  ];
+  protected stepConfigs: StepConfig[] = [];
+
+  private readonly subscription = new Subscription();
 
   constructor() {
     this.form = new FormGroup<NoteDialogFormGroup>({
@@ -63,6 +72,18 @@ export abstract class NoteDialog {
   }
 
   abstract submit(): void;
+
+  ngOnInit(): void {
+    this.setStepConfigs();
+
+    this.subscription.add(
+      this.translateService.onLangChange.subscribe(() => this.setStepConfigs()),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   protected getStep1Actions(): StepAction[] {
     return [
@@ -145,6 +166,24 @@ export abstract class NoteDialog {
         this.form.reset();
         this.activeStep = 1;
       });
+  }
+
+  private setStepConfigs(): void {
+    this.stepConfigs = [
+      { value: 1, label: this.translateService.instant('DIALOGS.LABELS.DATE') },
+      {
+        value: 2,
+        label: this.translateService.instant('DIALOGS.LABELS.CONTENT'),
+      },
+      {
+        value: 3,
+        label: this.translateService.instant('DIALOGS.LABELS.REMINDERS'),
+      },
+      {
+        value: 4,
+        label: this.translateService.instant('DIALOGS.LABELS.SUMMARY'),
+      },
+    ];
   }
 
   private createBackButtonStepAction(onClick: () => void): StepAction {
