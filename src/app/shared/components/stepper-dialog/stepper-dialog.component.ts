@@ -13,14 +13,16 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 
+import { StepPanelDirective } from '../../directives/step-panel/step-panel.directive';
 import { StepComponent } from '../step/step.component';
-import { StepPanelDirective } from '../stepper/step-panel.directive';
 
 export interface StepConfig {
   value: number;
   label: string;
   content?: unknown;
 }
+
+const DEFAULT_ACTIVE_STEP = 1;
 
 @Component({
   selector: 'app-stepper-dialog',
@@ -40,7 +42,7 @@ export class StepperDialogComponent {
   @Input() header = '';
   @Input() modal = true;
   @Input() styleClass = '';
-  @Input() activeStep = 1;
+  @Input() activeStep = DEFAULT_ACTIVE_STEP;
   @Input() linear = true;
   @Input() steps: StepConfig[] = [];
   @Input() stepHeight = '484px';

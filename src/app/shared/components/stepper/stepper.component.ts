@@ -4,8 +4,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
 
+import { StepPanelDirective } from '../../directives/step-panel/step-panel.directive';
 import { StepComponent } from '../step/step.component';
-import { StepPanelDirective } from './step-panel.directive';
 
 export interface StepConfig {
   value: number;
