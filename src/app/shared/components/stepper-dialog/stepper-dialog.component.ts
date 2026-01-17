@@ -38,16 +38,14 @@ const DEFAULT_ACTIVE_STEP = 1;
   styles: [],
 })
 export class StepperDialogComponent {
-  @Input() visible = false;
-  @Input() header = '';
-  @Input() modal = true;
+  @Input() title = '';
   @Input() styleClass = '';
   @Input() activeStep = DEFAULT_ACTIVE_STEP;
-  @Input() linear = true;
   @Input() steps: StepConfig[] = [];
   @Input() stepHeight = '484px';
+  @Input() isVisible = false;
 
-  @Output() readonly visibleChange = new EventEmitter<boolean>();
+  @Output() readonly isVisibleChange = new EventEmitter<boolean>();
   @Output() readonly activeStepChange = new EventEmitter<number>();
   @Output() readonly close = new EventEmitter<void>();
 
@@ -64,7 +62,7 @@ export class StepperDialogComponent {
   }
 
   onVisibleChange(visible: boolean): void {
-    this.visibleChange.emit(visible);
+    this.isVisibleChange.emit(visible);
 
     if (!visible) {
       this.close.emit();
