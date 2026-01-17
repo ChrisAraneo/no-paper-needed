@@ -1,10 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/no-magic-numbers */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @angular-eslint/no-output-native */
-
 import { JsonPipe, NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,9 +10,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TextareaModule } from 'primeng/textarea';
 
-import { StepPanelDirective } from '../../shared/components/stepper/step-panel.directive';
 import { StepperDialogComponent } from '../../shared/components/stepper-dialog/stepper-dialog.component';
 import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
+import { StepPanelDirective } from '../../shared/directives/step-panel/step-panel.directive';
 import { NoteDialog } from '../note-dialog.directive';
 
 @Component({
