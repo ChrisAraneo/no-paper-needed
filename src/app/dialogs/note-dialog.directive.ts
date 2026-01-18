@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @angular-eslint/no-output-native */
 /* eslint-disable @typescript-eslint/unbound-method */
@@ -86,45 +88,30 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
   }
 
   protected getStep1Actions(): StepAction[] {
-    return [
-      this.createNextButtonStepAction(() => {
-        this.activeStep = 2;
-      }),
-    ];
+    return [this.createNextButtonStepAction(this.activateStep(2))];
   }
 
   protected getStep2Actions(): StepAction[] {
     return [
-      this.createBackButtonStepAction(() => {
-        this.activeStep = 1;
-      }),
-      this.createNextButtonStepAction(
-        () => {
-          this.activeStep = 3;
-        },
-        () => this.isContentInvalid(),
+      this.createBackButtonStepAction(this.activateStep(1)),
+      this.createNextButtonStepAction(this.activateStep(3), () =>
+        this.isContentInvalid(),
       ),
     ];
   }
 
   protected getStep3Actions(): StepAction[] {
     return [
-      this.createBackButtonStepAction(() => {
-        this.activeStep = 2;
-      }),
-      this.createNextButtonStepAction(() => {
-        this.activeStep = 4;
-      }),
+      this.createBackButtonStepAction(this.activateStep(2)),
+      this.createNextButtonStepAction(this.activateStep(4)),
     ];
   }
 
   protected getStep4Actions(): StepAction[] {
     return [
-      this.createBackButtonStepAction(() => {
-        this.activeStep = 3;
-      }),
+      this.createBackButtonStepAction(this.activateStep(3)),
       {
-        label: 'Save',
+        label: this.translateService.instant('DIALOGS.ACTIONS.SAVE'),
         icon: 'pi pi-check',
         iconPos: 'right',
         onClick: () => this.submit(),
@@ -138,7 +125,7 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
     }
 
     const content = get(this.form, 'value.content', '').trim();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion, @typescript-eslint/non-nullable-type-assertion-style
+    // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
     const date = get(this.form, 'value.date') as Date;
     const reminderDaysBefore = this.getReminderDaysBefore();
 
@@ -167,6 +154,12 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
         this.activeStep = 1;
       });
   }
+
+  private readonly activateStep =
+    (step: number): (() => void) =>
+    (): void => {
+      this.activeStep = step;
+    };
 
   private setStepConfigs(): void {
     this.stepConfigs = [
