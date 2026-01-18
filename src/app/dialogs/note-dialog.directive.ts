@@ -188,8 +188,9 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
 
   private createBackButtonStepAction(onClick: () => void): StepAction {
     return {
-      label: 'Back',
+      label: this.translateService.instant('DIALOGS.ACTIONS.BACK'),
       severity: 'secondary',
+      iconPos: 'left',
       icon: 'pi pi-arrow-left',
       onClick,
     };
@@ -200,7 +201,7 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
     isDisabled?: () => boolean,
   ): StepAction {
     return {
-      label: 'Next',
+      label: this.translateService.instant('DIALOGS.ACTIONS.NEXT'),
       icon: 'pi pi-arrow-right',
       iconPos: 'right',
       disabled: isDisabled ? isDisabled() : false,
