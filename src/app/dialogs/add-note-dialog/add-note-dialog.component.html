@@ -84,7 +84,12 @@
       </div>
     </ng-template>
     <ng-template appStepPanel [stepValue]="4" [stepActions]="getStep4Actions()">
-      <span>{{ form.value | json }}</span>
+      <app-subheader>{{
+        'DIALOGS.ADD_NOTE.SUMMARY_SUBHEADER' | translate
+      }}</app-subheader>
+      <app-note
+        [date]="form.get('date')!.value"
+        [content]="form.get('content')!.value"></app-note>
     </ng-template>
   </app-stepper-dialog>
 </ng-container>

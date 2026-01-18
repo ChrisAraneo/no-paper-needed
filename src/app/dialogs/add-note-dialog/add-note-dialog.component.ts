@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TextareaModule } from 'primeng/textarea';
 
+import { NoteComponent } from "../../shared/components/note/note.component";
 import { StepperDialogComponent } from '../../shared/components/stepper-dialog/stepper-dialog.component';
 import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
 import { StepPanelDirective } from '../../shared/directives/step-panel/step-panel.directive';
@@ -33,7 +34,8 @@ import { NoteDialog } from '../note-dialog.directive';
     SubheaderComponent,
     StepperDialogComponent,
     StepPanelDirective,
-  ],
+    NoteComponent
+],
   templateUrl: './add-note-dialog.component.html',
   styleUrl: './add-note-dialog.component.scss',
 })
