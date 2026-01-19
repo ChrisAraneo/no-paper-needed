@@ -10,11 +10,8 @@ app-add-note-dialog {
 
   .p-dialog-title {
     color: $npn-text-1;
-    font-family: var(--header-font-family);
     display: flex;
     align-items: center;
-    font-size: var(--dialog-header-font-size) !important;
-    font-weight: var(--dialog-header-font-weight) !important;
     padding: 0;
     margin: 0;
   }

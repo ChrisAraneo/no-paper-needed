@@ -1,20 +1,25 @@
 @use './variables.scss' as *;
 
+:root {
+  --p-card-background: $npn-surface-97;
+}
+
 .p-card {
   border-radius: 0 !important;
   border: 1px $npn-border solid;
-  box-shadow: $npn-box-shadow;
-  background-color: transparent !important;
+  box-shadow: $npn-box-shadow !important;
+  background: $npn-surface-97 !important;
 
   .p-card-body,
   .p-card-content {
     height: 100%;
     display: flex;
     background-color: transparent !important;
-    background: $npn-surface-97 !important;
+    background: transparent !important;
   }
 
   .p-card-content {
     flex-direction: column;
+    background: transparent !important;
   }
 }
