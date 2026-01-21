@@ -1,6 +1,8 @@
 @use './variables.scss' as *;
 
 app-add-note-dialog {
+  --p-dialog-content-padding: 0 var(--p-overlay-modal-padding) 1px var(--p-overlay-modal-padding);
+
   .p-dialog {
     background-color: $npn-surface-95 !important;
     border-radius: 0 !important;
@@ -9,10 +11,18 @@ app-add-note-dialog {
   }
 
   .p-dialog-title {
-    color: $npn-text-1;
+    font-family: 'Orienta', sans-serif;
+    font-weight: 500 !important;
+    letter-spacing: 0.4px;
+    color: $npn-text-1 !important;
+    font-size: 26px !important;
     display: flex;
     align-items: center;
     padding: 0;
     margin: 0;
+  } 
+
+  .p-dialog-content {
+    overflow-y: hidden;
   }
 }
