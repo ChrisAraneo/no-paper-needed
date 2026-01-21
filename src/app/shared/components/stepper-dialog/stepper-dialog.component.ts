@@ -42,7 +42,6 @@ export class StepperDialogComponent {
   @Input() styleClass = '';
   @Input() activeStep = DEFAULT_ACTIVE_STEP;
   @Input() steps: StepConfig[] = [];
-  @Input() stepHeight = '484px';
   @Input() isVisible = false;
 
   @Output() readonly isVisibleChange = new EventEmitter<boolean>();
