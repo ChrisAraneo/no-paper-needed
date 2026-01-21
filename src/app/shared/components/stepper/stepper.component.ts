@@ -29,7 +29,6 @@ export class StepperComponent {
   @Input() activeStep = 1;
   @Input() linear = true;
   @Input() steps: StepConfig[] = [];
-  @Input() stepHeight = '484px'; // TODO Remove?
 
   @ContentChildren(StepPanelDirective)
   stepPanels!: QueryList<StepPanelDirective>;
