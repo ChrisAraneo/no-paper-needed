@@ -40,6 +40,9 @@ bootstrapApplication(AppComponent, {
     providePrimeNG({
       theme: {
         preset: Aura,
+        options: {
+          prefix: 'npn',
+        }
       },
     }),
     provideRouter([
