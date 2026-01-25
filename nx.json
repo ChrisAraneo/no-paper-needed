@@ -1,0 +1,14 @@
+{
+  "npmScope": "electron",
+  "projects": {
+    "browser": {
+      "tags": []
+    },
+    "browser-e2e": {
+      "tags": []
+    },
+    "electron": {
+      "tags": []
+    }
+  }
+}

@@ -1,51 +1,20 @@
-import createConfig from '@chris.araneo/eslint-config';
+import {
+  createJsonConfigs,
+  createTypeScriptConfigs,
+  createNxConfigs,
+} from '@chris.araneo/eslint-config';
 
-const JSONS = [];
+const JSONS = ['.vscode/*.json', 'tools/**/*.json', '*.json'];
 
-const SOURCES = [
-  'src/**/*.ts',
-  '!src/**/*.spec.ts',
-  'app/main.ts',
-  'e2e/**/*.ts',
-  '!e2e/**/*.spec.ts',
+const SOURCES = ['tools/**/*.js', 'tools/**/*.ts'];
+
+const IGNORED = ['package.json', 'package-lock.json'];
+
+export default [
+  ...createNxConfigs(SOURCES),
+  ...createJsonConfigs(JSONS),
+  ...createTypeScriptConfigs(SOURCES),
+  {
+    ignores: IGNORED,
+  },
 ];
-
-const TESTS = ['**/*.spec.ts'];
-
-const TEMPLATES = ['src/**/*.html'];
-
-const IGNORED = [
-  '.angular/**/*',
-  'app/main.js',
-  'app/main.js.map',
-  'node_modules/**/*',
-  'dist/**/*',
-  'reports/**/*',
-  '**/package.json',
-  '**/package-lock.json',
-  'eslint.config.mjs',
-];
-
-
-const config = createConfig({
-  jsons: JSONS,
-  sources: SOURCES,
-  tests: TESTS,
-  templates: TEMPLATES,
-  ignored: IGNORED,
-  isAngularApp: true,
-  angularElementPrefix: 'app',
-});
-
-export default config.map(conf => {
-  if (conf.files?.some(file => file.includes('*.html'))) {
-    return {
-      ...conf,
-      rules: {
-        ...conf.rules,
-        '@angular-eslint/template/no-call-expression': 'off'
-      }
-    };
-  }
-  return conf;
-});

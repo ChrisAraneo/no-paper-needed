@@ -25,7 +25,7 @@ p-button {
 
 p-button {
   button:not(.accent) {
-    background-color: $npn-primary !important;
+    --npn-button-primary-background: #{$npn-primary};
   }
 
   button.p-button-secondary:not(.p-button-rounded) {
@@ -46,6 +46,6 @@ p-button {
 
 p-button.accent {
   button {
-    background-color: $npn-accent !important;
+    --npn-button-primary-background: #{$npn-accent};
   }
 }

@@ -1,32 +1,36 @@
 {
-  "asar": true,
   "directories": {
     "output": "release/"
   },
   "files": [
     "**/*",
     "!**/*.ts",
-    "!*.map",
+    "!LICENSE.md",
+    "!.vscode",
+    "!README.md",
     "!package.json",
     "!package-lock.json",
-    {
-      "from": "../dist",
-      "filter": ["**/*"]
-    }
+    "!apps/",
+    "!libs/",
+    "!tools",
+    "!hooks/",
+    "!angular.json",
+    "!tsconfig.json",
+    "!tslint.json",
+    "!nx.json",
+    "!jest.config.js",
+    "!.editorconfig",
+    "!.prettierignore",
+    "!.prettierrc"
   ],
   "linux": {
-    "icon": "dist/browser/assets/icons",
     "target": ["AppImage"]
   },
   "mac": {
-    "icon": "dist/browser/assets/icons",
     "target": ["dmg"]
   },
-  "portable": {
-    "splashImage": "dist/browser/assets/icons/electron.bmp"
-  },
+  "productName": "nx-angular-electron-starter",
   "win": {
-    "icon": "dist/browser/assets/icons",
     "target": ["portable"]
   }
 }
