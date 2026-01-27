@@ -3,12 +3,12 @@
     "output": "release/"
   },
   "files": [
-    "**/*",
+    "dist/apps/electron/**/*",
+    "dist/apps/browser/**/*",
     "!**/*.ts",
     "!LICENSE.md",
     "!.vscode",
     "!README.md",
-    "!package.json",
     "!package-lock.json",
     "!apps/",
     "!libs/",
@@ -21,7 +21,8 @@
     "!jest.config.js",
     "!.editorconfig",
     "!.prettierignore",
-    "!.prettierrc"
+    "!.prettierrc",
+    "package.json"
   ],
   "linux": {
     "target": ["AppImage"]

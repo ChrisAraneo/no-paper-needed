@@ -50,15 +50,10 @@ function createWindow(): BrowserWindow {
     const locale = app.getLocale();
     win.loadURL(`http://localhost:4200?locale=${locale}`);
   } else {
-    // Path when running electron executable
-    let pathIndex = './browser/index.html';
-
-    if (fs.existsSync(path.join(__dirname, '../dist/browser/index.html'))) {
-      // Path when running electron in local folder
-      pathIndex = '../dist/browser/index.html';
-    }
-
-    const fullPath = path.join(__dirname, pathIndex);
+    // Path when running in production (packaged electron app)
+    // The compiled electron main.js is in dist/apps/electron/
+    // The browser build is in dist/apps/browser/
+    const fullPath = path.join(__dirname, '../browser/index.html');
     const locale = app.getLocale();
     const url = pathToFileURL(path.resolve(fullPath)).href;
     win.loadURL(`${url}?locale=${locale}`);
