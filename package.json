@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "Migrated to Nx workspace",
-  "main": "dist/apps/electron/main.js",
+  "main": "dist/apps/electron/src/main.js",
   "scripts": {
     "build": "npm run electron:serve-tsc && nx build browser --configuration=production",
     "chores": "npm run lint:fix && npm run format",
