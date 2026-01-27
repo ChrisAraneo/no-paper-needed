@@ -42,7 +42,7 @@ bootstrapApplication(AppComponent, {
         preset: Aura,
         options: {
           prefix: 'npn',
-        }
+        },
       },
     }),
     provideRouter([

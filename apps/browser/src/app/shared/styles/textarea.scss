@@ -1,13 +1,13 @@
 @use './variables.scss' as *;
 
 .p-floatlabel:has(textarea:focus) {
-    label {
-        color: $npn-primary !important;
-    }
+  label {
+    color: $npn-primary !important;
+  }
 }
 
 .p-textarea {
-    &:enabled:focus {
-        border-color: $npn-primary !important;
-    }
+  &:enabled:focus {
+    border-color: $npn-primary !important;
+  }
 }

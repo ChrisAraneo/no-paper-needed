@@ -8,9 +8,7 @@
       "dependsOn": ["electron:serve-tsc"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx build browser --configuration=production"
-        ]
+        "commands": ["nx build browser --configuration=production"]
       },
       "outputs": ["{workspaceRoot}/dist"]
     },
@@ -52,10 +50,7 @@
     "electron:serve": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx serve browser",
-          "nx run electron:serve-tsc"
-        ],
+        "commands": ["nx serve browser", "nx run electron:serve-tsc"],
         "parallel": true
       }
     },
@@ -109,10 +104,7 @@
     "start": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx serve browser",
-          "nx serve electron"
-        ],
+        "commands": ["nx serve browser", "nx serve electron"],
         "parallel": true
       }
     },

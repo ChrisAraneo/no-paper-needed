@@ -1,7 +1,8 @@
 @use './variables.scss' as *;
 
 app-add-note-dialog {
-  --p-dialog-content-padding: 0 var(--p-overlay-modal-padding) 1px var(--p-overlay-modal-padding);
+  --p-dialog-content-padding: 0 var(--p-overlay-modal-padding) 1px
+    var(--p-overlay-modal-padding);
 
   .p-dialog {
     background-color: $npn-surface-95 !important;
@@ -20,7 +21,7 @@ app-add-note-dialog {
     align-items: center;
     padding: 0;
     margin: 0;
-  } 
+  }
 
   .p-dialog-content {
     overflow-y: hidden;
