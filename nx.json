@@ -1,14 +1,27 @@
 {
-  "npmScope": "electron",
-  "projects": {
-    "browser": {
-      "tags": []
+  "affected": {
+    "defaultBase": "main"
+  },
+  "defaultProject": "browser",
+  "npmScope": "no-paper-needed",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"]
     },
-    "browser-e2e": {
-      "tags": []
+    "e2e": {
+      "inputs": ["default", "^production"]
     },
-    "electron": {
-      "tags": []
+    "test": {
+      "inputs": ["default", "^production"]
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      },
+      "runner": "nx/tasks-runners/default"
     }
   }
 }
