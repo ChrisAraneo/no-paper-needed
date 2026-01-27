@@ -5,27 +5,8 @@
   "description": "Migrated to Nx workspace",
   "main": "dist/apps/electron/src/main.js",
   "scripts": {
-    "build": "npm run electron:serve-tsc && nx build browser --configuration=production",
-    "chores": "npm run lint:fix && npm run format",
-    "e2e": "nx build browser --configuration=production && nx e2e browser-e2e",
-    "e2e:show-trace": "playwright show-trace apps/browser-e2e/tracing/trace.zip",
-    "electron": "electron",
-    "electron:build": "npm run electron:serve-tsc && npm run web:prod && electron-builder build --publish=never",
-    "electron:local": "npm run web:dev && electron .",
-    "electron:serve": "nx serve browser & nx run electron:serve-tsc",
-    "electron:serve-tsc": "tsc -p tsconfig.serve.json",
-    "format": "sort-package-json \"**/package.json\" && prettier --write **/*.{json,ts,html,scss}",
-    "postinstall": "electron-builder install-app-deps",
-    "lint": "nx run-many --target=lint --all",
-    "lint:fix": "nx run-many --target=lint --all --fix",
     "ng": "ng",
-    "ng:serve": "nx serve browser",
-    "start": "nx serve browser & nx serve electron",
-    "test": "nx test browser",
-    "test:watch": "nx test browser --watch",
-    "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
-    "web:dev": "nx serve browser",
-    "web:prod": "nx build browser --configuration=production"
+    "electron": "electron"
   },
   "browserslist": [
     "chrome 140"
