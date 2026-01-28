@@ -1,14 +1,13 @@
-/* eslint-disable max-statements */
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable func-style */
-/* eslint-disable max-lines-per-function */
+
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import * as fs from 'node:fs';
@@ -52,8 +51,8 @@ function createWindow(): BrowserWindow {
   } else {
     // Path when running in production (packaged electron app)
     // The compiled electron main.js is in dist/apps/electron/
-    // The browser build is in dist/apps/browser/
-    const fullPath = path.join(__dirname, '../browser/index.html');
+    // The browser build is in dist/apps/browser/browser/
+    const fullPath = path.join(__dirname, '../../browser/browser/index.html');
     const locale = app.getLocale();
     const url = pathToFileURL(path.resolve(fullPath)).href;
     win.loadURL(`${url}?locale=${locale}`);
