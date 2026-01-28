@@ -70,7 +70,6 @@
     "@vitest/coverage-v8": "4.0.15",
     "@vitest/ui": "4.0.15",
     "angular-eslint": "21.1.0",
-    "conventional-changelog": "7.1.1",
     "core-js": "^3.48.0",
     "cypress": "^13.17.0",
     "dotenv": "^17.2.3",
