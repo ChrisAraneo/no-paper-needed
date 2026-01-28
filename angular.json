@@ -9,6 +9,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "configurations": {
             "production": {
+              "baseHref": "./",
               "budgets": [
                 {
                   "maximumError": "5mb",
