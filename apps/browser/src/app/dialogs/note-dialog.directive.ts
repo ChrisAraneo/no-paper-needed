@@ -125,7 +125,7 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
     }
 
     const content = get(this.form, 'value.content', '').trim();
-    // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+
     const date = get(this.form, 'value.date') as Date;
     const reminderDaysBefore = this.getReminderDaysBefore();
 

@@ -1,10 +1,10 @@
 <ng-container [formGroup]="form">
   <app-stepper-dialog
+    styleClass="add-note-dialog"
     [title]="'DIALOGS.ADD_NOTE.ADD_NEW_NOTE' | translate"
-    [(activeStep)]="activeStep"
     [steps]="stepConfigs"
-    [styleClass]="'add-note-dialog'"
     [isVisible]="isVisible"
+    [(activeStep)]="activeStep"
     (close)="closeDialog()"
   >
     <ng-template appStepPanel [stepValue]="1" [stepActions]="getStep1Actions()">
@@ -14,9 +14,9 @@
       <p-datepicker
         formControlName="date"
         class="max-w-full"
+        fluid
         [inline]="true"
         [showWeek]="true"
-        fluid
       />
     </ng-template>
     <ng-template appStepPanel [stepValue]="2" [stepActions]="getStep2Actions()">
@@ -55,7 +55,7 @@
             name="category"
             [value]="reminderMode.SameDay"
           />
-          <label [for]="'sameDay'" class="ml-2">{{
+          <label for="sameDay" class="ml-2">{{
             'DIALOGS.ADD_NOTE.NOTIFY_SAME_DAY' | translate
           }}</label>
         </div>
@@ -66,7 +66,7 @@
             name="category"
             [value]="reminderMode.DayBefore"
           />
-          <label [for]="'dayBefore'" class="ml-2">{{
+          <label for="dayBefore" class="ml-2">{{
             'DIALOGS.ADD_NOTE.NOTIFY_DAY_BEFORE' | translate
           }}</label>
         </div>
@@ -77,16 +77,16 @@
             name="category"
             [value]="reminderMode.MultipleDaysBefore"
           />
-          <label [for]="'customDaysBefore'" class="ml-2">{{
+          <label for="customDaysBefore" class="ml-2">{{
             'DIALOGS.ADD_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
           }}</label>
         </div>
         <p-inputnumber
+          formControlName="reminderDaysBefore"
+          inputId="notification"
           [disabled]="
             form.get('reminderMode')?.value !== reminderMode.MultipleDaysBefore
           "
-          formControlName="reminderDaysBefore"
-          inputId="notification"
         />
       </div>
     </ng-template>
@@ -97,7 +97,7 @@
       <app-note
         [date]="form.get('date')!.value"
         [content]="form.get('content')!.value"
-      ></app-note>
+      />
     </ng-template>
   </app-stepper-dialog>
 </ng-container>

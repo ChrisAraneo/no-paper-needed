@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import { inject, Injectable, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';

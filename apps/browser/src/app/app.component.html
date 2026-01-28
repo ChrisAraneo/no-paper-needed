@@ -1,11 +1,11 @@
-<app-toolbar (addNote)="openAddNoteDialog()"></app-toolbar>
+<app-toolbar (addNote)="openAddNoteDialog()" />
 <div class="main">
   <div class="page">
-    <router-outlet></router-outlet>
+    <router-outlet />
   </div>
   <app-add-note-dialog
     [isVisible]="isAddNoteDialogVisible"
     (close)="closeAddNoteDialog()"
     (save)="onSaveNote($event)"
-  ></app-add-note-dialog>
+  />
 </div>

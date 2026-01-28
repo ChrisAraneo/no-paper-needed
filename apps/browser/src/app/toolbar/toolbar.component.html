@@ -1,13 +1,13 @@
 <div class="col"></div>
 <div class="col center">
-  <app-searchbar></app-searchbar>
+  <app-searchbar />
 </div>
 <div class="col flex-end">
   <p-button
     class="accent"
-    [label]="'TOOLBAR.ADD_NOTE' | translate"
     icon="pi pi-plus"
     iconPos="right"
+    [label]="'TOOLBAR.ADD_NOTE' | translate"
     (onClick)="addNote.emit()"
   />
 </div>
