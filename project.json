@@ -5,10 +5,13 @@
   "sourceRoot": ".",
   "targets": {
     "build": {
-      "dependsOn": ["electron:serve-tsc"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx build browser --configuration=production"]
+        "commands": [
+          "tsc -p tsconfig.serve.json",
+          "nx build browser --configuration=production"
+        ],
+        "parallel": false
       },
       "outputs": ["{workspaceRoot}/dist"]
     },
@@ -20,7 +23,7 @@
       }
     },
     "e2e": {
-      "dependsOn": ["web:prod"],
+      "dependsOn": ["build"],
       "executor": "nx:run-commands",
       "options": {
         "command": "nx e2e browser-e2e"
@@ -31,36 +34,6 @@
       "options": {
         "command": "playwright show-trace apps/browser-e2e/tracing/trace.zip"
       }
-    },
-    "electron:build": {
-      "dependsOn": ["electron:serve-tsc", "web:prod"],
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "electron-builder build --publish=never"
-      },
-      "outputs": ["{workspaceRoot}/release"]
-    },
-    "electron:local": {
-      "dependsOn": ["web:dev"],
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "electron ."
-      }
-    },
-    "electron:serve": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": ["nx serve browser", "nx run electron:serve-tsc"],
-        "parallel": true
-      }
-    },
-    "electron:serve-tsc": {
-      "cache": true,
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "tsc -p tsconfig.serve.json"
-      },
-      "outputs": ["{workspaceRoot}/dist/apps/electron"]
     },
     "format": {
       "cache": true,
@@ -101,10 +74,21 @@
         "command": "electron-builder install-app-deps"
       }
     },
+    "release": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "electron-builder build --publish=never"
+      },
+      "outputs": ["{workspaceRoot}/release"]
+    },
     "start": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx serve browser", "nx serve electron"],
+        "commands": [
+          "nx serve browser",
+          "tsc -p tsconfig.serve.json && wait-on http://localhost:4200 && electron . --serve"
+        ],
         "parallel": true
       }
     },
@@ -119,19 +103,6 @@
       "options": {
         "command": "nx test browser --watch"
       }
-    },
-    "web:dev": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "nx serve browser"
-      }
-    },
-    "web:prod": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "nx build browser --configuration=production"
-      },
-      "outputs": ["{workspaceRoot}/dist/apps/browser"]
     }
   }
 }
