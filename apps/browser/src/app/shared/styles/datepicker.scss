@@ -6,6 +6,6 @@
   }
 
   .p-datepicker-day-selected {
-    background: $npn-primary !important;
+    background: $npn-primary-600 !important; // TODO Use css variable
   }
 }

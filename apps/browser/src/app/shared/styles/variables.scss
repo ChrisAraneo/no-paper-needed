@@ -1,8 +1,40 @@
-$npn-surface-97: #faf7f4;
-$npn-surface-95: #f7f2ed;
-$npn-surface-90: #f0e6db;
-$npn-surface-80: #e0ccb8;
-$npn-surface-70: #d1b394;
+$npn-surface-50: hsl(33, 33%, 35%);
+$npn-surface-100: hsl(33, 33%, 45%);
+$npn-surface-200: hsl(33, 33%, 55%);
+$npn-surface-300: hsl(33, 33%, 65%);
+$npn-surface-400: hsl(33, 33%, 75%);
+$npn-surface-500: hsl(33, 33%, 85%);
+$npn-surface-600: hsl(33, 33%, 95%);
+$npn-surface-700: hsl(33, 33%, 100%);
+$npn-surface-800: hsl(33, 33%, 100%);
+$npn-surface-900: hsl(33, 33%, 100%);
+$npn-surface-950: hsl(33, 33%, 100%);
+$npn-surface-970: hsl(33, 33%, 100%);;
+
+$npn-primary-50: hsl(30, 3%, 5%);
+$npn-primary-100: hsl(30, 3%, 10%);
+$npn-primary-200: hsl(30, 3%, 20%);
+$npn-primary-300: hsl(30, 3%, 30%);
+$npn-primary-400: hsl(30, 3%, 40%);
+$npn-primary-500: hsl(30, 3%, 50%);
+$npn-primary-600: hsl(30, 3%, 60%);
+$npn-primary-700: hsl(30, 3%, 70%);
+$npn-primary-800: hsl(30, 3%, 80%);
+$npn-primary-900: hsl(30, 3%, 90%);
+$npn-primary-950: hsl(30, 3%, 95%);
+$npn-primary-970: hsl(30, 3%, 97%);
+
+$npn-accent-100: hsl(30, 98%, 10%);
+$npn-accent-200: hsl(30, 98%, 20%);
+$npn-accent-300: hsl(30, 98%, 30%);
+$npn-accent-400: hsl(30, 98%, 40%);
+$npn-accent-500: hsl(30, 98%, 50%);
+$npn-accent-600: hsl(30, 98%, 60%);
+$npn-accent-700: hsl(30, 98%, 70%);
+$npn-accent-800: hsl(30, 98%, 80%);
+$npn-accent-900: hsl(30, 98%, 90%);
+$npn-accent-950: hsl(30, 98%, 95%);
+$npn-accent-970: hsl(30, 98%, 97%);
 
 $npn-border: #c6c2be;
 
@@ -10,9 +42,12 @@ $npn-text-1: #42403e;
 $npn-text-2: #5c5957;
 $npn-text-muted: cyan;
 
-$npn-accent: #fda348;
-$npn-primary: #272625;
+$npn-primary-active-color: magenta; // TODO Update
+$npn-primary-contrast-color: lime; // TODO Update
+$npn-primary-hover-color: cyan; // TODO Update
 
-$npn-box-shadow:
-  0 1px 3px 0 rgba(0, 0, 0, 0.15),
+$npn-accent: #fda348;
+$npn-primary: #272625; // TODO Remove
+
+$npn-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15),
   0 1px 2px -1px rgba(0, 0, 0, 0.15);

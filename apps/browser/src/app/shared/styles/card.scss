@@ -1,14 +1,14 @@
 @use './variables.scss' as *;
 
 :root {
-  --p-card-background: $npn-surface-97;
+  --p-card-background: $npn-surface-970;
 }
 
 .p-card {
   border-radius: 0 !important;
   border: 1px $npn-border solid;
   box-shadow: $npn-box-shadow !important;
-  background: $npn-surface-97 !important;
+  background: $npn-surface-970 !important;
 
   .p-card-body,
   .p-card-content {
