@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
 
+import { ButtonComponent } from '../button/button.component';
 import { StepAction } from './step.interfaces';
 
 @Component({
   selector: 'app-step-panel',
-  imports: [ButtonModule],
+  imports: [ButtonComponent],
   templateUrl: './step.component.html',
   styleUrl: './step.component.scss',
 })

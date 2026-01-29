@@ -3,11 +3,11 @@
   <app-searchbar />
 </div>
 <div class="col flex-end">
-  <p-button
-    class="accent"
+  <app-button
     icon="pi pi-plus"
-    iconPos="right"
+    iconPosition="right"
+    [isAccent]="true"
     [label]="'TOOLBAR.ADD_NOTE' | translate"
-    (onClick)="addNote.emit()"
+    (clicked)="addNote.emit()"
   />
 </div>

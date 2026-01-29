@@ -13,7 +13,7 @@ import { ButtonIconPosition, ButtonModule, ButtonSeverity } from 'primeng/button
 export class ButtonComponent {
   @Input() label = '';
   @Input() icon = '';
-  @Input() iconPos: ButtonIconPosition = 'right';
+  @Input() iconPosition: ButtonIconPosition = 'right';
   @Input() isDisabled = false;
   @Input() severity: ButtonSeverity = 'primary';
   @Input() isRounded = false;

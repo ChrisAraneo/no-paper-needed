@@ -2,7 +2,6 @@ import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -20,7 +19,6 @@ import { NoteDialog } from '../note-dialog.directive';
   selector: 'app-add-note-dialog',
   imports: [
     InputTextModule,
-    ButtonModule,
     TextareaModule,
     FloatLabelModule,
     FormsModule,

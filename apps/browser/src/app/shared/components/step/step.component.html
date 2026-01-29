@@ -4,13 +4,13 @@
   </div>
   <div class="actions">
     @for (action of actions; track $index) {
-      <p-button
+      <app-button
         [label]="action.label"
-        [icon]="action.icon"
-        [iconPos]="action.iconPos || 'right'"
-        [disabled]="action.disabled"
+        [icon]="action.icon || ''"
+        [iconPosition]="action.iconPos || 'right'"
+        [isDisabled]="action.disabled || false"
         [severity]="action.severity"
-        (onClick)="action.onClick()"
+        (clicked)="action.onClick()"
       />
     }
   </div>

@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { isUndefined } from 'lodash';
-import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 
@@ -29,7 +28,6 @@ const DEFAULT_ACTIVE_STEP = 1;
   imports: [
     DialogModule,
     StepperModule,
-    ButtonModule,
     NgTemplateOutlet,
     TranslateModule,
     StepComponent,

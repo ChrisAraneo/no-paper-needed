@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonModule } from 'primeng/button';
 
+import { ButtonComponent } from '../shared/components/button/button.component';
 import { SearchbarComponent } from '../shared/components/searchbar/searchbar.component';
 
 @Component({
   selector: 'app-toolbar',
-  imports: [SearchbarComponent, ButtonModule, TranslatePipe],
+  imports: [SearchbarComponent, ButtonComponent, TranslatePipe],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })
