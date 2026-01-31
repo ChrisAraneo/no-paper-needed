@@ -1,37 +1,57 @@
 import Aura from '@primeuix/themes/aura';
 import { definePreset } from '@primeuix/themes';
 
+const createPalette = (
+  hue: number,
+  saturation: number,
+  baseLightness: number,
+  lightnessStep: number,
+): Record<number, string> =>
+  [0, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].reduce(
+    (acc, shade) => {
+      acc[shade] =
+        `hsl(${hue}, ${saturation}%, ${baseLightness + ((600 - shade) / 100) * lightnessStep}%)`;
+      return acc;
+    },
+    {} as Record<number, string>,
+  );
+
+const definePrimary = () => {
+  const hue = 33;
+  const saturation = 80;
+  const baseLightness = 50;
+  const lightnessStep = 9.8;
+
+  return createPalette(hue, saturation, baseLightness, lightnessStep);
+};
+
+const defineLightSurface = () => {
+  const hue = 33;
+  const saturation = 3;
+  const baseLightness = 42;
+  const lightnessStep = 9.8;
+
+  return createPalette(hue, saturation, baseLightness, lightnessStep);
+};
+
+const defineDarkSurface = () => {
+  const hue = 33;
+  const saturation = 3;
+  const baseLightness = 42;
+  const lightnessStep = 9.8;
+
+  return createPalette(hue, saturation, baseLightness, lightnessStep);
+};
+
 const PRESET = definePreset(Aura, {
   semantic: {
-    primary: {
-      50: 'hsl(30, 3%, 0%)',
-      100: 'hsl(30, 3%, 0%)',
-      200: 'hsl(30, 3%, 0%)',
-      300: 'hsl(30, 3%, 10%)',
-      400: 'hsl(30, 3%, 20%)',
-      500: 'hsl(30, 3%, 30%)',
-      600: 'hsl(30, 3%, 40%)',
-      700: 'hsl(30, 3%, 50%)',
-      800: 'hsl(30, 3%, 60%)',
-      900: 'hsl(30, 3%, 70%)',
-      950: 'hsl(30, 3%, 85%)',
-    },
+    primary: definePrimary(),
     colorScheme: {
       light: {
-        surface: {
-          0: 'hsl(33, 33%, 100%)',
-          50: 'hsl(33, 33%, 95%)',
-          100: 'hsl(33, 33%, 90%)',
-          200: 'hsl(33, 33%, 85%)',
-          300: 'hsl(33, 33%, 75%)',
-          400: 'hsl(33, 33%, 65%)',
-          500: 'hsl(33, 33%, 55%)',
-          600: 'hsl(33, 33%, 45%)',
-          700: 'hsl(33, 33%, 35%)',
-          800: 'hsl(33, 33%, 30%)',
-          900: 'hsl(33, 33%, 25%)',
-          950: 'hsl(33, 33%, 25%)',
-        },
+        surface: defineLightSurface(),
+      },
+      dark: {
+        surface: defineDarkSurface(),
       },
     },
   },
