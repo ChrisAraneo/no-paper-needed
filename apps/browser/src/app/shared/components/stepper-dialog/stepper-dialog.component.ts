@@ -33,7 +33,7 @@ const DEFAULT_ACTIVE_STEP = 1;
     StepComponent,
   ],
   templateUrl: './stepper-dialog.component.html',
-  styles: [],
+  styleUrl: './stepper-dialog.component.scss',
 })
 export class StepperDialogComponent {
   @Input() title = '';

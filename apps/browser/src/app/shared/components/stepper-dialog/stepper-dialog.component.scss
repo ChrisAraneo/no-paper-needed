@@ -1,0 +1,9 @@
+:host {
+  ::ng-deep p-dialog {
+    --npn-dialog-content-padding: 0 20px 1px 20px;
+
+    .p-dialog-content {
+      overflow-y: hidden;
+    }
+  }
+}
