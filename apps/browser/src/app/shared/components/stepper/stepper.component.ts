@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StepperModule } from 'primeng/stepper';
 
 import { StepPanelDirective } from '../../directives/step-panel/step-panel.directive';
-import { StepComponent } from '../step/step.component';
+import { StepPanelComponent } from '../step-panel/step-panel.component';
 
 export interface StepConfig {
   value: number;
@@ -14,7 +14,12 @@ export interface StepConfig {
 
 @Component({
   selector: 'app-stepper',
-  imports: [StepperModule, NgTemplateOutlet, TranslateModule, StepComponent],
+  imports: [
+    StepperModule,
+    NgTemplateOutlet,
+    TranslateModule,
+    StepPanelComponent,
+  ],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.scss',
 })

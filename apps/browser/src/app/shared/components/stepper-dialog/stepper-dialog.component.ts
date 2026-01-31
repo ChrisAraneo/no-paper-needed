@@ -13,7 +13,7 @@ import { DialogModule } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 
 import { StepPanelDirective } from '../../directives/step-panel/step-panel.directive';
-import { StepComponent } from '../step/step.component';
+import { StepPanelComponent } from '../step-panel/step-panel.component';
 
 export interface StepConfig {
   value: number;
@@ -30,7 +30,7 @@ const DEFAULT_ACTIVE_STEP = 1;
     StepperModule,
     NgTemplateOutlet,
     TranslateModule,
-    StepComponent,
+    StepPanelComponent,
   ],
   templateUrl: './stepper-dialog.component.html',
   styleUrl: './stepper-dialog.component.scss',

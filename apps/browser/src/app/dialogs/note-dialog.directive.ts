@@ -18,7 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { get } from 'lodash';
 import { first, Subscription, timer } from 'rxjs';
 
-import { StepAction } from '../shared/components/step/step.interfaces';
+import { StepPanelAction } from '../shared/components/step-panel/step-panel.interfaces';
 import { StepConfig } from '../shared/components/stepper/stepper.component';
 import { Note } from '../shared/interfaces/note.interface';
 import { ReminderMode } from '../shared/interfaces/reminder-mode.enum';
@@ -87,11 +87,11 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  protected getStep1Actions(): StepAction[] {
+  protected getStep1Actions(): StepPanelAction[] {
     return [this.createNextButtonStepAction(this.activateStep(2))];
   }
 
-  protected getStep2Actions(): StepAction[] {
+  protected getStep2Actions(): StepPanelAction[] {
     return [
       this.createBackButtonStepAction(this.activateStep(1)),
       this.createNextButtonStepAction(this.activateStep(3), () =>
@@ -100,14 +100,14 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
     ];
   }
 
-  protected getStep3Actions(): StepAction[] {
+  protected getStep3Actions(): StepPanelAction[] {
     return [
       this.createBackButtonStepAction(this.activateStep(2)),
       this.createNextButtonStepAction(this.activateStep(4)),
     ];
   }
 
-  protected getStep4Actions(): StepAction[] {
+  protected getStep4Actions(): StepPanelAction[] {
     return [
       this.createBackButtonStepAction(this.activateStep(3)),
       {
@@ -179,7 +179,7 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
     ];
   }
 
-  private createBackButtonStepAction(onClick: () => void): StepAction {
+  private createBackButtonStepAction(onClick: () => void): StepPanelAction {
     return {
       label: this.translateService.instant('DIALOGS.ACTIONS.BACK'),
       severity: 'secondary',
@@ -192,7 +192,7 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
   private createNextButtonStepAction(
     onClick: () => void,
     isDisabled?: () => boolean,
-  ): StepAction {
+  ): StepPanelAction {
     return {
       label: this.translateService.instant('DIALOGS.ACTIONS.NEXT'),
       icon: 'pi pi-arrow-right',
