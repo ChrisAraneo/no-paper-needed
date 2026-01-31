@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ButtonIconPosition, ButtonModule, ButtonSeverity } from 'primeng/button';
+import {
+  ButtonIconPosition,
+  ButtonModule,
+  ButtonSeverity,
+} from 'primeng/button';
 
 @Component({
   selector: 'app-button',
@@ -26,4 +30,3 @@ export class ButtonComponent {
     this.clicked.emit();
   }
 }
-
