@@ -8,7 +8,15 @@
   width: 100%;
   box-shadow: none;
   padding: 8px 8px;
-  border-bottom: 1px solid $npn-border;
+  border-bottom: 1px solid var(--npn-form-field-border-color);
+
+  @media (prefers-color-scheme: light) {
+    background-color: var(--npn-surface-50);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--npn-surface-900);
+  }
 }
 
 .col {
