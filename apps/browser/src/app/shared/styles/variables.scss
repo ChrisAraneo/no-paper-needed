@@ -1,29 +1,29 @@
-$npn-surface-0: hsl(33, 33%, 35%);
-$npn-surface-50: hsl(33, 33%, 40%);
-$npn-surface-100: hsl(33, 33%, 45%);
-$npn-surface-200: hsl(33, 33%, 55%);
-$npn-surface-300: hsl(33, 33%, 65%);
-$npn-surface-400: hsl(33, 33%, 75%);
-$npn-surface-500: hsl(33, 33%, 85%);
-$npn-surface-600: hsl(33, 33%, 95%);
-$npn-surface-700: hsl(33, 33%, 100%);
+$npn-surface-0: hsl(33, 33%, 25%);
+$npn-surface-50: hsl(33, 33%, 30%);
+$npn-surface-100: hsl(33, 33%, 35%);
+$npn-surface-200: hsl(33, 33%, 45%);
+$npn-surface-300: hsl(33, 33%, 55%);
+$npn-surface-400: hsl(33, 33%, 65%);
+$npn-surface-500: hsl(33, 33%, 75%);
+$npn-surface-600: hsl(33, 33%, 85%);
+$npn-surface-700: hsl(33, 33%, 95%);
 $npn-surface-800: hsl(33, 33%, 100%);
 $npn-surface-900: hsl(33, 33%, 100%);
 $npn-surface-950: hsl(33, 33%, 100%);
 $npn-surface-970: hsl(33, 33%, 100%);;
 
-$npn-primary-50: hsl(30, 3%, 5%);
-$npn-primary-100: hsl(30, 3%, 10%);
-$npn-primary-200: hsl(30, 3%, 20%);
-$npn-primary-300: hsl(30, 3%, 30%);
-$npn-primary-400: hsl(30, 3%, 40%);
-$npn-primary-500: hsl(30, 3%, 50%);
-$npn-primary-600: hsl(30, 3%, 60%);
-$npn-primary-700: hsl(30, 3%, 70%);
-$npn-primary-800: hsl(30, 3%, 80%);
-$npn-primary-900: hsl(30, 3%, 90%);
-$npn-primary-950: hsl(30, 3%, 95%);
-$npn-primary-970: hsl(30, 3%, 97%);
+$npn-primary-50: hsl(30, 3%, 0%);
+$npn-primary-100: hsl(30, 3%, 0%);
+$npn-primary-200: hsl(30, 3%, 0%);
+$npn-primary-300: hsl(30, 3%, 10%);
+$npn-primary-400: hsl(30, 3%, 20%);
+$npn-primary-500: hsl(30, 3%, 30%);
+$npn-primary-600: hsl(30, 3%, 40%);
+$npn-primary-700: hsl(30, 3%, 50%);
+$npn-primary-800: hsl(30, 3%, 60%);
+$npn-primary-900: hsl(30, 3%, 70%);
+$npn-primary-950: hsl(30, 3%, 85%);
+$npn-primary-970: hsl(30, 3%, 87%);
 
 $npn-accent-50: hsl(30, 98%, 5%);
 $npn-accent-100: hsl(30, 98%, 10%);
@@ -83,9 +83,17 @@ $npn-text-1: #42403e;
 $npn-text-2: #5c5957;
 $npn-text-muted: cyan;
 
-$npn-primary-active-color: magenta; // TODO Update
-$npn-primary-contrast-color: lime; // TODO Update
-$npn-primary-hover-color: cyan; // TODO Update
+$npn-padding: 8px;
+
+$npn-font-family: 'Orienta', sans-serif;
+$npn-font-size: 16px;
+
+$npn-form-field-border-radius: 0;
+$npn-rounded-border-radius: 16px;
+
+$npn-primary-active-color: $npn-primary-800;
+$npn-primary-contrast-color: $npn-primary-950;
+$npn-primary-hover-color: $npn-primary-700;
 
 $npn-accent: #fda348;
 $npn-primary: #272625; // TODO Remove
