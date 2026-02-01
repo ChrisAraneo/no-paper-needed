@@ -1,0 +1,105 @@
+<ng-container [formGroup]="form">
+  <app-stepper-dialog
+    styleClass="edit-note-dialog"
+    [title]="'DIALOGS.EDIT_NOTE.EDIT_NOTE' | translate"
+    [steps]="stepConfigs"
+    [isVisible]="isVisible"
+    [(activeStep)]="activeStep"
+    (close)="closeDialog()"
+  >
+    <ng-template appStepPanel [stepValue]="1" [stepActions]="getStep1Actions()">
+      <app-subheader>{{
+        'DIALOGS.EDIT_NOTE.DATE_SUBHEADER' | translate
+      }}</app-subheader>
+      <p-datepicker
+        formControlName="date"
+        class="max-w-full"
+        fluid
+        [inline]="true"
+        [showWeek]="true"
+      />
+    </ng-template>
+    <ng-template appStepPanel [stepValue]="2" [stepActions]="getStep2Actions()">
+      <app-subheader>{{
+        'DIALOGS.EDIT_NOTE.CONTENT_SUBHEADER' | translate
+      }}</app-subheader>
+      <p-floatlabel variant="in">
+        <textarea
+          pTextarea
+          id="content"
+          formControlName="content"
+          class="textarea"
+          rows="5"
+          cols="30"
+          style="resize: none; width: 100%"
+          class="h-full max-w-full"
+          [ngClass]="{
+            'invalid-input':
+              form.get('content')?.invalid && form.get('content')?.touched,
+          }"
+        ></textarea>
+        <label for="content">{{
+          'DIALOGS.EDIT_NOTE.CONTENT' | translate
+        }}</label>
+      </p-floatlabel>
+    </ng-template>
+    <ng-template appStepPanel [stepValue]="3" [stepActions]="getStep3Actions()">
+      <app-subheader>{{
+        'DIALOGS.EDIT_NOTE.REMINDERS_SUBHEADER' | translate
+      }}</app-subheader>
+      <div class="radio-buttons">
+        <div>
+          <p-radiobutton
+            formControlName="reminderMode"
+            inputId="sameDay"
+            name="category"
+            [value]="reminderMode.SameDay"
+          />
+          <label for="sameDay" class="ml-2">{{
+            'DIALOGS.EDIT_NOTE.NOTIFY_SAME_DAY' | translate
+          }}</label>
+        </div>
+        <div>
+          <p-radiobutton
+            formControlName="reminderMode"
+            inputId="dayBefore"
+            name="category"
+            [value]="reminderMode.DayBefore"
+          />
+          <label for="dayBefore" class="ml-2">{{
+            'DIALOGS.EDIT_NOTE.NOTIFY_DAY_BEFORE' | translate
+          }}</label>
+        </div>
+        <div>
+          <p-radiobutton
+            formControlName="reminderMode"
+            inputId="customDaysBefore"
+            name="category"
+            [value]="reminderMode.MultipleDaysBefore"
+          />
+          <label for="customDaysBefore" class="ml-2">{{
+            'DIALOGS.EDIT_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
+          }}</label>
+        </div>
+        <p-inputnumber
+          formControlName="reminderDaysBefore"
+          inputId="notification"
+          [disabled]="
+            form.get('reminderMode')?.value !== reminderMode.MultipleDaysBefore
+          "
+        />
+      </div>
+    </ng-template>
+    <ng-template appStepPanel [stepValue]="4" [stepActions]="getStep4Actions()">
+      <app-subheader>{{
+        'DIALOGS.EDIT_NOTE.SUMMARY_SUBHEADER' | translate
+      }}</app-subheader>
+      <div class="summary-surface">
+        <app-note
+          [date]="form.get('date')!.value"
+          [content]="form.get('content')!.value"
+        />
+      </div>
+    </ng-template>
+  </app-stepper-dialog>
+</ng-container>
