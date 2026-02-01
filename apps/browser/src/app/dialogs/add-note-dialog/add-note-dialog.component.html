@@ -94,10 +94,12 @@
       <app-subheader>{{
         'DIALOGS.ADD_NOTE.SUMMARY_SUBHEADER' | translate
       }}</app-subheader>
-      <app-note
-        [date]="form.get('date')!.value"
-        [content]="form.get('content')!.value"
-      />
+      <div class="summary-surface">
+        <app-note
+          [date]="form.get('date')!.value"
+          [content]="form.get('content')!.value"
+        />
+      </div>
     </ng-template>
   </app-stepper-dialog>
 </ng-container>
