@@ -30,13 +30,3 @@ p-inputnumber {
   margin-left: 30px;
   max-width: 128px;
 }
-
-.actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  &:has(p-button:only-child) {
-    justify-content: flex-end;
-  }
-}
