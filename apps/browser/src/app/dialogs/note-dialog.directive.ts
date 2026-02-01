@@ -42,6 +42,8 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
   @Output() readonly save = new EventEmitter<Note>();
   @Output() readonly close = new EventEmitter<void>();
 
+  note: Note | undefined;
+
   protected readonly translateService = inject(TranslateService);
 
   protected readonly reminderMode = ReminderMode;
@@ -71,6 +73,10 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
         validators: [Validators.required],
       }),
     });
+
+    this.subscription.add(
+      this.form.valueChanges.subscribe(() => this.updateNote()),
+    );
   }
 
   abstract submit(): void;
@@ -119,21 +125,38 @@ export abstract class NoteDialog implements OnInit, OnDestroy {
     ];
   }
 
-  protected createNote(): Note {
+  protected updateNote(): void {
     if (this.form.invalid) {
-      throw new Error('Form is invalid. Cannot create note.');
+      this.note = undefined;
+
+      return;
     }
 
+    const id = crypto.randomUUID();
     const content = get(this.form, 'value.content', '').trim();
-
     const date = get(this.form, 'value.date') as Date;
     const reminderDaysBefore = this.getReminderDaysBefore();
 
-    return {
+    this.note = {
+      id,
       content,
       date,
       reminderDaysBefore,
     };
+  }
+
+  protected createNote(): Note {
+    this.form.updateValueAndValidity();
+
+    if (this.form.invalid) {
+      throw new Error('Form is invalid. Cannot create note.');
+    }
+
+    if (!this.note) {
+      throw new Error('Note is null. Cannot create note.');
+    }
+
+    return this.note;
   }
 
   protected closeDialog(): void {

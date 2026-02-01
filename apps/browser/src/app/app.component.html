@@ -8,4 +8,9 @@
     (close)="closeAddNoteDialog()"
     (save)="onSaveNote($event)"
   />
+  <app-edit-note-dialog
+    [isVisible]="isEditNoteDialogVisible"
+    (close)="closeEditNoteDialog()"
+    (save)="onSaveNote($event)"
+  />
 </div>

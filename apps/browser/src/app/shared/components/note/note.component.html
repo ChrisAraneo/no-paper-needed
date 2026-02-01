@@ -1,10 +1,24 @@
 <div class="container">
   <p-card>
-    <p class="date">{{ date | date }}</p>
-    <div class="content">
-      <p>
-        {{ content }}
-      </p>
-    </div>
+    @if (note?.date) {
+      <p class="date">{{ note!.date | date }}</p>
+    }
+    @if (note?.content) {
+      <div class="content">
+        <p>
+          {{ note!.content }}
+        </p>
+      </div>
+    }
+    @if (showEditButton) {
+      <div class="edit-button">
+        <app-button
+          icon="pi pi-pencil"
+          [isRounded]="true"
+          severity="secondary"
+          (clicked)="edit.emit(note)"
+        />
+      </div>
+    }
   </p-card>
 </div>

@@ -39,4 +39,8 @@ export class HomeComponent {
       }, []),
     ),
   );
+
+  protected editNote(note: unknown): void {
+    // TODO
+  }
 }

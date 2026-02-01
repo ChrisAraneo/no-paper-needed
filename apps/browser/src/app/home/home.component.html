@@ -4,7 +4,7 @@
     @for (row of (notes | async) || []; track $index) {
       <div class="row">
         @for (note of row; track $index) {
-          <app-note [date]="note.date" [content]="note.content" />
+          <app-note [note]="note" [showEditButton]="true" (edit)="editNote($event)" />
         }
       </div>
     } @empty {

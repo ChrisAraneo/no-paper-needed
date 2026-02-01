@@ -16,6 +16,17 @@ export class StoreService {
     this.notesSubject.next([...currentNotes, note]);
   }
 
+  editNote(note: Note): void {
+    const currentNotes = this.notesSubject.value;
+    const index = currentNotes.findIndex((item) => item.id === note.id);
+
+    if (index >= 0) {
+      const updatedNotes = [...currentNotes];
+      updatedNotes[index] = note;
+      this.notesSubject.next(updatedNotes);
+    }
+  }
+
   getNotes(): Note[] {
     return this.notesSubject.value;
   }
@@ -23,12 +34,5 @@ export class StoreService {
   removeNote(index: number): void {
     const currentNotes = this.notesSubject.value;
     this.notesSubject.next(currentNotes.filter((_, i) => i !== index));
-  }
-
-  updateNote(index: number, note: Note): void {
-    const currentNotes = this.notesSubject.value;
-    const updatedNotes = [...currentNotes];
-    updatedNotes[index] = note;
-    this.notesSubject.next(updatedNotes);
   }
 }

@@ -11,15 +11,17 @@ import { LocaleService } from './core/services/locale/locale.service';
 import { AddNoteDialogComponent } from './dialogs/add-note-dialog/add-note-dialog.component';
 import { Note } from './shared/interfaces/note.interface';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { EditNoteDialogComponent } from './dialogs/edit-note-dialog/edit-note-dialog.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AddNoteDialogComponent, ToolbarComponent],
+  imports: [RouterOutlet, AddNoteDialogComponent, ToolbarComponent, EditNoteDialogComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   protected isAddNoteDialogVisible = false;
+  protected isEditNoteDialogVisible = false;
 
   private readonly localeService = inject(LocaleService);
   private readonly electronService = inject(ElectronService);
@@ -34,9 +36,22 @@ export class AppComponent implements OnInit {
     this.isAddNoteDialogVisible = false;
   }
 
+  protected openEditNoteDialog(): void {
+    this.isEditNoteDialogVisible = true;
+  }
+
+  protected closeEditNoteDialog(): void {
+    this.isEditNoteDialogVisible = false;
+  }
+
   protected onSaveNote(note: Note): void {
     this.storeService.addNote(note);
     this.closeAddNoteDialog();
+  }
+
+  protected onEditNote(note: Note): void {
+    this.storeService.editNote(note);
+    this.closeEditNoteDialog();
   }
 
   ngOnInit(): void {
