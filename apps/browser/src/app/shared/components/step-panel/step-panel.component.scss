@@ -17,7 +17,7 @@
   flex-direction: row;
   justify-content: space-between !important;
 
-  &:has(p-button:only-child) {
-    justify-content: flex-end;
+  &:has(app-button:only-child) {
+    justify-content: flex-end !important;
   }
 }
