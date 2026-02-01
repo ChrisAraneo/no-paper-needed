@@ -11,6 +11,17 @@
       "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:",
       "SUMMARY_SUBHEADER": "The note will look as follows:"
     },
+    "EDIT_NOTE": {
+      "EDIT_NOTE": "Edit note",
+      "DATE_SUBHEADER": "Choose date related to your note:",
+      "CONTENT": "Content",
+      "CONTENT_SUBHEADER": "Enter note content:",
+      "REMINDERS_SUBHEADER": "When should reminders be shown?",
+      "NOTIFY_SAME_DAY": "On the day of the event",
+      "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:",
+      "SUMMARY_SUBHEADER": "The note will look as follows:"
+    },
     "LABELS": {
       "DATE": "Date",
       "CONTENT": "Content",
