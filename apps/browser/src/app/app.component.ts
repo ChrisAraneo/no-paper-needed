@@ -15,7 +15,12 @@ import { EditNoteDialogComponent } from './dialogs/edit-note-dialog/edit-note-di
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AddNoteDialogComponent, ToolbarComponent, EditNoteDialogComponent],
+  imports: [
+    RouterOutlet,
+    AddNoteDialogComponent,
+    ToolbarComponent,
+    EditNoteDialogComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

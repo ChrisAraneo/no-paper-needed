@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 import { StoreService } from '../core/services';
 import { NoteComponent } from '../shared/components/note/note.component';
 import { TodayComponent } from '../shared/components/today/today.component';
-import { LocaleService } from './../core/services/locale/locale.service';
+import { LocaleService } from '../core/services/locale/locale.service';
 
 const MAX_ROW_LENGTH = 3;
 const LAST_INDEX = -1;
