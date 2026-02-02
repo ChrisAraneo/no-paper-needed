@@ -1,0 +1,44 @@
+{
+  "name": "desktop",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/desktop/src",
+  "tags": ["scope:desktop"],
+  "implicitDependencies": ["browser"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build"],
+      "options": {
+        "commands": [
+          "npx tsc -p apps/desktop/tsconfig.json",
+          "node -e \"require('fs').copyFileSync('package.json', 'dist/apps/desktop/package.json')\"",
+          "node -e \"const p='dist/apps/desktop/package.json';const pkg=JSON.parse(require('fs').readFileSync(p));pkg.main='main.js';require('fs').writeFileSync(p,JSON.stringify(pkg,null,2))\""
+        ],
+        "parallel": false
+      },
+      "outputs": ["{workspaceRoot}/dist/apps/desktop"]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx tsc -p apps/desktop/tsconfig.json",
+          "cross-env NODE_ENV=development npx electron dist/apps/desktop/main.js"
+        ],
+        "parallel": false
+      }
+    },
+    "release": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "commands": [
+          "npx electron-builder --config apps/desktop/electron-builder.json"
+        ],
+        "parallel": false
+      },
+      "outputs": ["{workspaceRoot}/dist/packages"]
+    }
+  }
+}

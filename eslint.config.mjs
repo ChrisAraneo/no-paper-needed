@@ -1,20 +1,58 @@
-import {
-  createJsonConfigs,
-  createTypeScriptConfigs,
-  createNxConfigs,
-} from '@chris.araneo/eslint-config';
-
-const JSONS = ['.vscode/*.json', 'tools/**/*.json', '*.json'];
-
-const SOURCES = ['tools/**/*.js', 'tools/**/*.ts'];
-
-const IGNORED = ['package.json', 'package-lock.json'];
+import nx from '@nx/eslint-plugin';
 
 export default [
-  ...createNxConfigs(SOURCES),
-  ...createJsonConfigs(JSONS),
-  ...createTypeScriptConfigs(SOURCES),
+  ...nx.configs['flat/base'],
+  ...nx.configs['flat/typescript'],
+  ...nx.configs['flat/javascript'],
   {
-    ignores: IGNORED,
+    ignores: [
+      '**/dist',
+      '**/vite.config.*.timestamp*',
+      '**/vitest.config.*.timestamp*',
+    ],
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    rules: {
+      '@nx/enforce-module-boundaries': [
+        'error',
+        {
+          enforceBuildableLibDependency: true,
+          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
+          depConstraints: [
+            {
+              sourceTag: 'scope:shared',
+              onlyDependOnLibsWithTags: ['scope:shared'],
+            },
+            {
+              sourceTag: 'scope:shop',
+              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared'],
+            },
+            {
+              sourceTag: 'scope:api',
+              onlyDependOnLibsWithTags: ['scope:api', 'scope:shared'],
+            },
+            {
+              sourceTag: 'type:data',
+              onlyDependOnLibsWithTags: ['type:data'],
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: [
+      '**/*.ts',
+      '**/*.tsx',
+      '**/*.cts',
+      '**/*.mts',
+      '**/*.js',
+      '**/*.jsx',
+      '**/*.cjs',
+      '**/*.mjs',
+    ],
+    // Override or add rules here
+    rules: {},
   },
 ];

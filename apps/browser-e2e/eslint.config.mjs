@@ -1,12 +1,12 @@
-import {
-  createTypeScriptTestsConfigs,
-  createJsonConfigs,
-} from '@chris.araneo/eslint-config';
-
-const JSONS = ['**/*.json'];
-const TESTS = ['**/*.ts'];
+import playwright from 'eslint-plugin-playwright';
+import baseConfig from '../../eslint.config.mjs';
 
 export default [
-  ...createJsonConfigs(JSONS),
-  ...createTypeScriptTestsConfigs(TESTS),
+  playwright.configs['flat/recommended'],
+  ...baseConfig,
+  {
+    files: ['**/*.ts', '**/*.js'],
+    // Override or add rules here
+    rules: {},
+  },
 ];

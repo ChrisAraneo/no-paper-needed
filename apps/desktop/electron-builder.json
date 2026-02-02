@@ -1,0 +1,45 @@
+{
+  "appId": "com.org.desktop",
+  "productName": "Desktop App",
+  "extends": null,
+  "directories": {
+    "output": "dist/packages",
+    "app": "dist/apps/desktop"
+  },
+
+  "files": [
+    {
+      "from": ".",
+      "to": ".",
+      "filter": ["**/*", "!node_modules/**"]
+    },
+    {
+      "from": "../browser",
+      "to": "browser",
+      "filter": ["**/*"]
+    }
+  ],
+  "extraMetadata": {
+    "main": "main.js"
+  },
+  "npmRebuild": false,
+  "buildDependenciesFromSource": false,
+  "win": {
+    "target": ["nsis", "portable"],
+    "icon": "apps/desktop/src/assets/icon.ico"
+  },
+  "mac": {
+    "target": ["dmg", "zip"],
+    "icon": "apps/desktop/src/assets/icon.icns",
+    "category": "public.app-category.productivity"
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "icon": "apps/desktop/src/assets/icon.png",
+    "category": "Utility"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true
+  }
+}
