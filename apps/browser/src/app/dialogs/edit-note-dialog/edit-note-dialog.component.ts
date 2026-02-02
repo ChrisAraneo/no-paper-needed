@@ -39,7 +39,7 @@ import { NoteDialog } from '../note-dialog.directive';
   styleUrl: './edit-note-dialog.component.scss',
 })
 export class EditNoteDialogComponent extends NoteDialog implements OnChanges {
-  @Input() note: Note | undefined;
+  @Input() override note: Note | undefined = undefined;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['note'] && this.note) {

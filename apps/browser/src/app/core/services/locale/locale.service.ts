@@ -17,8 +17,8 @@ export class LocaleService {
   get(): Observable<string> {
     return this.activatedRoute.queryParams.pipe(
       map((params) => {
-        if (this.isString(params.locale)) {
-          return params.locale;
+        if (this.isString(params['locale'])) {
+          return params['locale'];
         }
 
         return this.locale.split('-')[0];
