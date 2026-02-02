@@ -20,7 +20,7 @@ import { CoreModule } from './app/core/core.module';
 import { DetailComponent } from './app/detail/detail.component';
 import { HomeComponent } from './app/home/home.component';
 import { SharedModule } from './app/shared/shared.module';
-import { APP_CONFIG } from './environments/environment';
+import { APP_CONFIG } from '../environments/environment';
 import { THEME } from './app/shared/styles/theme';
 
 if (APP_CONFIG.production) {
