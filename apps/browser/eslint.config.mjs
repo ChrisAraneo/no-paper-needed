@@ -1,34 +1,16 @@
-import nx from '@nx/eslint-plugin';
-import baseConfig from '../../eslint.config.mjs';
+import { createAngularConfigs } from '@chris.araneo/eslint-config';
 
-export default [
-  ...baseConfig,
-  ...nx.configs['flat/angular'],
-  ...nx.configs['flat/angular-template'],
-  {
-    files: ['**/*.ts'],
-    rules: {
-      '@angular-eslint/directive-selector': [
-        'error',
-        {
-          type: 'attribute',
-          prefix: 'app',
-          style: 'camelCase',
-        },
-      ],
-      '@angular-eslint/component-selector': [
-        'error',
-        {
-          type: 'element',
-          prefix: 'app',
-          style: 'kebab-case',
-        },
-      ],
-    },
-  },
-  {
-    files: ['**/*.html'],
-    // Override or add rules here
-    rules: {},
-  },
+const PREFIX = 'app';
+const SOURCES = ['**/*.ts', '!**/*.spec.ts'];
+const TEMPLATES = ['**/*.html'];
+const JSONS = ['**/*.json'];
+const IGNORED = [
+  '**/node_modules/**',
+  '**/dist/**',
+  '**/out/**',
+  '**/build/**',
+  'src/test-setup.ts',
+  'src/polyfills.ts',
 ];
+
+export default createAngularConfigs(PREFIX, SOURCES, TEMPLATES, JSONS, IGNORED);
