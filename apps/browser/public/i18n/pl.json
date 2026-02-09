@@ -1,37 +1,37 @@
 {
   "DIALOGS": {
-    "ADD_NOTE": {
-      "ADD_NEW_NOTE": "Dodaj nową notatkę",
-      "DATE_SUBHEADER": "Wybierz datę związaną z notatką:",
-      "CONTENT": "Treść",
-      "CONTENT_SUBHEADER": "Wpisz treść notatki:",
-      "REMINDERS_SUBHEADER": "Kiedy mają być wyświetlane przypomnienia?",
-      "NOTIFY_SAME_DAY": "W dzień wydarzenia",
-      "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
-      "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez X dni przed wydarzeniem:",
-      "SUMMARY_SUBHEADER": "Notatka będzie wyglądać następująco:"
-    },
-    "LABELS": {
-      "DATE": "Data",
-      "CONTENT": "Treść",
-      "REMINDERS": "Przypomnienia",
-      "SUMMARY": "Podsumowanie"
-    },
     "ACTIONS": {
       "BACK": "Wstecz",
       "NEXT": "Dalej",
       "SAVE": "Zapisz"
+    },
+    "ADD_NOTE": {
+      "ADD_NEW_NOTE": "Dodaj nową notatkę",
+      "CONTENT": "Treść",
+      "CONTENT_SUBHEADER": "Wpisz treść notatki:",
+      "DATE_SUBHEADER": "Wybierz datę związaną z notatką:",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez X dni przed wydarzeniem:",
+      "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
+      "NOTIFY_SAME_DAY": "W dzień wydarzenia",
+      "REMINDERS_SUBHEADER": "Kiedy mają być wyświetlane przypomnienia?",
+      "SUMMARY_SUBHEADER": "Notatka będzie wyglądać następująco:"
+    },
+    "LABELS": {
+      "CONTENT": "Treść",
+      "DATE": "Data",
+      "REMINDERS": "Przypomnienia",
+      "SUMMARY": "Podsumowanie"
     }
   },
   "PAGES": {
-    "HOME": {
-      "TITLE": "Aplikacja działa!",
-      "GO_TO_DETAIL": "Przejdź do szczegółów",
-      "NO_NOTES": "Brak notatek i przypomnień na dziś."
-    },
     "DETAIL": {
-      "TITLE": "Strona szczegółów!",
-      "BACK_TO_HOME": "Powrót do strony głównej"
+      "BACK_TO_HOME": "Powrót do strony głównej",
+      "TITLE": "Strona szczegółów!"
+    },
+    "HOME": {
+      "GO_TO_DETAIL": "Przejdź do szczegółów",
+      "NO_NOTES": "Brak notatek i przypomnień na dziś.",
+      "TITLE": "Aplikacja działa!"
     }
   },
   "TODAY": {

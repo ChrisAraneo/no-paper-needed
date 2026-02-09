@@ -1,48 +1,48 @@
 {
   "DIALOGS": {
-    "ADD_NOTE": {
-      "ADD_NEW_NOTE": "Add new note",
-      "DATE_SUBHEADER": "Choose date related to your note:",
-      "CONTENT": "Content",
-      "CONTENT_SUBHEADER": "Enter note content:",
-      "REMINDERS_SUBHEADER": "When should reminders be shown?",
-      "NOTIFY_SAME_DAY": "On the day of the event",
-      "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
-      "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:",
-      "SUMMARY_SUBHEADER": "The note will look as follows:"
-    },
-    "EDIT_NOTE": {
-      "EDIT_NOTE": "Edit note",
-      "DATE_SUBHEADER": "Choose date related to your note:",
-      "CONTENT": "Content",
-      "CONTENT_SUBHEADER": "Enter note content:",
-      "REMINDERS_SUBHEADER": "When should reminders be shown?",
-      "NOTIFY_SAME_DAY": "On the day of the event",
-      "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
-      "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:",
-      "SUMMARY_SUBHEADER": "The note will look as follows:"
-    },
-    "LABELS": {
-      "DATE": "Date",
-      "CONTENT": "Content",
-      "REMINDERS": "Reminders",
-      "SUMMARY": "Summary"
-    },
     "ACTIONS": {
       "BACK": "Back",
       "NEXT": "Next",
       "SAVE": "Save"
+    },
+    "ADD_NOTE": {
+      "ADD_NEW_NOTE": "Add new note",
+      "CONTENT": "Content",
+      "CONTENT_SUBHEADER": "Enter note content:",
+      "DATE_SUBHEADER": "Choose date related to your note:",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:",
+      "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
+      "NOTIFY_SAME_DAY": "On the day of the event",
+      "REMINDERS_SUBHEADER": "When should reminders be shown?",
+      "SUMMARY_SUBHEADER": "The note will look as follows:"
+    },
+    "EDIT_NOTE": {
+      "CONTENT": "Content",
+      "CONTENT_SUBHEADER": "Enter note content:",
+      "DATE_SUBHEADER": "Choose date related to your note:",
+      "EDIT_NOTE": "Edit note",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:",
+      "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
+      "NOTIFY_SAME_DAY": "On the day of the event",
+      "REMINDERS_SUBHEADER": "When should reminders be shown?",
+      "SUMMARY_SUBHEADER": "The note will look as follows:"
+    },
+    "LABELS": {
+      "CONTENT": "Content",
+      "DATE": "Date",
+      "REMINDERS": "Reminders",
+      "SUMMARY": "Summary"
     }
   },
   "PAGES": {
-    "HOME": {
-      "TITLE": "App works!",
-      "GO_TO_DETAIL": "Go to details",
-      "NO_NOTES": "No notes and reminders for today."
-    },
     "DETAIL": {
-      "TITLE": "Details page!",
-      "BACK_TO_HOME": "Back to home"
+      "BACK_TO_HOME": "Back to home",
+      "TITLE": "Details page!"
+    },
+    "HOME": {
+      "GO_TO_DETAIL": "Go to details",
+      "NO_NOTES": "No notes and reminders for today.",
+      "TITLE": "App works!"
     }
   },
   "TODAY": {

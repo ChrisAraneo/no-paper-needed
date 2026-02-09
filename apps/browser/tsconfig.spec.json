@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": [
@@ -10,6 +9,8 @@
       "vitest"
     ]
   },
+  "extends": "./tsconfig.json",
+  "files": ["src/test-setup.ts"],
   "include": [
     "vite.config.ts",
     "vite.config.mts",
@@ -24,6 +25,5 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts"
-  ],
-  "files": ["src/test-setup.ts"]
+  ]
 }

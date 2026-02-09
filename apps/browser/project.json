@@ -1,74 +1,58 @@
 {
-  "name": "browser",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
+  "name": "browser",
   "prefix": "app",
+  "projectType": "application",
   "sourceRoot": "apps/browser/src",
   "tags": [
     "scope:browser"
   ],
   "targets": {
     "build": {
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true
+        },
+        "production": {
+          "budgets": [
+            {
+              "maximumError": "1mb",
+              "maximumWarning": "500kb",
+              "type": "initial"
+            },
+            {
+              "maximumError": "8kb",
+              "maximumWarning": "4kb",
+              "type": "anyComponentStyle"
+            }
+          ],
+          "outputHashing": "all"
+        }
+      },
+      "defaultConfiguration": "production",
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
       "options": {
-        "outputPath": "dist/apps/browser",
-        "browser": "apps/browser/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
-        "tsConfig": "apps/browser/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/browser/public"
           }
         ],
+        "browser": "apps/browser/src/main.ts",
+        "outputPath": "dist/apps/browser",
+        "polyfills": [
+          "zone.js"
+        ],
         "styles": [
           "apps/browser/src/styles.scss"
-        ]
+        ],
+        "tsConfig": "apps/browser/tsconfig.app.json"
       },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
-            }
-          ],
-          "outputHashing": "all"
-        },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "continuous": true,
-      "executor": "@angular/build:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "browser:build:production"
-        },
-        "development": {
-          "buildTarget": "browser:build:development"
-        }
-      },
-      "defaultConfiguration": "development",
-      "options": {
-        "proxyConfig": "apps/browser/proxy.conf.json"
-      }
+      "outputs": [
+        "{options.outputPath}"
+      ]
     },
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
@@ -79,13 +63,20 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     },
-    "test": {
-      "executor": "@nx/vitest:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+    "serve": {
+      "configurations": {
+        "development": {
+          "buildTarget": "browser:build:development"
+        },
+        "production": {
+          "buildTarget": "browser:build:production"
+        }
+      },
+      "continuous": true,
+      "defaultConfiguration": "development",
+      "executor": "@angular/build:dev-server",
       "options": {
-        "reportsDirectory": "../../coverage/apps/browser"
+        "proxyConfig": "apps/browser/proxy.conf.json"
       }
     },
     "serve-static": {
@@ -94,9 +85,18 @@
       "options": {
         "buildTarget": "browser:build",
         "port": 4200,
-        "staticFilePath": "dist/apps/browser",
-        "spa": true
+        "spa": true,
+        "staticFilePath": "dist/apps/browser"
       }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "reportsDirectory": "../../coverage/apps/browser"
+      },
+      "outputs": [
+        "{options.reportsDirectory}"
+      ]
     }
   }
 }

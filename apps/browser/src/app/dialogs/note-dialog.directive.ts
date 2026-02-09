@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-type-assertion */
-/* eslint-disable @typescript-eslint/no-magic-numbers */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @angular-eslint/no-output-native */
-/* eslint-disable @typescript-eslint/unbound-method */
-
 import {
   Directive,
   EventEmitter,

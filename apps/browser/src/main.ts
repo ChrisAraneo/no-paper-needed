@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable unicorn/prefer-top-level-await */
-
 import {
   provideHttpClient,
   withInterceptorsFromDi,
