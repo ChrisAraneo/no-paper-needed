@@ -1,7 +1,8 @@
-import { createAngularConfigs } from '@chris.araneo/eslint-config';
+import { configBuilder } from '@chris.araneo/eslint-config';
 
 const PREFIX = 'app';
 const SOURCES = ['**/*.ts', '!**/*.spec.ts'];
+const TESTS = ['**/*.spec.ts'];
 const TEMPLATES = ['**/*.html'];
 const JSONS = ['**/*.json'];
 const IGNORED = [
@@ -9,8 +10,19 @@ const IGNORED = [
   '**/dist/**',
   '**/out/**',
   '**/build/**',
+  'eslint.config.mjs',
   'src/test-setup.ts',
   'src/polyfills.ts',
+  'environments/**/*.ts',
 ];
 
-export default createAngularConfigs(PREFIX, SOURCES, TEMPLATES, JSONS, IGNORED);
+export default configBuilder()
+  .addAngularConfig({
+    prefix: PREFIX,
+    sources: SOURCES,
+    tests: TESTS,
+    templates: TEMPLATES,
+    jsons: JSONS,
+    ignored: IGNORED,
+  })
+  .build();
