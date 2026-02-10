@@ -9,8 +9,9 @@ const createPalette = (
 ): Record<number, string> =>
   [0, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].reduce(
     (acc, shade) => {
-      acc[shade] =
-        `hsl(${hue}, ${saturation}%, ${baseLightness + ((600 - shade) / 100) * lightnessStep}%)`;
+      acc[shade] = `hsl(${hue}, ${saturation}%, ${
+        baseLightness + ((600 - shade) / 100) * lightnessStep
+      }%)`;
       return acc;
     },
     {} as Record<number, string>,

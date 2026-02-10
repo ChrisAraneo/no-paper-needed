@@ -3,14 +3,12 @@
   [modal]="true"
   [visible]="isVisible"
   [styleClass]="styleClass"
-  (visibleChange)="onVisibleChange($event)"
->
+  (visibleChange)="onVisibleChange($event)">
   <p-stepper
     class="basis-[50rem]"
     [value]="activeStep"
     [linear]="true"
-    (valueChange)="onActiveStepChange($event)"
-  >
+    (valueChange)="onActiveStepChange($event)">
     <p-step-list>
       @for (step of steps; track step.value) {
         <p-step [value]="step.value">{{ step.label }}</p-step>

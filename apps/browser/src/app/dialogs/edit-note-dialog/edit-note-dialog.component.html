@@ -5,8 +5,7 @@
     [steps]="stepConfigs"
     [isVisible]="isVisible"
     [(activeStep)]="activeStep"
-    (close)="closeDialog()"
-  >
+    (close)="closeDialog()">
     <ng-template appStepPanel [stepValue]="1" [stepActions]="getStep1Actions()">
       <app-subheader>{{
         'DIALOGS.EDIT_NOTE.DATE_SUBHEADER' | translate
@@ -16,8 +15,7 @@
         class="max-w-full"
         fluid
         [inline]="true"
-        [showWeek]="true"
-      />
+        [showWeek]="true" />
     </ng-template>
     <ng-template appStepPanel [stepValue]="2" [stepActions]="getStep2Actions()">
       <app-subheader>{{
@@ -36,8 +34,7 @@
           [ngClass]="{
             'invalid-input':
               form.get('content')?.invalid && form.get('content')?.touched,
-          }"
-        ></textarea>
+          }"></textarea>
         <label for="content">{{
           'DIALOGS.EDIT_NOTE.CONTENT' | translate
         }}</label>
@@ -53,8 +50,7 @@
             formControlName="reminderMode"
             inputId="sameDay"
             name="category"
-            [value]="reminderMode.SameDay"
-          />
+            [value]="reminderMode.SameDay" />
           <label for="sameDay" class="ml-2">{{
             'DIALOGS.EDIT_NOTE.NOTIFY_SAME_DAY' | translate
           }}</label>
@@ -64,8 +60,7 @@
             formControlName="reminderMode"
             inputId="dayBefore"
             name="category"
-            [value]="reminderMode.DayBefore"
-          />
+            [value]="reminderMode.DayBefore" />
           <label for="dayBefore" class="ml-2">{{
             'DIALOGS.EDIT_NOTE.NOTIFY_DAY_BEFORE' | translate
           }}</label>
@@ -75,8 +70,7 @@
             formControlName="reminderMode"
             inputId="customDaysBefore"
             name="category"
-            [value]="reminderMode.MultipleDaysBefore"
-          />
+            [value]="reminderMode.MultipleDaysBefore" />
           <label for="customDaysBefore" class="ml-2">{{
             'DIALOGS.EDIT_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
           }}</label>
@@ -86,8 +80,7 @@
           inputId="notification"
           [disabled]="
             form.get('reminderMode')?.value !== reminderMode.MultipleDaysBefore
-          "
-        />
+          " />
       </div>
     </ng-template>
     <ng-template appStepPanel [stepValue]="4" [stepActions]="getStep4Actions()">
