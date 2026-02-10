@@ -46,10 +46,23 @@
       },
       "outputs": ["{options.outputPath}"]
     },
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run browser:lint -- --fix", "nx run browser:format"],
+        "parallel": false
+      }
+    },
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
       "options": {
         "buildTarget": "browser:build"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"apps/browser/\""
       }
     },
     "lint": {
@@ -87,12 +100,6 @@
         "reportsDirectory": "../../coverage/apps/browser"
       },
       "outputs": ["{options.reportsDirectory}"]
-    },
-    "format": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "prettier --write \"apps/browser/\""
-      }
     }
   }
 }
