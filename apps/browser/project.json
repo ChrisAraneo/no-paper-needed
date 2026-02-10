@@ -4,9 +4,7 @@
   "prefix": "app",
   "projectType": "application",
   "sourceRoot": "apps/browser/src",
-  "tags": [
-    "scope:browser"
-  ],
+  "tags": ["scope:browser"],
   "targets": {
     "build": {
       "configurations": {
@@ -42,17 +40,11 @@
         ],
         "browser": "apps/browser/src/main.ts",
         "outputPath": "dist/apps/browser",
-        "polyfills": [
-          "zone.js"
-        ],
-        "styles": [
-          "apps/browser/src/styles.scss"
-        ],
+        "polyfills": ["zone.js"],
+        "styles": ["apps/browser/src/styles.scss"],
         "tsConfig": "apps/browser/tsconfig.app.json"
       },
-      "outputs": [
-        "{options.outputPath}"
-      ]
+      "outputs": ["{options.outputPath}"]
     },
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
@@ -94,9 +86,13 @@
       "options": {
         "reportsDirectory": "../../coverage/apps/browser"
       },
-      "outputs": [
-        "{options.reportsDirectory}"
-      ]
+      "outputs": ["{options.reportsDirectory}"]
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"apps/browser/\""
+      }
     }
   }
 }
