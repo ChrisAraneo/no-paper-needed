@@ -1,7 +1,7 @@
 import { configBuilder } from '@chris.araneo/eslint-config';
 
 const PREFIX = 'app';
-const SOURCES = ['**/*.ts', '!**/*.spec.ts'];
+const SOURCES = [/^(?!.*\.spec\.ts$).*\.ts$/.toString()];
 const TESTS = ['**/*.spec.ts'];
 const TEMPLATES = ['**/*.html'];
 const JSONS = ['**/*.json'];
