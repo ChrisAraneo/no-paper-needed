@@ -1,0 +1,4 @@
+export const SAME_DAY_REMINDER_DAYS_BEFORE = 0;
+export const DAY_BEFORE_REMINDER_DAYS_BEFORE = 1;
+export const FIRST_STEP_INDEX = 1;
+export const RESET_DIALOG_DELAY_MS = 2000;
