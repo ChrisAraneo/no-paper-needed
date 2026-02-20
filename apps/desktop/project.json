@@ -1,14 +1,14 @@
 {
-  "name": "desktop",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": ["browser"],
+  "name": "desktop",
   "projectType": "application",
   "sourceRoot": "apps/desktop/src",
   "tags": ["scope:desktop"],
-  "implicitDependencies": ["browser"],
   "targets": {
     "build": {
-      "executor": "nx:run-commands",
       "dependsOn": ["^build"],
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "npx tsc -p apps/desktop/tsconfig.json",
@@ -19,6 +19,17 @@
       },
       "outputs": ["{workspaceRoot}/dist/apps/desktop"]
     },
+    "release": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "npx electron-builder --config apps/desktop/electron-builder.json"
+        ],
+        "parallel": false
+      },
+      "outputs": ["{workspaceRoot}/dist/packages"]
+    },
     "serve": {
       "executor": "nx:run-commands",
       "options": {
@@ -28,17 +39,6 @@
         ],
         "parallel": false
       }
-    },
-    "release": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["build"],
-      "options": {
-        "commands": [
-          "npx electron-builder --config apps/desktop/electron-builder.json"
-        ],
-        "parallel": false
-      },
-      "outputs": ["{workspaceRoot}/dist/packages"]
     }
   }
 }

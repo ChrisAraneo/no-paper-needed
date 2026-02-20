@@ -1,45 +1,45 @@
 {
   "appId": "com.org.desktop",
-  "productName": "Desktop App",
-  "extends": null,
+  "buildDependenciesFromSource": false,
   "directories": {
-    "output": "dist/packages",
-    "app": "dist/apps/desktop"
+    "app": "dist/apps/desktop",
+    "output": "dist/packages"
+  },
+  "extends": null,
+  "extraMetadata": {
+    "main": "main.js"
   },
 
   "files": [
     {
+      "filter": ["**/*", "!node_modules/**"],
       "from": ".",
-      "to": ".",
-      "filter": ["**/*", "!node_modules/**"]
+      "to": "."
     },
     {
+      "filter": ["**/*"],
       "from": "../browser",
-      "to": "browser",
-      "filter": ["**/*"]
+      "to": "browser"
     }
   ],
-  "extraMetadata": {
-    "main": "main.js"
-  },
-  "npmRebuild": false,
-  "buildDependenciesFromSource": false,
-  "win": {
-    "target": ["nsis", "portable"],
-    "icon": "apps/desktop/src/assets/icon.ico"
+  "linux": {
+    "category": "Utility",
+    "icon": "apps/desktop/src/assets/icon.png",
+    "target": ["AppImage", "deb"]
   },
   "mac": {
-    "target": ["dmg", "zip"],
+    "category": "public.app-category.productivity",
     "icon": "apps/desktop/src/assets/icon.icns",
-    "category": "public.app-category.productivity"
+    "target": ["dmg", "zip"]
   },
-  "linux": {
-    "target": ["AppImage", "deb"],
-    "icon": "apps/desktop/src/assets/icon.png",
-    "category": "Utility"
-  },
+  "npmRebuild": false,
   "nsis": {
-    "oneClick": false,
-    "allowToChangeInstallationDirectory": true
+    "allowToChangeInstallationDirectory": true,
+    "oneClick": false
+  },
+  "productName": "Desktop App",
+  "win": {
+    "icon": "apps/desktop/src/assets/icon.ico",
+    "target": ["nsis", "portable"]
   }
 }
