@@ -8,8 +8,6 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import Aura from '@primeuix/themes/aura';
-import { definePreset } from '@primeuix/themes';
 import { providePrimeNG } from 'primeng/config';
 
 import { AppComponent } from './app/app.component';
