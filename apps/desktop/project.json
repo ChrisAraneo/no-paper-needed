@@ -22,7 +22,7 @@
     "chores": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx run desktop:lint -- --fix", "nx run desktop:format"],
+        "commands": ["nx run desktop:lint:fix", "nx run desktop:format"],
         "parallel": false
       }
     },
@@ -42,6 +42,12 @@
         "parallel": false
       },
       "outputs": ["{workspaceRoot}/dist/packages"]
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
     },
     "serve": {
       "executor": "nx:run-commands",

@@ -49,7 +49,7 @@
     "chores": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["nx run browser:lint -- --fix", "nx run browser:format"],
+        "commands": ["nx run browser:lint:fix", "nx run browser:format"],
         "parallel": false
       }
     },
@@ -67,6 +67,12 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
     },
     "serve": {
       "configurations": {
