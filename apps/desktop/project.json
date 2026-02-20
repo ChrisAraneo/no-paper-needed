@@ -19,6 +19,19 @@
       },
       "outputs": ["{workspaceRoot}/dist/apps/desktop"]
     },
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run desktop:lint -- --fix", "nx run desktop:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"apps/desktop/\""
+      }
+    },
     "release": {
       "dependsOn": ["build"],
       "executor": "nx:run-commands",
@@ -37,19 +50,6 @@
           "npx tsc -p apps/desktop/tsconfig.json",
           "cross-env NODE_ENV=development npx electron dist/apps/desktop/main.js"
         ],
-        "parallel": false
-      }
-    },
-    "format": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "prettier --write \"apps/desktop/\""
-      }
-    },
-    "chores": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": ["nx run desktop:lint -- --fix", "nx run desktop:format"],
         "parallel": false
       }
     }
