@@ -2,11 +2,12 @@
   <app-stepper-dialog
     styleClass="add-note-dialog"
     [title]="'DIALOGS.ADD_NOTE.ADD_NEW_NOTE' | translate"
-    [steps]="stepConfigs"
-    [isVisible]="isVisible"
-    [(activeStep)]="activeStep"
+    [steps]="stepConfigs()"
+    [isVisible]="isVisible()"
+    [activeStep]="activeStep()"
+    (activeStepChange)="activeStep.set($event)"
     (close)="closeDialog()">
-    <ng-template appStepPanel [stepValue]="1" [stepActions]="getStep1Actions()">
+    <ng-template appStepPanel [stepValue]="1" [stepActions]="step1Actions()">
       <app-subheader>{{
         'DIALOGS.ADD_NOTE.DATE_SUBHEADER' | translate
       }}</app-subheader>
@@ -17,7 +18,7 @@
         [inline]="true"
         [showWeek]="true" />
     </ng-template>
-    <ng-template appStepPanel [stepValue]="2" [stepActions]="getStep2Actions()">
+    <ng-template appStepPanel [stepValue]="2" [stepActions]="step2Actions()">
       <app-subheader>{{
         'DIALOGS.ADD_NOTE.CONTENT_SUBHEADER' | translate
       }}</app-subheader>
@@ -32,15 +33,14 @@
           style="resize: none; width: 100%"
           class="h-full max-w-full"
           [ngClass]="{
-            'invalid-input':
-              form.get('content')?.invalid && form.get('content')?.touched,
+            'invalid-input': contentControl.invalid && contentControl.touched,
           }"></textarea>
         <label for="content">{{
           'DIALOGS.ADD_NOTE.CONTENT' | translate
         }}</label>
       </p-floatlabel>
     </ng-template>
-    <ng-template appStepPanel [stepValue]="3" [stepActions]="getStep3Actions()">
+    <ng-template appStepPanel [stepValue]="3" [stepActions]="step3Actions()">
       <app-subheader>{{
         'DIALOGS.ADD_NOTE.REMINDERS_SUBHEADER' | translate
       }}</app-subheader>
@@ -79,16 +79,16 @@
           formControlName="reminderDaysBefore"
           inputId="notification"
           [disabled]="
-            form.get('reminderMode')?.value !== reminderMode.MultipleDaysBefore
+            reminderModeControl.value !== reminderMode.MultipleDaysBefore
           " />
       </div>
     </ng-template>
-    <ng-template appStepPanel [stepValue]="4" [stepActions]="getStep4Actions()">
+    <ng-template appStepPanel [stepValue]="4" [stepActions]="step4Actions()">
       <app-subheader>{{
         'DIALOGS.ADD_NOTE.SUMMARY_SUBHEADER' | translate
       }}</app-subheader>
       <div class="summary-surface">
-        <app-note [note]="note" />
+        <app-note [note]="note()" />
       </div>
     </ng-template>
   </app-stepper-dialog>

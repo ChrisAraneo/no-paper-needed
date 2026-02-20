@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, effect, input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -38,13 +38,19 @@ import { NoteDialog } from '../note-dialog.directive';
   templateUrl: './edit-note-dialog.component.html',
   styleUrl: './edit-note-dialog.component.scss',
 })
-export class EditNoteDialogComponent extends NoteDialog implements OnChanges {
-  @Input() override note: Note | undefined = undefined;
+export class EditNoteDialogComponent extends NoteDialog {
+  readonly noteInput = input<Note | undefined>(undefined, { alias: 'note' });
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['note'] && this.note) {
-      this.fillFormWithNoteData(this.note);
-    }
+  constructor() {
+    super();
+
+    effect(() => {
+      const note = this.noteInput();
+
+      if (note) {
+        this.patchValueWithNoteData(note);
+      }
+    });
   }
 
   submit(): void {
@@ -61,7 +67,7 @@ export class EditNoteDialogComponent extends NoteDialog implements OnChanges {
     this.resetDialog();
   }
 
-  private fillFormWithNoteData(note: Note): void {
+  private patchValueWithNoteData(note: Note): void {
     const reminderMode = this.getReminderModeFromDaysBefore(
       note.reminderDaysBefore,
     );
