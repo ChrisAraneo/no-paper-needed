@@ -1,9 +1,17 @@
-const baseConfig = require('../../eslint.config.mjs');
+import { configBuilder } from '@chris.araneo/eslint-config';
 
-module.exports = [
-  ...baseConfig,
-  {
-    files: ['**/*.ts'],
-    rules: {},
-  },
-];
+const SOURCES = [/^(?!.*\.spec\.ts$).*\.ts$/.toString()];
+const JSONS = ['*.json'];
+const IGNORED = [];
+
+export default configBuilder()
+  .addTypeScriptConfig({
+    sources: SOURCES,
+  })
+  .addJsonConfig({
+    jsons: JSONS,
+  })
+  .addIgnored({
+    ignored: IGNORED,
+  })
+  .build();
