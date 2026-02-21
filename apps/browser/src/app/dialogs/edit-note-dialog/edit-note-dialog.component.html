@@ -27,14 +27,12 @@
           pTextarea
           id="content"
           formControlName="content"
-          class="textarea"
+          class="textarea h-full max-w-full"
           rows="5"
           cols="30"
-          style="resize: none; width: 100%"
-          class="h-full max-w-full"
-          [ngClass]="{
-            'invalid-input': contentControl.invalid && contentControl.touched,
-          }"></textarea>
+          [class.invalid-input]="
+            contentControl.invalid && contentControl.touched
+          "></textarea>
         <label for="content">{{
           'DIALOGS.EDIT_NOTE.CONTENT' | translate
         }}</label>

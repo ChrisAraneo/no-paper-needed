@@ -5,6 +5,8 @@ textarea {
 
 textarea.invalid-input {
   border: 2px solid #ef4444 !important; // TODO?
+  resize: none;
+  width: 100%;
 }
 
 p-radiobutton {
