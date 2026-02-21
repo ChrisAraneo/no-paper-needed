@@ -27,7 +27,6 @@ import { NoteDialog } from '../note-dialog.directive';
     DatePickerModule,
     InputNumberModule,
     RadioButtonModule,
-    NgClass,
     SubheaderComponent,
     StepperDialogComponent,
     StepPanelDirective,
