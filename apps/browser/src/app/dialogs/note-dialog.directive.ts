@@ -44,16 +44,17 @@ export abstract class NoteDialog {
   private readonly langChange: Signal<LangChangeEvent | undefined>;
 
   readonly note = computed<Note | undefined>(() => {
-    if (this.formStatus() === 'INVALID') {
+    if (this.formStatus() === FormControlStatus.Invalid) {
       return undefined;
     }
 
     const values = this.formValues();
+    const id = crypto.randomUUID();
     const content = (values.content ?? '').trim();
     const date = values.date ?? new Date();
     const reminderDaysBefore = this.getReminderDaysBefore(values);
 
-    return { id: crypto.randomUUID(), content, date, reminderDaysBefore };
+    return { id, content, date, reminderDaysBefore };
   });
 
   protected readonly stepConfigs = computed<StepConfig[]>(() => {
