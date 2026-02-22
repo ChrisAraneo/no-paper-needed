@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, Injectable, Signal, signal } from '@angular/core';
 
 import { Note } from '../../../shared/interfaces/note.interface';
 
@@ -6,13 +6,19 @@ import { Note } from '../../../shared/interfaces/note.interface';
   providedIn: 'root',
 })
 export class DialogService {
+  readonly isAddNoteDialogOpen: Signal<boolean>;
+  readonly isEditNoteDialogOpen: Signal<boolean>;
+  readonly editedNote: Signal<Note | undefined>;
+
   private readonly isAddNoteDialogVisible = signal(false);
   private readonly isEditNoteDialogVisible = signal(false);
-  private readonly editedNote = signal<Note | undefined>(undefined);
+  private readonly _editedNote = signal<Note | undefined>(undefined);
 
-  readonly isAnyDialogOpen = computed(
-    () => this.isAddNoteDialogVisible() || this.isEditNoteDialogVisible(),
-  );
+  constructor() {
+    this.isAddNoteDialogOpen = this.isAddNoteDialogVisible.asReadonly();
+    this.isEditNoteDialogOpen = this.isEditNoteDialogVisible.asReadonly();
+    this.editedNote = this._editedNote.asReadonly();
+  }
 
   openAddNoteDialog(): void {
     this.isAddNoteDialogVisible.set(true);
@@ -23,12 +29,12 @@ export class DialogService {
   }
 
   openEditNoteDialog(note: Note): void {
-    this.editedNote.set(note);
+    this._editedNote.set(note);
     this.isEditNoteDialogVisible.set(true);
   }
 
   closeEditNoteDialog(): void {
     this.isEditNoteDialogVisible.set(false);
-    this.editedNote.set(undefined);
+    this._editedNote.set(undefined);
   }
 }
