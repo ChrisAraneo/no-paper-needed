@@ -3,10 +3,13 @@ textarea {
   margin-bottom: 16px;
 }
 
-textarea.invalid-input {
-  border: 2px solid #ef4444 !important; // TODO?
+textarea {
   resize: none;
   width: 100%;
+
+  &.invalid-input {
+    border: 2px solid #ef4444 !important; // TODO?
+  }
 }
 
 p-radiobutton {
