@@ -27,10 +27,6 @@ export class StoreService {
     }
   }
 
-  getNotes(): Note[] {
-    return this.notesSubject.value;
-  }
-
   removeNote(index: number): void {
     const currentNotes = this.notesSubject.value;
     this.notesSubject.next(currentNotes.filter((_, i) => i !== index));
