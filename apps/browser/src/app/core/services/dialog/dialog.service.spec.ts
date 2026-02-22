@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DialogService } from './dialog.service';
 import { Note } from '../../../shared/interfaces/note.interface';
+import { DialogService } from './dialog.service';
 
 describe('DialogService', () => {
   let service: DialogService;
