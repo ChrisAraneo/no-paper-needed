@@ -6,6 +6,6 @@
   "implicitDependencies": [
     "browser"
   ],
-  "// targets": "to see all targets run: nx show project shop-e2e --web",
+  "// targets": "to see all targets run: nx show project browser-e2e --web",
   "targets": {}
 }

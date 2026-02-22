@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ToolbarComponent } from './toolbar.component';
 
@@ -8,7 +9,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolbarComponent],
+      imports: [ToolbarComponent, TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);
