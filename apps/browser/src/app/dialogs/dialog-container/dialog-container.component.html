@@ -1,0 +1,9 @@
+<app-add-note-dialog
+  [isVisible]="dialogService.isAddNoteDialogOpen()"
+  (close)="dialogService.closeAddNoteDialog()"
+  (save)="onSaveNote($event)" />
+<app-edit-note-dialog
+  [isVisible]="dialogService.isEditNoteDialogOpen()"
+  [note]="dialogService.editedNote()"
+  (close)="dialogService.closeEditNoteDialog()"
+  (save)="onEditNote($event)" />
