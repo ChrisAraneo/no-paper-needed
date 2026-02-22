@@ -3,12 +3,5 @@
   <div class="page">
     <router-outlet />
   </div>
-  <app-add-note-dialog
-    [isVisible]="isAddNoteDialogVisible"
-    (close)="closeAddNoteDialog()"
-    (save)="onSaveNote($event)" />
-  <app-edit-note-dialog
-    [isVisible]="isEditNoteDialogVisible"
-    (close)="closeEditNoteDialog()"
-    (save)="onSaveNote($event)" />
+  <app-dialog-container />
 </div>

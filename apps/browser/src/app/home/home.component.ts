@@ -4,9 +4,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { map } from 'rxjs';
 
 import { StoreService } from '../core/services';
+import { DialogService } from '../core/services/dialog/dialog.service';
 import { NoteComponent } from '../shared/components/note/note.component';
 import { TodayComponent } from '../shared/components/today/today.component';
-import { LocaleService } from '../core/services/locale/locale.service';
+import { Note } from '../shared/interfaces/note.interface';
 
 const MAX_ROW_LENGTH = 3;
 const LAST_INDEX = -1;
@@ -24,10 +25,10 @@ const LAST_INDEX = -1;
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  readonly localeService = inject(LocaleService);
-  readonly storeService = inject(StoreService);
+  private readonly storeService = inject(StoreService);
+  private readonly dialogService = inject(DialogService);
 
-  protected notes = this.storeService.notes$.pipe(
+  protected notes = this.storeService.notes.pipe(
     map((notes) =>
       notes.reduce<(typeof notes)[]>((rows, note, index) => {
         if (index % MAX_ROW_LENGTH) {
@@ -40,7 +41,7 @@ export class HomeComponent {
     ),
   );
 
-  protected editNote(note: unknown): void {
-    // TODO
+  protected editNote(note: Note): void {
+    this.dialogService.openEditNoteDialog(note);
   }
 }

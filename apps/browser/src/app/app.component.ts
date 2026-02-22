@@ -3,58 +3,24 @@ import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FALLBACK_LOCALE } from './app.consts';
-import { ElectronService, StoreService } from './core/services';
+import { ElectronService } from './core/services';
+import { DialogService } from './core/services/dialog/dialog.service';
 import { LocaleService } from './core/services/locale/locale.service';
-import { AddNoteDialogComponent } from './dialogs/add-note-dialog/add-note-dialog.component';
-import { Note } from './shared/interfaces/note.interface';
+import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { EditNoteDialogComponent } from './dialogs/edit-note-dialog/edit-note-dialog.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    AddNoteDialogComponent,
-    ToolbarComponent,
-    EditNoteDialogComponent,
-  ],
+  imports: [RouterOutlet, ToolbarComponent, DialogContainerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  protected isAddNoteDialogVisible = false;
-  protected isEditNoteDialogVisible = false;
+  protected readonly dialogService = inject(DialogService);
 
   private readonly localeService = inject(LocaleService);
   private readonly electronService = inject(ElectronService);
   private readonly translate = inject(TranslateService);
-  private readonly storeService = inject(StoreService);
-
-  protected openAddNoteDialog(): void {
-    this.isAddNoteDialogVisible = true;
-  }
-
-  protected closeAddNoteDialog(): void {
-    this.isAddNoteDialogVisible = false;
-  }
-
-  protected openEditNoteDialog(): void {
-    this.isEditNoteDialogVisible = true;
-  }
-
-  protected closeEditNoteDialog(): void {
-    this.isEditNoteDialogVisible = false;
-  }
-
-  protected onSaveNote(note: Note): void {
-    this.storeService.addNote(note);
-    this.closeAddNoteDialog();
-  }
-
-  protected onEditNote(note: Note): void {
-    this.storeService.editNote(note);
-    this.closeEditNoteDialog();
-  }
 
   ngOnInit(): void {
     this.translate.setFallbackLang(FALLBACK_LOCALE);
@@ -69,5 +35,9 @@ export class AppComponent implements OnInit {
     } else {
       console.log('Run in browser');
     }
+  }
+
+  openAddNoteDialog(): void {
+    this.dialogService.openAddNoteDialog();
   }
 }
