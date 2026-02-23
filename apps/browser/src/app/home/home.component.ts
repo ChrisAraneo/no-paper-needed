@@ -28,18 +28,7 @@ export class HomeComponent {
   private readonly storeService = inject(StoreService);
   private readonly dialogService = inject(DialogService);
 
-  protected notes = this.storeService.notes.pipe(
-    map((notes) =>
-      notes.reduce<(typeof notes)[]>((rows, note, index) => {
-        if (index % MAX_ROW_LENGTH) {
-          rows.at(LAST_INDEX)?.push(note);
-        } else {
-          rows.push([note]);
-        }
-        return rows;
-      }, []),
-    ),
-  );
+  protected todayNotes = this.storeService.getNoteTableForDate(new Date());
 
   protected editNote(note: Note): void {
     this.dialogService.openEditNoteDialog(note);

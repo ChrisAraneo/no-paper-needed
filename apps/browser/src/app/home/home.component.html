@@ -1,7 +1,7 @@
 <div class="container">
   <app-today />
   <div class="notes">
-    @for (row of (notes | async) || []; track $index) {
+    @for (row of (todayNotes | async) || []; track $index) {
       <div class="row">
         @for (note of row; track $index) {
           <app-note
