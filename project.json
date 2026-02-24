@@ -1,0 +1,15 @@
+{
+  "name": "root",
+  "targets": {
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "prettier --write .",
+          "sort-patterns-file .gitignore .prettierignore -i node_modules"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}
