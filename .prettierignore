@@ -1,5 +1,5 @@
-dist
-coverage
+.angular
 .nx/cache
 .nx/workspace-data
-.angular
+coverage
+dist
