@@ -32,6 +32,12 @@
         "command": "prettier --write \"apps/desktop/\""
       }
     },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
     "release": {
       "dependsOn": ["build"],
       "executor": "nx:run-commands",
@@ -42,12 +48,6 @@
         "parallel": false
       },
       "outputs": ["{workspaceRoot}/dist/packages"]
-    },
-    "lint:fix": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "fix": true
-      }
     },
     "serve": {
       "executor": "nx:run-commands",
