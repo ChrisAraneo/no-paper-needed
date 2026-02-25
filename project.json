@@ -1,6 +1,25 @@
 {
   "name": "root",
   "targets": {
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run root:format",
+          "nx run root:lint:fix"
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
     "format": {
       "executor": "nx:run-commands",
       "options": {
