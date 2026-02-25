@@ -1,58 +1,10 @@
-import nx from '@nx/eslint-plugin';
+import { configBuilder } from '@chris.araneo/eslint-config';
 
-export default [
-  ...nx.configs['flat/base'],
-  ...nx.configs['flat/typescript'],
-  ...nx.configs['flat/javascript'],
-  {
-    ignores: [
-      '**/dist',
-      '**/vite.config.*.timestamp*',
-      '**/vitest.config.*.timestamp*',
-    ],
-  },
-  {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
-        {
-          enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
-          depConstraints: [
-            {
-              sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTags: ['scope:shared'],
-            },
-            {
-              sourceTag: 'scope:browser',
-              onlyDependOnLibsWithTags: ['scope:browser', 'scope:shared'],
-            },
-            {
-              sourceTag: 'scope:api',
-              onlyDependOnLibsWithTags: ['scope:api', 'scope:shared'],
-            },
-            {
-              sourceTag: 'type:data',
-              onlyDependOnLibsWithTags: ['type:data'],
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
-    // Override or add rules here
-    rules: {},
-  },
-];
+const JSONS = ['**/*.json'];
+const IGNORED = ['.nx/cache/', '.nx/workspace-data/', 'apps/', 'libs/', 'node_modules/', 'package.json', 'package-lock.json'];
+
+// TODO Handle undefined sources
+// TODO Handle undefined jsons
+// TODO Add module nx boundaries rules
+
+export default configBuilder().addNxConfig({ sources: [] }).addJsonConfig({ jsons: JSONS }).addIgnored({ ignored: IGNORED }).build();
