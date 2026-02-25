@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
-
 import { inject, Injectable, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Locale } from 'date-fns';

@@ -10,8 +10,6 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './detail.component.scss',
 })
 export class DetailComponent implements OnInit {
-  constructor() {}
-
   ngOnInit(): void {
     console.log('DetailComponent INIT');
   }

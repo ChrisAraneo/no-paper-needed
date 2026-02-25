@@ -4,10 +4,7 @@
     "chores": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx run root:format",
-          "nx run root:lint:fix"
-        ],
+        "commands": ["nx run root:lint:fix", "nx run root:format"],
         "parallel": false
       }
     },
