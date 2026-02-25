@@ -1,7 +1,7 @@
 import { configBuilder } from '@chris.araneo/eslint-config';
 
 const SOURCES = [/^(?!.*\.spec\.ts$).*\.ts$/.toString()];
-const JSONS = ['*.json'];
+const JSONS = ['**/*.json'];
 const IGNORED = [];
 
 export default configBuilder()
