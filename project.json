@@ -13,7 +13,8 @@
       "options": {
         "commands": [
           "prettier --write .",
-          "sort-patterns-file .gitignore .prettierignore -i node_modules"
+          "sort-patterns-file .gitignore .prettierignore -i node_modules",
+          "sort-package-json"
         ],
         "parallel": false
       }
