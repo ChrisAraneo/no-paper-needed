@@ -1,9 +1,9 @@
 {
   "mcpServers": {
     "nx-mcp": {
-      "type": "stdio",
+      "args": ["nx", "mcp"],
       "command": "npx",
-      "args": ["nx", "mcp"]
+      "type": "stdio"
     }
   }
 }

@@ -8,15 +8,6 @@
         "parallel": false
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "lint:fix": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "fix": true
-      }
-    },
     "format": {
       "executor": "nx:run-commands",
       "options": {
@@ -25,6 +16,15 @@
           "sort-patterns-file .gitignore .prettierignore -i node_modules"
         ],
         "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
       }
     }
   }
