@@ -1,9 +1,9 @@
 {
   "name": "no-paper-needed",
   "version": "0.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {},
-  "private": true,
   "dependencies": {
     "@angular-devkit/build-angular": "21.1.1",
     "@angular/animations": "21.1.1",
