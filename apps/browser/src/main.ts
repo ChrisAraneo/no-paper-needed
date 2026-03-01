@@ -11,6 +11,7 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { providePrimeNG } from 'primeng/config';
 
 import { AppComponent } from './app/app.component';
+import { ArchiveComponent } from './app/archive/archive.component';
 import { CoreModule } from './app/core/core.module';
 import { DetailComponent } from './app/detail/detail.component';
 import { HomeComponent } from './app/home/home.component';
@@ -50,6 +51,10 @@ bootstrapApplication(AppComponent, {
       {
         path: 'detail',
         component: DetailComponent,
+      },
+      {
+        path: 'archive',
+        component: ArchiveComponent,
       },
       {
         path: '**',
