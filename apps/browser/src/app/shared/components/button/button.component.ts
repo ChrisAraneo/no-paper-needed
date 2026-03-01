@@ -10,19 +10,15 @@ import {
   imports: [ButtonModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
-  host: {
-    '[class.accent]': 'isAccent',
-  },
 })
 export class ButtonComponent {
   @Input() label = '';
   @Input() icon = '';
   @Input() iconPosition: ButtonIconPosition = 'right';
   @Input() isDisabled = false;
-  @Input() severity: ButtonSeverity = 'primary';
+  @Input() severity: ButtonSeverity = null;
   @Input() isRounded = false;
   @Input() styleClass = '';
-  @Input() isAccent = false;
 
   @Output() readonly clicked = new EventEmitter<void>();
 

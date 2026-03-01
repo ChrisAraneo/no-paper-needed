@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ButtonComponent } from '../shared/components/button/button.component';
@@ -12,4 +13,14 @@ import { SearchbarComponent } from '../shared/components/searchbar/searchbar.com
 })
 export class ToolbarComponent {
   @Output() readonly addNote = new EventEmitter<void>();
+
+  private readonly router = inject(Router);
+
+  navigateToHome(): void {
+    this.router.navigate(['/home'], { queryParamsHandling: 'preserve' });
+  }
+
+  navigateToArchive(): void {
+    this.router.navigate(['/archive'], { queryParamsHandling: 'preserve' });
+  }
 }

@@ -1,12 +1,25 @@
-<div class="col"></div>
+<div class="col">
+  <app-button
+    icon="pi pi-home"
+    iconPosition="left"
+    severity="secondary"
+    [label]="'TOOLBAR.HOME' | translate"
+    (clicked)="navigateToHome()" />
+  <app-button
+    icon="pi pi-history"
+    iconPosition="left"
+    severity="secondary"
+    [label]="'TOOLBAR.ARCHIVE' | translate"
+    (clicked)="navigateToArchive()" />
+</div>
 <div class="col center">
   <app-searchbar />
 </div>
 <div class="col flex-end">
   <app-button
     icon="pi pi-plus"
-    iconPosition="right"
-    [isAccent]="true"
+    iconPosition="left"
+    severity="primary"
     [label]="'TOOLBAR.ADD_NOTE' | translate"
     (clicked)="addNote.emit()" />
 </div>
