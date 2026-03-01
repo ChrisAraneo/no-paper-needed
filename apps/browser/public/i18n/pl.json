@@ -29,14 +29,12 @@
     "EDIT_TOOLTIP": "Edytuj notatkę"
   },
   "PAGES": {
-    "DETAIL": {
-      "BACK_TO_HOME": "Powrót do strony głównej",
-      "TITLE": "Strona szczegółów!"
+    "ARCHIVE": {
+      "NO_NOTES": "Brak nieaktualnych notatek.",
+      "TITLE": "Archiwum"
     },
     "HOME": {
-      "GO_TO_DETAIL": "Przejdź do szczegółów",
-      "NO_NOTES": "Brak notatek i przypomnień na dziś.",
-      "TITLE": "Aplikacja działa!"
+      "NO_NOTES": "Brak notatek i przypomnień na dziś."
     }
   },
   "TODAY": {

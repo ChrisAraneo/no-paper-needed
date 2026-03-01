@@ -40,14 +40,12 @@
     "EDIT_TOOLTIP": "Edit note"
   },
   "PAGES": {
-    "DETAIL": {
-      "BACK_TO_HOME": "Back to home",
-      "TITLE": "Details page!"
+    "ARCHIVE": {
+      "NO_NOTES": "No outdated notes.",
+      "TITLE": "Archive"
     },
     "HOME": {
-      "GO_TO_DETAIL": "Go to details",
-      "NO_NOTES": "No notes and reminders for today.",
-      "TITLE": "App works!"
+      "NO_NOTES": "No notes and reminders for today."
     }
   },
   "TODAY": {
