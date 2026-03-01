@@ -80,10 +80,7 @@ export class StoreService {
   private filterOutdatedNotesForDate(notes: Note[], date: Date): Note[] {
     return notes
       .map((note) => ({ note, dayDiff: getDayDiff(date, note.date) }))
-      .filter(
-        (item) =>
-          item.dayDiff < -item.note.reminderDaysBefore,
-      )
+      .filter((item) => item.dayDiff < -item.note.reminderDaysBefore)
       .map((item) => item.note);
   }
 }
