@@ -1,0 +1,14 @@
+<div class="container">
+  <app-today />
+  <div class="notes">
+    @for (row of (outdatedNotes | async) || []; track $index) {
+      <div class="row">
+        @for (note of row; track $index) {
+          <app-note [note]="note" />
+        }
+      </div>
+    } @empty {
+      <span>{{ 'PAGES.ARCHIVE.NO_NOTES' | translate }}</span>
+    }
+  </div>
+</div>
