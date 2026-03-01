@@ -18,6 +18,14 @@ export class StoreService {
     );
   }
 
+  getOutdatedNoteTableForDate(date: Date): Observable<Note[][]> {
+    return this.notesSubject.asObservable().pipe(
+      map((notes) => this.filterOutdatedNotesForDate(notes, date)),
+      map((notes) => this.sortNotesByDate(notes)),
+      map((notes) => this.transformNotesToNoteTable(notes, 3)),
+    );
+  }
+
   addNote(note: Note): void {
     const currentNotes = this.notesSubject.value;
     this.notesSubject.next([...currentNotes, note]);
@@ -65,6 +73,16 @@ export class StoreService {
       .filter(
         (item) =>
           item.dayDiff <= 0 && item.dayDiff >= -item.note.reminderDaysBefore,
+      )
+      .map((item) => item.note);
+  }
+
+  private filterOutdatedNotesForDate(notes: Note[], date: Date): Note[] {
+    return notes
+      .map((note) => ({ note, dayDiff: getDayDiff(date, note.date) }))
+      .filter(
+        (item) =>
+          item.dayDiff < -item.note.reminderDaysBefore,
       )
       .map((item) => item.note);
   }
