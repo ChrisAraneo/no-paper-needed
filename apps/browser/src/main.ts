@@ -13,7 +13,6 @@ import { providePrimeNG } from 'primeng/config';
 import { AppComponent } from './app/app.component';
 import { ArchiveComponent } from './app/archive/archive.component';
 import { CoreModule } from './app/core/core.module';
-import { DetailComponent } from './app/detail/detail.component';
 import { HomeComponent } from './app/home/home.component';
 import { SharedModule } from './app/shared/shared.module';
 import { APP_CONFIG } from '../environments/environment';
@@ -47,10 +46,6 @@ bootstrapApplication(AppComponent, {
       {
         path: 'home',
         component: HomeComponent,
-      },
-      {
-        path: 'detail',
-        component: DetailComponent,
       },
       {
         path: 'archive',
