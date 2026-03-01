@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { StoreService } from '../core/services';
 import { NoteComponent } from '../shared/components/note/note.component';
-import { TodayComponent } from '../shared/components/today/today.component';
+import { HeaderComponent } from '../shared/components/header/header.component';
 
 @Component({
   selector: 'app-archive',
@@ -13,7 +13,7 @@ import { TodayComponent } from '../shared/components/today/today.component';
     NoteComponent,
     CommonModule,
     AsyncPipe,
-    TodayComponent,
+    HeaderComponent,
   ],
   templateUrl: './archive.component.html',
   styleUrl: './archive.component.scss',
