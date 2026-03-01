@@ -5,9 +5,17 @@
   position: relative;
 }
 
-p-card {
+::ng-deep p-card {
   width: 100%;
   height: 100%;
+
+  .p-card-body {
+    height: 100%;
+  }
+
+  .p-card-content {
+    height: 100%;
+  }
 }
 
 .date {
@@ -15,19 +23,28 @@ p-card {
   margin-block-end: 0;
 }
 
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 40px;
+}
+
 .content {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: calc(100% - 80px);
+
   p {
     margin-block-start: 0;
     margin-block-end: 0;
   }
 }
 
-.edit-button {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
+.footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 40px;
 }
