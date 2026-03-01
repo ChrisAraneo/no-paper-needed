@@ -52,6 +52,8 @@
     "TODAY_IS": "Today is"
   },
   "TOOLBAR": {
-    "ADD_NOTE": "Add note"
+    "ADD_NOTE": "Add note",
+    "ARCHIVE": "Archive",
+    "HOME": "Home"
   }
 }

@@ -41,6 +41,8 @@
     "TODAY_IS": "Dzisiaj jest"
   },
   "TOOLBAR": {
-    "ADD_NOTE": "Dodaj notatkę"
+    "ADD_NOTE": "Dodaj notatkę",
+    "ARCHIVE": "Archiwum",
+    "HOME": "Strona główna"
   }
 }
