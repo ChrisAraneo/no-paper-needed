@@ -23,6 +23,11 @@
       "SUMMARY": "Podsumowanie"
     }
   },
+  "NOTE": {
+    "BELL_TOOLTIP": "Przez ile dni przed wydarzeniem będą wyświetlane przypomnienia",
+    "DATE_TOOLTIP": "Data związana z notatką",
+    "EDIT_TOOLTIP": "Edytuj notatkę"
+  },
   "PAGES": {
     "DETAIL": {
       "BACK_TO_HOME": "Powrót do strony głównej",

@@ -34,6 +34,11 @@
       "SUMMARY": "Summary"
     }
   },
+  "NOTE": {
+    "BELL_TOOLTIP": "For how many days before the event reminders will be shown",
+    "DATE_TOOLTIP": "Date related to the note",
+    "EDIT_TOOLTIP": "Edit note"
+  },
   "PAGES": {
     "DETAIL": {
       "BACK_TO_HOME": "Back to home",
