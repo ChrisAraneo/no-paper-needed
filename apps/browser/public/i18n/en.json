@@ -48,8 +48,7 @@
       "NO_NOTES": "No notes and reminders for today."
     },
     "SEARCH": {
-      "EMPTY_QUERY": "Enter a search query to find notes.",
-      "NO_RESULTS": "No notes found.",
+      "NO_RESULTS": "No notes found for your query.",
       "TITLE": "Search"
     }
   },

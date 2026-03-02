@@ -37,8 +37,7 @@
       "NO_NOTES": "Brak notatek i przypomnień na dziś."
     },
     "SEARCH": {
-      "EMPTY_QUERY": "Wpisz zapytanie, aby wyszukać notatki.",
-      "NO_RESULTS": "Nie znaleziono notatek.",
+      "NO_RESULTS": "Nie znaleziono notatek dla twojego zapytania.",
       "TITLE": "Wyszukiwanie"
     }
   },
