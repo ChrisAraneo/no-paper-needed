@@ -1,5 +1,5 @@
 <div class="container">
-  <app-header size="xl">{{ 'PAGES.SEARCH.TITLE' | translate }}</app-header>
+  <app-header size="xl">{{ 'PAGES.SEARCH.TITLE' | translate }}{{ ' "' + (query | async) + '"' }}</app-header>
   <div class="notes">
     @for (row of (notes | async) || []; track $index) {
       <div class="row">
@@ -11,8 +11,6 @@
       <span>
         @if (query | async) {
           {{ 'PAGES.SEARCH.NO_RESULTS' | translate }}
-        } @else {
-          {{ 'PAGES.SEARCH.EMPTY_QUERY' | translate }}
         }
       </span>
     }
