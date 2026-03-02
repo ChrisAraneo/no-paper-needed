@@ -26,6 +26,14 @@ export class StoreService {
     );
   }
 
+  searchNotes(query: string): Observable<Note[][]> {
+    return this.notesSubject.asObservable().pipe(
+      map((notes) => this.filterNotesByQuery(notes, query)),
+      map((notes) => this.sortNotesByDate(notes)),
+      map((notes) => this.transformNotesToNoteTable(notes, 3)),
+    );
+  }
+
   addNote(note: Note): void {
     const currentNotes = this.notesSubject.value;
     this.notesSubject.next([...currentNotes, note]);
@@ -82,5 +90,17 @@ export class StoreService {
       .map((note) => ({ note, dayDiff: getDayDiff(date, note.date) }))
       .filter((item) => item.dayDiff > 0)
       .map((item) => item.note);
+  }
+
+  private filterNotesByQuery(notes: Note[], query: string): Note[] {
+    const normalizedQuery = query.toLowerCase().trim();
+
+    if (!normalizedQuery) {
+      return [];
+    }
+
+    return notes.filter((note) =>
+      note.content.toLowerCase().includes(normalizedQuery),
+    );
   }
 }
