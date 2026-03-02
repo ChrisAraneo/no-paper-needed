@@ -46,15 +46,17 @@ bootstrapApplication(AppComponent, {
       },
       {
         path: 'home',
-        component: HomeComponent,
+        children: [
+          { path: '', component: HomeComponent },
+          { path: 'search', component: SearchComponent },
+        ],
       },
       {
         path: 'archive',
-        component: ArchiveComponent,
-      },
-      {
-        path: 'search',
-        component: SearchComponent,
+        children: [
+          { path: '', component: ArchiveComponent },
+          { path: 'search', component: SearchComponent },
+        ],
       },
       {
         path: '**',

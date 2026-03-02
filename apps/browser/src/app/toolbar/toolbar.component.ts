@@ -19,31 +19,29 @@ export class ToolbarComponent {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
-  private returnRoute = '/home';
-
   protected readonly searchQuery$ = this.route.queryParams.pipe(
     map((params) => (params['q'] as string) ?? ''),
   );
 
+  private get baseRoute(): string {
+    return this.router.url.startsWith('/archive') ? '/archive' : '/home';
+  }
+
   navigateToHome(): void {
-    this.router.navigate(['/home'], { queryParamsHandling: 'preserve' });
+    this.router.navigate(['/home']);
   }
 
   navigateToArchive(): void {
-    this.router.navigate(['/archive'], { queryParamsHandling: 'preserve' });
+    this.router.navigate(['/archive']);
   }
 
   navigateToSearch(query: string): void {
-    if (!this.router.url.startsWith('/search')) {
-      this.returnRoute = this.router.url.split('?')[0];
-    }
-
     if (!query) {
-      this.router.navigate([this.returnRoute]);
+      this.router.navigate([this.baseRoute]);
 
       return;
     }
 
-    this.router.navigate(['/search'], { queryParams: { q: query } });
+    this.router.navigate([this.baseRoute, 'search'], { queryParams: { q: query } });
   }
 }
