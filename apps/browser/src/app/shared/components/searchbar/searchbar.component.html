@@ -1,4 +1,9 @@
 <p-iconfield>
   <p-inputicon class="pi pi-search" />
-  <input type="text" pInputText placeholder="Search" />
+  <input
+    type="text"
+    pInputText
+    placeholder="Search"
+    [(ngModel)]="model"
+    (ngModelChange)="search.emit($event)" />
 </p-iconfield>
