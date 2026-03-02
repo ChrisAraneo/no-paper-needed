@@ -99,8 +99,19 @@ export class StoreService {
       return [];
     }
 
-    return notes.filter((note) =>
-      note.content.toLowerCase().includes(normalizedQuery),
-    );
+    return notes.filter((note) => {
+      const value = [
+        note.content,
+        note.date.toISOString(),
+        note.date.toLocaleDateString('en-GB'),
+        note.date.toLocaleDateString('pl-PL'),
+        note.reminderDaysBefore,
+        note.id,
+      ]
+        .join(' ')
+        .toLocaleLowerCase();
+
+      return value.includes(normalizedQuery);
+    });
   }
 }
