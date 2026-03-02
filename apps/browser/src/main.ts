@@ -14,6 +14,7 @@ import { AppComponent } from './app/app.component';
 import { ArchiveComponent } from './app/archive/archive.component';
 import { CoreModule } from './app/core/core.module';
 import { HomeComponent } from './app/home/home.component';
+import { SearchComponent } from './app/search/search.component';
 import { SharedModule } from './app/shared/shared.module';
 import { APP_CONFIG } from '../environments/environment';
 import { THEME } from './app/shared/styles/theme';
@@ -50,6 +51,10 @@ bootstrapApplication(AppComponent, {
       {
         path: 'archive',
         component: ArchiveComponent,
+      },
+      {
+        path: 'search',
+        component: SearchComponent,
       },
       {
         path: '**',
