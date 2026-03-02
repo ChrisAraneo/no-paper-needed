@@ -28,20 +28,23 @@ export class ToolbarComponent {
   }
 
   navigateToHome(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home'], { queryParamsHandling: 'merge' });
   }
 
   navigateToArchive(): void {
-    this.router.navigate(['/archive']);
+    this.router.navigate(['/archive'], { queryParamsHandling: 'merge' });
   }
 
   navigateToSearch(query: string): void {
     if (!query) {
-      this.router.navigate([this.baseRoute]);
+      this.router.navigate([this.baseRoute], { queryParamsHandling: 'merge' });
 
       return;
     }
 
-    this.router.navigate([this.baseRoute, 'search'], { queryParams: { q: query } });
+    this.router.navigate([this.baseRoute, 'search'], {
+      queryParams: { q: query },
+      queryParamsHandling: 'merge',
+    });
   }
 }
