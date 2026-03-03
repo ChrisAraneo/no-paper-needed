@@ -1,6 +1,6 @@
 import { LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { enGB, pl } from 'date-fns/locale';
 import { firstValueFrom, Subject } from 'rxjs';
 
