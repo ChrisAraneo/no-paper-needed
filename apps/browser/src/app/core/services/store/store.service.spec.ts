@@ -138,6 +138,23 @@ describe('StoreService', () => {
     });
   });
 
+  describe('getNotes()', () => {
+    it('should return an empty array initially', async () => {
+      const result = await firstValueFrom(service.getNotes());
+      expect(result).toEqual([]);
+    });
+
+    it('should return all added notes', async () => {
+      const note1 = createNote({ id: '1' });
+      const note2 = createNote({ id: '2' });
+      service.addNote(note1);
+      service.addNote(note2);
+
+      const result = await firstValueFrom(service.getNotes());
+      expect(result).toEqual([note1, note2]);
+    });
+  });
+
   describe('getNoteTableForDate()', () => {
     it('should return empty array when store is empty', async () => {
       const result = await firstValueFrom(
@@ -205,7 +222,7 @@ describe('StoreService', () => {
 
     it('should group notes into rows of 3', async () => {
       for (let i = 1; i <= 7; i++) {
-        service.addNote(createNote({ id: `${i}`, date: new Date('2025-06-15') }));
+        service.addNote(createNote({ id: String(i), date: new Date('2025-06-15') }));
       }
 
       const result = await firstValueFrom(
@@ -278,7 +295,7 @@ describe('StoreService', () => {
     it('should group outdated notes into rows of 3', async () => {
       for (let i = 1; i <= 4; i++) {
         service.addNote(
-          createNote({ id: `${i}`, date: new Date(`2025-06-0${i}`) }),
+          createNote({ id: String(i), date: new Date(`2025-06-0${i}`) }),
         );
       }
 
@@ -355,7 +372,7 @@ describe('StoreService', () => {
     it('should group search results into rows of 3', async () => {
       for (let i = 1; i <= 5; i++) {
         service.addNote(
-          createNote({ id: `${i}`, content: 'common', date: new Date('2025-06-15') }),
+          createNote({ id: String(i), content: 'common', date: new Date('2025-06-15') }),
         );
       }
 
