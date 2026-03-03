@@ -10,6 +10,10 @@ import { getDayDiff } from '../../../shared/functions/get-day-diff.function';
 export class StoreService {
   private readonly notesSubject = new BehaviorSubject<Note[]>([]);
 
+  getNotes(): Observable<Note[]> {
+    return this.notesSubject.asObservable();
+  }
+
   getNoteTableForDate(date: Date): Observable<Note[][]> {
     return this.notesSubject.asObservable().pipe(
       map((notes) => this.filterNotesForDate(notes, date)),
