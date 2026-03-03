@@ -24,8 +24,8 @@ describe('ArchiveComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render today header', () => {
+  it('should render header', () => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('app-today')).toBeTruthy();
+    expect(compiled.querySelector('app-header')).toBeTruthy();
   });
 });
