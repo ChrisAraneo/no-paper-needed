@@ -1,6 +1,16 @@
 import { TestBed } from '@angular/core/testing';
+import { firstValueFrom } from 'rxjs';
 
+import { Note } from '../../../shared/interfaces/note.interface';
 import { StoreService } from './store.service';
+
+const createNote = (overrides: Partial<Note> = {}): Note => ({
+  id: '1',
+  date: new Date('2025-06-15'),
+  content: 'Test note',
+  reminderDaysBefore: 0,
+  ...overrides,
+});
 
 describe('StoreService', () => {
   let service: StoreService;
@@ -12,5 +22,354 @@ describe('StoreService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  describe('addNote()', () => {
+    it('should add a note to an empty store', async () => {
+      const note = createNote();
+      service.addNote(note);
+
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toEqual([[note]]);
+    });
+
+    it('should append a note to existing notes', async () => {
+      const note1 = createNote({ id: '1', content: 'First' });
+      const note2 = createNote({ id: '2', content: 'Second' });
+
+      service.addNote(note1);
+      service.addNote(note2);
+
+      const result = await firstValueFrom(
+        service.getNotes(),
+      );
+      expect(result[0]).toHaveLength(2);
+    });
+  });
+
+  describe('editNote()', () => {
+    it('should update an existing note by id', async () => {
+      const note = createNote({ id: 'abc', content: 'Original' });
+      service.addNote(note);
+
+      const updated = createNote({ id: 'abc', content: 'Updated' });
+      service.editNote(updated);
+
+      const result = await firstValueFrom(
+                service.getNotes(),
+      );
+      expect(result[0].content).toBe('Updated');
+    });
+
+    it('should not modify the store if id is not found', async () => {
+      const note = createNote({ id: '1', content: 'Original' });
+      service.addNote(note);
+
+      const unknown = createNote({ id: 'unknown', content: 'Ghost' });
+      service.editNote(unknown);
+
+      const result = await firstValueFrom(
+        service.getNotes(),
+      );
+      expect(result[0].content).toBe('Original');
+    });
+
+    it('should not add a note when editing with non-existent id on empty store', async () => {
+      service.editNote(createNote({ id: 'nope' }));
+
+      const result = await firstValueFrom(
+        service.getNotes(),
+      );
+      expect(result).toEqual([]);
+    });
+  });
+
+  describe('removeNote()', () => {
+    it('should remove a note by index', async () => {
+      service.addNote(createNote({ id: '1' }));
+      service.addNote(createNote({ id: '2' }));
+      service.addNote(createNote({ id: '3' }));
+
+      service.removeNote(1);
+
+      const result = await firstValueFrom(
+        service.getNotes(),
+      );
+      const ids = result.map((n) => n.id);
+      expect(ids).toEqual(['1', '3']);
+    });
+
+    it('should remove the first note when index is 0', async () => {
+      service.addNote(createNote({ id: '1' }));
+      service.addNote(createNote({ id: '2' }));
+
+      service.removeNote(0);
+
+      const result = await firstValueFrom(
+        service.getNotes(),
+      );
+      expect(result[0].id).toBe('2');
+    });
+
+    it('should remove the last note when index is last', async () => {
+      service.addNote(createNote({ id: '1' }));
+      service.addNote(createNote({ id: '2' }));
+
+      service.removeNote(1);
+
+      const result = await firstValueFrom(
+        service.getNotes(),
+      );
+      expect(result[0]).toHaveLength(1);
+      expect(result[0].id).toBe('1');
+    });
+
+    it('should not remove anything if index is out of bounds', async () => {
+      service.addNote(createNote({ id: '1' }));
+
+      service.removeNote(5);
+
+      const result = await firstValueFrom(
+        service.getNotes(),
+      );
+      expect(result[0]).toHaveLength(1);
+    });
+  });
+
+  describe('getNoteTableForDate()', () => {
+    it('should return empty array when store is empty', async () => {
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toEqual([]);
+    });
+
+    it('should include a note whose date matches the given date', async () => {
+      service.addNote(createNote({ date: new Date('2025-06-15') }));
+
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result.flat()).toHaveLength(1);
+    });
+
+    it('should include a future note with reminderDaysBefore covering today', async () => {
+      service.addNote(
+        createNote({
+          date: new Date('2025-06-17'),
+          reminderDaysBefore: 3,
+        }),
+      );
+
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result.flat()).toHaveLength(1);
+    });
+
+    it('should exclude a future note whose reminder does not cover today', async () => {
+      service.addNote(
+        createNote({
+          date: new Date('2025-06-20'),
+          reminderDaysBefore: 2,
+        }),
+      );
+
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toEqual([]);
+    });
+
+    it('should exclude past notes (outdated)', async () => {
+      service.addNote(createNote({ date: new Date('2025-06-10') }));
+
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toEqual([]);
+    });
+
+    it('should sort notes by date ascending', async () => {
+      service.addNote(createNote({ id: 'late', date: new Date('2025-06-16'), reminderDaysBefore: 1 }));
+      service.addNote(createNote({ id: 'early', date: new Date('2025-06-15') }));
+
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      const ids = result.flat().map((n) => n.id);
+      expect(ids).toEqual(['early', 'late']);
+    });
+
+    it('should group notes into rows of 3', async () => {
+      for (let i = 1; i <= 7; i++) {
+        service.addNote(createNote({ id: `${i}`, date: new Date('2025-06-15') }));
+      }
+
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toHaveLength(3);
+      expect(result[0]).toHaveLength(3);
+      expect(result[1]).toHaveLength(3);
+      expect(result[2]).toHaveLength(1);
+    });
+
+    it('should include a note on its exact date with reminderDaysBefore=0', async () => {
+      service.addNote(
+        createNote({ date: new Date('2025-06-15'), reminderDaysBefore: 0 }),
+      );
+
+      const result = await firstValueFrom(
+        service.getNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result.flat()).toHaveLength(1);
+    });
+  });
+
+  describe('getOutdatedNoteTableForDate()', () => {
+    it('should return empty array when store is empty', async () => {
+      const result = await firstValueFrom(
+        service.getOutdatedNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toEqual([]);
+    });
+
+    it('should include notes whose date is before the given date', async () => {
+      service.addNote(createNote({ date: new Date('2025-06-10') }));
+
+      const result = await firstValueFrom(
+        service.getOutdatedNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result.flat()).toHaveLength(1);
+    });
+
+    it('should exclude notes whose date matches the given date', async () => {
+      service.addNote(createNote({ date: new Date('2025-06-15') }));
+
+      const result = await firstValueFrom(
+        service.getOutdatedNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toEqual([]);
+    });
+
+    it('should exclude future notes', async () => {
+      service.addNote(createNote({ date: new Date('2025-06-20') }));
+
+      const result = await firstValueFrom(
+        service.getOutdatedNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toEqual([]);
+    });
+
+    it('should sort outdated notes by date ascending', async () => {
+      service.addNote(createNote({ id: 'older', date: new Date('2025-06-05') }));
+      service.addNote(createNote({ id: 'newer', date: new Date('2025-06-12') }));
+
+      const result = await firstValueFrom(
+        service.getOutdatedNoteTableForDate(new Date('2025-06-15')),
+      );
+      const ids = result.flat().map((n) => n.id);
+      expect(ids).toEqual(['older', 'newer']);
+    });
+
+    it('should group outdated notes into rows of 3', async () => {
+      for (let i = 1; i <= 4; i++) {
+        service.addNote(
+          createNote({ id: `${i}`, date: new Date(`2025-06-0${i}`) }),
+        );
+      }
+
+      const result = await firstValueFrom(
+        service.getOutdatedNoteTableForDate(new Date('2025-06-15')),
+      );
+      expect(result).toHaveLength(2);
+      expect(result[0]).toHaveLength(3);
+      expect(result[1]).toHaveLength(1);
+    });
+  });
+
+  describe('searchNotes()', () => {
+    it('should return empty array for empty query', async () => {
+      service.addNote(createNote({ content: 'Hello' }));
+
+      const result = await firstValueFrom(service.searchNotes(''));
+      expect(result).toEqual([]);
+    });
+
+    it('should return empty array for whitespace-only query', async () => {
+      service.addNote(createNote({ content: 'Hello' }));
+
+      const result = await firstValueFrom(service.searchNotes('   '));
+      expect(result).toEqual([]);
+    });
+
+    it('should find notes by content (case-insensitive)', async () => {
+      service.addNote(createNote({ id: '1', content: 'Buy groceries' }));
+      service.addNote(createNote({ id: '2', content: 'Call dentist' }));
+
+      const result = await firstValueFrom(service.searchNotes('groceries'));
+      expect(result.flat()).toHaveLength(1);
+      expect(result[0][0].id).toBe('1');
+    });
+
+    it('should find notes by content case-insensitively', async () => {
+      service.addNote(createNote({ content: 'Buy Groceries' }));
+
+      const result = await firstValueFrom(service.searchNotes('buy'));
+      expect(result.flat()).toHaveLength(1);
+    });
+
+    it('should find notes by id', async () => {
+      service.addNote(createNote({ id: 'unique-id-123' }));
+
+      const result = await firstValueFrom(service.searchNotes('unique-id-123'));
+      expect(result.flat()).toHaveLength(1);
+    });
+
+    it('should find notes by date string', async () => {
+      service.addNote(createNote({ date: new Date('2025-06-15') }));
+
+      const result = await firstValueFrom(service.searchNotes('2025-06-15'));
+      expect(result.flat()).toHaveLength(1);
+    });
+
+    it('should return empty when no notes match', async () => {
+      service.addNote(createNote({ content: 'Hello' }));
+
+      const result = await firstValueFrom(service.searchNotes('xyz'));
+      expect(result).toEqual([]);
+    });
+
+    it('should sort search results by date ascending', async () => {
+      service.addNote(createNote({ id: 'b', date: new Date('2025-06-20'), content: 'meeting' }));
+      service.addNote(createNote({ id: 'a', date: new Date('2025-06-10'), content: 'meeting' }));
+
+      const result = await firstValueFrom(service.searchNotes('meeting'));
+      const ids = result.flat().map((n) => n.id);
+      expect(ids).toEqual(['a', 'b']);
+    });
+
+    it('should group search results into rows of 3', async () => {
+      for (let i = 1; i <= 5; i++) {
+        service.addNote(
+          createNote({ id: `${i}`, content: 'common', date: new Date('2025-06-15') }),
+        );
+      }
+
+      const result = await firstValueFrom(service.searchNotes('common'));
+      expect(result).toHaveLength(2);
+      expect(result[0]).toHaveLength(3);
+      expect(result[1]).toHaveLength(2);
+    });
+
+    it('should trim the query before searching', async () => {
+      service.addNote(createNote({ content: 'trimmed' }));
+
+      const result = await firstValueFrom(service.searchNotes('  trimmed  '));
+      expect(result.flat()).toHaveLength(1);
+    });
   });
 });
