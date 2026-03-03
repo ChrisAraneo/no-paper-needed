@@ -10,6 +10,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { providePrimeNG } from 'primeng/config';
 
+import { FALLBACK_LOCALE } from './app/app.consts';
 import { AppComponent } from './app/app.component';
 import { ArchiveComponent } from './app/archive/archive.component';
 import { CoreModule } from './app/core/core.module';
@@ -41,26 +42,36 @@ bootstrapApplication(AppComponent, {
     provideRouter([
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: `${FALLBACK_LOCALE}/home`,
         pathMatch: 'full',
       },
       {
-        path: 'home',
+        path: ':lang',
         children: [
-          { path: '', component: HomeComponent },
-          { path: 'search', component: SearchComponent },
-        ],
-      },
-      {
-        path: 'archive',
-        children: [
-          { path: '', component: ArchiveComponent },
-          { path: 'search', component: SearchComponent },
+          {
+            path: 'home',
+            children: [
+              { path: '', component: HomeComponent },
+              { path: 'search', component: SearchComponent },
+            ],
+          },
+          {
+            path: 'archive',
+            children: [
+              { path: '', component: ArchiveComponent },
+              { path: 'search', component: SearchComponent },
+            ],
+          },
+          {
+            path: '',
+            redirectTo: 'home',
+            pathMatch: 'full',
+          },
         ],
       },
       {
         path: '**',
-        redirectTo: 'home',
+        redirectTo: `${FALLBACK_LOCALE}/home`,
       },
     ]),
     importProvidersFrom(CoreModule, SharedModule),

@@ -1,25 +1,28 @@
 import { LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { enGB, pl } from 'date-fns/locale';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Subject } from 'rxjs';
 
 import { LocaleService } from './locale.service';
 
 describe('LocaleService', () => {
   let service: LocaleService;
-  let queryParamsSubject: BehaviorSubject<Record<string, unknown>>;
+  let routerEventsSubject: Subject<unknown>;
+  let mockRouter: { events: Subject<unknown>; url: string };
 
   beforeEach(() => {
-    queryParamsSubject = new BehaviorSubject<Record<string, unknown>>({});
+    routerEventsSubject = new Subject();
+    mockRouter = {
+      events: routerEventsSubject,
+      url: '/en/home',
+    };
 
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: ActivatedRoute,
-          useValue: {
-            queryParams: queryParamsSubject.asObservable(),
-          },
+          provide: Router,
+          useValue: mockRouter,
         },
         {
           provide: LOCALE_ID,
@@ -35,30 +38,40 @@ describe('LocaleService', () => {
   });
 
   describe('get()', () => {
-    it('should return locale from query params when it is a string', async () => {
-      queryParamsSubject.next({ locale: 'pl' });
+    it('should return locale from URL path', async () => {
+      mockRouter.url = '/pl/home';
 
       const locale = await firstValueFrom(service.get());
       expect(locale).toBe('pl');
     });
 
-    it('should return injected LOCALE_ID when query param locale is not a string', async () => {
-      queryParamsSubject.next({ locale: ['pl', 'en'] });
+    it('should return locale from URL path after navigation', async () => {
+      mockRouter.url = '/en/home';
+      const promise = firstValueFrom(service.get());
+
+      const locale = await promise;
+      expect(locale).toBe('en');
+    });
+
+    it('should return fallback locale when URL has no lang segment', async () => {
+      mockRouter.url = '/';
 
       const locale = await firstValueFrom(service.get());
       expect(locale).toBe('en');
     });
+  });
 
-    it('should return injected LOCALE_ID when query param locale is undefined', async () => {
-      queryParamsSubject.next({});
+  describe('getCurrentLang()', () => {
+    it('should return current lang from URL', () => {
+      mockRouter.url = '/pl/archive';
 
-      const locale = await firstValueFrom(service.get());
-      expect(locale).toBe('en');
+      expect(service.getCurrentLang()).toBe('pl');
     });
 
-    it('should return injected LOCALE_ID when query params are empty', async () => {
-      const locale = await firstValueFrom(service.get());
-      expect(locale).toBe('en');
+    it('should return fallback when URL is root', () => {
+      mockRouter.url = '/';
+
+      expect(service.getCurrentLang()).toBe('en');
     });
   });
 

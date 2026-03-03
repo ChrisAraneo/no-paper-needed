@@ -1,27 +1,29 @@
 import { inject, Injectable, LOCALE_ID } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Locale } from 'date-fns';
 import { enGB, pl } from 'date-fns/locale';
-import { isString } from 'lodash';
-import { map, Observable } from 'rxjs';
+import { distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
+
+import { FALLBACK_LOCALE } from '../../../app.consts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocaleService {
   private readonly locale = inject<string>(LOCALE_ID);
-  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   get(): Observable<string> {
-    return this.activatedRoute.queryParams.pipe(
-      map((params) => {
-        if (this.isString(params['locale'])) {
-          return params['locale'];
-        }
-
-        return this.locale.split('-')[0];
-      }),
+    return this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      startWith(null),
+      map(() => this.extractLangFromUrl()),
+      distinctUntilChanged(),
     );
+  }
+
+  getCurrentLang(): string {
+    return this.extractLangFromUrl();
   }
 
   getDateFnsLocale(locale: string): Locale {
@@ -38,7 +40,15 @@ export class LocaleService {
     }
   }
 
-  private isString(value: unknown): value is string {
-    return isString(value);
+  private extractLangFromUrl(): string {
+    const url = this.router.url;
+    const segments = url.split('/').filter((s) => s.length > 0);
+    const lang = segments[0]?.split('?')[0];
+
+    if (lang && lang.length > 0) {
+      return lang;
+    }
+
+    return this.locale.split('-')[0] || FALLBACK_LOCALE;
   }
 }

@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 import { ButtonComponent } from '../shared/components/button/button.component';
+import { LocaleService } from '../core/services/locale/locale.service';
 import { SearchbarComponent } from '../shared/components/searchbar/searchbar.component';
 
 @Component({
@@ -18,21 +19,34 @@ export class ToolbarComponent {
 
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly localeService = inject(LocaleService);
 
   protected readonly searchQuery$ = this.route.queryParams.pipe(
     map((params) => (params['q'] as string) ?? ''),
   );
 
+  private get lang(): string {
+    return this.localeService.getCurrentLang();
+  }
+
   private get baseRoute(): string {
-    return this.router.url.startsWith('/archive') ? '/archive' : '/home';
+    const lang = this.lang;
+
+    return this.router.url.includes('/archive')
+      ? `/${lang}/archive`
+      : `/${lang}/home`;
   }
 
   navigateToHome(): void {
-    this.router.navigate(['/home'], { queryParamsHandling: 'merge' });
+    this.router.navigate([`/${this.lang}/home`], {
+      queryParamsHandling: 'merge',
+    });
   }
 
   navigateToArchive(): void {
-    this.router.navigate(['/archive'], { queryParamsHandling: 'merge' });
+    this.router.navigate([`/${this.lang}/archive`], {
+      queryParamsHandling: 'merge',
+    });
   }
 
   navigateToSearch(query: string): void {
