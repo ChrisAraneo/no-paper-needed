@@ -42,9 +42,7 @@ describe('StoreService', () => {
       service.addNote(note1);
       service.addNote(note2);
 
-      const result = await firstValueFrom(
-        service.getNotes(),
-      );
+      const result = await firstValueFrom(service.getNotes());
       expect(result[0]).toHaveLength(2);
     });
   });
@@ -57,9 +55,7 @@ describe('StoreService', () => {
       const updated = createNote({ id: 'abc', content: 'Updated' });
       service.editNote(updated);
 
-      const result = await firstValueFrom(
-                service.getNotes(),
-      );
+      const result = await firstValueFrom(service.getNotes());
       expect(result[0].content).toBe('Updated');
     });
 
@@ -70,18 +66,14 @@ describe('StoreService', () => {
       const unknown = createNote({ id: 'unknown', content: 'Ghost' });
       service.editNote(unknown);
 
-      const result = await firstValueFrom(
-        service.getNotes(),
-      );
+      const result = await firstValueFrom(service.getNotes());
       expect(result[0].content).toBe('Original');
     });
 
     it('should not add a note when editing with non-existent id on empty store', async () => {
       service.editNote(createNote({ id: 'nope' }));
 
-      const result = await firstValueFrom(
-        service.getNotes(),
-      );
+      const result = await firstValueFrom(service.getNotes());
       expect(result).toEqual([]);
     });
   });
@@ -94,9 +86,7 @@ describe('StoreService', () => {
 
       service.removeNote(1);
 
-      const result = await firstValueFrom(
-        service.getNotes(),
-      );
+      const result = await firstValueFrom(service.getNotes());
       const ids = result.map((n) => n.id);
       expect(ids).toEqual(['1', '3']);
     });
@@ -107,9 +97,7 @@ describe('StoreService', () => {
 
       service.removeNote(0);
 
-      const result = await firstValueFrom(
-        service.getNotes(),
-      );
+      const result = await firstValueFrom(service.getNotes());
       expect(result[0].id).toBe('2');
     });
 
@@ -119,9 +107,7 @@ describe('StoreService', () => {
 
       service.removeNote(1);
 
-      const result = await firstValueFrom(
-        service.getNotes(),
-      );
+      const result = await firstValueFrom(service.getNotes());
       expect(result[0]).toHaveLength(1);
       expect(result[0].id).toBe('1');
     });
@@ -131,9 +117,7 @@ describe('StoreService', () => {
 
       service.removeNote(5);
 
-      const result = await firstValueFrom(
-        service.getNotes(),
-      );
+      const result = await firstValueFrom(service.getNotes());
       expect(result[0]).toHaveLength(1);
     });
   });
@@ -210,8 +194,16 @@ describe('StoreService', () => {
     });
 
     it('should sort notes by date ascending', async () => {
-      service.addNote(createNote({ id: 'late', date: new Date('2025-06-16'), reminderDaysBefore: 1 }));
-      service.addNote(createNote({ id: 'early', date: new Date('2025-06-15') }));
+      service.addNote(
+        createNote({
+          id: 'late',
+          date: new Date('2025-06-16'),
+          reminderDaysBefore: 1,
+        }),
+      );
+      service.addNote(
+        createNote({ id: 'early', date: new Date('2025-06-15') }),
+      );
 
       const result = await firstValueFrom(
         service.getNoteTableForDate(new Date('2025-06-15')),
@@ -222,7 +214,9 @@ describe('StoreService', () => {
 
     it('should group notes into rows of 3', async () => {
       for (let i = 1; i <= 7; i++) {
-        service.addNote(createNote({ id: String(i), date: new Date('2025-06-15') }));
+        service.addNote(
+          createNote({ id: String(i), date: new Date('2025-06-15') }),
+        );
       }
 
       const result = await firstValueFrom(
@@ -282,8 +276,12 @@ describe('StoreService', () => {
     });
 
     it('should sort outdated notes by date ascending', async () => {
-      service.addNote(createNote({ id: 'older', date: new Date('2025-06-05') }));
-      service.addNote(createNote({ id: 'newer', date: new Date('2025-06-12') }));
+      service.addNote(
+        createNote({ id: 'older', date: new Date('2025-06-05') }),
+      );
+      service.addNote(
+        createNote({ id: 'newer', date: new Date('2025-06-12') }),
+      );
 
       const result = await firstValueFrom(
         service.getOutdatedNoteTableForDate(new Date('2025-06-15')),
@@ -361,8 +359,20 @@ describe('StoreService', () => {
     });
 
     it('should sort search results by date ascending', async () => {
-      service.addNote(createNote({ id: 'b', date: new Date('2025-06-20'), content: 'meeting' }));
-      service.addNote(createNote({ id: 'a', date: new Date('2025-06-10'), content: 'meeting' }));
+      service.addNote(
+        createNote({
+          id: 'b',
+          date: new Date('2025-06-20'),
+          content: 'meeting',
+        }),
+      );
+      service.addNote(
+        createNote({
+          id: 'a',
+          date: new Date('2025-06-10'),
+          content: 'meeting',
+        }),
+      );
 
       const result = await firstValueFrom(service.searchNotes('meeting'));
       const ids = result.flat().map((n) => n.id);
@@ -372,7 +382,11 @@ describe('StoreService', () => {
     it('should group search results into rows of 3', async () => {
       for (let i = 1; i <= 5; i++) {
         service.addNote(
-          createNote({ id: String(i), content: 'common', date: new Date('2025-06-15') }),
+          createNote({
+            id: String(i),
+            content: 'common',
+            date: new Date('2025-06-15'),
+          }),
         );
       }
 
