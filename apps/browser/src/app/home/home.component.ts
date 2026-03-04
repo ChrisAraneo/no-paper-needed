@@ -1,16 +1,12 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { map } from 'rxjs';
 
 import { StoreService } from '../core/services';
 import { DialogService } from '../core/services/dialog/dialog.service';
 import { NoteComponent } from '../shared/components/note/note.component';
-import { TodayComponent } from '../shared/components/today/today.component';
 import { Note } from '../shared/interfaces/note.interface';
-
-const MAX_ROW_LENGTH = 3;
-const LAST_INDEX = -1;
+import { TodayComponent } from './today/today.component';
 
 @Component({
   selector: 'app-home',

@@ -2,11 +2,11 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { format } from 'date-fns';
 import { interval, mergeMap, Subscription } from 'rxjs';
-
-import { LocaleService } from '../../../core/services/locale/locale.service';
-import { HeaderComponent } from '../header/header.component';
+import { LocaleService } from '../../core/services/locale/locale.service';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 const MINUTE_MS = 60_000;
+const DATE_FORMAT = 'EEEE dd.MM';
 
 @Component({
   selector: 'app-today',
@@ -42,7 +42,7 @@ export class TodayComponent implements OnInit, OnDestroy {
   }
 
   private updateNow(locale: string): void {
-    this.now = format(new Date(), 'EEEE dd.MM', {
+    this.now = format(new Date(), DATE_FORMAT, {
       locale: this.localeService.getDateFnsLocale(locale),
     }).replace(/^./u, (c) => c.toUpperCase());
   }
