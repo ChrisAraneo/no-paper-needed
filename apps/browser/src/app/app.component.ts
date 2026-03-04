@@ -7,7 +7,7 @@ import { ElectronService } from './core/services';
 import { DialogService } from './core/services/dialog/dialog.service';
 import { LocaleService } from './core/services/locale/locale.service';
 import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-root',

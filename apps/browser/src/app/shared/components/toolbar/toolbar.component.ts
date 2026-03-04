@@ -3,10 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-
-import { ButtonComponent } from '../shared/components/button/button.component';
-import { LocaleService } from '../core/services/locale/locale.service';
-import { SearchbarComponent } from '../shared/components/searchbar/searchbar.component';
+import { LocaleService } from '../../../core/services/locale/locale.service';
+import { ButtonComponent } from '../button/button.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @Component({
   selector: 'app-toolbar',
