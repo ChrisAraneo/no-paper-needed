@@ -43,7 +43,7 @@ describe('StoreService', () => {
       service.addNote(note2);
 
       const result = await firstValueFrom(service.getNotes());
-      expect(result[0]).toHaveLength(2);
+      expect(result).toHaveLength(2);
     });
   });
 
@@ -108,7 +108,7 @@ describe('StoreService', () => {
       service.removeNote(1);
 
       const result = await firstValueFrom(service.getNotes());
-      expect(result[0]).toHaveLength(1);
+      expect(result).toHaveLength(1);
       expect(result[0].id).toBe('1');
     });
 
@@ -118,7 +118,7 @@ describe('StoreService', () => {
       service.removeNote(5);
 
       const result = await firstValueFrom(service.getNotes());
-      expect(result[0]).toHaveLength(1);
+      expect(result).toHaveLength(1);
     });
   });
 
