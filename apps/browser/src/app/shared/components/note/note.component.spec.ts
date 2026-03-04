@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { NoteComponent } from './note.component';
 import { Note } from '../../interfaces/note.interface';
+import { NoteComponent } from './note.component';
 
 const createNote = (overrides: Partial<Note> = {}): Note => ({
   id: '1',

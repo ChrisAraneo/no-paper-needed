@@ -11,6 +11,7 @@ import { StepPanelAction } from './step-panel.interfaces';
 })
 class TestHostComponent {
   actions: StepPanelAction[] = [];
+
   text = 'Step content';
 }
 

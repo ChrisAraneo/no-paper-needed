@@ -9,6 +9,7 @@ import { HeaderComponent } from './header.component';
 })
 class TestHostComponent {
   size: 'xl' | 'lg' = 'lg';
+
   text = 'Hello';
 }
 
