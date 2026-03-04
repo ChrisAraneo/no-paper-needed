@@ -2,6 +2,7 @@ import { configBuilder } from '@chris.araneo/eslint-config';
 
 const JSONS = ['**/*.json'];
 const IGNORED = [
+  '.angular/',
   '.nx/cache/',
   '.nx/workspace-data/',
   'apps/',
