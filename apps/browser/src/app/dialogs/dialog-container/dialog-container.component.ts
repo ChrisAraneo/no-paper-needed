@@ -5,6 +5,7 @@ import { StoreService } from '../../core/services/store/store.service';
 import { Note } from '../../shared/interfaces/note.interface';
 import { AddNoteDialogComponent } from '../add-note-dialog/add-note-dialog.component';
 import { EditNoteDialogComponent } from '../edit-note-dialog/edit-note-dialog.component';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-dialog-container',
@@ -17,12 +18,12 @@ export class DialogContainerComponent {
   private readonly storeService = inject(StoreService);
 
   protected onSaveNote(note: Note): void {
-    this.storeService.addNote(note);
+    this.storeService.addNote(note).pipe(first()).subscribe();
     this.dialogService.closeAddNoteDialog();
   }
 
   protected onEditNote(note: Note): void {
-    this.storeService.editNote(note);
+    this.storeService.editNote(note).pipe(first()).subscribe();
     this.dialogService.closeEditNoteDialog();
   }
 }
