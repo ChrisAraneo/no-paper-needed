@@ -188,7 +188,7 @@ describe('StepperDialogComponent', () => {
       const spy = vi.spyOn(component.activeStepChange, 'emit');
       component.activeStep = 1;
 
-      component.onActiveStepChange(undefined);
+      component.onActiveStepChange();
 
       expect(component.activeStep).toBe(1);
       expect(spy).not.toHaveBeenCalled();

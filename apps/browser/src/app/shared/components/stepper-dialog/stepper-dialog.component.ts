@@ -49,7 +49,7 @@ export class StepperDialogComponent {
   @ContentChildren(StepPanelDirective)
   stepPanels!: QueryList<StepPanelDirective>;
 
-  onActiveStepChange(step: number | undefined): void {
+  onActiveStepChange(step?: number): void {
     if (isUndefined(step)) {
       return;
     }
