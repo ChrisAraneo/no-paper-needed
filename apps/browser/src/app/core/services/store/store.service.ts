@@ -78,9 +78,7 @@ export class StoreService {
   addNote(note: Note): Observable<void> {
     return this.initialized.asObservable().pipe(
       filter((initialized) => initialized),
-      mergeMap(() =>
-        from(this.database.notes.add(noteToNoteRecord(note))),
-      ),
+      mergeMap(() => from(this.database.notes.add(noteToNoteRecord(note)))),
       tap(() => {
         const currentNotes = this.notes.value;
         this.notes.next([...currentNotes, note]);
@@ -92,9 +90,7 @@ export class StoreService {
   editNote(note: Note): Observable<void> {
     return this.initialized.asObservable().pipe(
       filter((initialized) => initialized),
-      mergeMap(() =>
-        from(this.database.notes.put(noteToNoteRecord(note))),
-      ),
+      mergeMap(() => from(this.database.notes.put(noteToNoteRecord(note)))),
       tap(() => {
         const currentNotes = this.notes.value;
         const index = currentNotes.findIndex((item) => item.id === note.id);
@@ -192,9 +188,7 @@ export class StoreService {
 
   private restore(): Observable<void> {
     return from(this.database.notes.toArray()).pipe(
-      map((records) =>
-        records.map((record) => noteRecordToNote(record)),
-      ),
+      map((records) => records.map((record) => noteRecordToNote(record))),
       tap((notes) => {
         this.notes.next(notes);
       }),
