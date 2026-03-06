@@ -1,3 +1,4 @@
+import 'fake-indexeddb/auto';
 import '@angular/compiler';
 import '@analogjs/vitest-angular/setup-zone';
 
