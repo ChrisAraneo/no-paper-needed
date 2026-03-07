@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   filter,
@@ -6,6 +6,7 @@ import {
   map,
   mergeMap,
   Observable,
+  of,
   switchMap,
   tap,
 } from 'rxjs';
@@ -16,11 +17,19 @@ import { NoteRecord } from '../../../shared/interfaces/note-record.interface';
 import Dexie, { Table } from 'dexie';
 import { noteToNoteRecord } from '../../../shared/functions/note-to-note-record.function';
 import { noteRecordToNote } from '../../../shared/functions/note-record-to-note.function';
+import { noop } from 'lodash-es';
+import { format } from 'date-fns';
+import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../../shared/consts/consts';
+import { LocaleService } from '../locale/locale.service';
+
+const LAST_INDEX = -1;
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoreService {
+  private readonly localeService = inject(LocaleService);
+
   private readonly notes = new BehaviorSubject<Note[]>([]);
   private readonly initialized = new BehaviorSubject<boolean>(false);
   private readonly database = new (class extends Dexie {
@@ -47,7 +56,7 @@ export class StoreService {
 
   getNoteTableForDate(date: Date): Observable<Note[][]> {
     return this.initialized.asObservable().pipe(
-      filter((initialized) => initialized),
+      filter(Boolean),
       switchMap(() => this.notes.asObservable()),
       map((notes) => this.filterNotesForDate(notes, date)),
       map((notes) => this.sortNotesByDate(notes)),
@@ -57,7 +66,7 @@ export class StoreService {
 
   getOutdatedNoteTableForDate(date: Date): Observable<Note[][]> {
     return this.initialized.asObservable().pipe(
-      filter((initialized) => initialized),
+      filter(Boolean),
       switchMap(() => this.notes.asObservable()),
       map((notes) => this.filterOutdatedNotesForDate(notes, date)),
       map((notes) => this.sortNotesByDate(notes)),
@@ -67,7 +76,7 @@ export class StoreService {
 
   searchNotes(query: string): Observable<Note[][]> {
     return this.initialized.asObservable().pipe(
-      filter((initialized) => initialized),
+      filter(Boolean),
       switchMap(() => this.notes.asObservable()),
       map((notes) => this.filterNotesByQuery(notes, query)),
       map((notes) => this.sortNotesByDate(notes)),
@@ -77,19 +86,19 @@ export class StoreService {
 
   addNote(note: Note): Observable<void> {
     return this.initialized.asObservable().pipe(
-      filter((initialized) => initialized),
+      filter(Boolean),
       mergeMap(() => from(this.database.notes.add(noteToNoteRecord(note)))),
       tap(() => {
         const currentNotes = this.notes.value;
         this.notes.next([...currentNotes, note]);
       }),
-      map(() => undefined),
+      map(noop),
     );
   }
 
   editNote(note: Note): Observable<void> {
     return this.initialized.asObservable().pipe(
-      filter((initialized) => initialized),
+      filter(Boolean),
       mergeMap(() => from(this.database.notes.put(noteToNoteRecord(note)))),
       tap(() => {
         const currentNotes = this.notes.value;
@@ -101,13 +110,13 @@ export class StoreService {
           this.notes.next(updatedNotes);
         }
       }),
-      map(() => undefined),
+      map(noop),
     );
   }
 
   removeNote(index: number): Observable<void> {
     return this.initialized.asObservable().pipe(
-      filter((initialized) => initialized),
+      filter(Boolean),
       map(() => {
         const currentNotes = this.notes.value;
         const noteToRemove = currentNotes[index];
@@ -119,10 +128,10 @@ export class StoreService {
         if (noteToRemove) {
           return from(this.database.notes.delete(noteToRemove.id));
         } else {
-          return from(Promise.resolve(undefined));
+          return of(void 0);
         }
       }),
-      map(() => undefined),
+      map(noop),
     );
   }
 
@@ -134,8 +143,6 @@ export class StoreService {
     notes: Note[],
     maxRowLength: number,
   ): Note[][] {
-    const LAST_INDEX = -1;
-
     return notes.reduce<(typeof notes)[]>((rows, note, index) => {
       if (index % maxRowLength) {
         rows.at(LAST_INDEX)?.push(note);
@@ -174,6 +181,12 @@ export class StoreService {
       const value = [
         note.content,
         note.date.toISOString(),
+        format(note.date, WEEKDAY_DAY_MONTH_DATE_FORMAT, {
+          locale: this.localeService.getDateFnsLocale('en'),
+        }),
+        format(note.date, WEEKDAY_DAY_MONTH_DATE_FORMAT, {
+          locale: this.localeService.getDateFnsLocale('pl'),
+        }),
         note.date.toLocaleDateString('en-GB'),
         note.date.toLocaleDateString('pl-PL'),
         note.reminderDaysBefore,
@@ -192,7 +205,7 @@ export class StoreService {
       tap((notes) => {
         this.notes.next(notes);
       }),
-      map(() => undefined),
+      map(noop),
     );
   }
 }
