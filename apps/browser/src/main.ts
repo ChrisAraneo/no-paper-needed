@@ -10,7 +10,6 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { providePrimeNG } from 'primeng/config';
 
-import { FALLBACK_LOCALE } from './app/app.consts';
 import { AppComponent } from './app/app.component';
 import { ArchiveComponent } from './app/archive/archive.component';
 import { CoreModule } from './app/core/core.module';
@@ -19,6 +18,7 @@ import { SearchComponent } from './app/search/search.component';
 import { SharedModule } from './app/shared/shared.module';
 import { APP_CONFIG } from '../environments/environment';
 import { THEME } from './app/shared/styles/theme';
+import { FALLBACK_LOCALE } from './app/shared/consts/consts';
 
 if (APP_CONFIG.production) {
   enableProdMode();

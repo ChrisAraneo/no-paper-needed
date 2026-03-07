@@ -2,12 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FALLBACK_LOCALE } from './app.consts';
 import { ElectronService } from './core/services';
 import { DialogService } from './core/services/dialog/dialog.service';
 import { LocaleService } from './core/services/locale/locale.service';
 import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
+import { FALLBACK_LOCALE } from './shared/consts/consts';
 
 @Component({
   selector: 'app-root',
