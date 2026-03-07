@@ -1,6 +1,20 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchbarComponent } from './searchbar.component';
+
+@Component({
+  imports: [SearchbarComponent],
+  template: `<app-searchbar [value]="value" (search)="onSearch($event)" />`,
+})
+class TestHostComponent {
+  value = '';
+  lastSearch = '';
+
+  onSearch(query: string): void {
+    this.lastSearch = query;
+  }
+}
 
 describe('SearchbarComponent', () => {
   let component: SearchbarComponent;
@@ -8,7 +22,7 @@ describe('SearchbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchbarComponent],
+      imports: [SearchbarComponent, TestHostComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SearchbarComponent);
@@ -18,5 +32,192 @@ describe('SearchbarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render a p-iconfield', () => {
+    const iconField = fixture.nativeElement.querySelector('p-iconfield');
+
+    expect(iconField).toBeTruthy();
+  });
+
+  it('should render a p-inputicon with pi-search class', () => {
+    const inputIcon = fixture.nativeElement.querySelector(
+      'p-inputicon.pi.pi-search',
+    );
+
+    expect(inputIcon).toBeTruthy();
+  });
+
+  it('should render an input with type text', () => {
+    const input = fixture.nativeElement.querySelector('input[type="text"]');
+
+    expect(input).toBeTruthy();
+  });
+
+  it('should render an input with placeholder "Search"', () => {
+    const input = fixture.nativeElement.querySelector(
+      'input',
+    ) as HTMLInputElement;
+
+    expect(input.placeholder).toBe('Search');
+  });
+
+  describe('default inputs', () => {
+    it('should have value as empty string by default', () => {
+      expect(component.value).toBe('');
+    });
+
+    it('should have model as empty string by default', () => {
+      expect((component as any).model).toBe('');
+    });
+
+    it('should render input with empty value by default', () => {
+      const input = fixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+
+      expect(input.value).toBe('');
+    });
+  });
+
+  describe('value input', () => {
+    it('should sync model from value on changes', () => {
+      fixture.componentRef.setInput('value', 'hello');
+      fixture.detectChanges();
+
+      expect((component as any).model).toBe('hello');
+    });
+
+    it('should update the input element when value changes', async () => {
+      fixture.componentRef.setInput('value', 'test query');
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const input = fixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+
+      expect(input.value).toBe('test query');
+    });
+
+    it('should update model when value changes multiple times', () => {
+      fixture.componentRef.setInput('value', 'first');
+      fixture.detectChanges();
+
+      expect((component as any).model).toBe('first');
+
+      fixture.componentRef.setInput('value', 'second');
+      fixture.detectChanges();
+
+      expect((component as any).model).toBe('second');
+    });
+  });
+
+  describe('search output', () => {
+    it('should emit search event when input value changes', () => {
+      const spy = vi.fn();
+      component.search.subscribe(spy);
+
+      const input = fixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+      input.value = 'new value';
+      input.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      expect(spy).toHaveBeenCalledWith('new value');
+    });
+
+    it('should emit search event for each keystroke change', () => {
+      const spy = vi.fn();
+      component.search.subscribe(spy);
+
+      const input = fixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+
+      input.value = 'a';
+      input.dispatchEvent(new Event('input'));
+
+      input.value = 'ab';
+      input.dispatchEvent(new Event('input'));
+
+      expect(spy).toHaveBeenCalledTimes(2);
+      expect(spy).toHaveBeenNthCalledWith(1, 'a');
+      expect(spy).toHaveBeenNthCalledWith(2, 'ab');
+    });
+
+    it('should emit empty string when input is cleared', () => {
+      const spy = vi.fn();
+      component.search.subscribe(spy);
+
+      const input = fixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+      input.value = '';
+      input.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      expect(spy).toHaveBeenCalledWith('');
+    });
+
+    it('should not emit without user interaction', () => {
+      const spy = vi.fn();
+      component.search.subscribe(spy);
+      fixture.detectChanges();
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('with host', () => {
+    let hostFixture: ComponentFixture<TestHostComponent>;
+
+    beforeEach(() => {
+      hostFixture = TestBed.createComponent(TestHostComponent);
+      hostFixture.detectChanges();
+    });
+
+    it('should pass value from host to searchbar', async () => {
+      hostFixture.componentInstance.value = 'from host';
+      hostFixture.changeDetectorRef.markForCheck();
+      hostFixture.detectChanges();
+      await hostFixture.whenStable();
+
+      const input = hostFixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+
+      expect(input.value).toBe('from host');
+    });
+
+    it('should call host onSearch when input changes', () => {
+      const input = hostFixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+      input.value = 'typed';
+      input.dispatchEvent(new Event('input'));
+      hostFixture.detectChanges();
+
+      expect(hostFixture.componentInstance.lastSearch).toBe('typed');
+    });
+
+    it('should update input when host value changes', async () => {
+      hostFixture.componentInstance.value = 'initial';
+      hostFixture.changeDetectorRef.markForCheck();
+      hostFixture.detectChanges();
+      await hostFixture.whenStable();
+
+      hostFixture.componentInstance.value = 'updated';
+      hostFixture.changeDetectorRef.markForCheck();
+      hostFixture.detectChanges();
+      await hostFixture.whenStable();
+
+      const input = hostFixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+
+      expect(input.value).toBe('updated');
+    });
   });
 });
