@@ -14,14 +14,8 @@ import { StepperModule } from 'primeng/stepper';
 
 import { StepPanelDirective } from '../../directives/step-panel/step-panel.directive';
 import { StepPanelComponent } from '../step-panel/step-panel.component';
-
-export interface StepConfig {
-  value: number;
-  label: string;
-  content?: unknown;
-}
-
-const DEFAULT_ACTIVE_STEP = 1;
+import { DEFAULT_ACTIVE_STEP } from './stepper-dialog.consts';
+import { StepConfig } from './stepper-dialog.interfaces';
 
 @Component({
   selector: 'app-stepper-dialog',
