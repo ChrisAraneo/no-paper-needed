@@ -2,3 +2,19 @@
   font-family: 'Orienta';
   src: url('/fonts/Orienta/Orienta-Regular.ttf') format('truetype');
 }
+
+body,
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Orienta', sans-serif;
+}
+
+html,
+body {
+  font-size: 16px;
+}
