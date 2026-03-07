@@ -126,8 +126,8 @@ describe('ToolbarComponent', () => {
 
       component.navigateToSearch('hello');
 
-      const args = navigateSpy.mock.calls[0];
-      const path = args[0] as string[];
+      const [args] = navigateSpy.mock.calls;
+      const [path] = args;
 
       expect(path).toHaveLength(2);
       expect(path[1]).toBe('search');
