@@ -23,31 +23,31 @@ describe('ButtonComponent', () => {
 
   describe('default inputs', () => {
     it('should have empty label by default', () => {
-      expect(component.label).toBe('');
+      expect(component.label()).toBe('');
     });
 
     it('should have empty icon by default', () => {
-      expect(component.icon).toBe('');
+      expect(component.icon()).toBe('');
     });
 
     it('should have iconPosition "right" by default', () => {
-      expect(component.iconPosition).toBe('right');
+      expect(component.iconPosition()).toBe('right');
     });
 
     it('should not be disabled by default', () => {
-      expect(component.isDisabled).toBe(false);
+      expect(component.isDisabled()).toBe(false);
     });
 
     it('should have null severity by default', () => {
-      expect(component.severity).toBeNull();
+      expect(component.severity()).toBeNull();
     });
 
     it('should not be rounded by default', () => {
-      expect(component.isRounded).toBe(false);
+      expect(component.isRounded()).toBe(false);
     });
 
     it('should have empty styleClass by default', () => {
-      expect(component.styleClass).toBe('');
+      expect(component.styleClass()).toBe('');
     });
   });
 
@@ -98,6 +98,38 @@ describe('ButtonComponent', () => {
 
       const buttonEl = fixture.debugElement.query(By.css('button'));
       expect(buttonEl.nativeElement.className).toContain('custom-class');
+    });
+  });
+
+  describe('rendered text', () => {
+    it('should display no text when label is empty', () => {
+      const buttonEl = fixture.debugElement.query(By.css('button'));
+
+      expect(buttonEl.nativeElement.textContent.trim()).toBe('');
+    });
+
+    it('should display label text inside the button', () => {
+      fixture.componentRef.setInput('label', 'Save');
+      fixture.detectChanges();
+
+      const buttonEl = fixture.debugElement.query(By.css('button'));
+
+      expect(buttonEl.nativeElement.textContent).toContain('Save');
+    });
+
+    it('should update displayed text when label changes', () => {
+      fixture.componentRef.setInput('label', 'First');
+      fixture.detectChanges();
+
+      const buttonEl = fixture.debugElement.query(By.css('button'));
+
+      expect(buttonEl.nativeElement.textContent).toContain('First');
+
+      fixture.componentRef.setInput('label', 'Second');
+      fixture.detectChanges();
+
+      expect(buttonEl.nativeElement.textContent).toContain('Second');
+      expect(buttonEl.nativeElement.textContent).not.toContain('First');
     });
   });
 
