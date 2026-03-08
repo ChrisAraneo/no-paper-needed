@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  @Input() size: 'xl' | 'lg' = 'lg';
+  readonly size = input<'xl' | 'lg'>('lg');
 }
