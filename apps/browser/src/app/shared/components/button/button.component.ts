@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import {
   ButtonIconPosition,
   ButtonModule,
@@ -12,15 +12,15 @@ import {
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  @Input() label = '';
-  @Input() icon = '';
-  @Input() iconPosition: ButtonIconPosition = 'right';
-  @Input() isDisabled = false;
-  @Input() severity: ButtonSeverity = null;
-  @Input() isRounded = false;
-  @Input() styleClass = '';
+  readonly label = input('');
+  readonly icon = input('');
+  readonly iconPosition = input<ButtonIconPosition>('right');
+  readonly isDisabled = input(false);
+  readonly severity = input<ButtonSeverity | null>(null);
+  readonly isRounded = input(false);
+  readonly styleClass = input('');
 
-  @Output() readonly clicked = new EventEmitter<void>();
+  readonly clicked = output<void>();
 
   onClick(): void {
     this.clicked.emit();
