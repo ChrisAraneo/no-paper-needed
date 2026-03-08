@@ -49,7 +49,7 @@ describe('HeaderComponent', () => {
 
   describe('default inputs', () => {
     it('should have size "lg" by default', () => {
-      expect(component.size).toBe('lg');
+      expect(component.size()).toBe('lg');
     });
 
     it('should apply "lg" class to h1 by default', () => {
@@ -104,6 +104,41 @@ describe('HeaderComponent', () => {
       const h1 = hostFixture.nativeElement.querySelector('h1');
 
       expect(h1.classList.contains('xl')).toBe(true);
+    });
+  });
+
+  describe('rendered text', () => {
+    it('should display no text when no content is projected', () => {
+      const h1 = fixture.nativeElement.querySelector('h1');
+
+      expect(h1.textContent.trim()).toBe('');
+    });
+
+    it('should display projected text inside h1', () => {
+      const h1 = hostFixture.nativeElement.querySelector('h1');
+
+      expect(h1.textContent).toContain('Hello');
+    });
+
+    it('should update rendered text when host text changes', () => {
+      hostFixture.componentInstance.text = 'New Title';
+      hostFixture.changeDetectorRef.markForCheck();
+      hostFixture.detectChanges();
+
+      const h1 = hostFixture.nativeElement.querySelector('h1');
+
+      expect(h1.textContent).toContain('New Title');
+      expect(h1.textContent).not.toContain('Hello');
+    });
+
+    it('should render empty h1 when host text is cleared', () => {
+      hostFixture.componentInstance.text = '';
+      hostFixture.changeDetectorRef.markForCheck();
+      hostFixture.detectChanges();
+
+      const h1 = hostFixture.nativeElement.querySelector('h1');
+
+      expect(h1.textContent.trim()).toBe('');
     });
   });
 });
