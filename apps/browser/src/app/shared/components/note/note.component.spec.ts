@@ -31,18 +31,6 @@ describe('NoteComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render a container div', () => {
-    const container = fixture.nativeElement.querySelector('.container');
-
-    expect(container).toBeTruthy();
-  });
-
-  it('should render a p-card', () => {
-    const card = fixture.nativeElement.querySelector('p-card');
-
-    expect(card).toBeTruthy();
-  });
-
   describe('default inputs', () => {
     it('should have undefined note by default', () => {
       expect(component.note()).toBeUndefined();
@@ -232,18 +220,205 @@ describe('NoteComponent', () => {
     });
   });
 
-  describe('structure', () => {
-    it('should have header, content, and footer sections', () => {
-      fixture.componentRef.setInput('note', createNote());
-      fixture.detectChanges();
+  describe('rendered elements', () => {
+    describe('containers', () => {
+      it('should have header, content, and footer sections', () => {
+        fixture.componentRef.setInput('note', createNote());
+        fixture.detectChanges();
 
-      const header = fixture.nativeElement.querySelector('.header');
-      const content = fixture.nativeElement.querySelector('.content');
-      const footer = fixture.nativeElement.querySelector('.footer');
+        const header = fixture.nativeElement.querySelector('.header');
+        const content = fixture.nativeElement.querySelector('.content');
+        const footer = fixture.nativeElement.querySelector('.footer');
 
-      expect(header).toBeTruthy();
-      expect(content).toBeTruthy();
-      expect(footer).toBeTruthy();
+        expect(header).toBeTruthy();
+        expect(content).toBeTruthy();
+        expect(footer).toBeTruthy();
+      });
+
+      it('should render a container div', () => {
+        const container = fixture.nativeElement.querySelector('.container');
+
+        expect(container).toBeTruthy();
+      });
+
+      it('should render a p-card', () => {
+        const card = fixture.nativeElement.querySelector('p-card');
+
+        expect(card).toBeTruthy();
+      });
+    });
+
+    describe('content', () => {
+      it('should display no content text when note is undefined', () => {
+        const p = fixture.nativeElement.querySelector('.content p');
+
+        expect(p.textContent.trim()).toBe('');
+      });
+
+      it('should display the note content text', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ content: 'Hello world' }),
+        );
+        fixture.detectChanges();
+
+        const p = fixture.nativeElement.querySelector('.content p');
+
+        expect(p.textContent.trim()).toBe('Hello world');
+      });
+
+      it('should display empty content when note content is an empty string', () => {
+        fixture.componentRef.setInput('note', createNote({ content: '' }));
+        fixture.detectChanges();
+
+        const p = fixture.nativeElement.querySelector('.content p');
+
+        expect(p.textContent.trim()).toBe('');
+      });
+
+      it('should update displayed content when note input changes', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ content: 'Old text' }),
+        );
+        fixture.detectChanges();
+
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ content: 'New text' }),
+        );
+        fixture.detectChanges();
+
+        const p = fixture.nativeElement.querySelector('.content p');
+
+        expect(p.textContent.trim()).toBe('New text');
+        expect(p.textContent).not.toContain('Old text');
+      });
+
+      it('should preserve special characters in content', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ content: 'A & B < C > D "quoted"' }),
+        );
+        fixture.detectChanges();
+
+        const p = fixture.nativeElement.querySelector('.content p');
+
+        expect(p.textContent).toContain('A & B < C > D "quoted"');
+      });
+    });
+
+    describe('date', () => {
+      it('should display no date text when note is undefined', () => {
+        const dateEl = fixture.nativeElement.querySelector('.date');
+
+        expect(dateEl).toBeFalsy();
+      });
+
+      it('should display a formatted date string', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ date: new Date('2025-06-15') }),
+        );
+        fixture.detectChanges();
+
+        const dateEl = fixture.nativeElement.querySelector('.date');
+
+        expect(dateEl.textContent.trim()).toBeTruthy();
+      });
+
+      it('should update the displayed date when note changes', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ date: new Date('2025-01-01') }),
+        );
+        fixture.detectChanges();
+
+        const firstText = fixture.nativeElement
+          .querySelector('.date')
+          .textContent.trim();
+
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ date: new Date('2025-12-31') }),
+        );
+        fixture.detectChanges();
+
+        const secondText = fixture.nativeElement
+          .querySelector('.date')
+          .textContent.trim();
+
+        expect(secondText).not.toBe(firstText);
+      });
+    });
+
+    describe('footer reminder', () => {
+      it('should display no reminder text when reminderDaysBefore is 0', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ reminderDaysBefore: 0 }),
+        );
+        fixture.detectChanges();
+
+        const span = fixture.nativeElement.querySelector('.footer span');
+
+        expect(span).toBeFalsy();
+      });
+
+      it('should display no reminder text when note is undefined', () => {
+        const span = fixture.nativeElement.querySelector('.footer span');
+
+        expect(span).toBeFalsy();
+      });
+
+      it('should display the reminderDaysBefore number in the footer', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ reminderDaysBefore: 7 }),
+        );
+        fixture.detectChanges();
+
+        const span = fixture.nativeElement.querySelector('.footer span');
+
+        expect(span.textContent).toContain('7');
+      });
+
+      it('should update displayed reminder number when note changes', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ reminderDaysBefore: 3 }),
+        );
+        fixture.detectChanges();
+
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ reminderDaysBefore: 10 }),
+        );
+        fixture.detectChanges();
+
+        const span = fixture.nativeElement.querySelector('.footer span');
+
+        expect(span.textContent).toContain('10');
+        expect(span.textContent).not.toContain('3 ');
+      });
+
+      it('should hide reminder span when reminderDaysBefore changes from positive to 0', () => {
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ reminderDaysBefore: 5 }),
+        );
+        fixture.detectChanges();
+
+        fixture.componentRef.setInput(
+          'note',
+          createNote({ reminderDaysBefore: 0 }),
+        );
+        fixture.detectChanges();
+
+        const span = fixture.nativeElement.querySelector('.footer span');
+
+        expect(span).toBeFalsy();
+      });
     });
   });
 });
