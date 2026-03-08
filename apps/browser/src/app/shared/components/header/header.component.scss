@@ -1,12 +1,12 @@
-header {
-  font-family: 'Orienta', sans-serif;
+header, h1 {
   padding: 0;
   margin: 0;
+}
 
+header {
   h1 {
+    font-family: 'Orienta', sans-serif;
     font-weight: 500 !important;
-    padding: 0;
-    margin: 0;
     letter-spacing: 0.4px;
   }
 
