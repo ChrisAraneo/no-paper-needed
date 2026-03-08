@@ -26,7 +26,8 @@
     <div class="footer">
       @if (note()?.reminderDaysBefore) {
         <span [pTooltip]="'NOTE.BELL_TOOLTIP' | translate"
-          ><i class="pi pi-bell"></i>{{ ` ${note()!.reminderDaysBefore}` }}</span
+          ><i class="pi pi-bell"></i
+          >{{ ` ${note()!.reminderDaysBefore}` }}</span
         >
       }
     </div>
