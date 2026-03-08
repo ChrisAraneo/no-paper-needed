@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonComponent } from '../button/button.component';
@@ -19,8 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './note.component.scss',
 })
 export class NoteComponent {
-  @Input() note: Note | undefined;
-  @Input() showEditButton = false;
+  readonly note = input<Note | undefined>(undefined);
+  readonly showEditButton = input(false);
 
-  @Output() readonly edit = new EventEmitter<Note>();
+  readonly edit = output<Note>();
 }

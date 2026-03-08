@@ -1,3 +1,4 @@
+import { outputToObservable } from '@angular/core/rxjs-interop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -44,11 +45,11 @@ describe('NoteComponent', () => {
 
   describe('default inputs', () => {
     it('should have undefined note by default', () => {
-      expect(component.note).toBeUndefined();
+      expect(component.note()).toBeUndefined();
     });
 
     it('should have showEditButton false by default', () => {
-      expect(component.showEditButton).toBe(false);
+      expect(component.showEditButton()).toBe(false);
     });
 
     it('should not render date when note is undefined', () => {
@@ -193,7 +194,7 @@ describe('NoteComponent', () => {
       fixture.detectChanges();
 
       const spy = vi.fn();
-      component.edit.subscribe(spy);
+      outputToObservable(component.edit).subscribe(spy);
 
       const button = fixture.nativeElement.querySelector(
         '.edit-button app-button button',
@@ -209,7 +210,7 @@ describe('NoteComponent', () => {
       fixture.detectChanges();
 
       const spy = vi.fn();
-      component.edit.subscribe(spy);
+      outputToObservable(component.edit).subscribe(spy);
 
       const button = fixture.nativeElement.querySelector(
         '.edit-button app-button button',
@@ -225,7 +226,7 @@ describe('NoteComponent', () => {
       fixture.detectChanges();
 
       const spy = vi.fn();
-      component.edit.subscribe(spy);
+      outputToObservable(component.edit).subscribe(spy);
 
       expect(spy).not.toHaveBeenCalled();
     });

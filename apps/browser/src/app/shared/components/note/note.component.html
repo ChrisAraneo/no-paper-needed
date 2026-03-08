@@ -1,32 +1,32 @@
 <div class="container">
   <p-card>
     <div class="header">
-      @if (note?.date) {
+      @if (note()?.date) {
         <p class="date" [pTooltip]="'NOTE.DATE_TOOLTIP' | translate">
-          {{ note!.date | date }}
+          {{ note()!.date | date }}
         </p>
       }
-      @if (showEditButton) {
+      @if (showEditButton()) {
         <div class="edit-button" [pTooltip]="'NOTE.EDIT_TOOLTIP' | translate">
           <app-button
             icon="pi pi-pencil"
             severity="secondary"
             [isRounded]="true"
-            (clicked)="edit.emit(note)" />
+            (clicked)="edit.emit(note()!)" />
         </div>
       }
     </div>
     <div class="content">
       <p>
-        @if (note?.content) {
-          {{ note!.content }}
+        @if (note()?.content) {
+          {{ note()!.content }}
         }
       </p>
     </div>
     <div class="footer">
-      @if (note?.reminderDaysBefore) {
+      @if (note()?.reminderDaysBefore) {
         <span [pTooltip]="'NOTE.BELL_TOOLTIP' | translate"
-          ><i class="pi pi-bell"></i>{{ ` ${note!.reminderDaysBefore}` }}</span
+          ><i class="pi pi-bell"></i>{{ ` ${note()!.reminderDaysBefore}` }}</span
         >
       }
     </div>
