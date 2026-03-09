@@ -1,13 +1,11 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
+    "outDir": "../../../dist/out-tsc",
     "types": []
   },
-  "include": ["src/**/*.ts"],
   "exclude": [
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
@@ -15,12 +13,10 @@
     "vite.config.mts",
     "vitest.config.ts",
     "vitest.config.mts",
-    "src/**/*.test.tsx",
-    "src/**/*.spec.tsx",
     "src/**/*.test.js",
     "src/**/*.spec.js",
-    "src/**/*.test.jsx",
-    "src/**/*.spec.jsx",
     "src/test-setup.ts"
-  ]
+  ],
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*.ts"]
 }

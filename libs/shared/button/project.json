@@ -1,13 +1,32 @@
 {
-  "name": "button",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/button/src",
+  "name": "button",
   "prefix": "npn",
   "projectType": "library",
+  "sourceRoot": "libs/shared/button/src",
   "tags": [],
   "targets": {
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run button:lint:fix", "nx run button:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/shared/button/\""
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
     }
   }
 }
