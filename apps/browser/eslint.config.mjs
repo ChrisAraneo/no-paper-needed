@@ -1,4 +1,3 @@
-import baseConfig from '../../eslint.base.config.mjs';
 import { configBuilder } from '@chris.araneo/eslint-config';
 
 const PREFIX = 'app';
