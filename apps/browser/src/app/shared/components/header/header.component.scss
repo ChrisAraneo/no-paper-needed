@@ -18,4 +18,11 @@ header {
   h1.lg {
     font-size: 22px !important;
   }
+
+  h1.md {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.375px;
+    margin-bottom: 16px;
+  }
 }

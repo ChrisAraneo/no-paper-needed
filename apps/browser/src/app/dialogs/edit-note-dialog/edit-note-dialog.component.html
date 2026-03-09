@@ -8,9 +8,9 @@
     (activeStepChange)="activeStep.set($event)"
     (close)="closeDialog()">
     <ng-template appStepPanel [stepValue]="1" [stepActions]="step1Actions()">
-      <app-subheader>{{
+      <app-header size="md">{{
         'DIALOGS.EDIT_NOTE.DATE_SUBHEADER' | translate
-      }}</app-subheader>
+      }}</app-header>
       <p-datepicker
         formControlName="date"
         class="max-w-full"
@@ -19,9 +19,9 @@
         [showWeek]="true" />
     </ng-template>
     <ng-template appStepPanel [stepValue]="2" [stepActions]="step2Actions()">
-      <app-subheader>{{
+      <app-header size="md">{{
         'DIALOGS.EDIT_NOTE.CONTENT_SUBHEADER' | translate
-      }}</app-subheader>
+      }}</app-header>
       <p-floatlabel variant="in">
         <textarea
           pTextarea
@@ -39,9 +39,9 @@
       </p-floatlabel>
     </ng-template>
     <ng-template appStepPanel [stepValue]="3" [stepActions]="step3Actions()">
-      <app-subheader>{{
+      <app-header size="md">{{
         'DIALOGS.EDIT_NOTE.REMINDERS_SUBHEADER' | translate
-      }}</app-subheader>
+      }}</app-header>
       <div class="radio-buttons">
         <div>
           <p-radiobutton
@@ -82,9 +82,9 @@
       </div>
     </ng-template>
     <ng-template appStepPanel [stepValue]="4" [stepActions]="step4Actions()">
-      <app-subheader>{{
+      <app-header size="md">{{
         'DIALOGS.EDIT_NOTE.SUMMARY_SUBHEADER' | translate
-      }}</app-subheader>
+      }}</app-header>
       <div class="summary-surface">
         <app-note [note]="note()" />
       </div>

@@ -10,7 +10,7 @@ import { TextareaModule } from 'primeng/textarea';
 
 import { NoteComponent } from '../../shared/components/note/note.component';
 import { StepperDialogComponent } from '../../shared/components/stepper-dialog/stepper-dialog.component';
-import { SubheaderComponent } from '../../shared/components/subheader/subheader.component';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 import { StepPanelDirective } from '../../shared/directives/step-panel/step-panel.directive';
 import { NoteDialog } from '../note-dialog.directive';
 
@@ -26,7 +26,7 @@ import { NoteDialog } from '../note-dialog.directive';
     DatePickerModule,
     InputNumberModule,
     RadioButtonModule,
-    SubheaderComponent,
+    HeaderComponent,
     StepperDialogComponent,
     StepPanelDirective,
     NoteComponent,

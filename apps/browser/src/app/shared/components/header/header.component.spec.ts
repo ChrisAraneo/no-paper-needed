@@ -8,7 +8,7 @@ import { HeaderComponent } from './header.component';
   template: `<app-header [size]="size">{{ text }}</app-header>`,
 })
 class TestHostComponent {
-  size: 'xl' | 'lg' = 'lg';
+  size: 'xl' | 'lg' | 'md' = 'lg';
 
   text = 'Hello';
 }
@@ -76,6 +76,25 @@ describe('HeaderComponent', () => {
       const h1 = fixture.nativeElement.querySelector('h1');
 
       expect(h1.classList.contains('lg')).toBe(true);
+    });
+
+    it('should apply "md" class when size is "md"', () => {
+      fixture.componentRef.setInput('size', 'md');
+      fixture.detectChanges();
+
+      const h1 = fixture.nativeElement.querySelector('h1');
+
+      expect(h1.classList.contains('md')).toBe(true);
+    });
+
+    it('should pass "md" size input from host to header', () => {
+      hostFixture.componentInstance.size = 'md';
+      hostFixture.changeDetectorRef.markForCheck();
+      hostFixture.detectChanges();
+
+      const h1 = hostFixture.nativeElement.querySelector('h1');
+
+      expect(h1.classList.contains('md')).toBe(true);
     });
   });
 
