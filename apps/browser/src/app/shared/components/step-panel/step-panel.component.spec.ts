@@ -62,7 +62,7 @@ describe('StepPanelComponent', () => {
 
     it('should not render any buttons when actions is empty', () => {
       const buttons = fixture.nativeElement.querySelectorAll(
-        '.actions app-button',
+        '.actions npn-button',
       );
 
       expect(buttons.length).toBe(0);
@@ -79,7 +79,7 @@ describe('StepPanelComponent', () => {
       fixture.detectChanges();
 
       const buttons = fixture.nativeElement.querySelectorAll(
-        '.actions app-button',
+        '.actions npn-button',
       );
 
       expect(buttons.length).toBe(2);
@@ -92,7 +92,7 @@ describe('StepPanelComponent', () => {
       fixture.detectChanges();
 
       const button = fixture.nativeElement.querySelector(
-        '.actions app-button button',
+        '.actions npn-button button',
       );
 
       expect(button.textContent).toContain('Continue');
@@ -104,7 +104,7 @@ describe('StepPanelComponent', () => {
       fixture.detectChanges();
 
       const button = fixture.nativeElement.querySelector(
-        '.actions app-button button',
+        '.actions npn-button button',
       );
       button.click();
 
@@ -118,7 +118,7 @@ describe('StepPanelComponent', () => {
       fixture.detectChanges();
 
       const button = fixture.nativeElement.querySelector(
-        '.actions app-button button',
+        '.actions npn-button button',
       );
 
       expect(button.disabled).toBe(true);
@@ -150,7 +150,7 @@ describe('StepPanelComponent', () => {
       hostFixture.detectChanges();
 
       const buttons = hostFixture.nativeElement.querySelectorAll(
-        '.actions app-button',
+        '.actions npn-button',
       );
 
       expect(buttons.length).toBe(1);

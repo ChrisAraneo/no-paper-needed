@@ -32,8 +32,8 @@ describe('ToolbarComponent', () => {
       expect(cols).toHaveLength(3);
     });
 
-    it('should render three app-button elements', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('app-button');
+    it('should render three npn-button elements', () => {
+      const buttons = fixture.nativeElement.querySelectorAll('npn-button');
 
       expect(buttons).toHaveLength(3);
     });
@@ -55,7 +55,7 @@ describe('ToolbarComponent', () => {
       const flexEndCol = fixture.nativeElement.querySelector('.col.flex-end');
 
       expect(flexEndCol).toBeTruthy();
-      expect(flexEndCol.querySelector('app-button')).toBeTruthy();
+      expect(flexEndCol.querySelector('npn-button')).toBeTruthy();
     });
 
     it('should render home and archive buttons in the first column', () => {
@@ -65,7 +65,7 @@ describe('ToolbarComponent', () => {
 
       expect(firstCol).toBeTruthy();
 
-      const buttons = firstCol.querySelectorAll('app-button');
+      const buttons = firstCol.querySelectorAll('npn-button');
 
       expect(buttons).toHaveLength(2);
     });
@@ -77,7 +77,7 @@ describe('ToolbarComponent', () => {
       component.addNote.subscribe(spy);
 
       const flexEndCol = fixture.nativeElement.querySelector('.col.flex-end');
-      const addButton = flexEndCol.querySelector('app-button');
+      const addButton = flexEndCol.querySelector('npn-button');
       const pButton = addButton.querySelector('p-button button');
       pButton.click();
       fixture.detectChanges();

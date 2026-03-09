@@ -151,13 +151,13 @@ describe('NoteComponent', () => {
       expect(editButton).toBeTruthy();
     });
 
-    it('should render app-button inside edit button', () => {
+    it('should render npn-button inside edit button', () => {
       fixture.componentRef.setInput('note', createNote());
       fixture.componentRef.setInput('showEditButton', true);
       fixture.detectChanges();
 
       const appButton = fixture.nativeElement.querySelector(
-        '.edit-button app-button',
+        '.edit-button npn-button',
       );
 
       expect(appButton).toBeTruthy();
@@ -185,7 +185,7 @@ describe('NoteComponent', () => {
       outputToObservable(component.edit).subscribe(spy);
 
       const button = fixture.nativeElement.querySelector(
-        '.edit-button app-button button',
+        '.edit-button npn-button button',
       );
       button.click();
 
@@ -201,7 +201,7 @@ describe('NoteComponent', () => {
       outputToObservable(component.edit).subscribe(spy);
 
       const button = fixture.nativeElement.querySelector(
-        '.edit-button app-button button',
+        '.edit-button npn-button button',
       );
       button.click();
 
