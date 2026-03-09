@@ -5,10 +5,13 @@ import { HeaderComponent } from './header.component';
 
 @Component({
   imports: [HeaderComponent],
-  template: `<app-header [size]="size">{{ text }}</app-header>`,
+  template: `<app-header [size]="size" [element]="element">{{
+    text
+  }}</app-header>`,
 })
 class TestHostComponent {
   size: 'xl' | 'lg' | 'md' = 'lg';
+  element: 'h1' | 'h2' = 'h1';
 
   text = 'Hello';
 }
@@ -123,6 +126,52 @@ describe('HeaderComponent', () => {
       const h1 = hostFixture.nativeElement.querySelector('h1');
 
       expect(h1.classList.contains('xl')).toBe(true);
+    });
+  });
+
+  describe('element input', () => {
+    it('should default to h1', () => {
+      expect(component.element()).toBe('h1');
+    });
+
+    it('should render h1 by default', () => {
+      const h1 = fixture.nativeElement.querySelector('header > h1');
+      const h2 = fixture.nativeElement.querySelector('header > h2');
+
+      expect(h1).toBeTruthy();
+      expect(h2).toBeFalsy();
+    });
+
+    it('should render h2 when element is "h2"', () => {
+      fixture.componentRef.setInput('element', 'h2');
+      fixture.detectChanges();
+
+      const h1 = fixture.nativeElement.querySelector('header > h1');
+      const h2 = fixture.nativeElement.querySelector('header > h2');
+
+      expect(h1).toBeFalsy();
+      expect(h2).toBeTruthy();
+    });
+
+    it('should apply size class to h2', () => {
+      fixture.componentRef.setInput('element', 'h2');
+      fixture.componentRef.setInput('size', 'md');
+      fixture.detectChanges();
+
+      const h2 = fixture.nativeElement.querySelector('h2');
+
+      expect(h2.classList.contains('md')).toBe(true);
+    });
+
+    it('should pass element input from host', () => {
+      const h2HostFixture = TestBed.createComponent(TestHostComponent);
+      h2HostFixture.componentInstance.element = 'h2';
+      h2HostFixture.detectChanges();
+
+      const h2 = h2HostFixture.nativeElement.querySelector('h2');
+
+      expect(h2).toBeTruthy();
+      expect(h2.textContent).toContain('Hello');
     });
   });
 

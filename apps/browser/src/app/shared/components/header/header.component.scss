@@ -1,25 +1,30 @@
 header,
-h1 {
+h1,
+h2 {
   padding: 0;
   margin: 0;
 }
 
 header {
-  h1 {
+  h1,
+  h2 {
     font-family: 'Orienta', sans-serif;
     font-weight: 500 !important;
     letter-spacing: 0.4px;
   }
 
-  h1.xl {
+  h1.xl,
+  h2.xl {
     font-size: 32px !important;
   }
 
-  h1.lg {
+  h1.lg,
+  h2.lg {
     font-size: 22px !important;
   }
 
-  h1.md {
+  h1.md,
+  h2.md {
     font-size: 20px !important;
     font-weight: 500 !important;
     letter-spacing: 0.375px;

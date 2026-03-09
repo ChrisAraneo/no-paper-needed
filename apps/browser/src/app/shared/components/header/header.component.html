@@ -1,3 +1,14 @@
 <header>
-  <h1 [class]="size()"><ng-content /></h1>
+  @switch (element()) {
+    @case ('h2') {
+      <h2 [class]="size()"><ng-container *ngTemplateOutlet="content" /></h2>
+    }
+    @default {
+      <h1 [class]="size()"><ng-container *ngTemplateOutlet="content" /></h1>
+    }
+  }
 </header>
+
+<ng-template #content>
+  <ng-content />
+</ng-template>
