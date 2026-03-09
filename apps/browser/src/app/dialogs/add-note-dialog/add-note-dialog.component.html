@@ -8,7 +8,7 @@
     (activeStepChange)="activeStep.set($event)"
     (close)="closeDialog()">
     <ng-template appStepPanel [stepValue]="1" [stepActions]="step1Actions()">
-      <app-header size="md">{{
+      <app-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.DATE_SUBHEADER' | translate
       }}</app-header>
       <p-datepicker
@@ -19,7 +19,7 @@
         [showWeek]="true" />
     </ng-template>
     <ng-template appStepPanel [stepValue]="2" [stepActions]="step2Actions()">
-      <app-header size="md">{{
+      <app-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.CONTENT_SUBHEADER' | translate
       }}</app-header>
       <p-floatlabel variant="in">
@@ -39,7 +39,7 @@
       </p-floatlabel>
     </ng-template>
     <ng-template appStepPanel [stepValue]="3" [stepActions]="step3Actions()">
-      <app-header size="md">{{
+      <app-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.REMINDERS_SUBHEADER' | translate
       }}</app-header>
       <div class="radio-buttons">
@@ -82,7 +82,7 @@
       </div>
     </ng-template>
     <ng-template appStepPanel [stepValue]="4" [stepActions]="step4Actions()">
-      <app-header size="md">{{
+      <app-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.SUMMARY_SUBHEADER' | translate
       }}</app-header>
       <div class="summary-surface">
