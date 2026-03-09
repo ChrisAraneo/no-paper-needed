@@ -3,7 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { format } from 'date-fns';
 import { interval, mergeMap, Subscription } from 'rxjs';
 import { LocaleService } from '../../core/services/locale/locale.service';
-import { HeaderComponent } from '../../shared/components/header/header.component';
+import { HeaderComponent } from '@no-paper-needed/shared/header';
 import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../shared/consts/consts';
 import { MINUTE_MS } from '../../shared/consts/utils';
 

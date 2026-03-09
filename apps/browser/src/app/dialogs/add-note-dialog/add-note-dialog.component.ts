@@ -10,7 +10,7 @@ import { TextareaModule } from 'primeng/textarea';
 
 import { NoteComponent } from '../../shared/components/note/note.component';
 import { StepperDialogComponent } from '../../shared/components/stepper-dialog/stepper-dialog.component';
-import { HeaderComponent } from '../../shared/components/header/header.component';
+import { HeaderComponent } from '@no-paper-needed/shared/header';
 import { StepPanelDirective } from '../../shared/directives/step-panel/step-panel.directive';
 import { NoteDialog } from '../note-dialog.directive';
 

@@ -26,6 +26,6 @@ describe('ArchiveComponent', () => {
 
   it('should render header', () => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('app-header')).toBeTruthy();
+    expect(compiled.querySelector('npn-header')).toBeTruthy();
   });
 });

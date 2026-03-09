@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { StoreService } from '../core/services';
 import { NoteComponent } from '../shared/components/note/note.component';
-import { HeaderComponent } from '../shared/components/header/header.component';
+import { HeaderComponent } from '@no-paper-needed/shared/header';
 
 @Component({
   selector: 'app-archive',

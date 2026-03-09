@@ -1,5 +1,5 @@
 <div class="container">
-  <app-header size="xl">{{ 'PAGES.ARCHIVE.TITLE' | translate }}</app-header>
+  <npn-header size="xl">{{ 'PAGES.ARCHIVE.TITLE' | translate }}</npn-header>
   <div class="notes">
     @for (row of (outdatedNotes | async) || []; track $index) {
       <div class="row">

@@ -1,0 +1,32 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "header",
+  "prefix": "npn",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/header/src",
+  "tags": [],
+  "targets": {
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run header:lint:fix", "nx run header:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/shared/header/\""
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    }
+  }
+}

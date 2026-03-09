@@ -1,7 +1,7 @@
 <div class="container">
-  <app-header size="xl"
+  <npn-header size="xl"
     >{{ 'PAGES.SEARCH.TITLE' | translate
-    }}{{ ` "${(query | async)}"` }}</app-header
+    }}{{ ` "${(query | async)}"` }}</npn-header
   >
   <div class="notes">
     @for (row of (notes | async) || []; track $index) {

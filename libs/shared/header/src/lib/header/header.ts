@@ -2,10 +2,10 @@ import { Component, input } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'app-header',
+  selector: 'npn-header',
   imports: [NgTemplateOutlet],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  templateUrl: './header.html',
+  styleUrl: './header.scss',
 })
 export class HeaderComponent {
   readonly size = input<'xl' | 'lg' | 'md'>('lg');

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from './header';
 
 @Component({
   imports: [HeaderComponent],
-  template: `<app-header [size]="size" [element]="element">{{
+  template: `<npn-header [size]="size" [element]="element">{{
     text
-  }}</app-header>`,
+  }}</npn-header>`,
 })
 class TestHostComponent {
   size: 'xl' | 'lg' | 'md' = 'lg';
