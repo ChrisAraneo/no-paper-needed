@@ -6,10 +6,10 @@ import {
 } from 'primeng/button';
 
 @Component({
-  selector: 'app-button',
+  selector: 'npn-button',
   imports: [ButtonModule],
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.scss',
+  templateUrl: './button.html',
+  styleUrl: './button.scss',
 })
 export class ButtonComponent {
   readonly label = input('');

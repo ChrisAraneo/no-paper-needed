@@ -4,7 +4,7 @@
   </div>
   <div class="actions">
     @for (action of actions; track $index) {
-      <app-button
+      <npn-button
         [label]="action.label"
         [icon]="action.icon || ''"
         [iconPosition]="action.iconPos || 'right'"

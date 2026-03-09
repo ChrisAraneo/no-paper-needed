@@ -4,7 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { LocaleService } from '../../../core/services/locale/locale.service';
-import { ButtonComponent } from '../button/button.component';
+import { ButtonComponent } from '@no-paper-needed/shared/button';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @Component({
