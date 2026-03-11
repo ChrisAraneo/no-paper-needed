@@ -9,6 +9,6 @@ import { HeaderElement, HeaderSize } from './header.types';
   styleUrl: './header.scss',
 })
 export class HeaderComponent {
-  readonly size = input<HeaderSize>(HeaderSize.Lg);
-  readonly element = input<HeaderElement>(HeaderElement.H1);
+  readonly size = input<HeaderSize>('lg');
+  readonly element = input<HeaderElement>('h1');
 }

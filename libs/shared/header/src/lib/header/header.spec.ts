@@ -11,8 +11,8 @@ import { HeaderElement, HeaderSize } from './header.types';
   }}</npn-header>`,
 })
 class TestHostComponent {
-  size: HeaderSize = HeaderSize.Lg;
-  element: HeaderElement = HeaderElement.H1;
+  size: HeaderSize = 'lg';
+  element: HeaderElement = 'h1';
 
   text = 'Hello';
 }
@@ -41,7 +41,7 @@ describe('HeaderComponent', () => {
 
   describe('default inputs', () => {
     it('should have size "lg" by default', () => {
-      expect(component.size()).toBe(HeaderSize.Lg);
+      expect(component.size()).toBe('lg');
     });
 
     it('should apply "lg" class to h1 by default', () => {
@@ -53,7 +53,7 @@ describe('HeaderComponent', () => {
 
   describe('size input', () => {
     it('should apply "xl" class when size is "xl"', () => {
-      fixture.componentRef.setInput('size', HeaderSize.Xl);
+      fixture.componentRef.setInput('size', 'xl');
       fixture.detectChanges();
 
       const h1 = fixture.nativeElement.querySelector('h1');
@@ -62,7 +62,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should apply "lg" class when size is "lg"', () => {
-      fixture.componentRef.setInput('size', HeaderSize.Lg);
+      fixture.componentRef.setInput('size', 'lg');
       fixture.detectChanges();
 
       const h1 = fixture.nativeElement.querySelector('h1');
@@ -71,7 +71,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should apply "md" class when size is "md"', () => {
-      fixture.componentRef.setInput('size', HeaderSize.Md);
+      fixture.componentRef.setInput('size', 'md');
       fixture.detectChanges();
 
       const h1 = fixture.nativeElement.querySelector('h1');
@@ -80,7 +80,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should pass "md" size input from host to header', () => {
-      hostFixture.componentInstance.size = HeaderSize.Md;
+      hostFixture.componentInstance.size = 'md';
       hostFixture.changeDetectorRef.markForCheck();
       hostFixture.detectChanges();
 
@@ -108,7 +108,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should pass size input from host to header', () => {
-      hostFixture.componentInstance.size = HeaderSize.Xl;
+      hostFixture.componentInstance.size = 'xl';
       hostFixture.changeDetectorRef.markForCheck();
       hostFixture.detectChanges();
 
@@ -120,7 +120,7 @@ describe('HeaderComponent', () => {
 
   describe('element input', () => {
     it('should default to h1', () => {
-      expect(component.element()).toBe(HeaderElement.H1);
+      expect(component.element()).toBe('h1');
     });
 
     it('should render h1 by default', () => {
@@ -131,7 +131,7 @@ describe('HeaderComponent', () => {
       expect(h2).toBeFalsy();
     });
 
-    [HeaderElement.H2, HeaderElement.H3, HeaderElement.H4, HeaderElement.H5, HeaderElement.H6].forEach((el) => {
+    (['h2', 'h3', 'h4', 'h5', 'h6'] as HeaderElement[]).forEach((el) => {
       it(`should render ${el} when element is "${el}"`, () => {
         fixture.componentRef.setInput('element', el);
         fixture.detectChanges();
@@ -145,7 +145,7 @@ describe('HeaderComponent', () => {
 
       it(`should apply size class to ${el}`, () => {
         fixture.componentRef.setInput('element', el);
-        fixture.componentRef.setInput('size', HeaderSize.Md);
+        fixture.componentRef.setInput('size', 'md');
         fixture.detectChanges();
 
         const target = fixture.nativeElement.querySelector(el);
