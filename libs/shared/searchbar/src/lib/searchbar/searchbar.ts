@@ -20,4 +20,3 @@ export class SearchbarComponent implements OnChanges {
     this.model = this.value();
   }
 }
-
