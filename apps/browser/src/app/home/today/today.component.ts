@@ -6,10 +6,11 @@ import { LocaleService } from '../../core/services/locale/locale.service';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
 import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../shared/consts/consts';
 import { MINUTE_MS } from '../../shared/consts/utils';
+import { LabelComponent } from '@no-paper-needed/shared/label';
 
 @Component({
   selector: 'app-today',
-  imports: [HeaderComponent, TranslateModule],
+  imports: [HeaderComponent, LabelComponent, TranslateModule],
   templateUrl: './today.component.html',
   styleUrl: './today.component.scss',
 })
