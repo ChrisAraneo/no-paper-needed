@@ -20,4 +20,3 @@ describe('LabelComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
