@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
+import { HeaderElement, HeaderSize } from './header.types';
 
 @Component({
   selector: 'npn-header',
@@ -8,6 +9,6 @@ import { NgTemplateOutlet } from '@angular/common';
   styleUrl: './header.scss',
 })
 export class HeaderComponent {
-  readonly size = input<'xl' | 'lg' | 'md'>('lg');
-  readonly element = input<'h1' | 'h2'>('h1');
+  readonly size = input<HeaderSize>(HeaderSize.Lg);
+  readonly element = input<HeaderElement>(HeaderElement.H1);
 }

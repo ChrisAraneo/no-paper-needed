@@ -3,6 +3,18 @@
     @case ('h2') {
       <h2 [class]="size()"><ng-container *ngTemplateOutlet="content" /></h2>
     }
+    @case ('h3') {
+      <h3 [class]="size()"><ng-container *ngTemplateOutlet="content" /></h3>
+    }
+    @case ('h4') {
+      <h4 [class]="size()"><ng-container *ngTemplateOutlet="content" /></h4>
+    }
+    @case ('h5') {
+      <h5 [class]="size()"><ng-container *ngTemplateOutlet="content" /></h5>
+    }
+    @case ('h6') {
+      <h6 [class]="size()"><ng-container *ngTemplateOutlet="content" /></h6>
+    }
     @default {
       <h1 [class]="size()"><ng-container *ngTemplateOutlet="content" /></h1>
     }

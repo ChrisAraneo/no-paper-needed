@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header';
+import { HeaderElement, HeaderSize } from './header.types';
 
 @Component({
   imports: [HeaderComponent],
@@ -10,8 +11,8 @@ import { HeaderComponent } from './header';
   }}</npn-header>`,
 })
 class TestHostComponent {
-  size: 'xl' | 'lg' | 'md' = 'lg';
-  element: 'h1' | 'h2' = 'h1';
+  size: HeaderSize = HeaderSize.Lg;
+  element: HeaderElement = HeaderElement.H1;
 
   text = 'Hello';
 }
@@ -38,21 +39,9 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render a header element', () => {
-    const header = fixture.nativeElement.querySelector('header');
-
-    expect(header).toBeTruthy();
-  });
-
-  it('should render an h1 inside header', () => {
-    const h1 = fixture.nativeElement.querySelector('header > h1');
-
-    expect(h1).toBeTruthy();
-  });
-
   describe('default inputs', () => {
     it('should have size "lg" by default', () => {
-      expect(component.size()).toBe('lg');
+      expect(component.size()).toBe(HeaderSize.Lg);
     });
 
     it('should apply "lg" class to h1 by default', () => {
@@ -64,7 +53,7 @@ describe('HeaderComponent', () => {
 
   describe('size input', () => {
     it('should apply "xl" class when size is "xl"', () => {
-      fixture.componentRef.setInput('size', 'xl');
+      fixture.componentRef.setInput('size', HeaderSize.Xl);
       fixture.detectChanges();
 
       const h1 = fixture.nativeElement.querySelector('h1');
@@ -73,7 +62,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should apply "lg" class when size is "lg"', () => {
-      fixture.componentRef.setInput('size', 'lg');
+      fixture.componentRef.setInput('size', HeaderSize.Lg);
       fixture.detectChanges();
 
       const h1 = fixture.nativeElement.querySelector('h1');
@@ -82,7 +71,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should apply "md" class when size is "md"', () => {
-      fixture.componentRef.setInput('size', 'md');
+      fixture.componentRef.setInput('size', HeaderSize.Md);
       fixture.detectChanges();
 
       const h1 = fixture.nativeElement.querySelector('h1');
@@ -91,7 +80,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should pass "md" size input from host to header', () => {
-      hostFixture.componentInstance.size = 'md';
+      hostFixture.componentInstance.size = HeaderSize.Md;
       hostFixture.changeDetectorRef.markForCheck();
       hostFixture.detectChanges();
 
@@ -119,7 +108,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should pass size input from host to header', () => {
-      hostFixture.componentInstance.size = 'xl';
+      hostFixture.componentInstance.size = HeaderSize.Xl;
       hostFixture.changeDetectorRef.markForCheck();
       hostFixture.detectChanges();
 
@@ -131,7 +120,7 @@ describe('HeaderComponent', () => {
 
   describe('element input', () => {
     it('should default to h1', () => {
-      expect(component.element()).toBe('h1');
+      expect(component.element()).toBe(HeaderElement.H1);
     });
 
     it('should render h1 by default', () => {
@@ -142,36 +131,38 @@ describe('HeaderComponent', () => {
       expect(h2).toBeFalsy();
     });
 
-    it('should render h2 when element is "h2"', () => {
-      fixture.componentRef.setInput('element', 'h2');
-      fixture.detectChanges();
+    [HeaderElement.H2, HeaderElement.H3, HeaderElement.H4, HeaderElement.H5, HeaderElement.H6].forEach((el) => {
+      it(`should render ${el} when element is "${el}"`, () => {
+        fixture.componentRef.setInput('element', el);
+        fixture.detectChanges();
 
-      const h1 = fixture.nativeElement.querySelector('header > h1');
-      const h2 = fixture.nativeElement.querySelector('header > h2');
+        const h1 = fixture.nativeElement.querySelector('header > h1');
+        const target = fixture.nativeElement.querySelector(`header > ${el}`);
 
-      expect(h1).toBeFalsy();
-      expect(h2).toBeTruthy();
-    });
+        expect(h1).toBeFalsy();
+        expect(target).toBeTruthy();
+      });
 
-    it('should apply size class to h2', () => {
-      fixture.componentRef.setInput('element', 'h2');
-      fixture.componentRef.setInput('size', 'md');
-      fixture.detectChanges();
+      it(`should apply size class to ${el}`, () => {
+        fixture.componentRef.setInput('element', el);
+        fixture.componentRef.setInput('size', HeaderSize.Md);
+        fixture.detectChanges();
 
-      const h2 = fixture.nativeElement.querySelector('h2');
+        const target = fixture.nativeElement.querySelector(el);
 
-      expect(h2.classList.contains('md')).toBe(true);
-    });
+        expect(target.classList.contains('md')).toBe(true);
+      });
 
-    it('should pass element input from host', () => {
-      const h2HostFixture = TestBed.createComponent(TestHostComponent);
-      h2HostFixture.componentInstance.element = 'h2';
-      h2HostFixture.detectChanges();
+      it(`should pass element "${el}" from host`, () => {
+        const elHostFixture = TestBed.createComponent(TestHostComponent);
+        elHostFixture.componentInstance.element = el;
+        elHostFixture.detectChanges();
 
-      const h2 = h2HostFixture.nativeElement.querySelector('h2');
+        const target = elHostFixture.nativeElement.querySelector(el);
 
-      expect(h2).toBeTruthy();
-      expect(h2.textContent).toContain('Hello');
+        expect(target).toBeTruthy();
+        expect(target.textContent).toContain('Hello');
+      });
     });
   });
 
