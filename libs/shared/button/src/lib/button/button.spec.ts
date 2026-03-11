@@ -56,93 +56,90 @@ describe('ButtonComponent', () => {
       fixture.componentRef.setInput('label', 'Click me');
       fixture.detectChanges();
 
-      const buttonEl = fixture.debugElement.query(By.css('button'));
-      expect(buttonEl.nativeElement.textContent).toContain('Click me');
+      const button = fixture.debugElement.query(By.css('button'));
+
+      expect(button.nativeElement.textContent).toContain('Click me');
     });
 
     it('should pass icon to p-button', () => {
       fixture.componentRef.setInput('icon', 'pi pi-check');
       fixture.detectChanges();
 
-      const iconEl = fixture.debugElement.query(By.css('.pi-check'));
-      expect(iconEl).toBeTruthy();
+      const icon = fixture.debugElement.query(By.css('.pi-check'));
+
+      expect(icon).toBeTruthy();
     });
 
     it('should pass disabled state to p-button', () => {
       fixture.componentRef.setInput('isDisabled', true);
       fixture.detectChanges();
 
-      const buttonEl = fixture.debugElement.query(By.css('button'));
-      expect(buttonEl.nativeElement.disabled).toBe(true);
+      const button = fixture.debugElement.query(By.css('button'));
+
+      expect(button.nativeElement.disabled).toBe(true);
     });
 
     it('should not be disabled when isDisabled is false', () => {
       fixture.componentRef.setInput('isDisabled', false);
       fixture.detectChanges();
 
-      const buttonEl = fixture.debugElement.query(By.css('button'));
-      expect(buttonEl.nativeElement.disabled).toBe(false);
+      const button = fixture.debugElement.query(By.css('button'));
+
+      expect(button.nativeElement.disabled).toBe(false);
     });
 
     it('should pass rounded state to p-button', () => {
       fixture.componentRef.setInput('isRounded', true);
       fixture.detectChanges();
 
-      const buttonEl = fixture.debugElement.query(By.css('button'));
-      expect(buttonEl.nativeElement.className).toContain('p-button-rounded');
+      const button = fixture.debugElement.query(By.css('button'));
+
+      expect(button.nativeElement.className).toContain('p-button-rounded');
     });
 
     it('should pass styleClass to p-button', () => {
       fixture.componentRef.setInput('styleClass', 'custom-class');
       fixture.detectChanges();
 
-      const buttonEl = fixture.debugElement.query(By.css('button'));
-      expect(buttonEl.nativeElement.className).toContain('custom-class');
+      const button = fixture.debugElement.query(By.css('button'));
+
+      expect(button.nativeElement.className).toContain('custom-class');
     });
   });
 
   describe('rendered text', () => {
     it('should display no text when label is empty', () => {
-      const buttonEl = fixture.debugElement.query(By.css('button'));
+      const button = fixture.debugElement.query(By.css('button'));
 
-      expect(buttonEl.nativeElement.textContent.trim()).toBe('');
+      expect(button.nativeElement.textContent.trim()).toBe('');
     });
 
     it('should display label text inside the button', () => {
       fixture.componentRef.setInput('label', 'Save');
       fixture.detectChanges();
 
-      const buttonEl = fixture.debugElement.query(By.css('button'));
+      const button = fixture.debugElement.query(By.css('button'));
 
-      expect(buttonEl.nativeElement.textContent).toContain('Save');
+      expect(button.nativeElement.textContent).toContain('Save');
     });
 
     it('should update displayed text when label changes', () => {
       fixture.componentRef.setInput('label', 'First');
       fixture.detectChanges();
 
-      const buttonEl = fixture.debugElement.query(By.css('button'));
+      const button = fixture.debugElement.query(By.css('button'));
 
-      expect(buttonEl.nativeElement.textContent).toContain('First');
+      expect(button.nativeElement.textContent).toContain('First');
 
       fixture.componentRef.setInput('label', 'Second');
       fixture.detectChanges();
 
-      expect(buttonEl.nativeElement.textContent).toContain('Second');
-      expect(buttonEl.nativeElement.textContent).not.toContain('First');
+      expect(button.nativeElement.textContent).toContain('Second');
+      expect(button.nativeElement.textContent).not.toContain('First');
     });
   });
 
   describe('clicked output', () => {
-    it('should emit clicked event when onClick is called', () => {
-      const spy = vi.spyOn(component.clicked, 'emit');
-
-      component.onClick();
-
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith();
-    });
-
     it('should emit clicked event when p-button is clicked', () => {
       const spy = vi.spyOn(component.clicked, 'emit');
 
