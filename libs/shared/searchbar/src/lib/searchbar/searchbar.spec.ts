@@ -69,7 +69,7 @@ describe('SearchbarComponent', () => {
     });
 
     it('should have model as empty string by default', () => {
-      expect((component as any).model).toBe('');
+      expect((component as any).model()).toBe('');
     });
 
     it('should render input with empty value by default', () => {
@@ -86,7 +86,7 @@ describe('SearchbarComponent', () => {
       fixture.componentRef.setInput('value', 'hello');
       fixture.detectChanges();
 
-      expect((component as any).model).toBe('hello');
+      expect((component as any).model()).toBe('hello');
     });
 
     it('should update the input element when value changes', async () => {
@@ -105,12 +105,12 @@ describe('SearchbarComponent', () => {
       fixture.componentRef.setInput('value', 'first');
       fixture.detectChanges();
 
-      expect((component as any).model).toBe('first');
+      expect((component as any).model()).toBe('first');
 
       fixture.componentRef.setInput('value', 'second');
       fixture.detectChanges();
 
-      expect((component as any).model).toBe('second');
+      expect((component as any).model()).toBe('second');
     });
   });
 

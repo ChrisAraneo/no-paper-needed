@@ -4,6 +4,6 @@
     type="text"
     pInputText
     placeholder="Search"
-    [(ngModel)]="model"
-    (ngModelChange)="search.emit($event)" />
+    [ngModel]="model()"
+    (ngModelChange)="model.set($event); search.emit($event)" />
 </p-iconfield>

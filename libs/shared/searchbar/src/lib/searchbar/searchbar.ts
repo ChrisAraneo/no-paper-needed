@@ -1,4 +1,4 @@
-import { Component, input, OnChanges, output } from '@angular/core';
+import { Component, input, linkedSignal, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -10,13 +10,9 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './searchbar.html',
   styleUrl: './searchbar.scss',
 })
-export class SearchbarComponent implements OnChanges {
+export class SearchbarComponent {
   readonly value = input('');
   readonly search = output<string>();
 
-  protected model = '';
-
-  ngOnChanges(): void {
-    this.model = this.value();
-  }
+  protected model = linkedSignal(() => this.value());
 }
