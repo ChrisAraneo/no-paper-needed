@@ -8,7 +8,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { isUndefined } from 'lodash';
+import { isUndefined } from 'lodash-es';
 import { DialogModule } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 
