@@ -21,8 +21,4 @@ export class ButtonComponent {
   readonly styleClass = input('');
 
   readonly clicked = output<void>();
-
-  onClick(): void {
-    this.clicked.emit();
-  }
 }
