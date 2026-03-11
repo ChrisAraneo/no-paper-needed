@@ -1,28 +1,23 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
+import { Component, input, OnChanges, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-  selector: 'app-searchbar',
+  selector: 'npn-searchbar',
   imports: [IconFieldModule, InputIconModule, InputTextModule, FormsModule],
-  templateUrl: './searchbar.component.html',
-  styleUrl: './searchbar.component.scss',
+  templateUrl: './searchbar.html',
+  styleUrl: './searchbar.scss',
 })
 export class SearchbarComponent implements OnChanges {
-  @Input() value = '';
-  @Output() readonly search = new EventEmitter<string>();
+  readonly value = input('');
+  readonly search = output<string>();
 
   protected model = '';
 
   ngOnChanges(): void {
-    this.model = this.value;
+    this.model = this.value();
   }
 }
+

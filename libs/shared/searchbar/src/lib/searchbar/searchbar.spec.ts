@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { outputToObservable } from '@angular/core/rxjs-interop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchbarComponent } from './searchbar.component';
+import { SearchbarComponent } from './searchbar';
 
 @Component({
   imports: [SearchbarComponent],
-  template: `<app-searchbar [value]="value" (search)="onSearch($event)" />`,
+  template: `<npn-searchbar [value]="value" (search)="onSearch($event)" />`,
 })
 class TestHostComponent {
   value = '';
@@ -64,7 +65,7 @@ describe('SearchbarComponent', () => {
 
   describe('default inputs', () => {
     it('should have value as empty string by default', () => {
-      expect(component.value).toBe('');
+      expect(component.value()).toBe('');
     });
 
     it('should have model as empty string by default', () => {
@@ -116,7 +117,7 @@ describe('SearchbarComponent', () => {
   describe('search output', () => {
     it('should emit search event when input value changes', () => {
       const spy = vi.fn();
-      component.search.subscribe(spy);
+      outputToObservable(component.search).subscribe(spy);
 
       const input = fixture.nativeElement.querySelector(
         'input',
@@ -130,7 +131,7 @@ describe('SearchbarComponent', () => {
 
     it('should emit search event for each keystroke change', () => {
       const spy = vi.fn();
-      component.search.subscribe(spy);
+      outputToObservable(component.search).subscribe(spy);
 
       const input = fixture.nativeElement.querySelector(
         'input',
@@ -149,7 +150,7 @@ describe('SearchbarComponent', () => {
 
     it('should emit empty string when input is cleared', () => {
       const spy = vi.fn();
-      component.search.subscribe(spy);
+      outputToObservable(component.search).subscribe(spy);
 
       const input = fixture.nativeElement.querySelector(
         'input',
@@ -163,7 +164,7 @@ describe('SearchbarComponent', () => {
 
     it('should not emit without user interaction', () => {
       const spy = vi.fn();
-      component.search.subscribe(spy);
+      outputToObservable(component.search).subscribe(spy);
       fixture.detectChanges();
 
       expect(spy).not.toHaveBeenCalled();

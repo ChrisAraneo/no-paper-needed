@@ -13,7 +13,7 @@
     (clicked)="navigateToArchive()" />
 </div>
 <div class="col center">
-  <app-searchbar
+  <npn-searchbar
     [value]="(searchQuery$ | async) || ''"
     (search)="navigateToSearch($event)" />
 </div>

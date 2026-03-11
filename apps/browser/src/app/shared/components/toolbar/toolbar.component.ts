@@ -5,7 +5,7 @@ import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { LocaleService } from '../../../core/services/locale/locale.service';
 import { ButtonComponent } from '@no-paper-needed/shared/button';
-import { SearchbarComponent } from './searchbar/searchbar.component';
+import { SearchbarComponent } from '@no-paper-needed/shared/searchbar';
 
 @Component({
   selector: 'app-toolbar',

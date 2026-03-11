@@ -38,8 +38,8 @@ describe('ToolbarComponent', () => {
       expect(buttons).toHaveLength(3);
     });
 
-    it('should render one app-searchbar element', () => {
-      const searchbar = fixture.nativeElement.querySelectorAll('app-searchbar');
+    it('should render one npn-searchbar element', () => {
+      const searchbar = fixture.nativeElement.querySelectorAll('npn-searchbar');
 
       expect(searchbar).toHaveLength(1);
     });
@@ -48,7 +48,7 @@ describe('ToolbarComponent', () => {
       const centerCol = fixture.nativeElement.querySelector('.col.center');
 
       expect(centerCol).toBeTruthy();
-      expect(centerCol.querySelector('app-searchbar')).toBeTruthy();
+      expect(centerCol.querySelector('npn-searchbar')).toBeTruthy();
     });
 
     it('should render add note button in the flex-end column', () => {

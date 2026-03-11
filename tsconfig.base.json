@@ -12,6 +12,7 @@
     "paths": {
       "@no-paper-needed/shared/button": ["libs/shared/button/src/index.ts"],
       "@no-paper-needed/shared/header": ["libs/shared/header/src/index.ts"],
+      "@no-paper-needed/shared/searchbar": ["libs/shared/searchbar/src/index.ts"],
       "header": ["libs/shared/header/src/index.ts"]
     },
     "rootDir": ".",
