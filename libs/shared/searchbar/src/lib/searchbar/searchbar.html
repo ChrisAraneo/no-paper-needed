@@ -3,7 +3,7 @@
   <input
     type="text"
     pInputText
-    placeholder="Search"
+    [placeholder]="placeholder()"
     [ngModel]="model()"
     (ngModelChange)="model.set($event); search.emit($event)" />
 </p-iconfield>

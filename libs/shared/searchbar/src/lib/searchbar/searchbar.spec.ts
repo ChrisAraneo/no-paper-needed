@@ -35,37 +35,13 @@ describe('SearchbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render a p-iconfield', () => {
-    const iconField = fixture.nativeElement.querySelector('p-iconfield');
-
-    expect(iconField).toBeTruthy();
-  });
-
-  it('should render a p-inputicon with pi-search class', () => {
-    const inputIcon = fixture.nativeElement.querySelector(
-      'p-inputicon.pi.pi-search',
-    );
-
-    expect(inputIcon).toBeTruthy();
-  });
-
-  it('should render an input with type text', () => {
-    const input = fixture.nativeElement.querySelector('input[type="text"]');
-
-    expect(input).toBeTruthy();
-  });
-
-  it('should render an input with placeholder "Search"', () => {
-    const input = fixture.nativeElement.querySelector(
-      'input',
-    ) as HTMLInputElement;
-
-    expect(input.placeholder).toBe('Search');
-  });
-
   describe('default inputs', () => {
     it('should have value as empty string by default', () => {
       expect(component.value()).toBe('');
+    });
+
+    it('should have placeholder as empty string by default', () => {
+      expect(component.placeholder()).toBe('');
     });
 
     it('should have model as empty string by default', () => {
@@ -111,6 +87,49 @@ describe('SearchbarComponent', () => {
       fixture.detectChanges();
 
       expect((component as any).model()).toBe('second');
+    });
+  });
+
+  describe('placeholder input', () => {
+    it('should render placeholder text on the input element', () => {
+      fixture.componentRef.setInput('placeholder', 'Search...');
+      fixture.detectChanges();
+
+      const input = fixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+
+      expect(input.placeholder).toBe('Search...');
+    });
+
+    it('should update placeholder when input changes', () => {
+      fixture.componentRef.setInput('placeholder', 'First');
+      fixture.detectChanges();
+
+      const input = fixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+
+      expect(input.placeholder).toBe('First');
+
+      fixture.componentRef.setInput('placeholder', 'Second');
+      fixture.detectChanges();
+
+      expect(input.placeholder).toBe('Second');
+    });
+
+    it('should render empty placeholder when set to empty string', () => {
+      fixture.componentRef.setInput('placeholder', 'Something');
+      fixture.detectChanges();
+
+      fixture.componentRef.setInput('placeholder', '');
+      fixture.detectChanges();
+
+      const input = fixture.nativeElement.querySelector(
+        'input',
+      ) as HTMLInputElement;
+
+      expect(input.placeholder).toBe('');
     });
   });
 

@@ -12,6 +12,8 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class SearchbarComponent {
   readonly value = input('');
+  readonly placeholder = input('');
+
   readonly search = output<string>();
 
   protected model = linkedSignal(() => this.value());
