@@ -1,0 +1,33 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "label",
+  "prefix": "npn",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/label/src",
+  "tags": [],
+  "targets": {
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run label:lint:fix", "nx run label:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/shared/label/\""
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    }
+  }
+}
+
