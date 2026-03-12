@@ -7,8 +7,8 @@ import { InputTextModule } from 'primeng/inputtext';
 @Component({
   selector: 'npn-searchbar',
   imports: [IconFieldModule, InputIconModule, InputTextModule, FormsModule],
-  templateUrl: './searchbar.html',
-  styleUrl: './searchbar.scss',
+  templateUrl: './searchbar.component.html',
+  styleUrl: './searchbar.component.scss',
 })
 export class SearchbarComponent {
   readonly value = input('');

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header';
+import { HeaderComponent } from './header.component';
 import { HeaderElement, HeaderSize } from './header.types';
 
 @Component({

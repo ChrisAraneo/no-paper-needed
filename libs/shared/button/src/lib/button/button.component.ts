@@ -8,8 +8,8 @@ import {
 @Component({
   selector: 'npn-button',
   imports: [ButtonModule],
-  templateUrl: './button.html',
-  styleUrl: './button.scss',
+  templateUrl: './button.component.html',
+  styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
   readonly label = input('');

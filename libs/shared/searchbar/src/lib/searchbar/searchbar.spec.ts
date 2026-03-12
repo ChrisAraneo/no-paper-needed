@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { outputToObservable } from '@angular/core/rxjs-interop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchbarComponent } from './searchbar';
+import { SearchbarComponent } from './searchbar.component';
 
 @Component({
   imports: [SearchbarComponent],

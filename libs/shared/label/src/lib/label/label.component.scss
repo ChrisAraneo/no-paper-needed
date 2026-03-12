@@ -1,6 +1,12 @@
+:host {
+    display: inline-block;
+    height: 20px;
+}
+
 span {
   font-family: 'Orienta', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px !important;
   font-size: 14px;
+  line-height: 20px;
 }

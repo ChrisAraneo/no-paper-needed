@@ -5,8 +5,8 @@ import { HeaderElement, HeaderSize } from './header.types';
 @Component({
   selector: 'npn-header',
   imports: [NgTemplateOutlet],
-  templateUrl: './header.html',
-  styleUrl: './header.scss',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   readonly size = input<HeaderSize>('lg');

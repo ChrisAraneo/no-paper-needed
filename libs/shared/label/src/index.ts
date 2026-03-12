@@ -1,1 +1,1 @@
-export { LabelComponent } from './lib/label/label';
+export { LabelComponent } from './lib/label/label.component';
