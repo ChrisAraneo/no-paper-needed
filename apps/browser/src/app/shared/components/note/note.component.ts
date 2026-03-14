@@ -4,7 +4,7 @@ import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonComponent } from '@no-paper-needed/shared/button';
 import { Note, Recurrence } from '../../interfaces/note.interface';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { format } from 'date-fns';
 import { LocaleService } from '../../../core/services/locale/locale.service';
 import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../consts/consts';
@@ -17,6 +17,7 @@ import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../consts/consts';
 })
 export class NoteComponent {
   private readonly localeService = inject(LocaleService);
+  private readonly translateService = inject(TranslateService);
   private readonly locale = toSignal(this.localeService.get(), {
     initialValue: this.localeService.getCurrentLang(),
   });
@@ -47,6 +48,8 @@ export class NoteComponent {
       return '';
     }
 
+    this.locale();
+
     return this.formatRecurrence(recurrence);
   });
 
@@ -54,15 +57,21 @@ export class NoteComponent {
     const parts: string[] = [];
 
     if (recurrence.years > 0) {
-      parts.push(` ${recurrence.years}y`);
+      parts.push(
+        `${recurrence.years} ${this.translateService.instant('NOTE.RECURRENCE_YEAR')}`,
+      );
     }
     if (recurrence.months > 0) {
-      parts.push(` ${recurrence.months}m`);
+      parts.push(
+        `${recurrence.months} ${this.translateService.instant('NOTE.RECURRENCE_MONTH')}`,
+      );
     }
     if (recurrence.days > 0) {
-      parts.push(` ${recurrence.days}d`);
+      parts.push(
+        `${recurrence.days} ${this.translateService.instant('NOTE.RECURRENCE_DAYS')}`,
+      );
     }
 
-    return parts.join('');
+    return ` ${parts.join(' ')}`;
   }
 }
