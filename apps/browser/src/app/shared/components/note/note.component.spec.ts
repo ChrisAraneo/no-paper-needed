@@ -362,7 +362,7 @@ describe('NoteComponent', () => {
 
       const result = component.formattedDate();
 
-      expect(result).toMatch(/[A-Z][a-z]+ [0-9]{2}\.[0-9]{2}/);
+      expect(result).toMatch(/[A-Z][a-z]+ \d{2}\.\d{2}/);
     });
 
     it('should format date using English locale by default', () => {
