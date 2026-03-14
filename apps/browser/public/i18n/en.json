@@ -13,6 +13,15 @@
       "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:",
       "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
       "NOTIFY_SAME_DAY": "On the day of the event",
+      "RECURRENCE_SUBHEADER": "Should this note repeat?",
+      "RECURRENCE_NONE": "No recurrence",
+      "RECURRENCE_EVERY_YEAR": "Every year",
+      "RECURRENCE_EVERY_MONTH": "Every month",
+      "RECURRENCE_EVERY_FEW_DAYS": "Every few days:",
+      "RECURRENCE_CUSTOM": "Custom",
+      "RECURRENCE_DAYS": "Days",
+      "RECURRENCE_MONTHS": "Months",
+      "RECURRENCE_YEARS": "Years",
       "REMINDERS_SUBHEADER": "When should reminders be shown?",
       "SUMMARY_SUBHEADER": "The note will look as follows:"
     },
@@ -24,12 +33,22 @@
       "NOTIFY_CUSTOM_DAYS_BEFORE": "For X days before the event:",
       "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
       "NOTIFY_SAME_DAY": "On the day of the event",
+      "RECURRENCE_SUBHEADER": "Should this note repeat?",
+      "RECURRENCE_NONE": "No recurrence",
+      "RECURRENCE_EVERY_YEAR": "Every year",
+      "RECURRENCE_EVERY_MONTH": "Every month",
+      "RECURRENCE_EVERY_FEW_DAYS": "Every few days:",
+      "RECURRENCE_CUSTOM": "Custom",
+      "RECURRENCE_DAYS": "Days",
+      "RECURRENCE_MONTHS": "Months",
+      "RECURRENCE_YEARS": "Years",
       "REMINDERS_SUBHEADER": "When should reminders be shown?",
       "SUMMARY_SUBHEADER": "The note will look as follows:"
     },
     "LABELS": {
       "CONTENT": "Content",
       "DATE": "Date",
+      "RECURRENCE": "Recurrence",
       "REMINDERS": "Reminders",
       "SUMMARY": "Summary"
     }
@@ -37,7 +56,8 @@
   "NOTE": {
     "BELL_TOOLTIP": "For how many days before the event reminders will be shown",
     "DATE_TOOLTIP": "Date related to the note",
-    "EDIT_TOOLTIP": "Edit note"
+    "EDIT_TOOLTIP": "Edit note",
+    "RECURRENCE_TOOLTIP": "This note repeats"
   },
   "PAGES": {
     "ARCHIVE": {

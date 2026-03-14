@@ -13,12 +13,42 @@
       "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez X dni przed wydarzeniem:",
       "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
       "NOTIFY_SAME_DAY": "W dzień wydarzenia",
+      "RECURRENCE_SUBHEADER": "Czy ta notatka ma się powtarzać?",
+      "RECURRENCE_NONE": "Bez powtarzania",
+      "RECURRENCE_EVERY_YEAR": "Co rok",
+      "RECURRENCE_EVERY_MONTH": "Co miesiąc",
+      "RECURRENCE_EVERY_FEW_DAYS": "Co kilka dni:",
+      "RECURRENCE_CUSTOM": "Niestandardowe",
+      "RECURRENCE_DAYS": "Dni",
+      "RECURRENCE_MONTHS": "Miesiące",
+      "RECURRENCE_YEARS": "Lata",
+      "REMINDERS_SUBHEADER": "Kiedy mają być wyświetlane przypomnienia?",
+      "SUMMARY_SUBHEADER": "Notatka będzie wyglądać następująco:"
+    },
+    "EDIT_NOTE": {
+      "CONTENT": "Treść",
+      "CONTENT_SUBHEADER": "Wpisz treść notatki:",
+      "DATE_SUBHEADER": "Wybierz datę związaną z notatką:",
+      "EDIT_NOTE": "Edytuj notatkę",
+      "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez X dni przed wydarzeniem:",
+      "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
+      "NOTIFY_SAME_DAY": "W dzień wydarzenia",
+      "RECURRENCE_SUBHEADER": "Czy ta notatka ma się powtarzać?",
+      "RECURRENCE_NONE": "Bez powtarzania",
+      "RECURRENCE_EVERY_YEAR": "Co rok",
+      "RECURRENCE_EVERY_MONTH": "Co miesiąc",
+      "RECURRENCE_EVERY_FEW_DAYS": "Co kilka dni:",
+      "RECURRENCE_CUSTOM": "Niestandardowe",
+      "RECURRENCE_DAYS": "Dni",
+      "RECURRENCE_MONTHS": "Miesiące",
+      "RECURRENCE_YEARS": "Lata",
       "REMINDERS_SUBHEADER": "Kiedy mają być wyświetlane przypomnienia?",
       "SUMMARY_SUBHEADER": "Notatka będzie wyglądać następująco:"
     },
     "LABELS": {
       "CONTENT": "Treść",
       "DATE": "Data",
+      "RECURRENCE": "Powtarzalność",
       "REMINDERS": "Przypomnienia",
       "SUMMARY": "Podsumowanie"
     }
@@ -26,7 +56,8 @@
   "NOTE": {
     "BELL_TOOLTIP": "Przez ile dni przed wydarzeniem będą wyświetlane przypomnienia",
     "DATE_TOOLTIP": "Data związana z notatką",
-    "EDIT_TOOLTIP": "Edytuj notatkę"
+    "EDIT_TOOLTIP": "Edytuj notatkę",
+    "RECURRENCE_TOOLTIP": "Ta notatka się powtarza"
   },
   "PAGES": {
     "ARCHIVE": {
