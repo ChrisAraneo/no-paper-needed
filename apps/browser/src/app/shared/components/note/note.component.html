@@ -31,7 +31,7 @@
         >
       }
       @if (note()?.recurrence) {
-        <span [pTooltip]="'NOTE.RECURRENCE_TOOLTIP' | translate"
+        <span [pTooltip]="recurrenceTooltip()"
           ><i class="pi pi-replay"></i>{{ recurrenceLabel() }}</span
         >
       }

@@ -50,10 +50,24 @@ export class NoteComponent {
 
     this.locale();
 
-    return this.formatRecurrence(recurrence);
+    return ` ${this.formatRecurrenceParts(recurrence)}`;
   });
 
-  private formatRecurrence(recurrence: Recurrence): string {
+  readonly recurrenceTooltip = computed(() => {
+    const recurrence = this.note()?.recurrence;
+
+    if (!recurrence) {
+      return '';
+    }
+
+    this.locale();
+
+    const prefix = this.translateService.instant('NOTE.RECURRENCE_PREFIX');
+
+    return `${prefix} ${this.formatRecurrenceParts(recurrence)}`;
+  });
+
+  private formatRecurrenceParts(recurrence: Recurrence): string {
     const parts: string[] = [];
 
     if (recurrence.years > 0) {
@@ -72,6 +86,6 @@ export class NoteComponent {
       );
     }
 
-    return ` ${parts.join(' ')}`;
+    return parts.join(' ');
   }
 }
