@@ -102,6 +102,10 @@ describe('NoteComponent', () => {
     it('should return empty string for recurrenceLabel when note is undefined', () => {
       expect(component.recurrenceLabel()).toBe('');
     });
+
+    it('should return empty string for recurrenceTooltip when note is undefined', () => {
+      expect(component.recurrenceTooltip()).toBe('');
+    });
   });
 
   describe('note input', () => {
@@ -306,8 +310,8 @@ describe('NoteComponent', () => {
       );
       fixture.detectChanges();
 
-      const recurrenceSpan =
-        fixture.nativeElement.querySelectorAll('.footer span')[0];
+      const [recurrenceSpan] =
+        fixture.nativeElement.querySelectorAll('.footer span');
 
       expect(recurrenceSpan.textContent).toContain('5');
     });
@@ -352,6 +356,41 @@ describe('NoteComponent', () => {
       expect(text).toContain('1');
       expect(text).toContain('2');
       expect(text).toContain('10');
+    });
+
+    it('should return recurrenceTooltip with prefix and recurrence parts', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 7, months: 0, years: 0 } }),
+      );
+      fixture.detectChanges();
+
+      const tooltip = component.recurrenceTooltip();
+
+      expect(tooltip).toContain('NOTE.RECURRENCE_PREFIX');
+      expect(tooltip).toContain('7');
+    });
+
+    it('should return empty string for recurrenceTooltip when note has no recurrence', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.detectChanges();
+
+      expect(component.recurrenceTooltip()).toBe('');
+    });
+
+    it('should return combined recurrenceTooltip for multiple fields', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 5, months: 2, years: 1 } }),
+      );
+      fixture.detectChanges();
+
+      const tooltip = component.recurrenceTooltip();
+
+      expect(tooltip).toContain('NOTE.RECURRENCE_PREFIX');
+      expect(tooltip).toContain('1');
+      expect(tooltip).toContain('2');
+      expect(tooltip).toContain('5');
     });
 
     it('should return empty string for recurrenceLabel when note has no recurrence', () => {
@@ -496,7 +535,7 @@ describe('NoteComponent', () => {
 
       const result = component.formattedDate();
 
-      expect(result).toMatch(/[A-Z][a-z]+ \d{2}\.\d{2}/);
+      expect(result).toMatch(/[A-Z][a-z]+ \d{2}\.\d{2}/u);
     });
 
     it('should format date using English locale by default', () => {
