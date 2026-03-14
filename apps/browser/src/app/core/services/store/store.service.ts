@@ -11,9 +11,10 @@ import {
   tap,
 } from 'rxjs';
 
-import { Note } from '../../../shared/interfaces/note.interface';
+import { Note, Recurrence } from '../../../shared/interfaces/note.interface';
 import { getDayDiff } from '../../../shared/functions/get-day-diff.function';
 import { NoteRecord } from '../../../shared/interfaces/note-record.interface';
+import { addDays, addMonths, addYears } from 'date-fns';
 import Dexie, { Table } from 'dexie';
 import { noteToNoteRecord } from '../../../shared/functions/note-to-note-record.function';
 import { noteRecordToNote } from '../../../shared/functions/note-record-to-note.function';
@@ -153,20 +154,59 @@ export class StoreService {
   }
 
   private filterNotesForDate(notes: Note[], date: Date): Note[] {
-    return notes
-      .map((note) => ({ note, dayDiff: getDayDiff(date, note.date) }))
-      .filter(
-        (item) =>
-          item.dayDiff <= 0 && item.dayDiff >= -item.note.reminderDaysBefore,
-      )
-      .map((item) => item.note);
+    return notes.filter((note) => {
+      const closestDate = this.getClosestOccurrence(note, date);
+      const dayDiff = getDayDiff(date, closestDate);
+
+      return dayDiff <= 0 && dayDiff >= -note.reminderDaysBefore;
+    });
   }
 
   private filterOutdatedNotesForDate(notes: Note[], date: Date): Note[] {
-    return notes
-      .map((note) => ({ note, dayDiff: getDayDiff(date, note.date) }))
-      .filter((item) => item.dayDiff > 0)
-      .map((item) => item.note);
+    return notes.filter((note) => {
+      if (note.recurrence) {
+        return false;
+      }
+
+      const dayDiff = getDayDiff(date, note.date);
+
+      return dayDiff > 0;
+    });
+  }
+
+  private getClosestOccurrence(note: Note, targetDate: Date): Date {
+    if (!note.recurrence) {
+      return note.date;
+    }
+
+    const recurrence = note.recurrence;
+    let current = new Date(note.date);
+
+    if (getDayDiff(targetDate, current) < 0) {
+      return current;
+    }
+
+    while (getDayDiff(targetDate, current) > 0) {
+      current = this.addRecurrenceInterval(current, recurrence);
+    }
+
+    return current;
+  }
+
+  private addRecurrenceInterval(date: Date, recurrence: Recurrence): Date {
+    let result = date;
+
+    if (recurrence.years > 0) {
+      result = addYears(result, recurrence.years);
+    }
+    if (recurrence.months > 0) {
+      result = addMonths(result, recurrence.months);
+    }
+    if (recurrence.days > 0) {
+      result = addDays(result, recurrence.days);
+    }
+
+    return result;
   }
 
   private filterNotesByQuery(notes: Note[], query: string): Note[] {

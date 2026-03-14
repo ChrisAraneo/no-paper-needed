@@ -83,6 +83,108 @@
     </ng-template>
     <ng-template appStepPanel [stepValue]="4" [stepActions]="step4Actions()">
       <npn-header size="md" element="h2">{{
+        'DIALOGS.ADD_NOTE.RECURRENCE_SUBHEADER' | translate
+      }}</npn-header>
+      <div class="radio-buttons">
+        <div>
+          <p-radiobutton
+            formControlName="recurrenceMode"
+            inputId="recurrenceNone"
+            name="recurrenceMode"
+            [value]="recurrenceMode.None" />
+          <label for="recurrenceNone" class="ml-2">{{
+            'DIALOGS.ADD_NOTE.RECURRENCE_NONE' | translate
+          }}</label>
+        </div>
+        <div>
+          <p-radiobutton
+            formControlName="recurrenceMode"
+            inputId="recurrenceEveryYear"
+            name="recurrenceMode"
+            [value]="recurrenceMode.EveryYear" />
+          <label for="recurrenceEveryYear" class="ml-2">{{
+            'DIALOGS.ADD_NOTE.RECURRENCE_EVERY_YEAR' | translate
+          }}</label>
+        </div>
+        <div>
+          <p-radiobutton
+            formControlName="recurrenceMode"
+            inputId="recurrenceEveryMonth"
+            name="recurrenceMode"
+            [value]="recurrenceMode.EveryMonth" />
+          <label for="recurrenceEveryMonth" class="ml-2">{{
+            'DIALOGS.ADD_NOTE.RECURRENCE_EVERY_MONTH' | translate
+          }}</label>
+        </div>
+        <div>
+          <p-radiobutton
+            formControlName="recurrenceMode"
+            inputId="recurrenceEveryFewDays"
+            name="recurrenceMode"
+            [value]="recurrenceMode.EveryFewDays" />
+          <label for="recurrenceEveryFewDays" class="ml-2">{{
+            'DIALOGS.ADD_NOTE.RECURRENCE_EVERY_FEW_DAYS' | translate
+          }}</label>
+        </div>
+        <p-inputnumber
+          formControlName="recurrenceDays"
+          inputId="recurrenceDaysInput"
+          [disabled]="
+            recurrenceModeControl.value !== recurrenceMode.EveryFewDays
+          " />
+        <div>
+          <p-radiobutton
+            formControlName="recurrenceMode"
+            inputId="recurrenceCustom"
+            name="recurrenceMode"
+            [value]="recurrenceMode.Custom" />
+          <label for="recurrenceCustom" class="ml-2">{{
+            'DIALOGS.ADD_NOTE.RECURRENCE_CUSTOM' | translate
+          }}</label>
+        </div>
+        <div
+          class="custom-recurrence"
+          [class.disabled]="
+            recurrenceModeControl.value !== recurrenceMode.Custom
+          ">
+          <p-floatlabel variant="in">
+            <p-inputnumber
+              formControlName="recurrenceDays"
+              inputId="customRecurrenceDays"
+              [disabled]="
+                recurrenceModeControl.value !== recurrenceMode.Custom
+              " />
+            <label for="customRecurrenceDays">{{
+              'DIALOGS.ADD_NOTE.RECURRENCE_DAYS' | translate
+            }}</label>
+          </p-floatlabel>
+          <p-floatlabel variant="in">
+            <p-inputnumber
+              formControlName="recurrenceMonths"
+              inputId="customRecurrenceMonths"
+              [disabled]="
+                recurrenceModeControl.value !== recurrenceMode.Custom
+              " />
+            <label for="customRecurrenceMonths">{{
+              'DIALOGS.ADD_NOTE.RECURRENCE_MONTHS' | translate
+            }}</label>
+          </p-floatlabel>
+          <p-floatlabel variant="in">
+            <p-inputnumber
+              formControlName="recurrenceYears"
+              inputId="customRecurrenceYears"
+              [disabled]="
+                recurrenceModeControl.value !== recurrenceMode.Custom
+              " />
+            <label for="customRecurrenceYears">{{
+              'DIALOGS.ADD_NOTE.RECURRENCE_YEARS' | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template appStepPanel [stepValue]="5" [stepActions]="step5Actions()">
+      <npn-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.SUMMARY_SUBHEADER' | translate
       }}</npn-header>
       <div class="summary-surface">

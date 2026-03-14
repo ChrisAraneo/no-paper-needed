@@ -14,7 +14,8 @@ import { first, map, timer } from 'rxjs';
 
 import { StepPanelAction } from '../shared/components/step-panel/step-panel.interfaces';
 import { StepConfig } from '../shared/components/stepper/stepper.component';
-import { Note } from '../shared/interfaces/note.interface';
+import { Note, Recurrence } from '../shared/interfaces/note.interface';
+import { RecurrenceMode } from '../shared/interfaces/recurrence-mode.enum';
 import { ReminderMode } from '../shared/interfaces/reminder-mode.enum';
 import { NoteDialogFormGroupValue } from './note-dialog.types';
 import {
@@ -35,6 +36,7 @@ export abstract class NoteDialog {
   protected readonly translateService = inject(TranslateService);
 
   protected readonly reminderMode = ReminderMode;
+  protected readonly recurrenceMode = RecurrenceMode;
 
   protected readonly form: FormGroup<NoteDialogFormGroupValue>;
   protected readonly activeStep = signal(FIRST_STEP_INDEX);
@@ -53,8 +55,15 @@ export abstract class NoteDialog {
     const content = (values.content ?? '').trim();
     const date = values.date ?? new Date();
     const reminderDaysBefore = this.getReminderDaysBefore(values);
+    const recurrence = this.getRecurrence(values);
 
-    return { id, content, date, reminderDaysBefore };
+    return {
+      id,
+      content,
+      date,
+      reminderDaysBefore,
+      ...(recurrence ? { recurrence } : {}),
+    };
   });
 
   protected readonly stepConfigs = computed<StepConfig[]>(() => {
@@ -72,6 +81,10 @@ export abstract class NoteDialog {
       },
       {
         value: 4,
+        label: this.translateService.instant('DIALOGS.LABELS.RECURRENCE'),
+      },
+      {
+        value: 5,
         label: this.translateService.instant('DIALOGS.LABELS.SUMMARY'),
       },
     ];
@@ -111,6 +124,15 @@ export abstract class NoteDialog {
 
     return [
       this.createBackButtonStepAction(this.activateStep(3)),
+      this.createNextButtonStepAction(this.activateStep(5)),
+    ];
+  });
+
+  protected readonly step5Actions = computed<StepPanelAction[]>(() => {
+    this.langChange();
+
+    return [
+      this.createBackButtonStepAction(this.activateStep(4)),
       {
         label: this.translateService.instant('DIALOGS.ACTIONS.SAVE'),
         icon: 'pi pi-check',
@@ -126,6 +148,10 @@ export abstract class NoteDialog {
 
   protected get reminderModeControl(): FormControl<ReminderMode> {
     return this.form.controls.reminderMode;
+  }
+
+  protected get recurrenceModeControl(): FormControl<RecurrenceMode> {
+    return this.form.controls.recurrenceMode;
   }
 
   constructor() {
@@ -145,6 +171,18 @@ export abstract class NoteDialog {
       reminderDaysBefore: new FormControl(SAME_DAY_REMINDER_DAYS_BEFORE, {
         nonNullable: true,
         validators: [Validators.required],
+      }),
+      recurrenceMode: new FormControl(RecurrenceMode.None, {
+        nonNullable: true,
+      }),
+      recurrenceDays: new FormControl(0, {
+        nonNullable: true,
+      }),
+      recurrenceMonths: new FormControl(0, {
+        nonNullable: true,
+      }),
+      recurrenceYears: new FormControl(0, {
+        nonNullable: true,
       }),
     });
 
@@ -248,6 +286,42 @@ export abstract class NoteDialog {
       }
       default: {
         return SAME_DAY_REMINDER_DAYS_BEFORE;
+      }
+    }
+  }
+
+  private getRecurrence(
+    values: Partial<{
+      recurrenceMode: RecurrenceMode;
+      recurrenceDays: number;
+      recurrenceMonths: number;
+      recurrenceYears: number;
+    }>,
+  ): Recurrence | undefined {
+    const mode = values.recurrenceMode ?? RecurrenceMode.None;
+
+    switch (mode) {
+      case RecurrenceMode.None: {
+        return undefined;
+      }
+      case RecurrenceMode.EveryYear: {
+        return { days: 0, months: 0, years: 1 };
+      }
+      case RecurrenceMode.EveryMonth: {
+        return { days: 0, months: 1, years: 0 };
+      }
+      case RecurrenceMode.EveryFewDays: {
+        return { days: values.recurrenceDays ?? 1, months: 0, years: 0 };
+      }
+      case RecurrenceMode.Custom: {
+        return {
+          days: values.recurrenceDays ?? 0,
+          months: values.recurrenceMonths ?? 0,
+          years: values.recurrenceYears ?? 0,
+        };
+      }
+      default: {
+        return undefined;
       }
     }
   }

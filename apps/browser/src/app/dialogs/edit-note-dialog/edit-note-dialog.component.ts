@@ -14,6 +14,7 @@ import { StepperDialogComponent } from '../../shared/components/stepper-dialog/s
 import { HeaderComponent } from '@no-paper-needed/shared/header';
 import { StepPanelDirective } from '../../shared/directives/step-panel/step-panel.directive';
 import { Note } from '../../shared/interfaces/note.interface';
+import { RecurrenceMode } from '../../shared/interfaces/recurrence-mode.enum';
 import { ReminderMode } from '../../shared/interfaces/reminder-mode.enum';
 import { NoteDialog } from '../note-dialog.directive';
 
@@ -70,12 +71,17 @@ export class EditNoteDialogComponent extends NoteDialog {
     const reminderMode = this.getReminderModeFromDaysBefore(
       note.reminderDaysBefore,
     );
+    const recurrenceMode = this.getRecurrenceModeFromRecurrence(note);
 
     this.form.patchValue({
       date: note.date,
       content: note.content,
       reminderMode,
       reminderDaysBefore: note.reminderDaysBefore,
+      recurrenceMode,
+      recurrenceDays: note.recurrence?.days ?? 0,
+      recurrenceMonths: note.recurrence?.months ?? 0,
+      recurrenceYears: note.recurrence?.years ?? 0,
     });
   }
 
@@ -86,6 +92,24 @@ export class EditNoteDialogComponent extends NoteDialog {
       return ReminderMode.DayBefore;
     } else {
       return ReminderMode.MultipleDaysBefore;
+    }
+  }
+
+  private getRecurrenceModeFromRecurrence(note: Note): RecurrenceMode {
+    if (!note.recurrence) {
+      return RecurrenceMode.None;
+    }
+
+    const { days, months, years } = note.recurrence;
+
+    if (years === 1 && months === 0 && days === 0) {
+      return RecurrenceMode.EveryYear;
+    } else if (months === 1 && years === 0 && days === 0) {
+      return RecurrenceMode.EveryMonth;
+    } else if (days > 0 && months === 0 && years === 0) {
+      return RecurrenceMode.EveryFewDays;
+    } else {
+      return RecurrenceMode.Custom;
     }
   }
 }

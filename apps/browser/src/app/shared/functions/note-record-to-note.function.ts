@@ -6,4 +6,5 @@ export const noteRecordToNote = (record: NoteRecord): Note => ({
   date: new Date(record.date),
   content: record.content,
   reminderDaysBefore: record.reminderDaysBefore,
+  ...(record.recurrence ? { recurrence: record.recurrence } : {}),
 });

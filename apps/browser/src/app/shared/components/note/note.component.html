@@ -30,6 +30,11 @@
           >{{ ` ${note()!.reminderDaysBefore}` }}</span
         >
       }
+      @if (note()?.recurrence) {
+        <span [pTooltip]="'NOTE.RECURRENCE_TOOLTIP' | translate"
+          ><i class="pi pi-replay"></i>{{ recurrenceLabel() }}</span
+        >
+      }
     </div>
   </p-card>
 </div>

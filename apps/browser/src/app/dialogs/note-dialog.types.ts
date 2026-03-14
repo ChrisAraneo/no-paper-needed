@@ -1,4 +1,5 @@
 import { FormControl, FormGroup } from '@angular/forms';
+import { RecurrenceMode } from '../shared/interfaces/recurrence-mode.enum';
 import { ReminderMode } from '../shared/interfaces/reminder-mode.enum';
 
 export interface NoteDialogFormGroupValue {
@@ -6,6 +7,10 @@ export interface NoteDialogFormGroupValue {
   content: FormControl<string>;
   reminderMode: FormControl<ReminderMode>;
   reminderDaysBefore: FormControl<number>;
+  recurrenceMode: FormControl<RecurrenceMode>;
+  recurrenceDays: FormControl<number>;
+  recurrenceMonths: FormControl<number>;
+  recurrenceYears: FormControl<number>;
 }
 
 export type NoteDialogFormGroup = FormGroup<NoteDialogFormGroupValue>;
