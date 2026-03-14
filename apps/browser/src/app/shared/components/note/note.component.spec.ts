@@ -51,6 +51,24 @@ describe('NoteComponent', () => {
       expect(component.showEditButton()).toBe(false);
     });
 
+    it('should render a container div', () => {
+      const container = fixture.nativeElement.querySelector('.container');
+
+      expect(container).toBeTruthy();
+    });
+
+    it('should render a p-card', () => {
+      const card = fixture.nativeElement.querySelector('p-card');
+
+      expect(card).toBeTruthy();
+    });
+
+    it('should display empty content when note is undefined', () => {
+      const p = fixture.nativeElement.querySelector('.content p');
+
+      expect(p.textContent.trim()).toBe('');
+    });
+
     it('should not render date when note is undefined', () => {
       const date = fixture.nativeElement.querySelector('.date');
 
@@ -68,9 +86,28 @@ describe('NoteComponent', () => {
 
       expect(bell).toBeFalsy();
     });
+
+    it('should not display reminder when note is undefined', () => {
+      const span = fixture.nativeElement.querySelector('.footer span');
+
+      expect(span).toBeFalsy();
+    });
   });
 
   describe('note input', () => {
+    it('should have header, content, and footer sections', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.detectChanges();
+
+      const header = fixture.nativeElement.querySelector('.header');
+      const content = fixture.nativeElement.querySelector('.content');
+      const footer = fixture.nativeElement.querySelector('.footer');
+
+      expect(header).toBeTruthy();
+      expect(content).toBeTruthy();
+      expect(footer).toBeTruthy();
+    });
+
     it('should render date when note has a date', () => {
       fixture.componentRef.setInput('note', createNote());
       fixture.detectChanges();
@@ -83,25 +120,79 @@ describe('NoteComponent', () => {
       );
     });
 
-    it('should render content when note has content', () => {
+    it('should update the displayed date when note changes', () => {
+      const firstDate = new Date('2025-01-01');
+      const secondDate = new Date('2025-12-31');
+
+      fixture.componentRef.setInput('note', createNote({ date: firstDate }));
+      fixture.detectChanges();
+
+      const firstText = fixture.nativeElement
+        .querySelector('.date')
+        .textContent.trim();
+
+      fixture.componentRef.setInput('note', createNote({ date: secondDate }));
+      fixture.detectChanges();
+
+      const secondText = fixture.nativeElement
+        .querySelector('.date')
+        .textContent.trim();
+
+      expect(firstText).toBe(formatExpectedDate(firstDate));
+      expect(secondText).toBe(formatExpectedDate(secondDate));
+      expect(secondText).not.toBe(firstText);
+    });
+
+    it('should display the note content text', () => {
       fixture.componentRef.setInput(
         'note',
-        createNote({ content: 'My content' }),
+        createNote({ content: 'Hello world' }),
       );
       fixture.detectChanges();
 
-      const content = fixture.nativeElement.querySelector('.content p');
+      const p = fixture.nativeElement.querySelector('.content p');
 
-      expect(content.textContent).toContain('My content');
+      expect(p.textContent.trim()).toBe('Hello world');
     });
 
-    it('should not render content text when note has empty content', () => {
+    it('should display empty content when note content is an empty string', () => {
       fixture.componentRef.setInput('note', createNote({ content: '' }));
       fixture.detectChanges();
 
-      const content = fixture.nativeElement.querySelector('.content p');
+      const p = fixture.nativeElement.querySelector('.content p');
 
-      expect(content.textContent.trim()).toBe('');
+      expect(p.textContent.trim()).toBe('');
+    });
+
+    it('should update displayed content when note input changes', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ content: 'Old text' }),
+      );
+      fixture.detectChanges();
+
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ content: 'New text' }),
+      );
+      fixture.detectChanges();
+
+      const p = fixture.nativeElement.querySelector('.content p');
+
+      expect(p.textContent.trim()).toBe('New text');
+      expect(p.textContent).not.toContain('Old text');
+    });
+
+    it('should preserve special characters in content', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ content: 'A & B < C > D "quoted"' }),
+      );
+      fixture.detectChanges();
+
+      const p = fixture.nativeElement.querySelector('.content p');
+
+      expect(p.textContent).toContain('A & B < C > D "quoted"');
     });
 
     it('should render bell icon when reminderDaysBefore is greater than 0', () => {
@@ -116,16 +207,16 @@ describe('NoteComponent', () => {
       expect(bell).toBeTruthy();
     });
 
-    it('should render reminderDaysBefore value next to bell icon', () => {
+    it('should display the reminderDaysBefore number in the footer', () => {
       fixture.componentRef.setInput(
         'note',
-        createNote({ reminderDaysBefore: 3 }),
+        createNote({ reminderDaysBefore: 7 }),
       );
       fixture.detectChanges();
 
-      const footer = fixture.nativeElement.querySelector('.footer span');
+      const span = fixture.nativeElement.querySelector('.footer span');
 
-      expect(footer.textContent).toContain('3');
+      expect(span.textContent).toContain('7');
     });
 
     it('should not render bell icon when reminderDaysBefore is 0', () => {
@@ -140,31 +231,127 @@ describe('NoteComponent', () => {
       expect(bell).toBeFalsy();
     });
 
-    it('should update content when note input changes', () => {
-      fixture.componentRef.setInput('note', createNote({ content: 'First' }));
+    it('should update displayed reminder number when note changes', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ reminderDaysBefore: 3 }),
+      );
       fixture.detectChanges();
 
-      fixture.componentRef.setInput('note', createNote({ content: 'Second' }));
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ reminderDaysBefore: 10 }),
+      );
       fixture.detectChanges();
 
-      const content = fixture.nativeElement.querySelector('.content p');
+      const span = fixture.nativeElement.querySelector('.footer span');
 
-      expect(content.textContent).toContain('Second');
+      expect(span.textContent).toContain('10');
+      expect(span.textContent).not.toContain('3 ');
+    });
+
+    it('should hide reminder span when reminderDaysBefore changes from positive to 0', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ reminderDaysBefore: 5 }),
+      );
+      fixture.detectChanges();
+
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ reminderDaysBefore: 0 }),
+      );
+      fixture.detectChanges();
+
+      const span = fixture.nativeElement.querySelector('.footer span');
+
+      expect(span).toBeFalsy();
     });
   });
 
-  describe('formattedDate', () => {
-    it('should return empty string when note is undefined', () => {
-      expect(component.formattedDate()).toBe('');
-    });
-
-    it('should return locale-formatted date for a given note', () => {
-      const date = new Date('2025-06-15');
-
-      fixture.componentRef.setInput('note', createNote({ date }));
+  describe('showEditButton input', () => {
+    it('should render edit button when showEditButton is true', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.componentRef.setInput('showEditButton', true);
       fixture.detectChanges();
 
-      expect(component.formattedDate()).toBe(formatExpectedDate(date));
+      const editButton = fixture.nativeElement.querySelector('.edit-button');
+
+      expect(editButton).toBeTruthy();
+    });
+
+    it('should render npn-button inside edit button', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.componentRef.setInput('showEditButton', true);
+      fixture.detectChanges();
+
+      const appButton = fixture.nativeElement.querySelector(
+        '.edit-button npn-button',
+      );
+
+      expect(appButton).toBeTruthy();
+    });
+
+    it('should not render edit button when showEditButton is false', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.componentRef.setInput('showEditButton', false);
+      fixture.detectChanges();
+
+      const editButton = fixture.nativeElement.querySelector('.edit-button');
+
+      expect(editButton).toBeFalsy();
+    });
+  });
+
+  describe('edit output', () => {
+    it('should emit edit event with note when edit button is clicked', () => {
+      const note = createNote({ id: '42', content: 'Editable' });
+      fixture.componentRef.setInput('note', note);
+      fixture.componentRef.setInput('showEditButton', true);
+      fixture.detectChanges();
+
+      const spy = vi.fn();
+      outputToObservable(component.edit).subscribe(spy);
+
+      const button = fixture.nativeElement.querySelector(
+        '.edit-button npn-button button',
+      );
+      button.click();
+
+      expect(spy).toHaveBeenCalledWith(note);
+    });
+
+    it('should emit edit event only once per click', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.componentRef.setInput('showEditButton', true);
+      fixture.detectChanges();
+
+      const spy = vi.fn();
+      outputToObservable(component.edit).subscribe(spy);
+
+      const button = fixture.nativeElement.querySelector(
+        '.edit-button npn-button button',
+      );
+      button.click();
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not emit edit event without interaction', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.componentRef.setInput('showEditButton', true);
+      fixture.detectChanges();
+
+      const spy = vi.fn();
+      outputToObservable(component.edit).subscribe(spy);
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('internationalization and localization', () => {
+    it('should return empty string for formattedDate when note is undefined', () => {
+      expect(component.formattedDate()).toBe('');
     });
 
     it('should format date using WEEKDAY_DAY_MONTH format', () => {
@@ -178,7 +365,27 @@ describe('NoteComponent', () => {
       expect(result).toMatch(/[A-Z][a-z]+ [0-9]{2}\.[0-9]{2}/);
     });
 
-    it('should update when the note date changes', () => {
+    it('should format date using English locale by default', () => {
+      const date = new Date('2025-06-15');
+
+      fixture.componentRef.setInput('note', createNote({ date }));
+      fixture.detectChanges();
+
+      expect(component.formattedDate()).toBe(formatExpectedDate(date, enGB));
+    });
+
+    it('should capitalize the first letter of the formatted date', () => {
+      const date = new Date('2025-06-15');
+
+      fixture.componentRef.setInput('note', createNote({ date }));
+      fixture.detectChanges();
+
+      const result = component.formattedDate();
+
+      expect(result[0]).toBe(result[0].toUpperCase());
+    });
+
+    it('should update formattedDate when note date changes', () => {
       const firstDate = new Date('2025-01-01');
       const secondDate = new Date('2025-12-31');
 
@@ -273,298 +480,6 @@ describe('NoteComponent', () => {
         expect(first).toBe(formatExpectedDate(firstDate, pl));
         expect(second).toBe(formatExpectedDate(secondDate, pl));
         expect(first).not.toBe(second);
-      });
-    });
-  });
-
-  describe('showEditButton input', () => {
-    it('should render edit button when showEditButton is true', () => {
-      fixture.componentRef.setInput('note', createNote());
-      fixture.componentRef.setInput('showEditButton', true);
-      fixture.detectChanges();
-
-      const editButton = fixture.nativeElement.querySelector('.edit-button');
-
-      expect(editButton).toBeTruthy();
-    });
-
-    it('should render npn-button inside edit button', () => {
-      fixture.componentRef.setInput('note', createNote());
-      fixture.componentRef.setInput('showEditButton', true);
-      fixture.detectChanges();
-
-      const appButton = fixture.nativeElement.querySelector(
-        '.edit-button npn-button',
-      );
-
-      expect(appButton).toBeTruthy();
-    });
-
-    it('should not render edit button when showEditButton is false', () => {
-      fixture.componentRef.setInput('note', createNote());
-      fixture.componentRef.setInput('showEditButton', false);
-      fixture.detectChanges();
-
-      const editButton = fixture.nativeElement.querySelector('.edit-button');
-
-      expect(editButton).toBeFalsy();
-    });
-  });
-
-  describe('edit output', () => {
-    it('should emit edit event with note when edit button is clicked', () => {
-      const note = createNote({ id: '42', content: 'Editable' });
-      fixture.componentRef.setInput('note', note);
-      fixture.componentRef.setInput('showEditButton', true);
-      fixture.detectChanges();
-
-      const spy = vi.fn();
-      outputToObservable(component.edit).subscribe(spy);
-
-      const button = fixture.nativeElement.querySelector(
-        '.edit-button npn-button button',
-      );
-      button.click();
-
-      expect(spy).toHaveBeenCalledWith(note);
-    });
-
-    it('should emit edit event only once per click', () => {
-      fixture.componentRef.setInput('note', createNote());
-      fixture.componentRef.setInput('showEditButton', true);
-      fixture.detectChanges();
-
-      const spy = vi.fn();
-      outputToObservable(component.edit).subscribe(spy);
-
-      const button = fixture.nativeElement.querySelector(
-        '.edit-button npn-button button',
-      );
-      button.click();
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-
-    it('should not emit edit event without interaction', () => {
-      fixture.componentRef.setInput('note', createNote());
-      fixture.componentRef.setInput('showEditButton', true);
-      fixture.detectChanges();
-
-      const spy = vi.fn();
-      outputToObservable(component.edit).subscribe(spy);
-
-      expect(spy).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('rendered elements', () => {
-    describe('containers', () => {
-      it('should have header, content, and footer sections', () => {
-        fixture.componentRef.setInput('note', createNote());
-        fixture.detectChanges();
-
-        const header = fixture.nativeElement.querySelector('.header');
-        const content = fixture.nativeElement.querySelector('.content');
-        const footer = fixture.nativeElement.querySelector('.footer');
-
-        expect(header).toBeTruthy();
-        expect(content).toBeTruthy();
-        expect(footer).toBeTruthy();
-      });
-
-      it('should render a container div', () => {
-        const container = fixture.nativeElement.querySelector('.container');
-
-        expect(container).toBeTruthy();
-      });
-
-      it('should render a p-card', () => {
-        const card = fixture.nativeElement.querySelector('p-card');
-
-        expect(card).toBeTruthy();
-      });
-    });
-
-    describe('content', () => {
-      it('should display no content text when note is undefined', () => {
-        const p = fixture.nativeElement.querySelector('.content p');
-
-        expect(p.textContent.trim()).toBe('');
-      });
-
-      it('should display the note content text', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ content: 'Hello world' }),
-        );
-        fixture.detectChanges();
-
-        const p = fixture.nativeElement.querySelector('.content p');
-
-        expect(p.textContent.trim()).toBe('Hello world');
-      });
-
-      it('should display empty content when note content is an empty string', () => {
-        fixture.componentRef.setInput('note', createNote({ content: '' }));
-        fixture.detectChanges();
-
-        const p = fixture.nativeElement.querySelector('.content p');
-
-        expect(p.textContent.trim()).toBe('');
-      });
-
-      it('should update displayed content when note input changes', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ content: 'Old text' }),
-        );
-        fixture.detectChanges();
-
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ content: 'New text' }),
-        );
-        fixture.detectChanges();
-
-        const p = fixture.nativeElement.querySelector('.content p');
-
-        expect(p.textContent.trim()).toBe('New text');
-        expect(p.textContent).not.toContain('Old text');
-      });
-
-      it('should preserve special characters in content', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ content: 'A & B < C > D "quoted"' }),
-        );
-        fixture.detectChanges();
-
-        const p = fixture.nativeElement.querySelector('.content p');
-
-        expect(p.textContent).toContain('A & B < C > D "quoted"');
-      });
-    });
-
-    describe('date', () => {
-      it('should display no date text when note is undefined', () => {
-        const dateEl = fixture.nativeElement.querySelector('.date');
-
-        expect(dateEl).toBeFalsy();
-      });
-
-      it('should display a locale-formatted date string', () => {
-        const date = new Date('2025-06-15');
-
-        fixture.componentRef.setInput('note', createNote({ date }));
-        fixture.detectChanges();
-
-        const dateEl = fixture.nativeElement.querySelector('.date');
-
-        expect(dateEl.textContent.trim()).toBe(formatExpectedDate(date));
-      });
-
-      it('should capitalize the first letter of the formatted date', () => {
-        const date = new Date('2025-06-15');
-
-        fixture.componentRef.setInput('note', createNote({ date }));
-        fixture.detectChanges();
-
-        const dateEl = fixture.nativeElement.querySelector('.date');
-        const text = dateEl.textContent.trim();
-
-        expect(text[0]).toBe(text[0].toUpperCase());
-      });
-
-      it('should update the displayed date when note changes', () => {
-        const firstDate = new Date('2025-01-01');
-        const secondDate = new Date('2025-12-31');
-
-        fixture.componentRef.setInput('note', createNote({ date: firstDate }));
-        fixture.detectChanges();
-
-        const firstText = fixture.nativeElement
-          .querySelector('.date')
-          .textContent.trim();
-
-        fixture.componentRef.setInput('note', createNote({ date: secondDate }));
-        fixture.detectChanges();
-
-        const secondText = fixture.nativeElement
-          .querySelector('.date')
-          .textContent.trim();
-
-        expect(firstText).toBe(formatExpectedDate(firstDate));
-        expect(secondText).toBe(formatExpectedDate(secondDate));
-        expect(secondText).not.toBe(firstText);
-      });
-    });
-
-    describe('footer reminder', () => {
-      it('should display no reminder text when reminderDaysBefore is 0', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ reminderDaysBefore: 0 }),
-        );
-        fixture.detectChanges();
-
-        const span = fixture.nativeElement.querySelector('.footer span');
-
-        expect(span).toBeFalsy();
-      });
-
-      it('should display no reminder text when note is undefined', () => {
-        const span = fixture.nativeElement.querySelector('.footer span');
-
-        expect(span).toBeFalsy();
-      });
-
-      it('should display the reminderDaysBefore number in the footer', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ reminderDaysBefore: 7 }),
-        );
-        fixture.detectChanges();
-
-        const span = fixture.nativeElement.querySelector('.footer span');
-
-        expect(span.textContent).toContain('7');
-      });
-
-      it('should update displayed reminder number when note changes', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ reminderDaysBefore: 3 }),
-        );
-        fixture.detectChanges();
-
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ reminderDaysBefore: 10 }),
-        );
-        fixture.detectChanges();
-
-        const span = fixture.nativeElement.querySelector('.footer span');
-
-        expect(span.textContent).toContain('10');
-        expect(span.textContent).not.toContain('3 ');
-      });
-
-      it('should hide reminder span when reminderDaysBefore changes from positive to 0', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ reminderDaysBefore: 5 }),
-        );
-        fixture.detectChanges();
-
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ reminderDaysBefore: 0 }),
-        );
-        fixture.detectChanges();
-
-        const span = fixture.nativeElement.querySelector('.footer span');
-
-        expect(span).toBeFalsy();
       });
     });
   });
