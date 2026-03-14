@@ -92,6 +92,16 @@ describe('NoteComponent', () => {
 
       expect(span).toBeFalsy();
     });
+
+    it('should not render replay icon when note is undefined', () => {
+      const replay = fixture.nativeElement.querySelector('.pi-replay');
+
+      expect(replay).toBeFalsy();
+    });
+
+    it('should return empty string for recurrenceLabel when note is undefined', () => {
+      expect(component.recurrenceLabel()).toBe('');
+    });
   });
 
   describe('note input', () => {
@@ -266,6 +276,130 @@ describe('NoteComponent', () => {
       const span = fixture.nativeElement.querySelector('.footer span');
 
       expect(span).toBeFalsy();
+    });
+
+    it('should render replay icon when note has recurrence', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 7, months: 0, years: 0 } }),
+      );
+      fixture.detectChanges();
+
+      const replay = fixture.nativeElement.querySelector('.pi-replay');
+
+      expect(replay).toBeTruthy();
+    });
+
+    it('should not render replay icon when note has no recurrence', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.detectChanges();
+
+      const replay = fixture.nativeElement.querySelector('.pi-replay');
+
+      expect(replay).toBeFalsy();
+    });
+
+    it('should display recurrenceLabel with days in the footer', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 5, months: 0, years: 0 } }),
+      );
+      fixture.detectChanges();
+
+      const recurrenceSpan =
+        fixture.nativeElement.querySelectorAll('.footer span')[0];
+
+      expect(recurrenceSpan.textContent).toContain('5');
+    });
+
+    it('should display recurrenceLabel with months in the footer', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 0, months: 3, years: 0 } }),
+      );
+      fixture.detectChanges();
+
+      const recurrenceSpan =
+        fixture.nativeElement.querySelector('.pi-replay').parentElement;
+
+      expect(recurrenceSpan.textContent).toContain('3');
+    });
+
+    it('should display recurrenceLabel with years in the footer', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 0, months: 0, years: 1 } }),
+      );
+      fixture.detectChanges();
+
+      const recurrenceSpan =
+        fixture.nativeElement.querySelector('.pi-replay').parentElement;
+
+      expect(recurrenceSpan.textContent).toContain('1');
+    });
+
+    it('should display combined recurrenceLabel for multiple fields', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 10, months: 2, years: 1 } }),
+      );
+      fixture.detectChanges();
+
+      const recurrenceSpan =
+        fixture.nativeElement.querySelector('.pi-replay').parentElement;
+      const text = recurrenceSpan.textContent;
+
+      expect(text).toContain('1');
+      expect(text).toContain('2');
+      expect(text).toContain('10');
+    });
+
+    it('should return empty string for recurrenceLabel when note has no recurrence', () => {
+      fixture.componentRef.setInput('note', createNote());
+      fixture.detectChanges();
+
+      expect(component.recurrenceLabel()).toBe('');
+    });
+
+    it('should update recurrence display when note recurrence changes', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 3, months: 0, years: 0 } }),
+      );
+      fixture.detectChanges();
+
+      const firstText =
+        fixture.nativeElement.querySelector('.pi-replay').parentElement
+          .textContent;
+
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 14, months: 0, years: 0 } }),
+      );
+      fixture.detectChanges();
+
+      const secondText =
+        fixture.nativeElement.querySelector('.pi-replay').parentElement
+          .textContent;
+
+      expect(firstText).toContain('3');
+      expect(secondText).toContain('14');
+      expect(secondText).not.toContain(' 3 ');
+    });
+
+    it('should hide replay icon when recurrence is removed from note', () => {
+      fixture.componentRef.setInput(
+        'note',
+        createNote({ recurrence: { days: 7, months: 0, years: 0 } }),
+      );
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.pi-replay')).toBeTruthy();
+
+      fixture.componentRef.setInput('note', createNote());
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.pi-replay')).toBeFalsy();
     });
   });
 
