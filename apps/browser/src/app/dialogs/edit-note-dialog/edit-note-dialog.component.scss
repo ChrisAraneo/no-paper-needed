@@ -27,6 +27,26 @@ p-inputnumber {
   max-width: 128px;
 }
 
+.single-input {
+  display: flex;
+  gap: 12px;
+  margin-left: 30px;
+
+  p-inputnumber {
+    margin-left: 0;
+    max-width: none;
+  }
+
+  p-floatlabel {
+    flex: 1;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
 .summary-surface {
   display: flex;
   justify-content: center;

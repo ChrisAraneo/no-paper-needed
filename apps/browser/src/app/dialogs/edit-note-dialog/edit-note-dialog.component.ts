@@ -80,8 +80,6 @@ export class EditNoteDialogComponent extends NoteDialog {
       reminderDaysBefore: note.reminderDaysBefore,
       recurrenceMode,
       recurrenceDays: note.recurrence?.days ?? 0,
-      recurrenceMonths: note.recurrence?.months ?? 0,
-      recurrenceYears: note.recurrence?.years ?? 0,
     });
   }
 
@@ -109,7 +107,7 @@ export class EditNoteDialogComponent extends NoteDialog {
     } else if (days > 0 && months === 0 && years === 0) {
       return RecurrenceMode.EveryFewDays;
     } else {
-      return RecurrenceMode.Custom;
+      return RecurrenceMode.None;
     }
   }
 }

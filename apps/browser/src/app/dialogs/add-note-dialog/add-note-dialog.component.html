@@ -73,12 +73,23 @@
             'DIALOGS.ADD_NOTE.NOTIFY_CUSTOM_DAYS_BEFORE' | translate
           }}</label>
         </div>
-        <p-inputnumber
-          formControlName="reminderDaysBefore"
-          inputId="notification"
-          [disabled]="
+        <div
+          class="single-input"
+          [class.disabled]="
             reminderModeControl.value !== reminderMode.MultipleDaysBefore
-          " />
+          ">
+          <p-floatlabel variant="in">
+            <p-inputnumber
+              formControlName="reminderDaysBefore"
+              inputId="notification"
+              [disabled]="
+                reminderModeControl.value !== reminderMode.MultipleDaysBefore
+              " />
+            <label for="notification">{{
+              'DIALOGS.ADD_NOTE.REMINDER_DAYS' | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
       </div>
     </ng-template>
     <ng-template appStepPanel [stepValue]="4" [stepActions]="step4Actions()">
@@ -126,58 +137,20 @@
             'DIALOGS.ADD_NOTE.RECURRENCE_EVERY_FEW_DAYS' | translate
           }}</label>
         </div>
-        <p-inputnumber
-          formControlName="recurrenceDays"
-          inputId="recurrenceDaysInput"
-          [disabled]="
-            recurrenceModeControl.value !== recurrenceMode.EveryFewDays
-          " />
-        <div>
-          <p-radiobutton
-            formControlName="recurrenceMode"
-            inputId="recurrenceCustom"
-            name="recurrenceMode"
-            [value]="recurrenceMode.Custom" />
-          <label for="recurrenceCustom" class="ml-2">{{
-            'DIALOGS.ADD_NOTE.RECURRENCE_CUSTOM' | translate
-          }}</label>
-        </div>
         <div
-          class="custom-recurrence"
+          class="single-input"
           [class.disabled]="
-            recurrenceModeControl.value !== recurrenceMode.Custom
+            recurrenceModeControl.value !== recurrenceMode.EveryFewDays
           ">
           <p-floatlabel variant="in">
             <p-inputnumber
               formControlName="recurrenceDays"
-              inputId="customRecurrenceDays"
+              inputId="recurrenceDaysInput"
               [disabled]="
-                recurrenceModeControl.value !== recurrenceMode.Custom
+                recurrenceModeControl.value !== recurrenceMode.EveryFewDays
               " />
-            <label for="customRecurrenceDays">{{
+            <label for="recurrenceDaysInput">{{
               'DIALOGS.ADD_NOTE.RECURRENCE_DAYS' | translate
-            }}</label>
-          </p-floatlabel>
-          <p-floatlabel variant="in">
-            <p-inputnumber
-              formControlName="recurrenceMonths"
-              inputId="customRecurrenceMonths"
-              [disabled]="
-                recurrenceModeControl.value !== recurrenceMode.Custom
-              " />
-            <label for="customRecurrenceMonths">{{
-              'DIALOGS.ADD_NOTE.RECURRENCE_MONTHS' | translate
-            }}</label>
-          </p-floatlabel>
-          <p-floatlabel variant="in">
-            <p-inputnumber
-              formControlName="recurrenceYears"
-              inputId="customRecurrenceYears"
-              [disabled]="
-                recurrenceModeControl.value !== recurrenceMode.Custom
-              " />
-            <label for="customRecurrenceYears">{{
-              'DIALOGS.ADD_NOTE.RECURRENCE_YEARS' | translate
             }}</label>
           </p-floatlabel>
         </div>

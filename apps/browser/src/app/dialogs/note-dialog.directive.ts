@@ -178,12 +178,6 @@ export abstract class NoteDialog {
       recurrenceDays: new FormControl(0, {
         nonNullable: true,
       }),
-      recurrenceMonths: new FormControl(0, {
-        nonNullable: true,
-      }),
-      recurrenceYears: new FormControl(0, {
-        nonNullable: true,
-      }),
     });
 
     this.formValues = toSignal(this.form.valueChanges, {
@@ -294,8 +288,6 @@ export abstract class NoteDialog {
     values: Partial<{
       recurrenceMode: RecurrenceMode;
       recurrenceDays: number;
-      recurrenceMonths: number;
-      recurrenceYears: number;
     }>,
   ): Recurrence | undefined {
     const mode = values.recurrenceMode ?? RecurrenceMode.None;
@@ -312,13 +304,6 @@ export abstract class NoteDialog {
       }
       case RecurrenceMode.EveryFewDays: {
         return { days: values.recurrenceDays ?? 1, months: 0, years: 0 };
-      }
-      case RecurrenceMode.Custom: {
-        return {
-          days: values.recurrenceDays ?? 0,
-          months: values.recurrenceMonths ?? 0,
-          years: values.recurrenceYears ?? 0,
-        };
       }
       default: {
         return undefined;

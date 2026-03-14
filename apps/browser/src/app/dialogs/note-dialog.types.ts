@@ -9,8 +9,6 @@ export interface NoteDialogFormGroupValue {
   reminderDaysBefore: FormControl<number>;
   recurrenceMode: FormControl<RecurrenceMode>;
   recurrenceDays: FormControl<number>;
-  recurrenceMonths: FormControl<number>;
-  recurrenceYears: FormControl<number>;
 }
 
 export type NoteDialogFormGroup = FormGroup<NoteDialogFormGroupValue>;

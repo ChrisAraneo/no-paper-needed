@@ -3,5 +3,4 @@ export enum RecurrenceMode {
   EveryYear = 'EveryYear',
   EveryMonth = 'EveryMonth',
   EveryFewDays = 'EveryFewDays',
-  Custom = 'Custom',
 }
