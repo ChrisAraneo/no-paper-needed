@@ -3,7 +3,7 @@
     <div class="header">
       @if (note()?.date) {
         <p class="date" [pTooltip]="'NOTE.DATE_TOOLTIP' | translate">
-          {{ note()!.date | date }}
+          {{ formattedDate() }}
         </p>
       }
       @if (showEditButton()) {
