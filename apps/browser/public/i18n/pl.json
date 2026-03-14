@@ -13,14 +13,12 @@
       "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez kilka dni przed wydarzeniem:",
       "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
       "NOTIFY_SAME_DAY": "W dzień wydarzenia",
-      "RECURRENCE_DAYS": "Dni",
       "RECURRENCE_EVERY_FEW_DAYS": "Co kilka dni:",
       "RECURRENCE_EVERY_MONTH": "Co miesiąc",
       "RECURRENCE_EVERY_YEAR": "Co rok",
       "RECURRENCE_NONE": "Bez powtarzania",
       "RECURRENCE_SUBHEADER": "Czy ta notatka ma się powtarzać?",
       "REMINDERS_SUBHEADER": "Kiedy mają być wyświetlane przypomnienia?",
-      "REMINDER_DAYS": "Dni",
       "SUMMARY_SUBHEADER": "Notatka będzie wyglądać następująco:"
     },
     "EDIT_NOTE": {
@@ -31,14 +29,12 @@
       "NOTIFY_CUSTOM_DAYS_BEFORE": "Przez kilka dni przed wydarzeniem:",
       "NOTIFY_DAY_BEFORE": "Dzień wcześniej i w dzień wydarzenia",
       "NOTIFY_SAME_DAY": "W dzień wydarzenia",
-      "RECURRENCE_DAYS": "Dni",
       "RECURRENCE_EVERY_FEW_DAYS": "Co kilka dni:",
       "RECURRENCE_EVERY_MONTH": "Co miesiąc",
       "RECURRENCE_EVERY_YEAR": "Co rok",
       "RECURRENCE_NONE": "Bez powtarzania",
       "RECURRENCE_SUBHEADER": "Czy ta notatka ma się powtarzać?",
       "REMINDERS_SUBHEADER": "Kiedy mają być wyświetlane przypomnienia?",
-      "REMINDER_DAYS": "Dni",
       "SUMMARY_SUBHEADER": "Notatka będzie wyglądać następująco:"
     },
     "LABELS": {

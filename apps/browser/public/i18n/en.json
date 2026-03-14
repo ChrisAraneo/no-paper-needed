@@ -13,14 +13,12 @@
       "NOTIFY_CUSTOM_DAYS_BEFORE": "Repeat for a few days before the event:",
       "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
       "NOTIFY_SAME_DAY": "On the day of the event",
-      "RECURRENCE_DAYS": "Days",
       "RECURRENCE_EVERY_FEW_DAYS": "Every few days:",
       "RECURRENCE_EVERY_MONTH": "Every month",
       "RECURRENCE_EVERY_YEAR": "Every year",
       "RECURRENCE_NONE": "No recurrence",
       "RECURRENCE_SUBHEADER": "Should this note repeat?",
       "REMINDERS_SUBHEADER": "When should reminders be shown?",
-      "REMINDER_DAYS": "Days",
       "SUMMARY_SUBHEADER": "The note will look as follows:"
     },
     "EDIT_NOTE": {
@@ -31,14 +29,12 @@
       "NOTIFY_CUSTOM_DAYS_BEFORE": "Repeat for a few days before the event:",
       "NOTIFY_DAY_BEFORE": "One day before and on the day of the event",
       "NOTIFY_SAME_DAY": "On the day of the event",
-      "RECURRENCE_DAYS": "Days",
       "RECURRENCE_EVERY_FEW_DAYS": "Every few days:",
       "RECURRENCE_EVERY_MONTH": "Every month",
       "RECURRENCE_EVERY_YEAR": "Every year",
       "RECURRENCE_NONE": "No recurrence",
       "RECURRENCE_SUBHEADER": "Should this note repeat?",
       "REMINDERS_SUBHEADER": "When should reminders be shown?",
-      "REMINDER_DAYS": "Days",
       "SUMMARY_SUBHEADER": "The note will look as follows:"
     },
     "LABELS": {
