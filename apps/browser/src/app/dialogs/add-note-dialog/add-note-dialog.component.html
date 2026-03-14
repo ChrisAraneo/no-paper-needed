@@ -78,17 +78,12 @@
           [class.disabled]="
             reminderModeControl.value !== reminderMode.MultipleDaysBefore
           ">
-          <p-floatlabel variant="in">
-            <p-inputnumber
-              formControlName="reminderDaysBefore"
-              inputId="notification"
-              [disabled]="
-                reminderModeControl.value !== reminderMode.MultipleDaysBefore
-              " />
-            <label for="notification">{{
-              'DIALOGS.ADD_NOTE.REMINDER_DAYS' | translate
-            }}</label>
-          </p-floatlabel>
+          <p-inputnumber
+            formControlName="reminderDaysBefore"
+            inputId="notification"
+            [disabled]="
+              reminderModeControl.value !== reminderMode.MultipleDaysBefore
+            " />
         </div>
       </div>
     </ng-template>
@@ -142,17 +137,12 @@
           [class.disabled]="
             recurrenceModeControl.value !== recurrenceMode.EveryFewDays
           ">
-          <p-floatlabel variant="in">
-            <p-inputnumber
-              formControlName="recurrenceDays"
-              inputId="recurrenceDaysInput"
-              [disabled]="
-                recurrenceModeControl.value !== recurrenceMode.EveryFewDays
-              " />
-            <label for="recurrenceDaysInput">{{
-              'DIALOGS.ADD_NOTE.RECURRENCE_DAYS' | translate
-            }}</label>
-          </p-floatlabel>
+          <p-inputnumber
+            formControlName="recurrenceDays"
+            inputId="recurrenceDaysInput"
+            [disabled]="
+              recurrenceModeControl.value !== recurrenceMode.EveryFewDays
+            " />
         </div>
       </div>
     </ng-template>
