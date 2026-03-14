@@ -49,7 +49,10 @@
     "BELL_TOOLTIP": "Przez ile dni przed wydarzeniem będą wyświetlane przypomnienia",
     "DATE_TOOLTIP": "Data związana z notatką",
     "EDIT_TOOLTIP": "Edytuj notatkę",
-    "RECURRENCE_TOOLTIP": "Ta notatka się powtarza"
+    "RECURRENCE_DAYS": "dni",
+    "RECURRENCE_MONTH": "miesiąc",
+    "RECURRENCE_TOOLTIP": "Ta notatka się powtarza",
+    "RECURRENCE_YEAR": "rok"
   },
   "PAGES": {
     "ARCHIVE": {

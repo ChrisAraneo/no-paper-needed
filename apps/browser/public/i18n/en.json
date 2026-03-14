@@ -49,7 +49,10 @@
     "BELL_TOOLTIP": "For how many days before the event reminders will be shown",
     "DATE_TOOLTIP": "Date related to the note",
     "EDIT_TOOLTIP": "Edit note",
-    "RECURRENCE_TOOLTIP": "This note repeats"
+    "RECURRENCE_DAYS": "days",
+    "RECURRENCE_MONTH": "month",
+    "RECURRENCE_TOOLTIP": "This note repeats",
+    "RECURRENCE_YEAR": "year"
   },
   "PAGES": {
     "ARCHIVE": {
