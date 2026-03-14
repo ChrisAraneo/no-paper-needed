@@ -1,7 +1,12 @@
 import { outputToObservable } from '@angular/core/rxjs-interop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { format, Locale } from 'date-fns';
+import { enGB, pl } from 'date-fns/locale';
+import { Subject } from 'rxjs';
 
+import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../consts/consts';
 import { Note } from '../../interfaces/note.interface';
 import { NoteComponent } from './note.component';
 
@@ -13,6 +18,11 @@ const createNote = (overrides: Partial<Note> = {}): Note => ({
   ...overrides,
 });
 
+const formatExpectedDate = (date: Date, locale: Locale = enGB): string =>
+  format(date, WEEKDAY_DAY_MONTH_DATE_FORMAT, { locale }).replace(/^./u, (c) =>
+    c.toUpperCase(),
+  );
+
 describe('NoteComponent', () => {
   let component: NoteComponent;
   let fixture: ComponentFixture<NoteComponent>;
@@ -20,6 +30,7 @@ describe('NoteComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoteComponent, TranslateModule.forRoot()],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NoteComponent);
@@ -67,7 +78,9 @@ describe('NoteComponent', () => {
       const date = fixture.nativeElement.querySelector('.date');
 
       expect(date).toBeTruthy();
-      expect(date.textContent.trim()).toBeTruthy();
+      expect(date.textContent.trim()).toBe(
+        formatExpectedDate(new Date('2025-06-15')),
+      );
     });
 
     it('should render content when note has content', () => {
@@ -137,6 +150,130 @@ describe('NoteComponent', () => {
       const content = fixture.nativeElement.querySelector('.content p');
 
       expect(content.textContent).toContain('Second');
+    });
+  });
+
+  describe('formattedDate', () => {
+    it('should return empty string when note is undefined', () => {
+      expect(component.formattedDate()).toBe('');
+    });
+
+    it('should return locale-formatted date for a given note', () => {
+      const date = new Date('2025-06-15');
+
+      fixture.componentRef.setInput('note', createNote({ date }));
+      fixture.detectChanges();
+
+      expect(component.formattedDate()).toBe(formatExpectedDate(date));
+    });
+
+    it('should format date using WEEKDAY_DAY_MONTH format', () => {
+      const date = new Date('2025-03-10');
+
+      fixture.componentRef.setInput('note', createNote({ date }));
+      fixture.detectChanges();
+
+      const result = component.formattedDate();
+
+      expect(result).toMatch(/[A-Z][a-z]+ [0-9]{2}\.[0-9]{2}/);
+    });
+
+    it('should update when the note date changes', () => {
+      const firstDate = new Date('2025-01-01');
+      const secondDate = new Date('2025-12-31');
+
+      fixture.componentRef.setInput('note', createNote({ date: firstDate }));
+      fixture.detectChanges();
+      const first = component.formattedDate();
+
+      fixture.componentRef.setInput('note', createNote({ date: secondDate }));
+      fixture.detectChanges();
+      const second = component.formattedDate();
+
+      expect(first).toBe(formatExpectedDate(firstDate));
+      expect(second).toBe(formatExpectedDate(secondDate));
+      expect(first).not.toBe(second);
+    });
+
+    describe('with pl locale', () => {
+      let plComponent: NoteComponent;
+      let plFixture: ComponentFixture<NoteComponent>;
+
+      beforeEach(async () => {
+        await TestBed.resetTestingModule()
+          .configureTestingModule({
+            imports: [NoteComponent, TranslateModule.forRoot()],
+            providers: [
+              {
+                provide: Router,
+                useValue: {
+                  events: new Subject(),
+                  url: '/pl/home',
+                },
+              },
+            ],
+          })
+          .compileComponents();
+
+        plFixture = TestBed.createComponent(NoteComponent);
+        plComponent = plFixture.componentInstance;
+        plFixture.detectChanges();
+      });
+
+      it('should format date using Polish locale', () => {
+        const date = new Date('2025-06-15');
+
+        plFixture.componentRef.setInput('note', createNote({ date }));
+        plFixture.detectChanges();
+
+        expect(plComponent.formattedDate()).toBe(formatExpectedDate(date, pl));
+      });
+
+      it('should capitalize the first letter for Polish locale', () => {
+        const date = new Date('2025-06-15');
+
+        plFixture.componentRef.setInput('note', createNote({ date }));
+        plFixture.detectChanges();
+
+        const result = plComponent.formattedDate();
+
+        expect(result[0]).toBe(result[0].toUpperCase());
+      });
+
+      it('should differ from the English formatted date', () => {
+        const date = new Date('2025-06-15');
+
+        plFixture.componentRef.setInput('note', createNote({ date }));
+        plFixture.detectChanges();
+        const plResult = plComponent.formattedDate();
+
+        const enResult = formatExpectedDate(date, enGB);
+
+        expect(plResult).not.toBe(enResult);
+      });
+
+      it('should update when the note date changes in pl locale', () => {
+        const firstDate = new Date('2025-01-01');
+        const secondDate = new Date('2025-12-31');
+
+        plFixture.componentRef.setInput(
+          'note',
+          createNote({ date: firstDate }),
+        );
+        plFixture.detectChanges();
+        const first = plComponent.formattedDate();
+
+        plFixture.componentRef.setInput(
+          'note',
+          createNote({ date: secondDate }),
+        );
+        plFixture.detectChanges();
+        const second = plComponent.formattedDate();
+
+        expect(first).toBe(formatExpectedDate(firstDate, pl));
+        expect(second).toBe(formatExpectedDate(secondDate, pl));
+        expect(first).not.toBe(second);
+      });
     });
   });
 
@@ -315,39 +452,49 @@ describe('NoteComponent', () => {
         expect(dateEl).toBeFalsy();
       });
 
-      it('should display a formatted date string', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ date: new Date('2025-06-15') }),
-        );
+      it('should display a locale-formatted date string', () => {
+        const date = new Date('2025-06-15');
+
+        fixture.componentRef.setInput('note', createNote({ date }));
         fixture.detectChanges();
 
         const dateEl = fixture.nativeElement.querySelector('.date');
 
-        expect(dateEl.textContent.trim()).toBeTruthy();
+        expect(dateEl.textContent.trim()).toBe(formatExpectedDate(date));
+      });
+
+      it('should capitalize the first letter of the formatted date', () => {
+        const date = new Date('2025-06-15');
+
+        fixture.componentRef.setInput('note', createNote({ date }));
+        fixture.detectChanges();
+
+        const dateEl = fixture.nativeElement.querySelector('.date');
+        const text = dateEl.textContent.trim();
+
+        expect(text[0]).toBe(text[0].toUpperCase());
       });
 
       it('should update the displayed date when note changes', () => {
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ date: new Date('2025-01-01') }),
-        );
+        const firstDate = new Date('2025-01-01');
+        const secondDate = new Date('2025-12-31');
+
+        fixture.componentRef.setInput('note', createNote({ date: firstDate }));
         fixture.detectChanges();
 
         const firstText = fixture.nativeElement
           .querySelector('.date')
           .textContent.trim();
 
-        fixture.componentRef.setInput(
-          'note',
-          createNote({ date: new Date('2025-12-31') }),
-        );
+        fixture.componentRef.setInput('note', createNote({ date: secondDate }));
         fixture.detectChanges();
 
         const secondText = fixture.nativeElement
           .querySelector('.date')
           .textContent.trim();
 
+        expect(firstText).toBe(formatExpectedDate(firstDate));
+        expect(secondText).toBe(formatExpectedDate(secondDate));
         expect(secondText).not.toBe(firstText);
       });
     });
