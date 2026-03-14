@@ -7,6 +7,7 @@ import { DialogService } from '../core/services/dialog/dialog.service';
 import { NoteComponent } from '../shared/components/note/note.component';
 import { Note } from '../shared/interfaces/note.interface';
 import { TodayComponent } from './today/today.component';
+import { TextComponent } from '@no-paper-needed/shared/text';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ import { TodayComponent } from './today/today.component';
     CommonModule,
     AsyncPipe,
     TodayComponent,
+    TextComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
