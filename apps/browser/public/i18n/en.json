@@ -51,6 +51,7 @@
     "EDIT_TOOLTIP": "Edit note",
     "RECURRENCE_DAYS": "days",
     "RECURRENCE_MONTH": "month",
+    "RECURRENCE_PREFIX": "This note repeats every",
     "RECURRENCE_TOOLTIP": "This note repeats",
     "RECURRENCE_YEAR": "year"
   },
