@@ -11,11 +11,11 @@
         }
       </div>
     } @empty {
-      <span>
+      <npn-text>
         @if (query | async) {
           {{ 'PAGES.SEARCH.NO_RESULTS' | translate }}
         }
-      </span>
+      </npn-text>
     }
   </div>
 </div>

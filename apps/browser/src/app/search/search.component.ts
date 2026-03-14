@@ -8,6 +8,7 @@ import { StoreService } from '../core/services';
 import { NoteComponent } from '../shared/components/note/note.component';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
 import { Note } from '../shared/interfaces/note.interface';
+import { TextComponent } from '@no-paper-needed/shared/text';
 
 @Component({
   selector: 'app-search',
@@ -17,6 +18,7 @@ import { Note } from '../shared/interfaces/note.interface';
     CommonModule,
     AsyncPipe,
     HeaderComponent,
+    TextComponent,
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
