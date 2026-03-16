@@ -15,6 +15,7 @@
       "@no-paper-needed/shared/label": ["libs/shared/label/src/index.ts"],
       "@no-paper-needed/shared/searchbar": ["libs/shared/searchbar/src/index.ts"],
       "@no-paper-needed/shared/text": ["libs/shared/text/src/index.ts"],
+      "@no-paper-needed/shared/theme": ["libs/shared/theme/src/index.ts"],
       "header": ["libs/shared/header/src/index.ts"]
     },
     "rootDir": ".",
