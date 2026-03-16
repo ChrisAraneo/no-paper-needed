@@ -17,7 +17,7 @@ import { HomeComponent } from './app/home/home.component';
 import { SearchComponent } from './app/search/search.component';
 import { SharedModule } from './app/shared/shared.module';
 import { APP_CONFIG } from '../environments/environment';
-import { THEME } from './app/shared/styles/theme';
+import { THEME } from '@no-paper-needed/shared/theme';
 import { FALLBACK_LOCALE } from './app/shared/consts/consts';
 
 if (APP_CONFIG.production) {

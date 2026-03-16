@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/angular';
 import { applicationConfig } from '@storybook/angular';
 import { providePrimeNG } from 'primeng/config';
-import { THEME } from '../../../../apps/browser/src/app/shared/styles/theme';
+import { THEME } from '@no-paper-needed/shared/theme';
 
 const preview: Preview = {
   decorators: [
