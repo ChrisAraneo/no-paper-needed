@@ -126,4 +126,3 @@ export const IconLeft: Story = {
     iconPosition: 'left',
   },
 };
-
