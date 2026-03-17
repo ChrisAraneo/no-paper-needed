@@ -8,5 +8,6 @@ export default configBuilder()
     templates: ['**/*.html'],
     jsons: ['**/*.json'],
     ignored: ['eslint.config.mjs', 'vite.config.mts', 'src/test-setup.ts'],
+    tsconfigRootDir: import.meta.dirname,
   })
   .build();

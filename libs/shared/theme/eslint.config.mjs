@@ -8,5 +8,6 @@ export default configBuilder()
     templates: ['**/*.html'],
     jsons: ['**/*.json'],
     ignored: ['eslint.config.mjs'],
+    tsconfigRootDir: import.meta.dirname,
   })
   .build();
