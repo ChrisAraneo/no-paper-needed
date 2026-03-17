@@ -7,7 +7,7 @@ import { map, Observable, switchMap } from 'rxjs';
 import { StoreService } from '../core/services';
 import { NoteComponent } from '../shared/components/note/note.component';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
-import { Note } from '../shared/interfaces/note.interface';
+import { Note } from '@no-paper-needed/shared/interfaces';
 import { TextComponent } from '@no-paper-needed/shared/text';
 
 @Component({

@@ -13,7 +13,7 @@ import { NoteComponent } from '../../shared/components/note/note.component';
 import { StepperDialogComponent } from '../../shared/components/stepper-dialog/stepper-dialog.component';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
 import { StepPanelDirective } from '../../shared/directives/step-panel/step-panel.directive';
-import { Note } from '../../shared/interfaces/note.interface';
+import { Note } from '@no-paper-needed/shared/interfaces';
 import { RecurrenceMode } from '../../shared/interfaces/recurrence-mode.enum';
 import { ReminderMode } from '../../shared/interfaces/reminder-mode.enum';
 import { NoteDialog } from '../note-dialog.directive';

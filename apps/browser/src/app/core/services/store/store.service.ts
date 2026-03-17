@@ -11,7 +11,7 @@ import {
   tap,
 } from 'rxjs';
 
-import { Note, Recurrence } from '../../../shared/interfaces/note.interface';
+import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
 import { getDayDiff } from '../../../shared/functions/get-day-diff.function';
 import { NoteRecord } from '../../../shared/interfaces/note-record.interface';
 import { addDays, addMonths, addYears } from 'date-fns';

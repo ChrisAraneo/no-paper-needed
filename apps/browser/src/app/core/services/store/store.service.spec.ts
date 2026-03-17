@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 
-import { Note } from '../../../shared/interfaces/note.interface';
+import { Note } from '@no-paper-needed/shared/interfaces';
 import { StoreService } from './store.service';
 
 const createNote = (overrides: Partial<Note> = {}): Note => ({

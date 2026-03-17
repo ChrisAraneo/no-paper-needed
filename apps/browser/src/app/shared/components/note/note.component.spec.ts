@@ -7,7 +7,7 @@ import { enGB, pl } from 'date-fns/locale';
 import { Subject } from 'rxjs';
 
 import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../consts/consts';
-import { Note } from '../../interfaces/note.interface';
+import { Note } from '@no-paper-needed/shared/interfaces';
 import { NoteComponent } from './note.component';
 
 const createNote = (overrides: Partial<Note> = {}): Note => ({

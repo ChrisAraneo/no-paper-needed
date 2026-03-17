@@ -1,5 +1,5 @@
 import { NoteRecord } from '../interfaces/note-record.interface';
-import { Note } from '../interfaces/note.interface';
+import { Note } from '@no-paper-needed/shared/interfaces';
 
 export const noteToNoteRecord = (note: Note): NoteRecord => ({
   id: note.id,

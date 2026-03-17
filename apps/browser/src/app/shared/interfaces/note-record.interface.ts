@@ -1,4 +1,4 @@
-import { Recurrence } from './note.interface';
+import { Recurrence } from '@no-paper-needed/shared/interfaces';
 
 export interface NoteRecord {
   id: string;

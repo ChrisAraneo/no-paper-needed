@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonComponent } from '@no-paper-needed/shared/button';
-import { Note, Recurrence } from '../../interfaces/note.interface';
+import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { format } from 'date-fns';
 import { LocaleService } from '../../../core/services/locale/locale.service';
