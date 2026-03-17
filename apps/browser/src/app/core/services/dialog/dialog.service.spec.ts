@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
 import { Note } from '@no-paper-needed/shared/interfaces';
+
 import { DialogService } from './dialog.service';
 
 describe('DialogService', () => {

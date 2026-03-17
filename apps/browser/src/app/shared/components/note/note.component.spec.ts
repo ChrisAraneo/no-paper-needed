@@ -2,12 +2,12 @@ import { outputToObservable } from '@angular/core/rxjs-interop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Note } from '@no-paper-needed/shared/interfaces';
 import { format, Locale } from 'date-fns';
 import { enGB, pl } from 'date-fns/locale';
 import { Subject } from 'rxjs';
 
 import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../consts/consts';
-import { Note } from '@no-paper-needed/shared/interfaces';
 import { NoteComponent } from './note.component';
 
 const createNote = (overrides: Partial<Note> = {}): Note => ({
@@ -18,9 +18,7 @@ const createNote = (overrides: Partial<Note> = {}): Note => ({
   ...overrides,
 });
 
-const formatExpectedDate = (date: Date, locale: Locale = enGB): string =>
-  format(date, WEEKDAY_DAY_MONTH_DATE_FORMAT, { locale }).replace(/^./u, (c) =>
-    c.toUpperCase(),
+const formatExpectedDate = (date: Date, locale: Locale = enGB): string => format(date, WEEKDAY_DAY_MONTH_DATE_FORMAT, { locale }).replace(/^./u, (c) => c.toUpperCase(),
   );
 
 describe('NoteComponent', () => {

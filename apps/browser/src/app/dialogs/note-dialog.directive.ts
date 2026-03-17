@@ -15,8 +15,8 @@ import { first, map, timer } from 'rxjs';
 import { StepPanelAction } from '../shared/components/step-panel/step-panel.interfaces';
 import { StepConfig } from '../shared/components/stepper/stepper.component';
 import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
-import { RecurrenceMode } from '../shared/interfaces/recurrence-mode.enum';
-import { ReminderMode } from '../shared/interfaces/reminder-mode.enum';
+import { RecurrenceMode } from '@no-paper-needed/shared/interfaces';
+import { ReminderMode } from '@no-paper-needed/shared/interfaces';
 import { NoteDialogFormGroupValue } from './note-dialog.types';
 import {
   DAY_BEFORE_REMINDER_DAYS_BEFORE,
