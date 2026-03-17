@@ -9,10 +9,7 @@
     "chores": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "nx run interfaces:lint:fix",
-          "nx run interfaces:format"
-        ],
+        "commands": ["nx run interfaces:lint:fix", "nx run interfaces:format"],
         "parallel": false
       }
     },
