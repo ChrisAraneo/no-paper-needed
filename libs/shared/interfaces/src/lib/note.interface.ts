@@ -1,8 +1,4 @@
-export interface Recurrence {
-  days: number;
-  months: number;
-  years: number;
-}
+import { Recurrence } from './recurrence.interface';
 
 export interface Note {
   id: string;
