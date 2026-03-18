@@ -6,6 +6,16 @@
   "sourceRoot": "libs/shared/searchbar/src",
   "tags": [],
   "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/searchbar/.storybook",
+        "outputDir": "dist/storybook/searchbar",
+        "tsConfig": "libs/shared/searchbar/.storybook/tsconfig.json"
+      }
+    },
     "chores": {
       "executor": "nx:run-commands",
       "options": {
@@ -26,6 +36,16 @@
       "executor": "@nx/eslint:lint",
       "options": {
         "fix": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/searchbar/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/shared/searchbar/.storybook/tsconfig.json"
       }
     }
   }
