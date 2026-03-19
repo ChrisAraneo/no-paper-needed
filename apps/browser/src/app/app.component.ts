@@ -6,12 +6,13 @@ import { ElectronService } from './core/services';
 import { DialogService } from './core/services/dialog/dialog.service';
 import { LocaleService } from './core/services/locale/locale.service';
 import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { FALLBACK_LOCALE } from './shared/consts/consts';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToolbarComponent, DialogContainerComponent],
+  imports: [RouterOutlet, ToolbarComponent, FooterComponent, DialogContainerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

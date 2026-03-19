@@ -1,0 +1,24 @@
+:host {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-shadow: none;
+  padding: 8px 8px;
+  border-top: 1px solid transparent;
+  background-color: transparent;
+}
+
+.col {
+  width: 33.333333%;
+  display: flex;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}
