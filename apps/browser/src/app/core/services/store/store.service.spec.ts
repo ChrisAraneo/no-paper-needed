@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Note } from '@no-paper-needed/shared/interfaces';
+import { Note, NoteRecord } from '@no-paper-needed/shared/interfaces';
 import { firstValueFrom } from 'rxjs';
 
 import { StoreService } from './store.service';
@@ -451,6 +451,100 @@ describe('StoreService', () => {
 
       const result = await firstValueFrom(service.searchNotes('  trimmed  '));
       expect(result.flat()).toHaveLength(1);
+    });
+  });
+
+  describe('exportData()', () => {
+    it('should return an empty array when store is empty', async () => {
+      const result = await firstValueFrom(service.exportData());
+      expect(result).toEqual([]);
+    });
+
+    it('should return all notes as NoteRecord[]', async () => {
+      await firstValueFrom(
+        service.addNote(createNote({ id: '1', content: 'First' })),
+      );
+      await firstValueFrom(
+        service.addNote(createNote({ id: '2', content: 'Second' })),
+      );
+
+      const result = await firstValueFrom(service.exportData());
+      expect(result).toHaveLength(2);
+      expect(result[0].id).toBe('1');
+      expect(result[1].id).toBe('2');
+    });
+  });
+
+  describe('importData()', () => {
+    it('should replace all existing notes with imported records', async () => {
+      await firstValueFrom(
+        service.addNote(createNote({ id: 'old', content: 'Old note' })),
+      );
+
+      const records: NoteRecord[] = [
+        {
+          id: 'new-1',
+          date: '2025-07-01',
+          content: 'Imported 1',
+          reminderDaysBefore: 0,
+        },
+        {
+          id: 'new-2',
+          date: '2025-07-02',
+          content: 'Imported 2',
+          reminderDaysBefore: 1,
+        },
+      ];
+
+      await firstValueFrom(service.importData(records));
+
+      const result = await firstValueFrom(service.getNotes());
+      expect(result).toHaveLength(2);
+      expect(result.map((n) => n.id)).toEqual(['new-1', 'new-2']);
+    });
+
+    it('should clear the store when importing an empty array', async () => {
+      await firstValueFrom(
+        service.addNote(createNote({ id: '1', content: 'Existing' })),
+      );
+
+      await firstValueFrom(service.importData([]));
+
+      const result = await firstValueFrom(service.getNotes());
+      expect(result).toEqual([]);
+    });
+
+    it('should persist imported data to the database', async () => {
+      const records: NoteRecord[] = [
+        {
+          id: 'persisted',
+          date: '2025-08-01',
+          content: 'Persisted note',
+          reminderDaysBefore: 0,
+        },
+      ];
+
+      await firstValueFrom(service.importData(records));
+
+      const exported = await firstValueFrom(service.exportData());
+      expect(exported).toHaveLength(1);
+      expect(exported[0].id).toBe('persisted');
+    });
+
+    it('should convert NoteRecord dates to Date objects in the store', async () => {
+      const records: NoteRecord[] = [
+        {
+          id: '1',
+          date: '2025-06-15',
+          content: 'Test',
+          reminderDaysBefore: 0,
+        },
+      ];
+
+      await firstValueFrom(service.importData(records));
+
+      const result = await firstValueFrom(service.getNotes());
+      expect(result[0].date).toBeInstanceOf(Date);
     });
   });
 });
