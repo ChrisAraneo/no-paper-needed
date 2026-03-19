@@ -1,3 +1,18 @@
 <div class="col"></div>
 <div class="col center"></div>
-<div class="col flex-end"></div>
+<div class="col flex-end">
+  <div class="export-button" [pTooltip]="'FOOTER.EXPORT_TOOLTIP' | translate">
+    <npn-button
+      icon="pi pi-file-export"
+      severity="secondary"
+      [isRounded]="true"
+      (clicked)="export.emit()" />
+  </div>
+  <div class="import-button" [pTooltip]="'FOOTER.IMPORT_TOOLTIP' | translate">
+    <npn-button
+      icon="pi pi-file-import"
+      severity="secondary"
+      [isRounded]="true"
+      (clicked)="import.emit()" />
+  </div>
+</div>
