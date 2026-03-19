@@ -72,7 +72,7 @@ describe('ImportService', () => {
     service.importFromFile();
 
     const changeHandler = addEventListenerSpy.mock.calls.find(
-      ([event]: [string]) => event === 'change',
+      ([event]) => event === 'change',
     )![1] as () => void;
 
     const json = JSON.stringify(mockRecords);
@@ -83,7 +83,7 @@ describe('ImportService', () => {
     vi.spyOn(FileReader.prototype, 'readAsText').mockImplementation(function (this: FileReader) {
       Object.defineProperty(this, 'result', { value: json, writable: false });
       const loadHandler = readerAddEventListenerSpy.mock.calls.find(
-        ([event]: [string]) => event === 'load',
+        ([event]) => event === 'load',
       )![1] as () => void;
       loadHandler.call(this);
     });
@@ -110,7 +110,7 @@ describe('ImportService', () => {
     service.importFromFile();
 
     const changeHandler = addEventListenerSpy.mock.calls.find(
-      ([event]: [string]) => event === 'change',
+      ([event]) => event === 'change',
     )![1] as () => void;
 
     fakeInput.files = { length: 0 } as FileList;
