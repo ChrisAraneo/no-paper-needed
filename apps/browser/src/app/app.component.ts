@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ElectronService } from './core/services';
 import { DialogService } from './core/services/dialog/dialog.service';
+import { ExportService } from './core/services/export/export.service';
 import { LocaleService } from './core/services/locale/locale.service';
 import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
 
   private readonly localeService = inject(LocaleService);
   private readonly electronService = inject(ElectronService);
+  private readonly exportService = inject(ExportService);
   private readonly translate = inject(TranslateService);
 
   ngOnInit(): void {
@@ -40,5 +42,9 @@ export class AppComponent implements OnInit {
 
   openAddNoteDialog(): void {
     this.dialogService.openAddNoteDialog();
+  }
+
+  exportData(): void {
+    this.exportService.exportToFile();
   }
 }
