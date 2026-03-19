@@ -74,5 +74,9 @@
     "ADD_NOTE": "Dodaj notatkę",
     "ARCHIVE": "Archiwum",
     "HOME": "Strona główna"
+  },
+  "FOOTER": {
+    "EXPORT_TOOLTIP": "Eksportuj dane",
+    "IMPORT_TOOLTIP": "Importuj dane"
   }
 }
