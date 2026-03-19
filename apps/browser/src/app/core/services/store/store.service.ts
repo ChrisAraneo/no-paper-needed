@@ -238,6 +238,25 @@ export class StoreService {
     });
   }
 
+  exportData(): Observable<NoteRecord[]> {
+    return this.initialized.asObservable().pipe(
+      filter(Boolean),
+      switchMap(() => from(this.database.notes.toArray())),
+    );
+  }
+
+  importData(records: NoteRecord[]): Observable<void> {
+    return this.initialized.asObservable().pipe(
+      filter(Boolean),
+      switchMap(() => from(this.database.notes.clear())),
+      switchMap(() => from(this.database.notes.bulkAdd(records))),
+      tap(() => {
+        this.notes.next(records.map((record) => noteRecordToNote(record)));
+      }),
+      map(noop),
+    );
+  }
+
   private restore(): Observable<void> {
     return from(this.database.notes.toArray()).pipe(
       map((records) => records.map((record) => noteRecordToNote(record))),
