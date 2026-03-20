@@ -71,7 +71,7 @@ test.describe('HeaderComponent', () => {
 
   test.describe('H2 story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=shared-header--as-h2&viewMode=story');
+      await page.goto('/iframe.html?id=shared-header--as-h-2&viewMode=story');
       await page.locator('npn-header header').waitFor();
     });
 
@@ -102,7 +102,7 @@ test.describe('HeaderComponent', () => {
 
   test.describe('H3 story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=shared-header--as-h3&viewMode=story');
+      await page.goto('/iframe.html?id=shared-header--as-h-3&viewMode=story');
       await page.locator('npn-header header').waitFor();
     });
 
