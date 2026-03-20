@@ -24,7 +24,7 @@ import {
   RESET_DIALOG_DELAY_MS,
   SAME_DAY_REMINDER_DAYS_BEFORE,
 } from './note-dialog.consts';
-import { FormControlStatus } from '../shared/interfaces/form-control-status.enum';
+import { FormControlStatus } from '@no-paper-needed/shared/interfaces';
 
 @Directive()
 export abstract class NoteDialog {
