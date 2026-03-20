@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { NoteRecord } from '@no-paper-needed/shared/interfaces';
 import { of } from 'rxjs';
 
-import { NoteRecord } from '@no-paper-needed/shared/interfaces';
 import { StoreService } from '../store/store.service';
 import { ImportService } from './import.service';
 
@@ -52,7 +52,10 @@ describe('ImportService', () => {
     expect(fakeInput.type).toBe('file');
     expect(fakeInput.accept).toBe('.json');
     expect(clickSpy).toHaveBeenCalled();
-    expect(addEventListenerSpy).toHaveBeenCalledWith('change', expect.any(Function));
+    expect(addEventListenerSpy).toHaveBeenCalledWith(
+      'change',
+      expect.any(Function),
+    );
   });
 
   it('should parse file and call importData on store', () => {
@@ -76,11 +79,18 @@ describe('ImportService', () => {
     )![1] as () => void;
 
     const json = JSON.stringify(mockRecords);
-    const fakeFile = new File([json], 'export.json', { type: 'application/json' });
+    const fakeFile = new File([json], 'export.json', {
+      type: 'application/json',
+    });
     fakeInput.files = [fakeFile] as unknown as FileList;
 
-    const readerAddEventListenerSpy = vi.spyOn(FileReader.prototype, 'addEventListener');
-    vi.spyOn(FileReader.prototype, 'readAsText').mockImplementation(function (this: FileReader) {
+    const readerAddEventListenerSpy = vi.spyOn(
+      FileReader.prototype,
+      'addEventListener',
+    );
+    vi.spyOn(FileReader.prototype, 'readAsText').mockImplementation(function (
+      this: FileReader,
+    ) {
       Object.defineProperty(this, 'result', { value: json, writable: false });
       const loadHandler = readerAddEventListenerSpy.mock.calls.find(
         ([event]) => event === 'load',

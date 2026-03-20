@@ -14,7 +14,12 @@ import { FALLBACK_LOCALE } from './shared/consts/consts';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToolbarComponent, FooterComponent, DialogContainerComponent],
+  imports: [
+    RouterOutlet,
+    ToolbarComponent,
+    FooterComponent,
+    DialogContainerComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

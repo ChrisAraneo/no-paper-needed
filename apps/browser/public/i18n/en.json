@@ -45,6 +45,10 @@
       "SUMMARY": "Summary"
     }
   },
+  "FOOTER": {
+    "EXPORT_TOOLTIP": "Export data",
+    "IMPORT_TOOLTIP": "Import data"
+  },
   "NOTE": {
     "BELL_TOOLTIP": "For how many days before the event reminders will be shown",
     "DATE_TOOLTIP": "Date related to the note",
@@ -74,9 +78,5 @@
     "ADD_NOTE": "Add note",
     "ARCHIVE": "Archive",
     "HOME": "Home"
-  },
-  "FOOTER": {
-    "EXPORT_TOOLTIP": "Export data",
-    "IMPORT_TOOLTIP": "Import data"
   }
 }

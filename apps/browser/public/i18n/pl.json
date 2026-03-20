@@ -45,6 +45,10 @@
       "SUMMARY": "Podsumowanie"
     }
   },
+  "FOOTER": {
+    "EXPORT_TOOLTIP": "Eksportuj dane",
+    "IMPORT_TOOLTIP": "Importuj dane"
+  },
   "NOTE": {
     "BELL_TOOLTIP": "Przez ile dni przed wydarzeniem będą wyświetlane przypomnienia",
     "DATE_TOOLTIP": "Data związana z notatką",
@@ -74,9 +78,5 @@
     "ADD_NOTE": "Dodaj notatkę",
     "ARCHIVE": "Archiwum",
     "HOME": "Strona główna"
-  },
-  "FOOTER": {
-    "EXPORT_TOOLTIP": "Eksportuj dane",
-    "IMPORT_TOOLTIP": "Importuj dane"
   }
 }
