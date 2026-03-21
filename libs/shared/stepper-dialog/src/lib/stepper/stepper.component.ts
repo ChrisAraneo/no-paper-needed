@@ -3,14 +3,9 @@ import { Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { StepperModule } from 'primeng/stepper';
 
-import { StepPanelDirective } from '../../directives/step-panel/step-panel.directive';
+import { StepPanelDirective } from '../step-panel/step-panel.directive';
 import { StepPanelComponent } from '../step-panel/step-panel.component';
-
-export interface StepConfig {
-  value: number;
-  label: string;
-  content?: unknown;
-}
+import { StepConfig } from '../stepper-dialog/stepper-dialog.interfaces';
 
 @Component({
   selector: 'app-stepper',

@@ -1,6 +1,6 @@
 import { Directive, inject, Input, TemplateRef } from '@angular/core';
 
-import { StepPanelAction } from '../../components/step-panel/step-panel.interfaces';
+import { StepPanelAction } from '../step-panel/step-panel.interfaces';
 
 @Directive({
   selector: '[appStepPanel]',

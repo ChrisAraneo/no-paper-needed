@@ -1,7 +1,7 @@
 import { Component, QueryList, TemplateRef, ViewChildren } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StepPanelAction } from '../../components/step-panel/step-panel.interfaces';
+import { StepPanelAction } from '../step-panel/step-panel.interfaces';
 import { StepPanelDirective } from './step-panel.directive';
 
 @Component({

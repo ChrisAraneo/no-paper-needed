@@ -19,6 +19,9 @@
       "@no-paper-needed/shared/searchbar": [
         "libs/shared/searchbar/src/index.ts"
       ],
+      "@no-paper-needed/shared/stepper-dialog": [
+        "libs/shared/stepper-dialog/src/index.ts"
+      ],
       "@no-paper-needed/shared/text": ["libs/shared/text/src/index.ts"],
       "@no-paper-needed/shared/theme": ["libs/shared/theme/src/index.ts"]
     },

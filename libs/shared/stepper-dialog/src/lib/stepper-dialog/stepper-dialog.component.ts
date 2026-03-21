@@ -12,7 +12,7 @@ import { isUndefined } from 'lodash-es';
 import { DialogModule } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 
-import { StepPanelDirective } from '../../directives/step-panel/step-panel.directive';
+import { StepPanelDirective } from '../step-panel/step-panel.directive';
 import { StepPanelComponent } from '../step-panel/step-panel.component';
 import { DEFAULT_ACTIVE_STEP } from './stepper-dialog.consts';
 import { StepConfig } from './stepper-dialog.interfaces';

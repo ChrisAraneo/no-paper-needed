@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { StepPanelDirective } from '../../directives/step-panel/step-panel.directive';
+import { StepPanelDirective } from '../step-panel/step-panel.directive';
 import { StepperDialogComponent } from './stepper-dialog.component';
 import { StepConfig } from './stepper-dialog.interfaces';
 

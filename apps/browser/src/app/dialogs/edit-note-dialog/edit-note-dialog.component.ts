@@ -10,9 +10,11 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TextareaModule } from 'primeng/textarea';
 
 import { NoteComponent } from '../../shared/components/note/note.component';
-import { StepperDialogComponent } from '../../shared/components/stepper-dialog/stepper-dialog.component';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
-import { StepPanelDirective } from '../../shared/directives/step-panel/step-panel.directive';
+import {
+  StepPanelDirective,
+  StepperDialogComponent,
+} from '@no-paper-needed/shared/stepper-dialog';
 import { Note } from '@no-paper-needed/shared/interfaces';
 import { RecurrenceMode } from '@no-paper-needed/shared/interfaces';
 import { ReminderMode } from '@no-paper-needed/shared/interfaces';
