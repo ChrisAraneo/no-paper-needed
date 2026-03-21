@@ -8,7 +8,7 @@ import { StepPanelComponent } from '../step-panel/step-panel.component';
 import { StepConfig } from '../stepper-dialog/stepper-dialog.interfaces';
 
 @Component({
-  selector: 'app-stepper',
+  selector: 'npn-stepper',
   imports: [
     StepperModule,
     NgTemplateOutlet,

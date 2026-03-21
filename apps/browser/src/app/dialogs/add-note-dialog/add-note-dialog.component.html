@@ -1,5 +1,5 @@
 <ng-container [formGroup]="form">
-  <app-stepper-dialog
+  <npn-stepper-dialog
     styleClass="add-note-dialog"
     [title]="'DIALOGS.ADD_NOTE.ADD_NEW_NOTE' | translate"
     [steps]="stepConfigs()"
@@ -7,7 +7,7 @@
     [activeStep]="activeStep()"
     (activeStepChange)="activeStep.set($event)"
     (close)="closeDialog()">
-    <ng-template appStepPanel [stepValue]="1" [stepActions]="step1Actions()">
+    <ng-template npnStepPanel [stepValue]="1" [stepActions]="step1Actions()">
       <npn-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.DATE_SUBHEADER' | translate
       }}</npn-header>
@@ -18,7 +18,7 @@
         [inline]="true"
         [showWeek]="true" />
     </ng-template>
-    <ng-template appStepPanel [stepValue]="2" [stepActions]="step2Actions()">
+    <ng-template npnStepPanel [stepValue]="2" [stepActions]="step2Actions()">
       <npn-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.CONTENT_SUBHEADER' | translate
       }}</npn-header>
@@ -38,7 +38,7 @@
         }}</label>
       </p-floatlabel>
     </ng-template>
-    <ng-template appStepPanel [stepValue]="3" [stepActions]="step3Actions()">
+    <ng-template npnStepPanel [stepValue]="3" [stepActions]="step3Actions()">
       <npn-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.REMINDERS_SUBHEADER' | translate
       }}</npn-header>
@@ -87,7 +87,7 @@
         </div>
       </div>
     </ng-template>
-    <ng-template appStepPanel [stepValue]="4" [stepActions]="step4Actions()">
+    <ng-template npnStepPanel [stepValue]="4" [stepActions]="step4Actions()">
       <npn-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.RECURRENCE_SUBHEADER' | translate
       }}</npn-header>
@@ -146,7 +146,7 @@
         </div>
       </div>
     </ng-template>
-    <ng-template appStepPanel [stepValue]="5" [stepActions]="step5Actions()">
+    <ng-template npnStepPanel [stepValue]="5" [stepActions]="step5Actions()">
       <npn-header size="md" element="h2">{{
         'DIALOGS.ADD_NOTE.SUMMARY_SUBHEADER' | translate
       }}</npn-header>
@@ -154,5 +154,5 @@
         <app-note [note]="note()" />
       </div>
     </ng-template>
-  </app-stepper-dialog>
+  </npn-stepper-dialog>
 </ng-container>

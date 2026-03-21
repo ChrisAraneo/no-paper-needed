@@ -7,7 +7,7 @@ import { StepPanelAction } from './step-panel.interfaces';
 
 @Component({
   imports: [StepPanelComponent],
-  template: `<app-step-panel [actions]="actions">{{ text }}</app-step-panel>`,
+  template: `<npn-step-panel [actions]="actions">{{ text }}</npn-step-panel>`,
 })
 class TestHostComponent {
   actions: StepPanelAction[] = [];

@@ -4,7 +4,7 @@ import { ButtonComponent } from '@no-paper-needed/shared/button';
 import { StepPanelAction } from './step-panel.interfaces';
 
 @Component({
-  selector: 'app-step-panel',
+  selector: 'npn-step-panel',
   imports: [ButtonComponent],
   templateUrl: './step-panel.component.html',
   styleUrl: './step-panel.component.scss',

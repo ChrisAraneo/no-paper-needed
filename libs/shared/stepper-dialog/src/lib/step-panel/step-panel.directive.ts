@@ -3,7 +3,7 @@ import { Directive, inject, Input, TemplateRef } from '@angular/core';
 import { StepPanelAction } from '../step-panel/step-panel.interfaces';
 
 @Directive({
-  selector: '[appStepPanel]',
+  selector: '[npnStepPanel]',
   standalone: true,
 })
 export class StepPanelDirective {

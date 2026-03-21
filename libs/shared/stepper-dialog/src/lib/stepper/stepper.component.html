@@ -8,9 +8,9 @@
     @for (panel of stepPanels; track panel.stepValue) {
       <p-step-panel [value]="panel.stepValue">
         <ng-template #content>
-          <app-step-panel [actions]="panel.stepActions">
+          <npn-step-panel [actions]="panel.stepActions">
             <ng-container [ngTemplateOutlet]="panel.template" />
-          </app-step-panel>
+          </npn-step-panel>
         </ng-template>
       </p-step-panel>
     }

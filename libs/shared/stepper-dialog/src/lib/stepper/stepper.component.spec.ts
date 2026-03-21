@@ -9,14 +9,14 @@ import { StepperComponent } from './stepper.component';
 @Component({
   imports: [StepperComponent, StepPanelDirective],
   template: `
-    <app-stepper [steps]="steps" [activeStep]="activeStep" [linear]="linear">
-      <ng-template appStepPanel [stepValue]="1" [stepActions]="[]">
+    <npn-stepper [steps]="steps" [activeStep]="activeStep" [linear]="linear">
+      <ng-template npnStepPanel [stepValue]="1" [stepActions]="[]">
         <p class="panel-1">Panel 1 content</p>
       </ng-template>
-      <ng-template appStepPanel [stepValue]="2" [stepActions]="[]">
+      <ng-template npnStepPanel [stepValue]="2" [stepActions]="[]">
         <p class="panel-2">Panel 2 content</p>
       </ng-template>
-    </app-stepper>
+    </npn-stepper>
   `,
 })
 class TestHostComponent {

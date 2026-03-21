@@ -18,7 +18,7 @@ import { DEFAULT_ACTIVE_STEP } from './stepper-dialog.consts';
 import { StepConfig } from './stepper-dialog.interfaces';
 
 @Component({
-  selector: 'app-stepper-dialog',
+  selector: 'npn-stepper-dialog',
   imports: [
     DialogModule,
     StepperModule,

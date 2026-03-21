@@ -9,7 +9,7 @@ import { StepConfig } from './stepper-dialog.interfaces';
 @Component({
   imports: [StepperDialogComponent, StepPanelDirective],
   template: `
-    <app-stepper-dialog
+    <npn-stepper-dialog
       [title]="title"
       [isVisible]="isVisible"
       [activeStep]="activeStep"
@@ -18,13 +18,13 @@ import { StepConfig } from './stepper-dialog.interfaces';
       (isVisibleChange)="onVisibleChange($event)"
       (activeStepChange)="onActiveStepChange($event)"
       (close)="onClose()">
-      <ng-template appStepPanel [stepValue]="1" [stepActions]="[]">
+      <ng-template npnStepPanel [stepValue]="1" [stepActions]="[]">
         <p class="panel-1">Panel 1</p>
       </ng-template>
-      <ng-template appStepPanel [stepValue]="2" [stepActions]="[]">
+      <ng-template npnStepPanel [stepValue]="2" [stepActions]="[]">
         <p class="panel-2">Panel 2</p>
       </ng-template>
-    </app-stepper-dialog>
+    </npn-stepper-dialog>
   `,
 })
 class TestHostComponent {

@@ -8,7 +8,7 @@ import { StepPanelDirective } from './step-panel.directive';
   imports: [StepPanelDirective],
   template: `
     <ng-template
-      appStepPanel
+      npnStepPanel
       [stepValue]="stepValue"
       [stepActions]="stepActions">
       <p class="content">Step content</p>
@@ -26,13 +26,13 @@ class SinglePanelHostComponent {
 @Component({
   imports: [StepPanelDirective],
   template: `
-    <ng-template appStepPanel [stepValue]="1" [stepActions]="[]">
+    <ng-template npnStepPanel [stepValue]="1" [stepActions]="[]">
       <p class="panel-1">Panel 1</p>
     </ng-template>
-    <ng-template appStepPanel [stepValue]="2" [stepActions]="actions">
+    <ng-template npnStepPanel [stepValue]="2" [stepActions]="actions">
       <p class="panel-2">Panel 2</p>
     </ng-template>
-    <ng-template appStepPanel [stepValue]="3" [stepActions]="[]">
+    <ng-template npnStepPanel [stepValue]="3" [stepActions]="[]">
       <p class="panel-3">Panel 3</p>
     </ng-template>
   `,
