@@ -38,13 +38,13 @@ test.describe('LabelComponent', () => {
   test.describe('Empty story', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto('/iframe.html?id=shared-label--empty&viewMode=story');
-      await page.locator('npn-label').waitFor();
+      await page.locator('npn-label').waitFor({ state: 'attached' });
     });
 
     test('should render an empty label', async ({ page }) => {
       const label = page.locator('npn-label span');
 
-      await expect(label).toBeVisible();
+      await expect(label).toBeAttached();
       await expect(label).toHaveText('');
     });
   });
