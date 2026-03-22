@@ -6,6 +6,16 @@
   "sourceRoot": "libs/shared/label/src",
   "tags": [],
   "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/label/.storybook",
+        "outputDir": "dist/storybook/label",
+        "tsConfig": "libs/shared/label/.storybook/tsconfig.json"
+      }
+    },
     "chores": {
       "executor": "nx:run-commands",
       "options": {
@@ -35,16 +45,6 @@
         "compodoc": false,
         "configDir": "libs/shared/label/.storybook",
         "port": 6006,
-        "tsConfig": "libs/shared/label/.storybook/tsconfig.json"
-      }
-    },
-    "build-storybook": {
-      "executor": "@storybook/angular:build-storybook",
-      "options": {
-        "browserTarget": "browser:build:development",
-        "compodoc": false,
-        "configDir": "libs/shared/label/.storybook",
-        "outputDir": "dist/storybook/label",
         "tsConfig": "libs/shared/label/.storybook/tsconfig.json"
       }
     }
