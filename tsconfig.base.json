@@ -16,6 +16,8 @@
         "libs/shared/interfaces/src/index.ts"
       ],
       "@no-paper-needed/shared/label": ["libs/shared/label/src/index.ts"],
+      "@no-paper-needed/shared/locale": ["libs/shared/locale/src/index.ts"],
+      "@no-paper-needed/shared/note": ["libs/shared/note/src/index.ts"],
       "@no-paper-needed/shared/searchbar": [
         "libs/shared/searchbar/src/index.ts"
       ],

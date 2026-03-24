@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { LocaleService } from '../../../core/services/locale/locale.service';
+import { LocaleService } from '@no-paper-needed/shared/locale';
 import { ButtonComponent } from '@no-paper-needed/shared/button';
 import { SearchbarComponent } from '@no-paper-needed/shared/searchbar';
 

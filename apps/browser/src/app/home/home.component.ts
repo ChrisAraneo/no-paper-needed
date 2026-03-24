@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { StoreService } from '../core/services';
 import { DialogService } from '../core/services/dialog/dialog.service';
-import { NoteComponent } from '../shared/components/note/note.component';
+import { NoteComponent } from '@no-paper-needed/shared/note';
 import { Note } from '@no-paper-needed/shared/interfaces';
 import { TodayComponent } from './today/today.component';
 import { TextComponent } from '@no-paper-needed/shared/text';

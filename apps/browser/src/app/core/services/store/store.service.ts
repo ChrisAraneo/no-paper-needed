@@ -20,8 +20,8 @@ import { noteToNoteRecord } from '../../../shared/functions/note-to-note-record.
 import { noteRecordToNote } from '../../../shared/functions/note-record-to-note.function';
 import { noop } from 'lodash-es';
 import { format } from 'date-fns';
-import { LocaleService } from '../locale/locale.service';
-import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../../shared/consts/consts';
+import { LocaleService } from '@no-paper-needed/shared/locale';
+import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '@no-paper-needed/shared/interfaces';
 import { LAST_INDEX } from '../../../shared/consts/utils';
 
 @Injectable({

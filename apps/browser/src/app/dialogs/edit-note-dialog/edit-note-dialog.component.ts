@@ -9,7 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TextareaModule } from 'primeng/textarea';
 
-import { NoteComponent } from '../../shared/components/note/note.component';
+import { NoteComponent } from '@no-paper-needed/shared/note';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
 import {
   StepPanelDirective,

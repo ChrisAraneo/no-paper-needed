@@ -3,11 +3,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonComponent } from '@no-paper-needed/shared/button';
-import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
+import {
+  Note,
+  Recurrence,
+  WEEKDAY_DAY_MONTH_DATE_FORMAT,
+} from '@no-paper-needed/shared/interfaces';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { format } from 'date-fns';
-import { LocaleService } from '../../../core/services/locale/locale.service';
-import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../consts/consts';
+import { LocaleService } from '@no-paper-needed/shared/locale';
 
 @Component({
   selector: 'app-note',

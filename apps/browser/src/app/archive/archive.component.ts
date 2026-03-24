@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { StoreService } from '../core/services';
-import { NoteComponent } from '../shared/components/note/note.component';
+import { NoteComponent } from '@no-paper-needed/shared/note';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
 import { TextComponent } from '@no-paper-needed/shared/text';
 

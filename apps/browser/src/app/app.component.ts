@@ -6,11 +6,11 @@ import { ElectronService } from './core/services';
 import { DialogService } from './core/services/dialog/dialog.service';
 import { ExportService } from './core/services/export/export.service';
 import { ImportService } from './core/services/import/import.service';
-import { LocaleService } from './core/services/locale/locale.service';
+import { LocaleService } from '@no-paper-needed/shared/locale';
 import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
-import { FALLBACK_LOCALE } from './shared/consts/consts';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/interfaces';
 
 @Component({
   selector: 'app-root',

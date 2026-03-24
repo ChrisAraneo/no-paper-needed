@@ -2,9 +2,9 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { format } from 'date-fns';
 import { interval, mergeMap, Subscription } from 'rxjs';
-import { LocaleService } from '../../core/services/locale/locale.service';
+import { LocaleService } from '@no-paper-needed/shared/locale';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
-import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '../../shared/consts/consts';
+import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '@no-paper-needed/shared/interfaces';
 import { MINUTE_MS } from '../../shared/consts/utils';
 import { LabelComponent } from '@no-paper-needed/shared/label';
 

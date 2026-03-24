@@ -1,3 +1,4 @@
+export * from './lib/consts';
 export * from './lib/note-record.interface';
 export * from './lib/note.interface';
 export * from './lib/recurrence-mode.enum';
