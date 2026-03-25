@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Note } from '@no-paper-needed/shared/interfaces';
-import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '@no-paper-needed/shared/consts';
 import { format, Locale } from 'date-fns';
 import { enGB, pl } from 'date-fns/locale';
 import { Subject } from 'rxjs';
 
+import { DATE_FORMAT } from './date-format.token';
 import { NoteComponent } from './note.component';
 
 const createNote = (overrides: Partial<Note> = {}): Note => ({
@@ -18,9 +18,7 @@ const createNote = (overrides: Partial<Note> = {}): Note => ({
   ...overrides,
 });
 
-const formatExpectedDate = (date: Date, locale: Locale = enGB): string =>
-  format(date, WEEKDAY_DAY_MONTH_DATE_FORMAT, { locale }).replace(/^./u, (c) =>
-    c.toUpperCase(),
+const formatExpectedDate = (date: Date, locale: Locale = enGB): string => format(date, WEEKDAY_DAY_MONTH_DATE_FORMAT, { locale }).replace(/^./u, (c) => c.toUpperCase(),
   );
 
 describe('NoteComponent', () => {
@@ -30,7 +28,10 @@ describe('NoteComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoteComponent, TranslateModule.forRoot()],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NoteComponent);
@@ -584,6 +585,7 @@ describe('NoteComponent', () => {
           .configureTestingModule({
             imports: [NoteComponent, TranslateModule.forRoot()],
             providers: [
+              { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' },
               {
                 provide: Router,
                 useValue: {

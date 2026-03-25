@@ -4,7 +4,7 @@ import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonComponent } from '@no-paper-needed/shared/button';
 import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
-import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '@no-paper-needed/shared/consts';
+import { DATE_FORMAT } from './date-format.token';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { format } from 'date-fns';
 import { LocaleService } from '@no-paper-needed/shared/locale';
@@ -16,6 +16,7 @@ import { LocaleService } from '@no-paper-needed/shared/locale';
   styleUrl: './note.component.scss',
 })
 export class NoteComponent {
+  private readonly dateFormat = inject(DATE_FORMAT);
   private readonly localeService = inject(LocaleService);
   private readonly translateService = inject(TranslateService);
   private readonly locale = toSignal(this.localeService.get(), {
@@ -36,7 +37,7 @@ export class NoteComponent {
 
     const locale = this.locale();
 
-    return format(date, WEEKDAY_DAY_MONTH_DATE_FORMAT, {
+    return format(date, this.dateFormat, {
       locale: this.localeService.getDateFnsLocale(locale),
     }).replace(/^./u, (c) => c.toUpperCase());
   });
