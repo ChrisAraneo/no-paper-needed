@@ -2,10 +2,8 @@ import { outputToObservable } from '@angular/core/rxjs-interop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-  Note,
-  WEEKDAY_DAY_MONTH_DATE_FORMAT,
-} from '@no-paper-needed/shared/interfaces';
+import { Note } from '@no-paper-needed/shared/interfaces';
+import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '@no-paper-needed/shared/consts';
 import { format, Locale } from 'date-fns';
 import { enGB, pl } from 'date-fns/locale';
 import { Subject } from 'rxjs';
