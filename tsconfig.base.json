@@ -11,7 +11,6 @@
     "moduleResolution": "node",
     "paths": {
       "@no-paper-needed/shared/button": ["libs/shared/button/src/index.ts"],
-      "@no-paper-needed/shared/consts": ["libs/shared/consts/src/index.ts"],
       "@no-paper-needed/shared/header": ["libs/shared/header/src/index.ts"],
       "@no-paper-needed/shared/interfaces": [
         "libs/shared/interfaces/src/index.ts"

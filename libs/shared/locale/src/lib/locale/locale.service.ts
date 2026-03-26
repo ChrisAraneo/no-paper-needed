@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Locale } from 'date-fns';
 import { enGB, pl } from 'date-fns/locale';
 import { distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/consts';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/interfaces';
 
 @Injectable({
   providedIn: 'root',

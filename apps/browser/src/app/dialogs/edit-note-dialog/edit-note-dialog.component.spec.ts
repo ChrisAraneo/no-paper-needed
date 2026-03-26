@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { DATE_FORMAT } from '@no-paper-needed/shared/note';
 
 import { EditNoteDialogComponent } from './edit-note-dialog.component';
 
@@ -11,7 +12,7 @@ describe('EditNoteDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EditNoteDialogComponent, TranslateModule.forRoot()],
-      providers: [provideRouter([])],
+      providers: [provideRouter([]), { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EditNoteDialogComponent);

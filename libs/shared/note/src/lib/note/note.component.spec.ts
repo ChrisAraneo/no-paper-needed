@@ -18,7 +18,9 @@ const createNote = (overrides: Partial<Note> = {}): Note => ({
   ...overrides,
 });
 
-const formatExpectedDate = (date: Date, locale: Locale = enGB): string => format(date, WEEKDAY_DAY_MONTH_DATE_FORMAT, { locale }).replace(/^./u, (c) => c.toUpperCase(),
+const TEST_DATE_FORMAT = 'EEEE dd.MM';
+
+const formatExpectedDate = (date: Date, locale: Locale = enGB): string => format(date, TEST_DATE_FORMAT, { locale }).replace(/^./u, (c) => c.toUpperCase(),
   );
 
 describe('NoteComponent', () => {

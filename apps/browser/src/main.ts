@@ -18,7 +18,7 @@ import { SearchComponent } from './app/search/search.component';
 import { SharedModule } from './app/shared/shared.module';
 import { APP_CONFIG } from '../environments/environment';
 import { THEME } from '@no-paper-needed/shared/theme';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/consts';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/interfaces';
 
 if (APP_CONFIG.production) {
   enableProdMode();
