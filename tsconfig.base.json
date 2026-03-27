@@ -25,7 +25,8 @@
         "libs/shared/stepper-dialog/src/index.ts"
       ],
       "@no-paper-needed/shared/text": ["libs/shared/text/src/index.ts"],
-      "@no-paper-needed/shared/theme": ["libs/shared/theme/src/index.ts"]
+      "@no-paper-needed/shared/theme": ["libs/shared/theme/src/index.ts"],
+      "@no-paper-needed/shared/tokens": ["libs/shared/tokens/src/index.ts"]
     },
     "rootDir": ".",
     "skipDefaultLibCheck": true,

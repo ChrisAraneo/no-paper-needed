@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Note, NoteRecord } from '@no-paper-needed/shared/interfaces';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/locale';
-import { DATE_FORMAT } from '@no-paper-needed/shared/note';
+import { DATE_FORMAT, FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 import { firstValueFrom } from 'rxjs';
 
 import { StoreService } from './store.service';

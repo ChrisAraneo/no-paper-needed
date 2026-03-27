@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/locale';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 
 import { ToolbarComponent } from './toolbar.component';
 

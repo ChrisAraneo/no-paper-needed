@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/locale';
-import { DATE_FORMAT } from '@no-paper-needed/shared/note';
+import { DATE_FORMAT, FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 
 import { AppComponent } from './app.component';
 import { ElectronService } from './core/services';

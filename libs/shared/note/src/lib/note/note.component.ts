@@ -4,7 +4,7 @@ import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonComponent } from '@no-paper-needed/shared/button';
 import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
-import { DATE_FORMAT } from './date-format.token';
+import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { format } from 'date-fns';
 import { LocaleService } from '@no-paper-needed/shared/locale';

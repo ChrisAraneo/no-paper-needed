@@ -18,8 +18,7 @@ import { SearchComponent } from './app/search/search.component';
 import { SharedModule } from './app/shared/shared.module';
 import { APP_CONFIG } from '../environments/environment';
 import { THEME } from '@no-paper-needed/shared/theme';
-import { DATE_FORMAT } from '@no-paper-needed/shared/note';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/locale';
+import { DATE_FORMAT, FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 
 const FALLBACK_LOCALE_VALUE = 'en';
 const DATE_FORMAT_VALUE = 'EEEE dd.MM';

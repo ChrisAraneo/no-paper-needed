@@ -21,7 +21,7 @@ import { noteRecordToNote } from '../../../shared/functions/note-record-to-note.
 import { noop } from 'lodash-es';
 import { format } from 'date-fns';
 import { LocaleService } from '@no-paper-needed/shared/locale';
-import { DATE_FORMAT } from '@no-paper-needed/shared/note';
+import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
 import { LAST_INDEX } from '../../../shared/consts/utils';
 
 @Injectable({
