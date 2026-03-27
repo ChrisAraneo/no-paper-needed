@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Note, NoteRecord } from '@no-paper-needed/shared/interfaces';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/locale';
+import { DATE_FORMAT } from '@no-paper-needed/shared/note';
 import { firstValueFrom } from 'rxjs';
 
 import { StoreService } from './store.service';
@@ -16,7 +18,12 @@ describe('StoreService', () => {
   let service: StoreService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' },
+        { provide: FALLBACK_LOCALE, useValue: 'en' },
+      ],
+    });
     service = TestBed.inject(StoreService);
   });
 

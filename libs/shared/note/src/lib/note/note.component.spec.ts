@@ -2,6 +2,7 @@ import { outputToObservable } from '@angular/core/rxjs-interop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/locale';
 import { Note } from '@no-paper-needed/shared/interfaces';
 import { format, Locale } from 'date-fns';
 import { enGB, pl } from 'date-fns/locale';
@@ -33,6 +34,7 @@ describe('NoteComponent', () => {
       providers: [
         provideRouter([]),
         { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' },
+        { provide: FALLBACK_LOCALE, useValue: 'en' },
       ],
     }).compileComponents();
 
@@ -588,6 +590,7 @@ describe('NoteComponent', () => {
             imports: [NoteComponent, TranslateModule.forRoot()],
             providers: [
               { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' },
+              { provide: FALLBACK_LOCALE, useValue: 'en' },
               {
                 provide: Router,
                 useValue: {

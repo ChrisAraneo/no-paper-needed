@@ -18,7 +18,11 @@ import { SearchComponent } from './app/search/search.component';
 import { SharedModule } from './app/shared/shared.module';
 import { APP_CONFIG } from '../environments/environment';
 import { THEME } from '@no-paper-needed/shared/theme';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/interfaces';
+import { DATE_FORMAT } from '@no-paper-needed/shared/note';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/locale';
+
+const FALLBACK_LOCALE_VALUE = 'en';
+const DATE_FORMAT_VALUE = 'EEEE dd.MM';
 
 if (APP_CONFIG.production) {
   enableProdMode();
@@ -26,6 +30,8 @@ if (APP_CONFIG.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    { provide: DATE_FORMAT, useValue: DATE_FORMAT_VALUE },
+    { provide: FALLBACK_LOCALE, useValue: FALLBACK_LOCALE_VALUE },
     provideZonelessChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
     provideTranslateService({
@@ -42,7 +48,7 @@ bootstrapApplication(AppComponent, {
     provideRouter([
       {
         path: '',
-        redirectTo: `${FALLBACK_LOCALE}/home`,
+        redirectTo: `${FALLBACK_LOCALE_VALUE}/home`,
         pathMatch: 'full',
       },
       {
@@ -71,7 +77,7 @@ bootstrapApplication(AppComponent, {
       },
       {
         path: '**',
-        redirectTo: `${FALLBACK_LOCALE}/home`,
+        redirectTo: `${FALLBACK_LOCALE_VALUE}/home`,
       },
     ]),
     importProvidersFrom(CoreModule, SharedModule),

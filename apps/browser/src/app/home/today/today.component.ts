@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { interval, mergeMap, Subscription } from 'rxjs';
 import { LocaleService } from '@no-paper-needed/shared/locale';
 import { HeaderComponent } from '@no-paper-needed/shared/header';
-import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '@no-paper-needed/shared/interfaces';
+import { DATE_FORMAT } from '@no-paper-needed/shared/note';
 import { MINUTE_MS } from '../../shared/consts/utils';
 import { LabelComponent } from '@no-paper-needed/shared/label';
 
@@ -15,6 +15,7 @@ import { LabelComponent } from '@no-paper-needed/shared/label';
   styleUrl: './today.component.scss',
 })
 export class TodayComponent implements OnInit, OnDestroy {
+  private readonly dateFormat = inject(DATE_FORMAT);
   protected readonly localeService = inject(LocaleService);
 
   protected now = '';
@@ -42,7 +43,7 @@ export class TodayComponent implements OnInit, OnDestroy {
   }
 
   private updateNow(locale: string): void {
-    this.now = format(new Date(), WEEKDAY_DAY_MONTH_DATE_FORMAT, {
+    this.now = format(new Date(), this.dateFormat, {
       locale: this.localeService.getDateFnsLocale(locale),
     }).replace(/^./u, (c) => c.toUpperCase());
   }

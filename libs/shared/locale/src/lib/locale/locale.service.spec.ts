@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { enGB, pl } from 'date-fns/locale';
 import { firstValueFrom, Subject } from 'rxjs';
 
+import { FALLBACK_LOCALE } from './fallback-locale.token';
 import { LocaleService } from './locale.service';
 
 describe('LocaleService', () => {
@@ -26,6 +27,10 @@ describe('LocaleService', () => {
         },
         {
           provide: LOCALE_ID,
+          useValue: 'en',
+        },
+        {
+          provide: FALLBACK_LOCALE,
           useValue: 'en',
         },
       ],

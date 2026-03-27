@@ -6,11 +6,10 @@ import { ElectronService } from './core/services';
 import { DialogService } from './core/services/dialog/dialog.service';
 import { ExportService } from './core/services/export/export.service';
 import { ImportService } from './core/services/import/import.service';
-import { LocaleService } from '@no-paper-needed/shared/locale';
+import { FALLBACK_LOCALE, LocaleService } from '@no-paper-needed/shared/locale';
 import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/interfaces';
 
 @Component({
   selector: 'app-root',
@@ -31,9 +30,10 @@ export class AppComponent implements OnInit {
   private readonly exportService = inject(ExportService);
   private readonly importService = inject(ImportService);
   private readonly translate = inject(TranslateService);
+  private readonly fallbackLocale = inject(FALLBACK_LOCALE);
 
   ngOnInit(): void {
-    this.translate.setFallbackLang(FALLBACK_LOCALE);
+    this.translate.setFallbackLang(this.fallbackLocale);
 
     this.localeService.get().subscribe((locale) => this.translate.use(locale));
 

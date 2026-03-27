@@ -21,7 +21,7 @@ import { noteRecordToNote } from '../../../shared/functions/note-record-to-note.
 import { noop } from 'lodash-es';
 import { format } from 'date-fns';
 import { LocaleService } from '@no-paper-needed/shared/locale';
-import { WEEKDAY_DAY_MONTH_DATE_FORMAT } from '@no-paper-needed/shared/interfaces';
+import { DATE_FORMAT } from '@no-paper-needed/shared/note';
 import { LAST_INDEX } from '../../../shared/consts/utils';
 
 @Injectable({
@@ -29,6 +29,7 @@ import { LAST_INDEX } from '../../../shared/consts/utils';
 })
 export class StoreService {
   private readonly localeService = inject(LocaleService);
+  private readonly dateFormat = inject(DATE_FORMAT);
 
   private readonly notes = new BehaviorSubject<Note[]>([]);
   private readonly initialized = new BehaviorSubject<boolean>(false);
@@ -220,10 +221,10 @@ export class StoreService {
       const value = [
         note.content,
         note.date.toISOString(),
-        format(note.date, WEEKDAY_DAY_MONTH_DATE_FORMAT, {
+        format(note.date, this.dateFormat, {
           locale: this.localeService.getDateFnsLocale('en'),
         }),
-        format(note.date, WEEKDAY_DAY_MONTH_DATE_FORMAT, {
+        format(note.date, this.dateFormat, {
           locale: this.localeService.getDateFnsLocale('pl'),
         }),
         note.date.toLocaleDateString('en-GB'),

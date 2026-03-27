@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/locale';
+import { DATE_FORMAT } from '@no-paper-needed/shared/note';
 
 import { AppComponent } from './app.component';
 import { ElectronService } from './core/services';
@@ -10,7 +12,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [],
       imports: [AppComponent, TranslateModule.forRoot()],
-      providers: [provideRouter([]), ElectronService],
+      providers: [provideRouter([]), ElectronService, { provide: FALLBACK_LOCALE, useValue: 'en' }, { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' }],
     }).compileComponents();
   });
 

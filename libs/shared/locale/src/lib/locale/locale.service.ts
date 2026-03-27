@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Locale } from 'date-fns';
 import { enGB, pl } from 'date-fns/locale';
 import { distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/interfaces';
+import { FALLBACK_LOCALE } from './fallback-locale.token';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,7 @@ import { FALLBACK_LOCALE } from '@no-paper-needed/shared/interfaces';
 export class LocaleService {
   private readonly locale = inject<string>(LOCALE_ID);
   private readonly router = inject(Router);
+  private readonly fallbackLocale = inject(FALLBACK_LOCALE);
 
   get(): Observable<string> {
     return this.router.events.pipe(
@@ -48,7 +49,7 @@ export class LocaleService {
       return lang;
     }
 
-    return this.locale.split('-')[0] || FALLBACK_LOCALE;
+    return this.locale.split('-')[0] || this.fallbackLocale;
   }
 }
 
