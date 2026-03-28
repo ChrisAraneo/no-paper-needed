@@ -12,7 +12,11 @@ describe('TodayComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TodayComponent, TranslateModule.forRoot()],
-      providers: [provideRouter([]), { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' }, { provide: FALLBACK_LOCALE, useValue: 'en' }],
+      providers: [
+        provideRouter([]),
+        { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' },
+        { provide: FALLBACK_LOCALE, useValue: 'en' },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TodayComponent);

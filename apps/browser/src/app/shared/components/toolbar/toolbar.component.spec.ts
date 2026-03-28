@@ -13,7 +13,10 @@ describe('ToolbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ToolbarComponent, TranslateModule.forRoot()],
-      providers: [provideRouter([]), { provide: FALLBACK_LOCALE, useValue: 'en' }],
+      providers: [
+        provideRouter([]),
+        { provide: FALLBACK_LOCALE, useValue: 'en' },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);

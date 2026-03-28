@@ -11,7 +11,12 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [],
       imports: [AppComponent, TranslateModule.forRoot()],
-      providers: [provideRouter([]), ElectronService, { provide: FALLBACK_LOCALE, useValue: 'en' }, { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' }],
+      providers: [
+        provideRouter([]),
+        ElectronService,
+        { provide: FALLBACK_LOCALE, useValue: 'en' },
+        { provide: DATE_FORMAT, useValue: 'EEEE dd.MM' },
+      ],
     }).compileComponents();
   });
 
