@@ -1,10 +1,10 @@
 import { LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 import { enGB, pl } from 'date-fns/locale';
 import { firstValueFrom, Subject } from 'rxjs';
 
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 import { LocaleService } from './locale.service';
 
 describe('LocaleService', () => {
@@ -102,4 +102,3 @@ describe('LocaleService', () => {
     });
   });
 });
-

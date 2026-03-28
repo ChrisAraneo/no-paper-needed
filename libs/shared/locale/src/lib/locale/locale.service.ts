@@ -52,4 +52,3 @@ export class LocaleService {
     return this.locale.split('-')[0] || this.fallbackLocale;
   }
 }
-
