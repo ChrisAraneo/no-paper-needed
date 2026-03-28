@@ -6,6 +6,16 @@
   "sourceRoot": "libs/shared/stepper-dialog/src",
   "tags": [],
   "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/stepper-dialog/.storybook",
+        "outputDir": "dist/storybook/stepper-dialog",
+        "tsConfig": "libs/shared/stepper-dialog/.storybook/tsconfig.json"
+      }
+    },
     "chores": {
       "executor": "nx:run-commands",
       "options": {
@@ -29,6 +39,16 @@
       "executor": "@nx/eslint:lint",
       "options": {
         "fix": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/stepper-dialog/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/shared/stepper-dialog/.storybook/tsconfig.json"
       }
     }
   }
