@@ -6,6 +6,16 @@
   "sourceRoot": "libs/shared/note/src",
   "tags": [],
   "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/note/.storybook",
+        "outputDir": "dist/storybook/note",
+        "tsConfig": "libs/shared/note/.storybook/tsconfig.json"
+      }
+    },
     "chores": {
       "executor": "nx:run-commands",
       "options": {
@@ -26,6 +36,16 @@
       "executor": "@nx/eslint:lint",
       "options": {
         "fix": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/note/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/shared/note/.storybook/tsconfig.json"
       }
     }
   }

@@ -16,7 +16,7 @@ import { LabelComponent } from '@no-paper-needed/shared/label';
 })
 export class TodayComponent implements OnInit, OnDestroy {
   private readonly dateFormat = inject(DATE_FORMAT);
-  protected readonly localeService = inject(LocaleService);
+  private readonly localeService = inject(LocaleService);
 
   protected now = '';
 
