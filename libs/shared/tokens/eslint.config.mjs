@@ -13,4 +13,3 @@ export default configBuilder()
     ignored: ['eslint.config.mjs', 'vite.config.mts', 'src/test-setup.ts'],
   })
   .build();
-

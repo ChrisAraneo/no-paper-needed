@@ -11,4 +11,3 @@ export default configBuilder()
     tsconfigRootDir: import.meta.dirname,
   })
   .build();
-
