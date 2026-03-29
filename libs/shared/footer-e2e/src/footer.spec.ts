@@ -3,9 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('FooterComponent', () => {
   test.describe('Default story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto(
-        '/iframe.html?id=shared-footer--default&viewMode=story',
-      );
+      await page.goto('/iframe.html?id=shared-footer--default&viewMode=story');
       await page.locator('npn-footer').waitFor();
     });
 
@@ -48,13 +46,13 @@ test.describe('FooterComponent', () => {
     test('should render export button as rounded', async ({ page }) => {
       const button = page.locator('npn-footer .export-button button');
 
-      await expect(button).toHaveClass(/p-button-rounded/);
+      await expect(button).toHaveClass(/p-button-rounded/u);
     });
 
     test('should render import button as rounded', async ({ page }) => {
       const button = page.locator('npn-footer .import-button button');
 
-      await expect(button).toHaveClass(/p-button-rounded/);
+      await expect(button).toHaveClass(/p-button-rounded/u);
     });
 
     test('should have clickable export button', async ({ page }) => {
