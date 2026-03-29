@@ -6,6 +6,16 @@
   "sourceRoot": "libs/shared/footer/src",
   "tags": [],
   "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/footer/.storybook",
+        "outputDir": "dist/storybook/footer",
+        "tsConfig": "libs/shared/footer/.storybook/tsconfig.json"
+      }
+    },
     "chores": {
       "executor": "nx:run-commands",
       "options": {
@@ -28,8 +38,18 @@
         "fix": true
       }
     },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/shared/footer/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/shared/footer/.storybook/tsconfig.json"
+      }
+    },
     "test": {
-      "executor": "@nx/vite:test",
+      "executor": "@nx/vitest:test",
       "options": {
         "config": "libs/shared/footer/vite.config.mts"
       }
