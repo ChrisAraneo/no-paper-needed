@@ -8,7 +8,7 @@ import { ButtonComponent } from '@no-paper-needed/shared/button';
 import { SearchbarComponent } from '@no-paper-needed/shared/searchbar';
 
 @Component({
-  selector: 'app-toolbar',
+  selector: 'npn-toolbar',
   imports: [SearchbarComponent, ButtonComponent, TranslatePipe, AsyncPipe],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',

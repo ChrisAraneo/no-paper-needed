@@ -10,7 +10,7 @@ import { LocaleService } from '@no-paper-needed/shared/locale';
 import { FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
 import { FooterComponent } from '@no-paper-needed/shared/footer';
-import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
+import { ToolbarComponent } from '@no-paper-needed/shared/toolbar';
 
 @Component({
   selector: 'app-root',
