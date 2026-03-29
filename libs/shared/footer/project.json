@@ -1,0 +1,38 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "footer",
+  "prefix": "npn",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/footer/src",
+  "tags": [],
+  "targets": {
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run footer:lint:fix", "nx run footer:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/shared/footer/\""
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "config": "libs/shared/footer/vite.config.mts"
+      }
+    }
+  }
+}

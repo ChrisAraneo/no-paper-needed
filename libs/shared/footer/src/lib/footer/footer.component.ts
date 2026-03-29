@@ -4,7 +4,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'npn-footer',
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   imports: [ButtonComponent, TooltipModule, TranslateModule],
