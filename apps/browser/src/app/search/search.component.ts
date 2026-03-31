@@ -5,10 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { map, Observable, switchMap } from 'rxjs';
 
 import { StoreService } from '../core/services';
-import { NoteComponent } from '@no-paper-needed/shared/note';
-import { HeaderComponent } from '@no-paper-needed/shared/header';
+import { NoteComponent } from '@no-paper-needed/components/note';
+import { HeaderComponent } from '@no-paper-needed/components/header';
 import { Note } from '@no-paper-needed/shared/interfaces';
-import { TextComponent } from '@no-paper-needed/shared/text';
+import { TextComponent } from '@no-paper-needed/components/text';
 
 @Component({
   selector: 'app-search',

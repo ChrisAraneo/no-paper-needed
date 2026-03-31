@@ -1,0 +1,58 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "toolbar",
+  "prefix": "npn",
+  "projectType": "library",
+  "sourceRoot": "libs/components/toolbar/src",
+  "tags": [],
+  "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/toolbar/.storybook",
+        "outputDir": "dist/storybook/toolbar",
+        "tsConfig": "libs/components/toolbar/.storybook/tsconfig.json"
+      }
+    },
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run toolbar:lint:fix", "nx run toolbar:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/components/toolbar/\""
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/toolbar/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/components/toolbar/.storybook/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "config": "libs/components/toolbar/vite.config.mts"
+      }
+    }
+  }
+}

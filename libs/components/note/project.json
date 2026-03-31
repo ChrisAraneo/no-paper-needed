@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "note",
+  "prefix": "npn",
+  "projectType": "library",
+  "sourceRoot": "libs/components/note/src",
+  "tags": [],
+  "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/note/.storybook",
+        "outputDir": "dist/storybook/note",
+        "tsConfig": "libs/components/note/.storybook/tsconfig.json"
+      }
+    },
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run note:lint:fix", "nx run note:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/components/note/\""
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/note/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/components/note/.storybook/tsconfig.json"
+      }
+    }
+  }
+}

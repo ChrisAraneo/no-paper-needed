@@ -3,10 +3,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { format } from 'date-fns';
 import { interval, mergeMap, Subscription } from 'rxjs';
 import { LocaleService } from '@no-paper-needed/shared/locale';
-import { HeaderComponent } from '@no-paper-needed/shared/header';
+import { HeaderComponent } from '@no-paper-needed/components/header';
 import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
 import { MINUTE_MS } from '../../shared/consts/utils';
-import { LabelComponent } from '@no-paper-needed/shared/label';
+import { LabelComponent } from '@no-paper-needed/components/label';
 
 @Component({
   selector: 'app-today',

@@ -4,10 +4,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { StoreService } from '../core/services';
 import { DialogService } from '../core/services/dialog/dialog.service';
-import { NoteComponent } from '@no-paper-needed/shared/note';
+import { NoteComponent } from '@no-paper-needed/components/note';
 import { Note } from '@no-paper-needed/shared/interfaces';
 import { TodayComponent } from './today/today.component';
-import { TextComponent } from '@no-paper-needed/shared/text';
+import { TextComponent } from '@no-paper-needed/components/text';
 
 @Component({
   selector: 'app-home',

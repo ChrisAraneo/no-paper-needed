@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "searchbar",
+  "prefix": "npn",
+  "projectType": "library",
+  "sourceRoot": "libs/components/searchbar/src",
+  "tags": [],
+  "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/searchbar/.storybook",
+        "outputDir": "dist/storybook/searchbar",
+        "tsConfig": "libs/components/searchbar/.storybook/tsconfig.json"
+      }
+    },
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run searchbar:lint:fix", "nx run searchbar:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/components/searchbar/\""
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/searchbar/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/components/searchbar/.storybook/tsconfig.json"
+      }
+    }
+  }
+}

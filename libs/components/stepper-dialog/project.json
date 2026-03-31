@@ -1,0 +1,55 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "stepper-dialog",
+  "prefix": "npn",
+  "projectType": "library",
+  "sourceRoot": "libs/components/stepper-dialog/src",
+  "tags": [],
+  "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/stepper-dialog/.storybook",
+        "outputDir": "dist/storybook/stepper-dialog",
+        "tsConfig": "libs/components/stepper-dialog/.storybook/tsconfig.json"
+      }
+    },
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run stepper-dialog:lint:fix",
+          "nx run stepper-dialog:format"
+        ],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/components/stepper-dialog/\""
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/stepper-dialog/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/components/stepper-dialog/.storybook/tsconfig.json"
+      }
+    }
+  }
+}

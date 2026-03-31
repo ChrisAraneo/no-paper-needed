@@ -10,25 +10,25 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@no-paper-needed/shared/button": ["libs/shared/button/src/index.ts"],
-      "@no-paper-needed/shared/footer": ["libs/shared/footer/src/index.ts"],
-      "@no-paper-needed/shared/header": ["libs/shared/header/src/index.ts"],
+      "@no-paper-needed/components/button": ["libs/components/button/src/index.ts"],
+      "@no-paper-needed/components/footer": ["libs/components/footer/src/index.ts"],
+      "@no-paper-needed/components/header": ["libs/components/header/src/index.ts"],
+      "@no-paper-needed/components/label": ["libs/components/label/src/index.ts"],
+      "@no-paper-needed/components/note": ["libs/components/note/src/index.ts"],
+      "@no-paper-needed/components/searchbar": [
+        "libs/components/searchbar/src/index.ts"
+      ],
+      "@no-paper-needed/components/stepper-dialog": [
+        "libs/components/stepper-dialog/src/index.ts"
+      ],
+      "@no-paper-needed/components/text": ["libs/components/text/src/index.ts"],
+      "@no-paper-needed/components/toolbar": [
+        "libs/components/toolbar/src/index.ts"
+      ],
       "@no-paper-needed/shared/interfaces": [
         "libs/shared/interfaces/src/index.ts"
       ],
-      "@no-paper-needed/shared/label": ["libs/shared/label/src/index.ts"],
       "@no-paper-needed/shared/locale": ["libs/shared/locale/src/index.ts"],
-      "@no-paper-needed/shared/note": ["libs/shared/note/src/index.ts"],
-      "@no-paper-needed/shared/searchbar": [
-        "libs/shared/searchbar/src/index.ts"
-      ],
-      "@no-paper-needed/shared/stepper-dialog": [
-        "libs/shared/stepper-dialog/src/index.ts"
-      ],
-      "@no-paper-needed/shared/text": ["libs/shared/text/src/index.ts"],
-      "@no-paper-needed/shared/toolbar": [
-        "libs/shared/toolbar/src/index.ts"
-      ],
       "@no-paper-needed/shared/theme": ["libs/shared/theme/src/index.ts"],
       "@no-paper-needed/shared/tokens": ["libs/shared/tokens/src/index.ts"]
     },

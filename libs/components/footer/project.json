@@ -1,0 +1,58 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "footer",
+  "prefix": "npn",
+  "projectType": "library",
+  "sourceRoot": "libs/components/footer/src",
+  "tags": [],
+  "targets": {
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/footer/.storybook",
+        "outputDir": "dist/storybook/footer",
+        "tsConfig": "libs/components/footer/.storybook/tsconfig.json"
+      }
+    },
+    "chores": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run footer:lint:fix", "nx run footer:format"],
+        "parallel": false
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"libs/components/footer/\""
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "lint:fix": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "fix": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "browserTarget": "browser:build:development",
+        "compodoc": false,
+        "configDir": "libs/components/footer/.storybook",
+        "port": 6006,
+        "tsConfig": "libs/components/footer/.storybook/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "config": "libs/components/footer/vite.config.mts"
+      }
+    }
+  }
+}

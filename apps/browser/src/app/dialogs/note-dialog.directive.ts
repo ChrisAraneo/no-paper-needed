@@ -15,7 +15,7 @@ import { first, map, timer } from 'rxjs';
 import {
   StepConfig,
   StepPanelAction,
-} from '@no-paper-needed/shared/stepper-dialog';
+} from '@no-paper-needed/components/stepper-dialog';
 import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
 import { RecurrenceMode } from '@no-paper-needed/shared/interfaces';
 import { ReminderMode } from '@no-paper-needed/shared/interfaces';

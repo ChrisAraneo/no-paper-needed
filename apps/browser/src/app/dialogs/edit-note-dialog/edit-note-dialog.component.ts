@@ -9,12 +9,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TextareaModule } from 'primeng/textarea';
 
-import { NoteComponent } from '@no-paper-needed/shared/note';
-import { HeaderComponent } from '@no-paper-needed/shared/header';
+import { NoteComponent } from '@no-paper-needed/components/note';
+import { HeaderComponent } from '@no-paper-needed/components/header';
 import {
   StepPanelDirective,
   StepperDialogComponent,
-} from '@no-paper-needed/shared/stepper-dialog';
+} from '@no-paper-needed/components/stepper-dialog';
 import { Note } from '@no-paper-needed/shared/interfaces';
 import { RecurrenceMode } from '@no-paper-needed/shared/interfaces';
 import { ReminderMode } from '@no-paper-needed/shared/interfaces';
