@@ -1,6 +1,6 @@
 import { computed, Injectable, Signal, signal } from '@angular/core';
 
-import { Note } from '@no-paper-needed/shared/interfaces';
+import { Note } from '@no-paper-needed/interfaces';
 
 @Injectable({
   providedIn: 'root',

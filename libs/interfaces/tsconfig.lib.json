@@ -3,7 +3,7 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "outDir": "../../../dist/out-tsc",
+    "outDir": "../../dist/out-tsc",
     "types": []
   },
   "exclude": [

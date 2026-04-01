@@ -15,9 +15,9 @@ import {
   StepPanelDirective,
   StepperDialogComponent,
 } from '@no-paper-needed/components/stepper-dialog';
-import { Note } from '@no-paper-needed/shared/interfaces';
-import { RecurrenceMode } from '@no-paper-needed/shared/interfaces';
-import { ReminderMode } from '@no-paper-needed/shared/interfaces';
+import { Note } from '@no-paper-needed/interfaces';
+import { RecurrenceMode } from '@no-paper-needed/interfaces';
+import { ReminderMode } from '@no-paper-needed/interfaces';
 import { NoteDialog } from '../note-dialog.directive';
 
 @Component({

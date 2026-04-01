@@ -1,6 +1,6 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { RecurrenceMode } from '@no-paper-needed/shared/interfaces';
-import { ReminderMode } from '@no-paper-needed/shared/interfaces';
+import { RecurrenceMode } from '@no-paper-needed/interfaces';
+import { ReminderMode } from '@no-paper-needed/interfaces';
 
 export interface NoteDialogFormGroupValue {
   date: FormControl<Date>;

@@ -16,9 +16,9 @@ import {
   StepConfig,
   StepPanelAction,
 } from '@no-paper-needed/components/stepper-dialog';
-import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
-import { RecurrenceMode } from '@no-paper-needed/shared/interfaces';
-import { ReminderMode } from '@no-paper-needed/shared/interfaces';
+import { Note, Recurrence } from '@no-paper-needed/interfaces';
+import { RecurrenceMode } from '@no-paper-needed/interfaces';
+import { ReminderMode } from '@no-paper-needed/interfaces';
 import { NoteDialogFormGroupValue } from './note-dialog.types';
 import {
   DAY_BEFORE_REMINDER_DAYS_BEFORE,
@@ -26,7 +26,7 @@ import {
   RESET_DIALOG_DELAY_MS,
   SAME_DAY_REMINDER_DAYS_BEFORE,
 } from './note-dialog.consts';
-import { FormControlStatus } from '@no-paper-needed/shared/interfaces';
+import { FormControlStatus } from '@no-paper-needed/interfaces';
 
 @Directive()
 export abstract class NoteDialog {

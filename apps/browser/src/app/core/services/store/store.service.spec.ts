@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Note, NoteRecord } from '@no-paper-needed/shared/interfaces';
+import { Note, NoteRecord } from '@no-paper-needed/interfaces';
 import { DATE_FORMAT, FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 import { firstValueFrom } from 'rxjs';
 

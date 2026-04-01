@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { tap, first } from 'rxjs';
 
-import { NoteRecord } from '@no-paper-needed/shared/interfaces';
+import { NoteRecord } from '@no-paper-needed/interfaces';
 import { StoreService } from '../store/store.service';
 
 @Injectable({

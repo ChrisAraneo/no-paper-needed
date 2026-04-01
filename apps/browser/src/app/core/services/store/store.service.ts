@@ -11,9 +11,9 @@ import {
   tap,
 } from 'rxjs';
 
-import { Note, Recurrence } from '@no-paper-needed/shared/interfaces';
+import { Note, Recurrence } from '@no-paper-needed/interfaces';
 import { getDayDiff } from '../../../shared/functions/get-day-diff.function';
-import { NoteRecord } from '@no-paper-needed/shared/interfaces';
+import { NoteRecord } from '@no-paper-needed/interfaces';
 import { addDays, addMonths, addYears } from 'date-fns';
 import Dexie, { Table } from 'dexie';
 import { noteToNoteRecord } from '../../../shared/functions/note-to-note-record.function';

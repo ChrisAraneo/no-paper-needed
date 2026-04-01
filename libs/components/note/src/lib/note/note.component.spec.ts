@@ -2,7 +2,7 @@ import { outputToObservable } from '@angular/core/rxjs-interop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { Note } from '@no-paper-needed/shared/interfaces';
+import { Note } from '@no-paper-needed/interfaces';
 import { DATE_FORMAT, FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 import { format, Locale } from 'date-fns';
 import { enGB, pl } from 'date-fns/locale';

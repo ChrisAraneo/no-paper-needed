@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { NoteRecord } from '@no-paper-needed/shared/interfaces';
+import { NoteRecord } from '@no-paper-needed/interfaces';
 import { of } from 'rxjs';
 
 import { StoreService } from '../store/store.service';

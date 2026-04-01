@@ -25,8 +25,8 @@
       "@no-paper-needed/components/toolbar": [
         "libs/components/toolbar/src/index.ts"
       ],
-      "@no-paper-needed/shared/interfaces": [
-        "libs/shared/interfaces/src/index.ts"
+      "@no-paper-needed/interfaces": [
+        "libs/interfaces/src/index.ts"
       ],
       "@no-paper-needed/shared/locale": ["libs/shared/locale/src/index.ts"],
       "@no-paper-needed/shared/theme": ["libs/shared/theme/src/index.ts"],
