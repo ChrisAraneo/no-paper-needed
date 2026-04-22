@@ -2,7 +2,7 @@ import { configBuilder } from '@chris.araneo/eslint-config';
 
 export default configBuilder()
   .addTypeScriptConfig({
-    sources: [/^(?!.*\.spec\.ts$).*\.ts$/.toString()],
+    sources: ['**/*.ts', '!**/*.spec.ts'],
     tsconfigRootDir: import.meta.dirname,
   })
   .addJsonConfig({

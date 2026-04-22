@@ -1,6 +1,6 @@
 import { configBuilder } from '@chris.araneo/eslint-config';
 
-const SOURCES = [/^(?!.*\.spec\.ts$).*\.ts$/.toString()];
+const SOURCES = ['**/*.ts', '!**/*.spec.ts'];
 const JSONS = ['**/*.json'];
 const IGNORED = [];
 

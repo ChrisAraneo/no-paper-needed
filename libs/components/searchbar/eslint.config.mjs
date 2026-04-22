@@ -3,7 +3,7 @@ import { configBuilder } from '@chris.araneo/eslint-config';
 export default configBuilder()
   .addAngularConfig({
     prefix: 'npn',
-    sources: [/^(?!.*\.spec\.ts$).*\.ts$/.toString()],
+    sources: ['**/*.ts', '!**/*.spec.ts'],
     tests: ['**/*.spec.ts'],
     templates: ['**/*.html'],
     jsons: ['**/*.json'],
