@@ -7,7 +7,6 @@ const normalizeDate = (date: Date): Date => {
   return result;
 };
 
-export const getDayDiff = (a: Date, b: Date): number =>
-  Math.floor(
+export const getDayDiff = (a: Date, b: Date): number => Math.floor(
     (normalizeDate(a).valueOf() - normalizeDate(b).valueOf()) / DAY_MS,
   );

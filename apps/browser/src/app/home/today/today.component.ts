@@ -1,12 +1,13 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { HeaderComponent } from '@no-paper-needed/components/header';
+import { LabelComponent } from '@no-paper-needed/components/label';
+import { LocaleService } from '@no-paper-needed/shared/locale';
+import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
 import { format } from 'date-fns';
 import { interval, mergeMap, Subscription } from 'rxjs';
-import { LocaleService } from '@no-paper-needed/shared/locale';
-import { HeaderComponent } from '@no-paper-needed/components/header';
-import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
+
 import { MINUTE_MS } from '../../shared/consts/utils';
-import { LabelComponent } from '@no-paper-needed/components/label';
 
 @Component({
   selector: 'app-today',

@@ -1,5 +1,4 @@
 import { computed, Injectable, Signal, signal } from '@angular/core';
-
 import { Note } from '@no-paper-needed/interfaces';
 
 @Injectable({
@@ -12,7 +11,7 @@ export class DialogService {
 
   private readonly isAddNoteDialogVisible = signal(false);
   private readonly isEditNoteDialogVisible = signal(false);
-  private readonly _editedNote = signal<Note | undefined>(undefined);
+  private readonly _editedNote = signal<Note | undefined>();
 
   constructor() {
     this.isAddNoteDialogOpen = this.isAddNoteDialogVisible.asReadonly();

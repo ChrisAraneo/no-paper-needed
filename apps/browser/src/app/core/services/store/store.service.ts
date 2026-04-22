@@ -1,4 +1,12 @@
 import { inject, Injectable } from '@angular/core';
+import { Note, Recurrence } from '@no-paper-needed/interfaces';
+import { NoteRecord } from '@no-paper-needed/interfaces';
+import { LocaleService } from '@no-paper-needed/shared/locale';
+import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
+import { addDays, addMonths, addYears } from 'date-fns';
+import { format } from 'date-fns';
+import Dexie, { Table } from 'dexie';
+import { noop } from 'lodash-es';
 import {
   BehaviorSubject,
   filter,
@@ -11,18 +19,10 @@ import {
   tap,
 } from 'rxjs';
 
-import { Note, Recurrence } from '@no-paper-needed/interfaces';
-import { getDayDiff } from '../../../shared/functions/get-day-diff.function';
-import { NoteRecord } from '@no-paper-needed/interfaces';
-import { addDays, addMonths, addYears } from 'date-fns';
-import Dexie, { Table } from 'dexie';
-import { noteToNoteRecord } from '../../../shared/functions/note-to-note-record.function';
-import { noteRecordToNote } from '../../../shared/functions/note-record-to-note.function';
-import { noop } from 'lodash-es';
-import { format } from 'date-fns';
-import { LocaleService } from '@no-paper-needed/shared/locale';
-import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
 import { LAST_INDEX } from '../../../shared/consts/utils';
+import { getDayDiff } from '../../../shared/functions/get-day-diff.function';
+import { noteRecordToNote } from '../../../shared/functions/note-record-to-note.function';
+import { noteToNoteRecord } from '../../../shared/functions/note-to-note-record.function';
 
 @Injectable({
   providedIn: 'root',
@@ -105,7 +105,7 @@ export class StoreService {
         const currentNotes = this.notes.value;
         const index = currentNotes.findIndex((item) => item.id === note.id);
 
-        if (index >= 0) {
+        if (index !== -1) {
           const updatedNotes = [...currentNotes];
           updatedNotes[index] = note;
           this.notes.next(updatedNotes);
@@ -128,9 +128,9 @@ export class StoreService {
       mergeMap((noteToRemove) => {
         if (noteToRemove) {
           return from(this.database.notes.delete(noteToRemove.id));
-        } else {
-          return of(void 0);
         }
+          return of(void 0);
+
       }),
       map(noop),
     );
@@ -180,7 +180,7 @@ export class StoreService {
       return note.date;
     }
 
-    const recurrence = note.recurrence;
+    const {recurrence} = note;
     let current = new Date(note.date);
 
     if (getDayDiff(targetDate, current) < 0) {

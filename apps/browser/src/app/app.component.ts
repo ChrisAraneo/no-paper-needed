@@ -1,24 +1,24 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { FooterComponent } from '@no-paper-needed/components/footer';
+import { ToolbarComponent } from '@no-paper-needed/components/toolbar';
+import { LocaleService } from '@no-paper-needed/shared/locale';
+import { FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 
 import { ElectronService } from './core/services';
 import { DialogService } from './core/services/dialog/dialog.service';
 import { ExportService } from './core/services/export/export.service';
 import { ImportService } from './core/services/import/import.service';
-import { LocaleService } from '@no-paper-needed/shared/locale';
-import { FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 import { DialogContainerComponent } from './dialogs/dialog-container/dialog-container.component';
-import { FooterComponent } from '@no-paper-needed/components/footer';
-import { ToolbarComponent } from '@no-paper-needed/components/toolbar';
 
 @Component({
   selector: 'app-root',
   imports: [
+    DialogContainerComponent,
+    FooterComponent,
     RouterOutlet,
     ToolbarComponent,
-    FooterComponent,
-    DialogContainerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

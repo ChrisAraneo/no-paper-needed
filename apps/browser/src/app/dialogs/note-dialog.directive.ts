@@ -10,8 +10,6 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { first, map, timer } from 'rxjs';
-
 import {
   StepConfig,
   StepPanelAction,
@@ -19,21 +17,23 @@ import {
 import { Note, Recurrence } from '@no-paper-needed/interfaces';
 import { RecurrenceMode } from '@no-paper-needed/interfaces';
 import { ReminderMode } from '@no-paper-needed/interfaces';
-import { NoteDialogFormGroupValue } from './note-dialog.types';
+import { FormControlStatus } from '@no-paper-needed/interfaces';
+import { first, map, timer } from 'rxjs';
+
 import {
   DAY_BEFORE_REMINDER_DAYS_BEFORE,
   FIRST_STEP_INDEX,
   RESET_DIALOG_DELAY_MS,
   SAME_DAY_REMINDER_DAYS_BEFORE,
 } from './note-dialog.consts';
-import { FormControlStatus } from '@no-paper-needed/interfaces';
+import { NoteDialogFormGroupValue } from './note-dialog.types';
 
 @Directive()
 export abstract class NoteDialog {
   readonly isVisible = input(false);
 
   readonly save = output<Note>();
-  readonly close = output<void>();
+  readonly close = output();
 
   protected readonly translateService = inject(TranslateService);
 
@@ -49,7 +49,7 @@ export abstract class NoteDialog {
 
   readonly note = computed<Note | undefined>(() => {
     if (this.formStatus() === FormControlStatus.Invalid) {
-      return undefined;
+      return;
     }
 
     const values = this.formValues();
@@ -234,8 +234,7 @@ export abstract class NoteDialog {
   }
 
   private readonly activateStep =
-    (step: number): (() => void) =>
-    (): void => {
+    (step: number): (() => void) => (): void => {
       this.activeStep.set(step);
     };
 

@@ -1,23 +1,23 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { NoteComponent } from '@no-paper-needed/components/note';
+import { TextComponent } from '@no-paper-needed/components/text';
+import { Note } from '@no-paper-needed/interfaces';
 
 import { StoreService } from '../core/services';
 import { DialogService } from '../core/services/dialog/dialog.service';
-import { NoteComponent } from '@no-paper-needed/components/note';
-import { Note } from '@no-paper-needed/interfaces';
 import { TodayComponent } from './today/today.component';
-import { TextComponent } from '@no-paper-needed/components/text';
 
 @Component({
   selector: 'app-home',
   imports: [
-    TranslateModule,
-    NoteComponent,
-    CommonModule,
     AsyncPipe,
-    TodayComponent,
+    CommonModule,
+    NoteComponent,
     TextComponent,
+    TodayComponent,
+    TranslateModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

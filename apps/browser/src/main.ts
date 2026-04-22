@@ -8,16 +8,16 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { THEME } from '@no-paper-needed/shared/theme';
+import { DATE_FORMAT, FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 import { providePrimeNG } from 'primeng/config';
 
+import { APP_CONFIG } from '../environments/environment';
 import { AppComponent } from './app/app.component';
 import { ArchiveComponent } from './app/archive/archive.component';
 import { CoreModule } from './app/core/core.module';
 import { HomeComponent } from './app/home/home.component';
 import { SearchComponent } from './app/search/search.component';
-import { APP_CONFIG } from '../environments/environment';
-import { THEME } from '@no-paper-needed/shared/theme';
-import { DATE_FORMAT, FALLBACK_LOCALE } from '@no-paper-needed/shared/tokens';
 
 const FALLBACK_LOCALE_VALUE = 'en';
 const DATE_FORMAT_VALUE = 'EEEE dd.MM';

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
+import { Note } from '@no-paper-needed/interfaces';
+import { first } from 'rxjs';
 
 import { DialogService } from '../../core/services/dialog/dialog.service';
 import { StoreService } from '../../core/services/store/store.service';
-import { Note } from '@no-paper-needed/interfaces';
 import { AddNoteDialogComponent } from '../add-note-dialog/add-note-dialog.component';
 import { EditNoteDialogComponent } from '../edit-note-dialog/edit-note-dialog.component';
-import { first } from 'rxjs';
 
 @Component({
   selector: 'app-dialog-container',

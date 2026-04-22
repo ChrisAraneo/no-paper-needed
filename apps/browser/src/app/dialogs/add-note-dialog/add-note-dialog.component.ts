@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { HeaderComponent } from '@no-paper-needed/components/header';
+import { NoteComponent } from '@no-paper-needed/components/note';
+import {
+  StepPanelDirective,
+  StepperDialogComponent,
+} from '@no-paper-needed/components/stepper-dialog';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -8,30 +14,24 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TextareaModule } from 'primeng/textarea';
 
-import { NoteComponent } from '@no-paper-needed/components/note';
-import { HeaderComponent } from '@no-paper-needed/components/header';
-import {
-  StepPanelDirective,
-  StepperDialogComponent,
-} from '@no-paper-needed/components/stepper-dialog';
 import { NoteDialog } from '../note-dialog.directive';
 
 @Component({
   selector: 'app-add-note-dialog',
   imports: [
-    InputTextModule,
-    TextareaModule,
+    DatePickerModule,
     FloatLabelModule,
     FormsModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    DatePickerModule,
-    InputNumberModule,
-    RadioButtonModule,
     HeaderComponent,
-    StepperDialogComponent,
-    StepPanelDirective,
+    InputNumberModule,
+    InputTextModule,
     NoteComponent,
+    RadioButtonModule,
+    ReactiveFormsModule,
+    StepPanelDirective,
+    StepperDialogComponent,
+    TextareaModule,
+    TranslateModule,
   ],
   templateUrl: './add-note-dialog.component.html',
   styleUrl: './add-note-dialog.component.scss',
