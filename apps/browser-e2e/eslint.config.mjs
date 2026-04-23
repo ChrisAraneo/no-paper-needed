@@ -2,6 +2,7 @@ import playwright from 'eslint-plugin-playwright';
 import baseConfig from '../../eslint.config.mjs';
 
 export default [
+  { ignores: ['eslint.config.mjs'] },
   ...baseConfig,
   ...baseConfig,
   playwright.configs['flat/recommended'],

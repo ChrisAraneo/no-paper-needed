@@ -2,7 +2,7 @@ import { configBuilder } from '@chris.araneo/eslint-config';
 
 const SOURCES = ['**/*.ts', '!**/*.spec.ts'];
 const JSONS = ['**/*.json'];
-const IGNORED = [];
+const IGNORED = ['eslint.config.mjs'];
 
 export default configBuilder()
   .addTypeScriptConfig({

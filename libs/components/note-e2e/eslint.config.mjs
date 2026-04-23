@@ -5,4 +5,5 @@ export default configBuilder()
     sources: ['**/*.spec.ts'],
     tsconfigRootDir: import.meta.dirname,
   })
+  .addIgnored({ ignored: ['eslint.config.mjs'] })
   .build();

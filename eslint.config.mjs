@@ -8,6 +8,7 @@ const IGNORED = [
   'apps/',
   'libs/',
   'node_modules/',
+  'eslint.config.mjs',
   'package.json',
   'package-lock.json',
 ];
