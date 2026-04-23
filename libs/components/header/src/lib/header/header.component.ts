@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
+import { Component, input } from '@angular/core';
+
 import { HeaderElement, HeaderSize } from './header.types';
 
 @Component({

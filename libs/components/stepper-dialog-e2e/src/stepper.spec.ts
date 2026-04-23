@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('StepperComponent', () => {
   test.describe('Default story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-stepper--default&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-stepper--default&viewMode=story',
+      );
       await page.locator('npn-stepper p-stepper').waitFor();
     });
 

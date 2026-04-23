@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('LabelComponent', () => {
   test.describe('Default story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-label--default&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-label--default&viewMode=story',
+      );
       await page.locator('npn-label span').waitFor();
     });
 
@@ -23,7 +25,9 @@ test.describe('LabelComponent', () => {
 
   test.describe('LongText story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-label--long-text&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-label--long-text&viewMode=story',
+      );
       await page.locator('npn-label span').waitFor();
     });
 

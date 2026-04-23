@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('NoteComponent', () => {
   test.describe('Default story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-note--default&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-note--default&viewMode=story',
+      );
       await page.locator('app-note .container').waitFor();
     });
 

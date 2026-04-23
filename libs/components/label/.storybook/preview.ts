@@ -1,7 +1,7 @@
+import { THEME } from '@no-paper-needed/shared/theme';
 import type { Preview } from '@storybook/angular';
 import { applicationConfig } from '@storybook/angular';
 import { providePrimeNG } from 'primeng/config';
-import { THEME } from '@no-paper-needed/shared/theme';
 
 const preview: Preview = {
   decorators: [
@@ -13,7 +13,7 @@ const preview: Preview = {
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i,
+        date: /date$/i,
       },
     },
   },

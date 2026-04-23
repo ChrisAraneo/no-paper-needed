@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('TextComponent', () => {
   test.describe('Default story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-text--default&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-text--default&viewMode=story',
+      );
       await page.locator('npn-text span').waitFor();
     });
 
@@ -35,7 +37,9 @@ test.describe('TextComponent', () => {
 
   test.describe('LongText story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-text--long-text&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-text--long-text&viewMode=story',
+      );
       await page.locator('npn-text span').waitFor();
     });
 

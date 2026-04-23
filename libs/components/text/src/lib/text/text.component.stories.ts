@@ -8,7 +8,7 @@ const meta: Meta<TextComponent> = {
   tags: ['autodocs'],
   render: (args: any) => ({
     props: { ...args },
-    template: `<npn-text>${args['content'] ?? 'Sample text'}</npn-text>`,
+    template: `<npn-text>${args.content ?? 'Sample text'}</npn-text>`,
   }),
   argTypes: {
     content: {

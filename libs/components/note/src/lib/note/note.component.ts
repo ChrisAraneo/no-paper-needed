@@ -1,17 +1,17 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CardModule } from 'primeng/card';
-import { TooltipModule } from 'primeng/tooltip';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ButtonComponent } from '@no-paper-needed/components/button';
 import { Note, Recurrence } from '@no-paper-needed/interfaces';
-import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { format } from 'date-fns';
 import { LocaleService } from '@no-paper-needed/shared/locale';
+import { DATE_FORMAT } from '@no-paper-needed/shared/tokens';
+import { format } from 'date-fns';
+import { CardModule } from 'primeng/card';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-note',
-  imports: [CardModule, ButtonComponent, TooltipModule, TranslateModule],
+  imports: [ButtonComponent, CardModule, TooltipModule, TranslateModule],
   templateUrl: './note.component.html',
   styleUrl: './note.component.scss',
 })
@@ -23,7 +23,7 @@ export class NoteComponent {
     initialValue: this.localeService.getCurrentLang(),
   });
 
-  readonly note = input<Note | undefined>(undefined);
+  readonly note = input<Note | undefined>();
   readonly showEditButton = input(false);
 
   readonly edit = output<Note>();

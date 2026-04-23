@@ -12,8 +12,8 @@ import { isUndefined } from 'lodash-es';
 import { DialogModule } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 
-import { StepPanelDirective } from '../step-panel/step-panel.directive';
 import { StepPanelComponent } from '../step-panel/step-panel.component';
+import { StepPanelDirective } from '../step-panel/step-panel.directive';
 import { DEFAULT_ACTIVE_STEP } from './stepper-dialog.consts';
 import { StepConfig } from './stepper-dialog.interfaces';
 
@@ -21,10 +21,10 @@ import { StepConfig } from './stepper-dialog.interfaces';
   selector: 'npn-stepper-dialog',
   imports: [
     DialogModule,
-    StepperModule,
     NgTemplateOutlet,
-    TranslateModule,
     StepPanelComponent,
+    StepperModule,
+    TranslateModule,
   ],
   templateUrl: './stepper-dialog.component.html',
   styleUrl: './stepper-dialog.component.scss',

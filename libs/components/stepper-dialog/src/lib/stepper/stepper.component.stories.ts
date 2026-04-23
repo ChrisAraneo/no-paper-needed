@@ -9,7 +9,7 @@ import { StepperComponent } from './stepper.component';
 
 @Component({
   selector: 'npn-stepper-story-wrapper',
-  imports: [StepperComponent, StepPanelDirective],
+  imports: [StepPanelDirective, StepperComponent],
   template: `
     <npn-stepper [steps]="steps" [activeStep]="activeStep" [linear]="linear">
       <ng-template npnStepPanel [stepValue]="1" [stepActions]="step1Actions">
@@ -37,7 +37,8 @@ class StepperStoryWrapperComponent {
       label: 'Next',
       icon: 'pi pi-arrow-right',
       iconPos: 'right',
-      onClick: () => {},
+      onClick: () => {
+},
     },
   ];
 
@@ -47,13 +48,15 @@ class StepperStoryWrapperComponent {
       icon: 'pi pi-arrow-left',
       iconPos: 'left',
       severity: 'secondary',
-      onClick: () => {},
+      onClick: () => {
+},
     },
     {
       label: 'Next',
       icon: 'pi pi-arrow-right',
       iconPos: 'right',
-      onClick: () => {},
+      onClick: () => {
+},
     },
   ];
 
@@ -63,14 +66,16 @@ class StepperStoryWrapperComponent {
       icon: 'pi pi-arrow-left',
       iconPos: 'left',
       severity: 'secondary',
-      onClick: () => {},
+      onClick: () => {
+},
     },
     {
       label: 'Save',
       icon: 'pi pi-check',
       iconPos: 'right',
       severity: 'success',
-      onClick: () => {},
+      onClick: () => {
+},
     },
   ];
 }

@@ -20,5 +20,5 @@ export class ButtonComponent {
   readonly isRounded = input(false);
   readonly styleClass = input('');
 
-  readonly clicked = output<void>();
+  readonly clicked = output();
 }

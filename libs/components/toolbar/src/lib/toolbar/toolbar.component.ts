@@ -1,15 +1,15 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { map } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import { LocaleService } from '@no-paper-needed/shared/locale';
 import { ButtonComponent } from '@no-paper-needed/components/button';
 import { SearchbarComponent } from '@no-paper-needed/components/searchbar';
+import { LocaleService } from '@no-paper-needed/shared/locale';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'npn-toolbar',
-  imports: [SearchbarComponent, ButtonComponent, TranslatePipe, AsyncPipe],
+  imports: [AsyncPipe, ButtonComponent, SearchbarComponent, TranslatePipe],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })
@@ -21,7 +21,7 @@ export class ToolbarComponent {
   private readonly localeService = inject(LocaleService);
 
   protected readonly searchQuery$ = this.route.queryParams.pipe(
-    map((params) => (params['q'] as string) ?? ''),
+    map((params) => (params.q as string) ?? ''),
   );
 
   private get lang(): string {
@@ -29,7 +29,7 @@ export class ToolbarComponent {
   }
 
   private get baseRoute(): string {
-    const lang = this.lang;
+    const {lang} = this;
 
     return this.router.url.includes('/archive')
       ? `/${lang}/archive`

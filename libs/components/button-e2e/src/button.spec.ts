@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('ButtonComponent', () => {
   test.describe('Default story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-button--default&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-button--default&viewMode=story',
+      );
       await page.locator('npn-button button').waitFor();
     });
 
@@ -24,7 +26,9 @@ test.describe('ButtonComponent', () => {
 
   test.describe('Disabled story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-button--disabled&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-button--disabled&viewMode=story',
+      );
       await page.locator('npn-button button').waitFor();
     });
 
@@ -82,7 +86,9 @@ test.describe('ButtonComponent', () => {
 
   test.describe('Success story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-button--success&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-button--success&viewMode=story',
+      );
       await page.locator('npn-button button').waitFor();
     });
 
@@ -96,7 +102,9 @@ test.describe('ButtonComponent', () => {
 
   test.describe('Danger story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-button--danger&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-button--danger&viewMode=story',
+      );
       await page.locator('npn-button button').waitFor();
     });
 

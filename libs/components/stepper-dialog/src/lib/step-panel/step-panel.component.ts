@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-
 import { ButtonComponent } from '@no-paper-needed/components/button';
+
 import { StepPanelAction } from './step-panel.interfaces';
 
 @Component({

@@ -8,7 +8,7 @@ const meta: Meta<LabelComponent> = {
   tags: ['autodocs'],
   render: (args: any) => ({
     props: { ...args },
-    template: `<npn-label>${args['content'] ?? 'Label'}</npn-label>`,
+    template: `<npn-label>${args.content ?? 'Label'}</npn-label>`,
   }),
   argTypes: {
     content: {

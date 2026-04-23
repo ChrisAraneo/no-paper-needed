@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('HeaderComponent', () => {
   test.describe('Default story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-header--default&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-header--default&viewMode=story',
+      );
       await page.locator('npn-header header').waitFor();
     });
 
@@ -51,7 +53,9 @@ test.describe('HeaderComponent', () => {
 
   test.describe('Medium story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-header--medium&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-header--medium&viewMode=story',
+      );
       await page.locator('npn-header header').waitFor();
     });
 
@@ -71,7 +75,9 @@ test.describe('HeaderComponent', () => {
 
   test.describe('H2 story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-header--as-h-2&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-header--as-h-2&viewMode=story',
+      );
       await page.locator('npn-header header').waitFor();
     });
 
@@ -102,7 +108,9 @@ test.describe('HeaderComponent', () => {
 
   test.describe('H3 story', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/iframe.html?id=components-header--as-h-3&viewMode=story');
+      await page.goto(
+        '/iframe.html?id=components-header--as-h-3&viewMode=story',
+      );
       await page.locator('npn-header header').waitFor();
     });
 

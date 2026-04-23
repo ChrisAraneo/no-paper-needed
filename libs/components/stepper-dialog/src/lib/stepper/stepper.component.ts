@@ -3,17 +3,17 @@ import { Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { StepperModule } from 'primeng/stepper';
 
-import { StepPanelDirective } from '../step-panel/step-panel.directive';
 import { StepPanelComponent } from '../step-panel/step-panel.component';
+import { StepPanelDirective } from '../step-panel/step-panel.directive';
 import { StepConfig } from '../stepper-dialog/stepper-dialog.interfaces';
 
 @Component({
   selector: 'npn-stepper',
   imports: [
-    StepperModule,
     NgTemplateOutlet,
-    TranslateModule,
     StepPanelComponent,
+    StepperModule,
+    TranslateModule,
   ],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.scss',

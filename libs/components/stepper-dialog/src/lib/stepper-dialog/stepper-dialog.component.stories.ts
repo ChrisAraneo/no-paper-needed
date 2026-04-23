@@ -9,7 +9,7 @@ import { StepConfig } from './stepper-dialog.interfaces';
 
 @Component({
   selector: 'npn-stepper-dialog-story-wrapper',
-  imports: [StepperDialogComponent, StepPanelDirective],
+  imports: [StepPanelDirective, StepperDialogComponent],
   template: `
     <npn-stepper-dialog
       [title]="title"
@@ -44,7 +44,8 @@ class StepperDialogStoryWrapperComponent {
       label: 'Next',
       icon: 'pi pi-arrow-right',
       iconPos: 'right',
-      onClick: () => {},
+      onClick: () => {
+},
     },
   ];
 
@@ -54,13 +55,15 @@ class StepperDialogStoryWrapperComponent {
       icon: 'pi pi-arrow-left',
       iconPos: 'left',
       severity: 'secondary',
-      onClick: () => {},
+      onClick: () => {
+},
     },
     {
       label: 'Next',
       icon: 'pi pi-arrow-right',
       iconPos: 'right',
-      onClick: () => {},
+      onClick: () => {
+},
     },
   ];
 
@@ -70,14 +73,16 @@ class StepperDialogStoryWrapperComponent {
       icon: 'pi pi-arrow-left',
       iconPos: 'left',
       severity: 'secondary',
-      onClick: () => {},
+      onClick: () => {
+},
     },
     {
       label: 'Save',
       icon: 'pi pi-check',
       iconPos: 'right',
       severity: 'success',
-      onClick: () => {},
+      onClick: () => {
+},
     },
   ];
 }
